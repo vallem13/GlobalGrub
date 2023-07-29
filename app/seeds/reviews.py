@@ -190,7 +190,7 @@ def seed_reviews():
     )
     review32 = Review(
         comment="Good Vietnamese restaurant offering a great variety of dishes. ",
-        rating="4.5",
+        rating=4.5,
         user_id=5,
         restaurant_id=11
     )
@@ -657,4 +657,3 @@ def undo_reviews():
         db.session.execute(text("DELETE FROM reviews"))
 
     db.session.commit()
-    
