@@ -304,7 +304,7 @@ def seed_reviews():
     )
     review51 = Review(
         comment="Decent food but not amazing. We only came for the paella but to our disappointment, the waiter said the oven was broken.",
-        rating="2.5",
+        rating=2.5,
         user_id=4,
         restaurant_id=17
     )
