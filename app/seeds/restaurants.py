@@ -299,7 +299,7 @@ def seed_restaurants():
         city="San Francisco",
         state="CA",
         zipcode=94110,
-        contact_phone_number=" 415-814-2920",
+        contact_phone_number="415-814-2920",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipPVjimlIKgSY0dxSTSXT6GkCoxR7qn02CKaS9Oz=s1360-w1360-h1020",
         cuisine_type_id=9
     )
