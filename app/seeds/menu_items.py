@@ -820,7 +820,7 @@ def seed_menu_items():
         name="Panang Curry Beef",
         description="Tender beef simmered in a flavorful Panang curry sauce with a hint of peanut and coconut milk, served with steamed jasmine rice.",
         price=50.00,
-        menu_item_image="https://www.seriouseats.com/thmb/GUuZHwc1C2IjpnZsIJAZ-bjqey4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__08__20200817-Panaeng-Neua-derek-lucci-1-26689646c93c4889bdd1de4f6b763af2.jpg",
+        menu_item_image="https://tinyurl.com/4fwvda8y",
         restaurant_id=27
     )
     menu_item118 = MenuItem(
@@ -1044,7 +1044,7 @@ def seed_menu_items():
         name="Seafood Paella",
         description="A tantalizing Spanish rice dish with an abundance of shrimp, mussels, clams, and calamari, flavored with saffron and bell peppers.",
         price=38.00,
-        menu_item_image="https://www.simplyrecipes.com/thmb/2GMHFcWEHZGOYbT4eoVCAu2uwsw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2018__07__Seafood-Paella-LEAD-VERTICAL-fc5f1e71baa8484cafa1a106ffaa9c23.jpg",
+        menu_item_image="https://tinyurl.com/ybjd96wr",
         restaurant_id=23
     )
     menu_item150= MenuItem(
@@ -1121,7 +1121,7 @@ def seed_menu_items():
         name="Miang Kham (Thai Leaf-Wrapped Snack)",
         description="A delightful appetizer featuring a mix of roasted coconut, peanuts, lime, shallots, ginger, and dried shrimp, served with betel leaves.",
         price=23.90,
-        menu_item_image="https://www.seriouseats.com/thmb/nF8gMO7wb1VbJ6Kim4hv5JMIbSA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__05__20140520-293185-cook-the-book-leaf-wrapped-salad-bites-9c510363b56c4eff825f35172975f1c6.jpg",
+        menu_item_image="https://tinyurl.com/27hz4ny6",
         restaurant_id=25
     )
     menu_item161= MenuItem(
@@ -1353,7 +1353,7 @@ def seed_menu_items():
         description = "Yard Food or Festival & Bammie w/Plantains",
         price= 15.00,
         restaurant_id=31,
-        menu_item_image = "https://www.seriouseats.com/thmb/GL9xFLDBij_uPL0zWDHwEbiWNi8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__09__20200829-saltfish-ackee-vicky-wasik-1-f066e2f6aa5e4ebb84637cfcec31eb5f.jpg"
+        menu_item_image = "https://tinyurl.com/2adva59w"
     )
     menu_item194 = MenuItem(
         name = "Jerk Rollup",
@@ -1416,7 +1416,7 @@ def seed_menu_items():
         description = "Pan-Seared Filet . Rum Infused Jerk Sauce Mashed White Yam . Grilled Asparagus",
         price= 36.00,
         restaurant_id=31,
-        menu_item_image = "https://www.simplyrecipes.com/thmb/rM9LhwlTjwzw65b5wdeT6pK3xo8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2020__03__Jerk-Salmon-LEAD-3-ALT-5e11241fdc114cb2a87934d9d46440a0.jpg"
+        menu_item_image = "https://tinyurl.com/yreaj3ys"
     )
     menu_item203 = MenuItem(
         name = "Plantains",
@@ -1465,7 +1465,7 @@ def seed_menu_items():
         description = "Romaine lettuce tomatoes, cucumbers, red onions, kalamata olives, feta cheese, and bell peppers, topped with Greek dressing",
         price= 10.00,
         restaurant_id=29,
-        menu_item_image = "https://www.simplyrecipes.com/thmb/Mo0HabY7Va_kEJtbtVmjdCqMzsI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2011__08__dads-greek-salad-vertical-a-1600-d67fd37678a64815996f56e7ec02d452.jpg"
+        menu_item_image = "https://tinyurl.com/yc38azak"
     )
     menu_item210 = MenuItem(
         name = "Mango Juice",
@@ -1479,7 +1479,7 @@ def seed_menu_items():
         description = "Rice & Peas . Vegetable Medley",
         price= 25.00,
         restaurant_id=31,
-        menu_item_image = "https://www.simplyrecipes.com/thmb/rM9LhwlTjwzw65b5wdeT6pK3xo8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2020__03__Jerk-Salmon-LEAD-3-ALT-5e11241fdc114cb2a87934d9d46440a0.jpg"
+        menu_item_image = "https://tinyurl.com/yreaj3ys"
     )
     menu_item212 = MenuItem(
         name = "Collard Greens",
