@@ -15,7 +15,7 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
-export const editUser = (userId, username, email, password, phone_number, first_name, username, last_name, address, city, state, zipcode, hashed_password) => async (dispatch) => {
+export const editUser = (userId, email, password, phone_number, first_name, username, last_name, address, city, state, zipcode, hashed_password) => async (dispatch) => {
 	const response = await fetch(`/api/users/${userId}`, {
 		method: "PUT",
 		headers: {
