@@ -15,7 +15,7 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
-export const editUser = (userId, email, password, phone_number, first_name, username, last_name, address, city, state, zipcode, hashed_password) => async (dispatch) => {
+export const editUser = (userId, email, phoneNumber, firstName, username, lastName, address, city, state, zipcode) => async (dispatch) => {
 	const response = await fetch(`/api/users/${userId}`, {
 		method: "PUT",
 		headers: {
@@ -24,17 +24,13 @@ export const editUser = (userId, email, password, phone_number, first_name, user
 		body: JSON.stringify({
 			username,
 			email,
-			password,
-			phone_number,
-			first_name,
-			last_name,
-			username,
+			"phone_number":phoneNumber,
+			"first_name":firstName,
+			"last_name":lastName,
 			address,
 			city,
 			state,
-			zipcode,
-			hashed_password
-
+			zipcode
 		}),
 	});
 	if (response.ok) {
@@ -62,10 +58,6 @@ export const deleteUser = (userId) => async (dispatch) => {
 	}
 	return response
 }
-
-
-
-
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -121,7 +113,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (email, phoneNumber, firstName, username, lastName, address, city, state, zipcode, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -131,12 +123,19 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			"phone_number":phoneNumber,
+			"first_name":firstName,
+			"last_name":lastName,
+			address,
+			city,
+			state,
+			zipcode
 		}),
 	});
 
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(setUser(data));
+		await dispatch(setUser(data));
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();

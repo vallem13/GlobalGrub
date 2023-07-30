@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux'
-
-import { setUser, editUser } from "../../../store/session";
+import { useDispatch, useSelector } from 'react-redux'
+import { useModal } from "../../../context/Modal";
+import { useHistory } from "react-router-dom"
+import { editUser, signUp } from "../../../store/session"
 
 
 
 const EditUserAccount = ({ userId }) => {
 
     const dispatch = useDispatch()
-
+    const { closeModal } = useModal();
+    const history = useHistory()
+    const user = useSelector(state => state.session.user);
     const [address, setAddress] = useState(user.address);
     const [city, setCity] = useState(user.city);
     const [state, setState] = useState(user.state);
@@ -26,19 +29,15 @@ const EditUserAccount = ({ userId }) => {
         if (!address) {
             errors.address = "Address is required";
         }
-
         if (!city) {
             errors.city = "City is required";
         }
-
         if (!state) {
             errors.state = "State is required";
         }
-
-        if (!country) {
-            errors.country = "Country is required";
+        if (!zipcode) {
+            errors.zipcode = "Zip Code is required";
         }
-
         if (!firstName) {
             errors.firstName = "First name is required";
         }
@@ -61,9 +60,9 @@ const EditUserAccount = ({ userId }) => {
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault()
         setHasSubmitted(true)
-
 
         const updatedUser = {
             address,
@@ -78,22 +77,119 @@ const EditUserAccount = ({ userId }) => {
         }
 
         if (!Object.values(errors).length) {
-            const editUser = await dispatch(editUser(updatedUser, user.id))
+            const editedUser = await dispatch(editUser(updatedUser, user.id))
+            console.log('------->', editedUser)
 
-            if(updatedUser.errors) {
-                setErrors(updatedUser.errors)
+            if (editedUser.errors) {
+                setErrors(editedUser.errors)
             } else {
                 await history.push(`/users/${userId}/profile`)
             }
+        } else {
+
+            await closeModal()
+
         }
-        await dispatch(setUser)
+
 
     }
 
-    return (
-        <form onSubmit={handleSubmit}>
+    const sumbitCancel = () => {
+        closeModal()
+    };
 
-        </form>
+    return (
+        <div>
+            <h1>Edit Account Info</h1>
+            <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    First Name:
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Last Name:
+                    <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Username:
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Email:
+                    <input
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Address:
+                    <input
+                        type="text"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    City:
+                    <input
+                        type="text"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    State:
+                    <input
+                        type="text"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Zipcode:
+                    <input
+                        type="text"
+                        value={zipcode}
+                        onChange={(e) => setZipcode(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Phone Number:
+                    <input
+                        type="text"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Update Account</button>
+                <button type="submit" onClick={sumbitCancel}>Cancel</button>
+            </form>
+        </div>
     )
 
 }

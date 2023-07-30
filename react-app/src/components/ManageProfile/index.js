@@ -4,6 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import DeleteUserAccount from "./DeleteUserModal";
+import EditUserAccount from "./EditUserModal";
 import OpenModalButton from "../OpenModalButton";
 
 const UserProfile = () => {
@@ -24,26 +25,24 @@ const UserProfile = () => {
             <p> {user.email} </p>
             <h3>Address:</h3>
             <p> {user.address} </p>
-            <h3>City</h3>
+            <h3>City:</h3>
             <p> {user.city} </p>
-            <h3>State</h3>
+            <h3>State:</h3>
             <p> {user.state} </p>
             <h3>Zipcode:</h3>
             <p> {user.zipcode} </p>
 
             <div>
 
-            <OpenModalButton buttonText={"Delete Account"} 
-            
-            modalComponent={<DeleteUserAccount userId={user.id}/>}
-            
-            
+            <OpenModalButton
+                buttonText={"Delete Account"}
+                modalComponent={<DeleteUserAccount userId={user.id}/>}
+            />
+            <OpenModalButton
+                buttonText={"Edit Account"}
+                modalComponent={<EditUserAccount userId={user.id}/>}
             />
 
-        
-                
-         
-           
             </div>
 
         </div>
