@@ -114,3 +114,47 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+<<<<<<< HEAD
+=======
+
+
+# Edit a User
+@user_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_user(id):
+    # input edit form here
+    form = EditUserForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        user = User.query.get(id)
+        print('------>', user)
+        print('WHATEVER -------', current_user)
+        if current_user.is_authenticated:
+            if user.id == current_user.to_dict()["id"]:
+                user.email = form.data['email']
+                user.phone_number = form.data['phone_number']
+                user.first_name = form.data['first_name']
+                user.username = form.data['username']
+                user.last_name = form.data['last_name']
+                user.address = form.data['address']
+                user.city = form.data['city']
+                user.state = form.data['state']
+                user.zipcode = form.data['zipcode']
+                    # user.user_profile_icon = form.data['user_profile_icon']
+                db.session.commit()
+                return jsonify(user.to_dict())
+
+        return jsonify({'error': 'Form validation failed or user not authorized'}), 400
+
+# Get a User by ID
+@user_routes.route('/<int:id>')
+@login_required
+def get_all_users():
+    users = User.query.all()
+    return {'users': [user.to_dict() for user in users]}
+
+
+
+>>>>>>> 1ba724152f488271eb6169b8452a57d50721cf4e

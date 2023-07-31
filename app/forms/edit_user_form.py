@@ -1,15 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, Email
+from wtforms.validators import DataRequired, ValidationError
 from flask_login import current_user
 from app.models import User
 
 
 def validate_phone_number(form, field):
-    logged_in_user = current_user.to_dict()
     phone_number = field.data
     user = User.query.filter(User.phone_number == phone_number).first()
-    if user and (logged_in_user["id"] != user.id):
+    if user and current_user.to_dict()["id"] != user.id:
         raise ValidationError('Phone Number is already in use.')
 
 # def validate_password(form, field):
