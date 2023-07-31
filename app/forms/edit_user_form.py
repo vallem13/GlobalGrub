@@ -19,16 +19,24 @@ def validate_phone_number(form, field):
         raise ValidationError('Phone Number is already in use.')
 
 def validate_username(form, field):
-    if field.data != current_user.username:
-        user = User.query.filter_by(username=field.data).first()
-        if user:
-            raise ValidationError('Username already in use.')
+    logged_in_user = current_user.to_dict()
+    username = field.data
+    user = User.query.filter_by(User.username == username).first()
+    if user and (logged_in_user["id"] != user.id):
+        raise ValidationError('Username already in use.')
+
+# def validate_email(form, field):
+#     if field.data != current_user.email:
+#         user = User.query.filter_by(email=field.data).first()
+#         if user:
+#             raise ValidationError('Email already in use.')
 
 def validate_email(form, field):
-    if field.data != current_user.email:
-        user = User.query.filter_by(email=field.data).first()
-        if user:
-            raise ValidationError('Email already in use.')
+    # Checking if user exists
+    email = field.data
+    user = User.query.filter(User.email == email).first()
+    if user:
+        raise ValidationError('Email address is already in use.')
 
 def validate_password(form, field):
     password = field.data
@@ -47,7 +55,7 @@ class EditUserForm(FlaskForm):
     first_name = StringField('first_name', validators=[DataRequired()])
     phone_number = StringField('phone_number', validators=[DataRequired(), validate_phone_number])
     state = StringField('state', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired(), Email(), validate_user_exists])
+    email = StringField('email', validators=[DataRequired(), validate_email])
     last_name = StringField('last_name', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     zipcode = IntegerField('Zipcode', validators=[DataRequired()])

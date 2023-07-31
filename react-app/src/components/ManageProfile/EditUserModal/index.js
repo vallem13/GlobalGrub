@@ -65,33 +65,25 @@ const EditUserAccount = ({ userId }) => {
         setHasSubmitted(true)
 
         const updatedUser = {
-            address,
-            city,
-            state,
-            zipcode,
-            firstName,
-            lastName,
-            username,
             email,
-            phoneNumber
+			phoneNumber,
+			firstName,
+		    username,
+			lastName,
+			address,
+			city,
+			state,
+			zipcode
         }
 
         if (!Object.values(errors).length) {
-            const editedUser = await dispatch(editUser(updatedUser, user.id))
+            const editedUser = await dispatch(editUser(userId, updatedUser))
             console.log('------->', editedUser)
 
-            if (editedUser.errors) {
-                setErrors(editedUser.errors)
-            } else {
-                await history.push(`/users/${userId}/profile`)
-            }
-        } else {
-
-            await closeModal()
-
+            if (editedUser.errors) setErrors(editedUser.errors)
         }
 
-
+        await closeModal()
     }
 
     const sumbitCancel = () => {

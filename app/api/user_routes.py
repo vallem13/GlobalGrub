@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, logout_user, current_user
 from .auth_routes import auth_routes
 from app.models import User, db
@@ -39,11 +39,13 @@ def get_all_users():
 def edit_user(id):
     # input edit form here
     form = EditUserForm()
+    print('------>', form)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         user = User.query.get(id)
-
+        print('------>', user)
+        print('WHATEVER -------', current_user)
         if current_user.is_authenticated:
             if user.id == current_user.to_dict()["id"]:
                 user.email = form.data['email']
@@ -55,9 +57,11 @@ def edit_user(id):
                 user.city = form.data['city']
                 user.state = form.data['state']
                 user.zipcode = form.data['zipcode']
-                # user.user_profile_icon = form.data['user_profile_icon']
+                    # user.user_profile_icon = form.data['user_profile_icon']
                 db.session.commit()
-                return user.to_dict()
+                return jsonify(user.to_dict())
+
+        return jsonify({'error': 'Form validation failed or user not authorized'}), 400
 
 # DELETE user by ID
 @user_routes.route('/<int:id>', methods=['DELETE'])
