@@ -78,7 +78,7 @@ const EditUserAccount = ({ userId }) => {
 
         if (!Object.values(errors).length) {
             const editedUser = await dispatch(editUser(userId, updatedUser))
-            console.log('------->', editedUser)
+            // console.log('------->', editedUser)
 
             if (editedUser.errors) setErrors(editedUser.errors)
         }

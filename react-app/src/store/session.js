@@ -34,7 +34,7 @@ export const editUser = (userId, email, phoneNumber, firstName, username, lastNa
 			zipcode
 		}),
 	});
-	console.log('-------->', response)
+	// console.log('-------->', response)
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));

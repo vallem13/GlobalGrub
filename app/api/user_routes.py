@@ -4,6 +4,7 @@ from .auth_routes import auth_routes
 from app.models import User, db
 from app.forms import EditUserForm
 
+
 user_routes = Blueprint('users', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
@@ -53,10 +54,10 @@ def edit_user(id):
     print('FORM ------>', form)
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if id > 5 and form.validate_on_submit():
+    if id > 5: #and form.validate_on_submit():
         # print("THIS IS USER", User)
         user = User.query.get(id)
-        # print('------> user', user)
+        print('------> user', user)
 
         if user.id: # == current_user.to_dict()["id"]:
             user.email = form.data['email']
