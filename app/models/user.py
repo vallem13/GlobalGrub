@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     state = db.Column(db.String(2), nullable=False)
     zipcode = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
-    user_profile_icon = db.Column(db.String(255))
+    # user_profile_icon = db.Column(db.String(255))
 
     reviews = db.relationship('Review', back_populates="user")
     orders = db.relationship('Order', back_populates="user")
@@ -50,5 +50,5 @@ class User(db.Model, UserMixin):
             'zipcode': self.zipcode,
             'username': self.username,
             'hashed_password': self.hashed_password,
-            'user_profile_icon': self.user_profile_icon
+            # 'user_profile_icon': self.user_profile_icon
         }

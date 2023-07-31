@@ -25,7 +25,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/:userId/profile">
+          <Route path="/profile">
             <UserProfile />
           </Route>
         </Switch>

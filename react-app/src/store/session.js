@@ -22,6 +22,7 @@ export const editUser = (userId, email, phoneNumber, firstName, username, lastNa
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
+			"id":userId,
 			username,
 			email,
 			"phone_number":phoneNumber,
@@ -33,6 +34,7 @@ export const editUser = (userId, email, phoneNumber, firstName, username, lastNa
 			zipcode
 		}),
 	});
+	console.log('-------->', response)
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
