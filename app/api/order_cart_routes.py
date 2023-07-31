@@ -7,7 +7,7 @@ order_cart_routes = Blueprint('cart', __name__)
 
 
 # Add menu_items to cart
-@order_routes.route('', methods=['POST'])
+@order_cart_routes.route('', methods=['POST'])
 @login_required
 def add_to_cart():
 
@@ -33,11 +33,12 @@ def add_to_cart():
     return {"message": f'Successfully added order for user {current_user.id}'}, 200
 
 
-@order_routes.route('/<int:order_cart.id>', methods=['DELETE'])
+@order_cart_routes.route('/<int:order_cart_id>', methods=['DELETE'])
 @login_required
-def delete_cart(order_cart.id):
+def delete_cart(order_cart_id):
 
-    current_cart = OrderCart.query.get_or_404(order_cart.id)
+    current_cart = OrderCart.query.get_or_404(order_cart_id)
+    
 
     db.session.delete(current_cart)
     db.session.commit()

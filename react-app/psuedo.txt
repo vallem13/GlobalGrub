@@ -1,0 +1,10 @@
+- Make an Order 
+- The order goes to the Order Cart 
+
+Tabe: Order Cart 
+    - User thats making the order
+    - the item that is being ordered
+
+
+
+Table Order 
