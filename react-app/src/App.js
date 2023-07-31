@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/profile">
+            <ProtectedRoute>
             <UserProfile />
+            </ProtectedRoute>
           </Route>
         </Switch>
       )}

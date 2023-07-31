@@ -59,34 +59,42 @@ const EditUserAccount = ({ userId }) => {
     }, [address, city, state, zipcode, firstName, lastName, username, email, phoneNumber])
 
 
-    const handleSubmit = async (e) => {
 
-        e.preventDefault()
-        setHasSubmitted(true)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setHasSubmitted(true);
 
         const updatedUser = {
-            email,
-			phoneNumber,
-			firstName,
-		    username,
-			lastName,
-			address,
-			city,
-			state,
-			zipcode
+          email,
+          phoneNumber,
+          firstName,
+          username,
+          lastName,
+          address,
+          city,
+          state,
+          zipcode,
+        };
+
+        try {
+          const editedUser = await dispatch(editUser(userId, updatedUser));
+        //   console.log('------->', editedUser);
+
+          // Check if there are errors in the response and handle them
+          if (editedUser && editedUser.errors) {
+            setErrors(editedUser.errors);
+          }
+        } catch (error) {
+          // Handle any other errors that might occur during the API request
+          console.error("An error occurred:", error.message);
         }
 
-        if (!Object.values(errors).length) {
-            const editedUser = await dispatch(editUser(userId, updatedUser))
-            // console.log('------->', editedUser)
+        await closeModal();
+      };
 
-            if (editedUser.errors) setErrors(editedUser.errors)
-        }
 
-        await closeModal()
-    }
 
-    const sumbitCancel = () => {
+    const submitCancel = () => {
         closeModal()
     };
 
@@ -179,7 +187,7 @@ const EditUserAccount = ({ userId }) => {
                     />
                 </label>
                 <button type="submit">Update Account</button>
-                <button type="submit" onClick={sumbitCancel}>Cancel</button>
+                <button type="submit" onClick={submitCancel}>Cancel</button>
             </form>
         </div>
     )

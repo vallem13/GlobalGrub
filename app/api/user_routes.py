@@ -45,16 +45,45 @@ def delete_user(id):
 
 
 # Edit a User
-@user_routes.route('/<int:id>', methods=['PUT'])
+# @user_routes.route('/<int:id>', methods=['PUT'])
+# @login_required
+# def edit_user(id):
+#     # input edit form here
+#     print("THIS IS THE ID ---->", id)
+#     form = EditUserForm()
+#     print('FORM ------>', form)
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if id > 5: #and form.validate_on_submit():
+#         # print("THIS IS USER", User)
+#         user = User.query.get(id)
+#         print('------> user', user)
+
+#         if user.id: # == current_user.to_dict()["id"]:
+#             user.email = form.data['email']
+#             user.phone_number = form.data['phone_number']
+#             user.first_name = form.data['first_name']
+#             user.username = form.data['username']
+#             user.last_name = form.data['last_name']
+#             user.address = form.data['address']
+#             user.city = form.data['city']
+#             user.state = form.data['state']
+#             user.zipcode = form.data['zipcode']
+#             # user.user_profile_icon = form.data['user_profile_icon']
+#             db.session.commit()
+#             return user.to_dict()
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@user_routes.route('/update/<int:id>', methods=['PUT'])
 @login_required
 def edit_user(id):
     # input edit form here
     print("THIS IS THE ID ---->", id)
     form = EditUserForm()
-    print('FORM ------>', form)
+
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if id > 5: #and form.validate_on_submit():
+    if form.validate_on_submit():
         # print("THIS IS USER", User)
         user = User.query.get(id)
         print('------> user', user)
@@ -72,6 +101,8 @@ def edit_user(id):
             # user.user_profile_icon = form.data['user_profile_icon']
             db.session.commit()
             return user.to_dict()
+
+    print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Get a User by ID
