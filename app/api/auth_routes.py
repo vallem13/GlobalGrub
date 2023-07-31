@@ -56,6 +56,7 @@ def logout():
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
+    print("THIS IS THE RESPONSE ----->", request.json)
     """
     Creates a new user and logs them in
     """

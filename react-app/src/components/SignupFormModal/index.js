@@ -20,21 +20,50 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	// const handleSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	if (password === confirmPassword) {
+	// 		const data = await dispatch(signUp(username, email, password, firstName, lastName, address, city, state, zipcode, phoneNumber));
+	// 		if (data) {
+	// 			setErrors(data);
+	// 		} else {
+	// 			closeModal();
+	// 		}
+	// 	} else {
+	// 		setErrors([
+	// 			"Confirm Password field must be the same as the Password field",
+	// 		]);
+	// 	}
+	// };
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password, firstName, lastName, address, city, state, zipcode, phoneNumber));
-			if (data) {
-				setErrors(data);
-			} else {
-				closeModal();
-			}
+		  const data = await dispatch(
+			signUp(
+			  email,
+			  phoneNumber,
+			  firstName,
+			  username,
+			  lastName,
+			  address,
+			  city,
+			  state,
+			  zipcode,
+			  password
+			)
+		  );
+		  if (data) {
+			setErrors(data);
+		  } else {
+			closeModal();
+		  }
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+		  setErrors([
+			"Confirm Password field must be the same as the Password field",
+		  ]);
 		}
-	};
+	  };
 
 	return (
 		<>
