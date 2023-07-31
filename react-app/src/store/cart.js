@@ -1,31 +1,16 @@
-
-//actions
-
-// const CLEAR_CART = "cart/CLEAR_CART"
-// const CLEAR_ONE_ITEM = "cart/CLEAR_ONE_ITEM"
+//ACTIONS
 const ADD_TO_CART = "cart/ADD_TO_CART";
 
 
-//action creator
+//ACTION CREATOR
 const addToCart = (menuItem) => ({
   type: ADD_TO_CART,
   menuItem
 })
 
-// const clearOneItem = () => ({
-//   type: CLEAR_ONE_ITEM
-// })
 
-
-// const clearCart = () => ({
-//   type: CLEAR_CART,
-
-// })
-
-
-//thunk
-
-export const insertItemThunk = (orderId, menuItem) => async (dispatch) => {
+//THUNKS
+export const addToCartThunk = (orderId, menuItem) => async (dispatch) => {
   const response = await fetch("/api/cart" , {
     method: "POST",
     headers: {
@@ -52,28 +37,4 @@ export const insertItemThunk = (orderId, menuItem) => async (dispatch) => {
 }
 
 
-
-// Reducer
-
-//initial state is called state
-//once the user adds to cart 
-const initialState = {
-  orderObj: {},
-  menuObj: {}
-};
-
-// export default function reducer(state = initialState, action) {
-//   let newState;
-//   switch (action.type) {
-//     case ADD_TO_CART:
-   
-//     }
-//     console.log("IS THIS THE NEW STATE", newState)
-//     return newState;
-
-
-
-
-//     default:
-//       return state
-//   }
+//REDUCER
