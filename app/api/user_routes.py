@@ -6,7 +6,16 @@ from app.forms import EditUserForm
 
 user_routes = Blueprint('users', __name__)
 
-print("----------->", current_user)
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 @user_routes.route('/')
 @login_required
@@ -17,38 +26,39 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
-# Get a User by ID
-@user_routes.route('/<int:id>')
+# DELETE user by ID
+@user_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def user(id):
-    """
-    Query for a user by id and returns that user in a dictionary
-    """
-    user = User.query.get(id)
-    return user.to_dict()
+def delete_user(id):
 
-# # GET all users
-# @user_routes.route('/')
-# @login_required
-# def get_all_users():
-#     users = User.query.all()
-#     return {'users': [user.to_dict() for user in users]}
+    if id > 5: # Protection for seeds
+        user = User.query.get(id)
+
+        if current_user.is_authenticated:
+            if requested_user.id == current_user.to_dict()["id"]:
+                db.session.delete(user)
+                db.session.commit()
+                logout_user()
+                return {'message': 'User deleted successfully'}, 200
+        return {'error': 'Unauthorized'}, 403
+
 
 # Edit a User
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_user(id):
     # input edit form here
+    print("THIS IS THE ID ---->", id)
     form = EditUserForm()
-    # print('------>', form)
+    print('FORM ------>', form)
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
+    if id > 5 and form.validate_on_submit():
+        # print("THIS IS USER", User)
         user = User.query.get(id)
-        # print('------>', user)
-        # print('WHATEVER -------', current_user)
-        # if current_user.is_authenticated:
-        if user.id == current_user.to_dict()["id"]:
+        # print('------> user', user)
+
+        if user.id: # == current_user.to_dict()["id"]:
             user.email = form.data['email']
             user.phone_number = form.data['phone_number']
             user.first_name = form.data['first_name']
@@ -58,23 +68,17 @@ def edit_user(id):
             user.city = form.data['city']
             user.state = form.data['state']
             user.zipcode = form.data['zipcode']
-                    # user.user_profile_icon = form.data['user_profile_icon']
+            # user.user_profile_icon = form.data['user_profile_icon']
             db.session.commit()
-                # return jsonify(user.to_dict())
-            return "user updated"
-        # else:
-        #     print(form.errors)
-    return jsonify({'error': 'Form validation failed or user not authorized'}), 400
+            return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# DELETE user by ID
-@user_routes.route('/<int:id>', methods=['DELETE'])
+# Get a User by ID
+@user_routes.route('/<int:id>')
 @login_required
-def delete_user(id):
+def user(id):
+    """
+    Query for a user by id and returns that user in a dictionary
+    """
     user = User.query.get(id)
-
-    if current_user.is_authenticated:
-        db.session.delete(user)
-        db.session.commit()
-        return {'message': 'User deleted successfully'}, 200
-    else:
-        return {'error': 'Failed to delete user'}, 404
+    return user.to_dict()
