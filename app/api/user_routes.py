@@ -26,12 +26,20 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-# GET all users
-@user_routes.route('/')
+    # DELETE user by ID
+@user_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def get_all_users():
-    users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+def delete_user(id):
+    user = User.query.get(id)
+
+    if current_user.is_authenticated:
+        db.session.delete(user)
+        db.session.commit()
+        return {'message': 'User deleted successfully'}, 200
+    else:
+        return {'error': 'Failed to delete user'}, 404
+
+
 
 # Edit a User
 @user_routes.route('/<int:id>', methods=['PUT'])
@@ -39,7 +47,7 @@ def get_all_users():
 def edit_user(id):
     # input edit form here
     form = EditUserForm()
-    print('------>', form)
+    print(dir( form))
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -63,15 +71,14 @@ def edit_user(id):
 
         return jsonify({'error': 'Form validation failed or user not authorized'}), 400
 
-# DELETE user by ID
-@user_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
-def delete_user(id):
-    user = User.query.get(id)
+    
 
-    if current_user.is_authenticated:
-        db.session.delete(user)
-        db.session.commit()
-        return {'message': 'User deleted successfully'}, 200
-    else:
-        return {'error': 'Failed to delete user'}, 404
+# GET all users
+@user_routes.route('/')
+@login_required
+def get_all_users():
+    users = User.query.all()
+    return {'users': [user.to_dict() for user in users]}
+
+
+
