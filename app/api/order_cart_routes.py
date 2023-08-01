@@ -91,13 +91,69 @@ def add_to_cart():
 
 
 
+
+@order_cart_routes.route('/edit_cart/<int:id>', methods=['PUT'])
+@login_required
+def edit_cart(id):
+    data = request.get_json()
+
+    # if the cart id is not there in the request, throw an error message
+
+
+
+    if "cart_id" in data:
+        order_id = data["cart_id"]
+
+    else:
+        return {'errors': 'Invalid request data'}, 401
+
+
+
+    # look for the cart id that matched the data["cart_id"] that was in the request
+    current_cart = OrderCart.query.filter_by(order_id=order_id).first()
+
+    # if the current cart that was found in the query is not found or does not belong to the current user, throw an error
+    if not current_cart or current_cart.order.user_id != current_user.id:
+        return {"error": "Cart not found or user is not authorized"}, 404
+
+    # if the request is add_items, loop through menu items and create a new_order_cart object similar to add items in the post request. The only difference is now we set the new order id that is created to the current order id.
+
+    if "add_items" in data:
+        add_items = data["add_items"]
+        for menu_item_id in add_items:
+            new_order_cart = OrderCart(menu_item_id=menu_item_id, order_id=current_cart.order_id)
+            db.session.add(new_order_cart)
+
+    # if remove_items
+    if "remove_items" in data:
+        remove_items = data["remove_items"]
+        for menu_item_id in remove_items:
+            cart_item_to_remove = OrderCart.query.filter_by(order_id=current_cart.order_id, menu_item_id=menu_item_id).first()
+            if cart_item_to_remove:
+                db.session.delete(cart_item_to_remove)
+
+    db.session.commit()
+
+    return {"message": "Cart updated successfully"}, 200
+
+
+
+
+
 @order_cart_routes.route('/<int:order_cart_id>', methods=['DELETE'])
 @login_required
 def delete_cart(order_cart_id):
 
-    current_cart = OrderCart.query.get_or_404(order_cart_id)
+    # current_cart = OrderCart.query.get(order_cart_id)
+    current_order = Order.query.filter_by(id=order_cart_id, user_id=current_user.id).first()
 
-    db.session.delete(current_cart)
-    db.session.commit()
 
-    return {"message": f'Cart item deleted successfully'}, 200
+
+    if current_order:
+        db.session.delete(current_order)
+        # db.session.delete(current_cart)
+        db.session.commit()
+        return {"message": f'Cart item deleted successfully'}, 200
+
+    else:
+        return {"errors": "order cart not found"}

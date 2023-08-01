@@ -14,7 +14,7 @@ class Order(db.Model):
     # Relationships go here
     user = db.relationship("User", back_populates="orders")
     restaurant = db.relationship("Restaurant", back_populates="orders")
-    order_cart = db.relationship("OrderCart", back_populates="order")
+    order_cart = db.relationship("OrderCart", back_populates="order", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
