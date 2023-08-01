@@ -23,7 +23,7 @@ class Restaurant(db.Model):
     # Relationships goes here
     reviews = db.relationship('Review', back_populates='restaurant', cascade="all, delete-orphan")
     cuisine_type = db.relationship('CuisineType', back_populates='restaurants')
-    orders = db.relationship('Order', back_populates='restaurant')
+    order_carts = db.relationship('OrderCart', back_populates='restaurant')
     menu_items = db.relationship('MenuItem', back_populates='restaurant', cascade="all, delete-orphan")
 
     def to_dict(self):

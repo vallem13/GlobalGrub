@@ -8,16 +8,23 @@ class OrderCart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    menu_item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("menu_items.id")), nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")), nullable=False)
+
+    # menu_item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("menu_items.id")), nullable=False)
+    # order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
 
     # Relationships go here
-    menu_items = db.relationship("MenuItem", back_populates="order_cart")
-    order = db.relationship("Order", back_populates="order_cart")
+    user = db.relationship("User", back_populates="order_carts")
+    restaurant = db.relationship("Restaurant", back_populates="order_carts")
+    # menu_items = db.relationship("MenuItem", back_populates="order_cart")
+    orders = db.relationship("Order", back_populates="order_cart",  cascade="all, delete-orphan")
+
+
 
     def to_dict(self):
         return {
             'id': self.id,
-            'menu_item_id': self.menu_item_id,
-            'order_id': self.order_id
+            'user_id': self.user_id,
+            'restaurant_id': self.restaurant_id
         }
