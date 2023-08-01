@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Email
 from flask_login import current_user
 from app.models import User
 
@@ -10,14 +10,6 @@ def validate_phone_number(form, field):
     user = User.query.filter(User.phone_number == phone_number).first()
     if user and current_user.to_dict()["id"] != user.id:
         raise ValidationError('Phone Number is already in use.')
-
-# def validate_password(form, field):
-#     password = field.data
-#     user = User.query.get(form.data['id'])
-#     if not user:
-#         raise ValidationError('User does not exist.')
-#     if not user.check_password(password):
-#         raise ValidationError('Password was incorrect.')
 
 
 class EditUserForm(FlaskForm):
