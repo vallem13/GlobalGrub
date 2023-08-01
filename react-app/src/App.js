@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import HomePage from "./components/HomePage";
+// import HomePage from "./components/HomePage";
 import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 
 function App() {
