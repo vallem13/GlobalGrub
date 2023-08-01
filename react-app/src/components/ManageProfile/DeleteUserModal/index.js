@@ -13,8 +13,8 @@ const DeleteUserAccount = ({userId}) => {
         e.preventDefault()
 
         await dispatch(deleteUser(userId))
-        await closeModal();
         history.push('/')
+        await closeModal();
     };
 
     const sumbitCancel = () => {

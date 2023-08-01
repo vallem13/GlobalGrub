@@ -35,13 +35,12 @@ def delete_user(id):
     if id > 5: # Protection for seeds
         user = User.query.get(id)
 
-        if current_user.is_authenticated:
-            if requested_user.id == current_user.to_dict()["id"]:
-                db.session.delete(user)
-                db.session.commit()
-                logout_user()
-                return {'message': 'User deleted successfully'}, 200
-        return {'error': 'Unauthorized'}, 403
+        if user.id:
+            db.session.delete(user)
+            db.session.commit()
+            logout_user()
+            return {'message': 'User deleted successfully'}, 200
+    return {'error': 'Unauthorized'}, 403
 
 # Edit a User
 @user_routes.route('/update/<int:id>', methods=['PUT'])
