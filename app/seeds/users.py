@@ -17,11 +17,11 @@ def seed_users():
         phone_number='412-333-4444'
     )
     brad = User(
-        username='BradSimmons',
-        email='brad.simmons@aa.io',
+        username='BradSimpson',
+        email='brad.simpson@aa.io',
         password='password',
         first_name='Brad',
-        last_name='Simmons',
+        last_name='Simpson',
         address='456 Disney Lane',
         city='San Francisco',
         state='CA',
