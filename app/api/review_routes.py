@@ -1,19 +1,24 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.models import Review, db
-from app.forms import ReviewForm, EditReviewForm
+from app.forms import EditReviewForm, ReviewForm
 
 review_routes = Blueprint('review', __name__)
 
 # Create a New Review
 @review_routes.route('', methods=['POST'])
 @login_required
-def create_review():
+def create_review(id):
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        # User must have an order from restaurant to make review validation
+        previous_order = Order.query.filter_by(user_id=current_user.id,restaurant_id=id).first()
+        if not previous_order:
+            return{'errors': "You must have ordered from this restaurant before making a review"}, 403
+
         new_review = Review(
             comment=form.data['comment'],
             rating=form.data['rating'],
