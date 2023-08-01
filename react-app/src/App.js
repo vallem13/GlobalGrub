@@ -23,8 +23,8 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/home">
-          <ProtectedRoute>
-            <HomePage />
+            <ProtectedRoute>
+              <HomePage />
             </ProtectedRoute>
           </Route>
           <Route path="/login" >
@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path="/profile">
             <ProtectedRoute>
-            <UserProfile />
+              <UserProfile />
             </ProtectedRoute>
           </Route>
           <Route path="/restaurant/:restaurantId">
