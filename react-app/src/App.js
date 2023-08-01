@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import HomePage from "./components/HomePage";
+import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +22,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/home">
+          <ProtectedRoute>
+            <HomePage />
+            </ProtectedRoute>
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -29,6 +36,11 @@ function App() {
           <Route path="/profile">
             <ProtectedRoute>
             <UserProfile />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/restaurant/:restaurantId">
+            <ProtectedRoute>
+              <SingleRestaurantDetail />
             </ProtectedRoute>
           </Route>
         </Switch>
