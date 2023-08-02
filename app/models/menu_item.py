@@ -28,3 +28,6 @@ class MenuItem(db.Model):
             'menu_item_image': self.menu_item_image,
             'restaurant_id': self.restaurant_id
         }
+
+
+#

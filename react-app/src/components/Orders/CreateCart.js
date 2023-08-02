@@ -11,16 +11,15 @@ const StartShoppingButton = () => {
 
   const [isInput, setIsInput] = useState(false);
   const user_id = useSelector(state => state.session.user);
+  const cart = useSelector(state => state.cart.cart);
+
 
 
   const handleStartShopping = async () => {
+    console.log("this is the current user -->", restaurant_id)
    
-      const newCart = await dispatch(thunkCreateCart(user_id, restaurant_id, menu_item_id));
-    //   const menu_item = [
-    //     { id: 1, name: 'Item 1' },
-    //     { id: 2, name: 'Item 2' },
-    //     { id: 3, name: 'Item 3' },
-    // ]
+      const newCart = await dispatch(thunkCreateCart(cart));
+  
     
       if (newCart) {
         console.log("CART ID NUMBER ------->", newCart, "<----- WAS CREATED")

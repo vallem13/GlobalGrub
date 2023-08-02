@@ -32,23 +32,29 @@ def get_orders():
     return jsonify(orders_dict), 200
     
 
-
+#
 @order_cart_routes.route('/<int:user_id>', methods=['POST'])
 
 def create_order(user_id):
+   
+   
 
     data = request.get_json()
 
+   
+    print("is this data", data)
 
     create_order_cart = OrderCart(restaurant_id=data["restaurant_id"], user_id=user_id)
     db.session.add(create_order_cart)
+ 
     db.session.commit()
 
     
     cart_id = create_order_cart.id
 
     
-    new_orders = [Order(user_id=data["user_id"], menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_items"]]
+    new_orders = [Order(user_id=data["user_id"], menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_item_id"]]
+    print("THIS IS A NEW ORDER", type(new_orders))
     db.session.add_all(new_orders)
     db.session.commit()
 
