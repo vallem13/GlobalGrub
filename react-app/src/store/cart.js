@@ -33,31 +33,30 @@ export const getOrderThunk = () => async (dispatch) => {
 }
 
 export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async (dispatch) => {
-    const response = await fetch(`/api/cart/${user_id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': "application/json" },
-        body: JSON.stringify({
-            user_id,
-            restaurant_id,
-            menu_items: menu_item_ids
-        })
-    });
+  const response = await fetch(`/api/cart/${user_id}`, {
+    method: 'POST',
+    headers: { 'Content-Type': "application/json" },
+    body: JSON.stringify({
+      user_id,
+      restaurant_id,
+      menu_items: menu_item_ids
+    })
+  });
 
-    if (response.ok) {
-        const data = await response.json()
-        await dispatch(emptyCart(restaurant_id))
-        return data
-
-    } else if (response.status) {
-        const data = await response.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    } else {
-        return ["An error occurred. Please try again."];
-
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(createCart(data.order_cart)); // Pass the order_cart data to the createCart action
+    return data; // Return the entire response data
+  } else if (response.status) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
     }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
 }
+
 
 
 //REDUCER
@@ -66,23 +65,23 @@ const initialState = {
     cart: {}
 }
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
-      case GET_ORDERS:
-        return { ...state, orders: action.cart };
-      case CREATE_CART:
-        return {
-          ...state,
-          cart: { ...state.cart, ...action.cart },
-        };
-      case EMPTY_CART:
-        return {
-          ...state,
-          cart: {},
-        };
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case GET_ORDERS:
+      return { ...state, orders: action.cart };
+    case CREATE_CART:
+      return {
+        ...state,
+        cart: { ...state.cart, ...action.cart },
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cart: {},
+      };
+    default:
+      return state;
   }
+}
 
 
 

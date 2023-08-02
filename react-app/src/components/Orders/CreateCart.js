@@ -12,7 +12,7 @@ const StartShoppingButton = () => {
   const [menu_items, setmenu_items] = useState('');
   const [isInput, setIsInput] = useState(false);
   const user = useSelector(state => state.session.user);
-  const cart = useSelector(state =>  Object.values(state.cart));
+  const cart = useSelector(state => state.cart);
 
 console.log("this is the cart!", cart)
   const handleStartShopping = async () => {
