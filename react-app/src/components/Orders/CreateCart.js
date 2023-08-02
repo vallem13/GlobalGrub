@@ -9,7 +9,7 @@ const StartShoppingButton = () => {
   const dispatch = useDispatch();
   //make sure that the restaurant id only takes in an integer and not a string, also user should not input this
   const [restaurant_id, setRestaurantId] = useState('')
-  const [menu_item_id, setMenuItemId] = useState('');
+  const [menu_items, setmenu_items] = useState('');
   const [isInput, setIsInput] = useState(false);
   const user = useSelector(state => state.session.user);
   const cart = useSelector(state =>  Object.values(state.cart));
@@ -18,7 +18,7 @@ console.log("this is the cart!", cart)
   const handleStartShopping = async () => {
 
 
-      const newCart = await dispatch(thunkCreateCart(user.id, restaurant_id, menu_item_id));
+      const newCart = await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items));
 
 
       if (newCart) {
@@ -37,7 +37,7 @@ console.log("this is the cart!", cart)
     setRestaurantId(e.target.value);
   };
   const handlemMenuInput = (e) => {
-    setMenuItemId(e.target.value);
+    setmenu_items(e.target.value);
   };
 
 
@@ -57,11 +57,11 @@ console.log("this is the cart!", cart)
       {isInput ? (
         <input
           type="text"
-          value={menu_item_id}
+          value={menu_items}
           onChange={handlemMenuInput}
         />
       ) : (
-        <span onClick={handleClickMe}>{menu_item_id || "CLICK ME, I'M A MENU"}</span>
+        <span onClick={handleClickMe}>{menu_items || "CLICK ME, I'M A MENU"}</span>
       )}
       <button onClick={handleStartShopping}>
         Start Shopping

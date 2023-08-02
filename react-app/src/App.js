@@ -7,12 +7,12 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import HomePage from "./components/HomePage";
-import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
+//import HomePage from "./components/HomePage";
+//import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 // import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
 import GetOrder from "./components/Orders/getOrder";
-import OrderForm from "./components/Orders/AddToCart";
+// import OrderForm from "./components/Orders/AddToCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,11 +49,11 @@ function App() {
             <GetOrder />
             </ProtectedRoute>
           </Route>
-          <Route path="/OrderForm">
+          {/* <Route path="/OrderForm">
             <ProtectedRoute>
             <OrderForm />
             </ProtectedRoute>
-          </Route>
+          </Route> */}
 
           <Route path="/cart/:userId">
             <ProtectedRoute>
