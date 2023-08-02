@@ -25,7 +25,6 @@ const StartShoppingButton = () => {
       if (newCartAndOrders) {
         const { order_cart: orderCartData, new_orders: newOrdersData } = newCartAndOrders;
 
-        // Assuming you have separate actions for updating order cart and new orders
         dispatch(updateOrderCart(orderCartData));
         dispatch(updateNewOrders(newOrdersData));
 
