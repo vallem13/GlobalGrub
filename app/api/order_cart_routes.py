@@ -33,14 +33,14 @@ def get_orders():
     
 
 
-@order_cart_routes.route('/', methods=['POST'])
-@login_required
-def create_order():
+@order_cart_routes.route('/<int:user_id>', methods=['POST'])
+
+def create_order(user_id):
 
     data = request.get_json()
 
 
-    create_order_cart = OrderCart(restaurant_id=data["restaurant_id"], user_id=data["user_id"])
+    create_order_cart = OrderCart(restaurant_id=data["restaurant_id"], user_id=user_id)
     db.session.add(create_order_cart)
     db.session.commit()
 

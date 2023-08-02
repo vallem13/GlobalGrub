@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom"
-import { editUser, signUp } from "../../../store/session"
+import { editUser } from "../../../store/session"
 
 
 

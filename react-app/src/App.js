@@ -9,6 +9,7 @@ import UserProfile from "./components/ManageProfile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage";
 import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
+import GetOrder from "./components/Orders/getOrder";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,12 @@ function App() {
             <UserProfile />
             </ProtectedRoute>
           </Route>
+          <Route path="/orders">
+            <ProtectedRoute>
+            <GetOrder />
+            </ProtectedRoute>
+          </Route>
+        
           <Route path="/restaurant/:restaurantId">
             <ProtectedRoute>
               <SingleRestaurantDetail />
