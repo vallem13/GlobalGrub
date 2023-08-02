@@ -38,5 +38,6 @@ class Restaurant(db.Model):
             'zipcode': self.zipcode,
             'contact_phone_number': self.contact_phone_number,
             'restaurant_image': self.restaurant_image,
-            'cuisine_type_id': self.cuisine_type_id
+            'cuisine_type_id': self.cuisine_type_id,
+            'menu_items': menu_items
         }

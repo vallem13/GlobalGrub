@@ -22,11 +22,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/home">
+          {/* <Route path="/home">
             <ProtectedRoute>
               <HomePage />
             </ProtectedRoute>
-          </Route>
+          </Route> */}
           <Route path="/login" >
             <LoginFormPage />
           </Route>

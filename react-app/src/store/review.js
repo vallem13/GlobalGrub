@@ -20,21 +20,18 @@ export const clearReviews = () => ({
 })
 
 // Thunk
-export const createRestaurantReviewThunk = (comment, rating, user_id, restaurant_id) => async (dispatch) => {
+export const createRestaurantReviewThunk = (review, restaurantId) => async (dispatch) => {
     const response = await fetch('/api/review', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            comment,
-            rating,
-            user_id,
-            restaurant_id
-        })
+        body: JSON.stringify(
+            review,
+            restaurantId)
     })
 
     if (response.ok) {
         const data = await response.json()
-        dispatch(createRestaurantReview(review));
+        dispatch(createRestaurantReview(data));
         return data
     } else {
         const data = await response.json
@@ -55,7 +52,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 
 export const editReviewThunk = (review, reviewId) => async (dispatch) => {
 
-    const response = await csrfFetch(`/api/review/${reviewId}`, {
+    const response = await fetch(`/api/review/${reviewId}`, {
       method: 'PUT',
       body: JSON.stringify(review)
     })
@@ -72,8 +69,7 @@ export const editReviewThunk = (review, reviewId) => async (dispatch) => {
 
 //   Initial State
 const initialState = {
-    restaurant: {},
-    user: {}
+    restaurant: {}
 };
 
 // Reducer
@@ -93,3 +89,5 @@ const reviewReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export default reviewReducer
