@@ -87,14 +87,14 @@ def delete_cart(order_cart_id):
     db.session.delete(delete_cart)
     db.session.commit()
 
-    return jsonify({"message": "Order succesfully deleted "}) , 200
+    return jsonify({"message": "Order cart succesfully deleted "}) , 200
  
 
 
 
 
     
-   
+
 
 
 
