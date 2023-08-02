@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkCreateCart } from '../../store/cart';
+import { thunkCreateCart, updateNewOrders, updateOrderCart } from '../../store/cart';
 
 
 
@@ -14,17 +14,24 @@ const StartShoppingButton = () => {
   const user = useSelector(state => state.session.user);
   const cart = useSelector(state => state.cart);
 
-console.log("this is the cart!", cart)
+
+
   const handleStartShopping = async () => {
 
 
-      const newCart = await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items));
+      const newCartAndOrders = await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items));
 
 
-      if (newCart) {
-        console.log("CART ID NUMBER ------->", newCart, "<----- WAS CREATED")
+      if (newCartAndOrders) {
+        const { order_cart: orderCartData, new_orders: newOrdersData } = newCartAndOrders;
+
+        // Assuming you have separate actions for updating order cart and new orders
+        dispatch(updateOrderCart(orderCartData));
+        dispatch(updateNewOrders(newOrdersData));
+
+        console.log("Cart and Orders created:", newCartAndOrders);
       } else {
-        console.log("CART CAN NOT BE CREATED AT THIS TIME :'(")
+        console.log("Failed to create Cart and Orders");
       }
 
   };

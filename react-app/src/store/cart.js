@@ -1,70 +1,90 @@
 
 //Action Creator
-const GET_ORDERS = "cart/GET_ORDERS"
+const GET_ORDERS = "cart/GET_ORDERS";
 const CREATE_CART = "cart/CREATE_CART";
-const EMPTY_CART = "cart/EMPTY_CART"
+const EMPTY_CART = "cart/EMPTY_CART";
+const UPDATE_ORDER_CART = "cart/UPDATE_ORDER_CART";
+const UPDATE_NEW_ORDERS = "cart/UPDATE_NEW_ORDERS";
 
-//Action
+// Action Creators
 export const getOrder = (cart) => ({
-    type: GET_ORDERS,
-    cart,
-})
+  type: GET_ORDERS,
+  cart,
+});
 
 export const createCart = (cart) => ({
-    type: CREATE_CART,
-    cart
- });
+  type: CREATE_CART,
+  cart,
+});
 
- export const emptyCart = (restaurant_id) => ({
-    type: EMPTY_CART,
-    restaurant_id
+export const emptyCart = (restaurant_id) => ({
+  type: EMPTY_CART,
+  restaurant_id,
+});
 
- });
+export const updateOrderCart = (cart) => ({
+  type: UPDATE_ORDER_CART,
+  cart,
+});
 
-//THUNK
+export const updateNewOrders = (orders) => ({
+  type: UPDATE_NEW_ORDERS,
+  orders,
+});
+
+// Thunks
 export const getOrderThunk = () => async (dispatch) => {
+  try {
     const response = await fetch("/api/cart/user_orders");
-
     if (response.ok) {
-        const data = await response.json()
-        dispatch(getOrder(data))
-        return data
+      const data = await response.json();
+      dispatch(getOrder(data));
+      return data;
+    } else {
+      // Handle error response if needed
+      console.error("Error fetching orders:", response.statusText);
     }
-}
+  } catch (error) {
+    // Handle fetch error if needed
+    console.error("Error fetching orders:", error);
+  }
+};
 
 export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async (dispatch) => {
-  const response = await fetch(`/api/cart/${user_id}`, {
-    method: 'POST',
-    headers: { 'Content-Type': "application/json" },
-    body: JSON.stringify({
-      user_id,
-      restaurant_id,
-      menu_items: menu_item_ids
-    })
-  });
+  try {
+    const response = await fetch(`/api/cart/${user_id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': "application/json" },
+      body: JSON.stringify({
+        user_id,
+        restaurant_id,
+        menu_items: menu_item_ids
+      }),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    await dispatch(createCart(data.order_cart)); // Pass the order_cart data to the createCart action
-    return data; // Return the entire response data
-  } else if (response.status) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
+    if (response.ok) {
+      const data = await response.json();
+      await dispatch(emptyCart(restaurant_id));
+      return data;
+    } else {
+      const data = await response.json();
+      if (data.errors) {
+        // Handle error response if needed
+        console.error("Error creating cart:", data.errors);
+      }
     }
-  } else {
-    return ["An error occurred. Please try again."];
+  } catch (error) {
+    // Handle fetch error if needed
+    console.error("Error creating cart:", error);
   }
-}
+};
 
-
-
-//REDUCER
+// Reducer
 const initialState = {
-    orders: {},
-    cart: {}
-}
-export default function reducer(state = initialState, action) {
+  orders: {},
+  cart: {},
+};
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ORDERS:
       return { ...state, orders: action.cart };
@@ -78,10 +98,22 @@ export default function reducer(state = initialState, action) {
         ...state,
         cart: {},
       };
+    case UPDATE_ORDER_CART:
+      return {
+        ...state,
+        cart: { ...state.cart, ...action.cart },
+      };
+    case UPDATE_NEW_ORDERS:
+      return {
+        ...state,
+        orders: { ...state.orders, ...action.orders },
+      };
     default:
       return state;
   }
-}
+};
+
+export default cartReducer;
 
 
 
