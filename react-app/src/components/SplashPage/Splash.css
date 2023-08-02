@@ -1,0 +1,23 @@
+.splash-text-wrapper{
+    width: fit-content;
+    margin-left: 8%;
+    margin-top: 20%;
+}
+
+.splash-greeting-text{
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    padding-top: 40px;
+}
+
+.site-wrapper.splash-page {
+    background-image: url("../../assets/splash.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

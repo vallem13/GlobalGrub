@@ -15,10 +15,10 @@ const getSingleRestaurant = (restaurant) => ({
 
 // Thunk
 export const getAllRestaurantsThunk = () => async (dispatch) => {
-    const response = await fetch('/api/restaurants');
+    const response = await fetch('/api/restaurant');
     if(response.ok) {
         const restaurants = await response.json();
-        dispatch(getAllRestaurants(restaurants.Restaurant));
+        dispatch(getAllRestaurants(restaurants.Restaurants));
         return response;
   }
 }
@@ -43,15 +43,15 @@ const initialState = {
   };
 
 // Reducer
-export default function reducer( state = initialState, action) {
+const restaurantReducer = ( state = initialState, action) => {
     let newState;
     switch(action.type) {
         case GET_ALL_RESTAURANTS:
-            newState = {...state, allRestaurants: {}, singleRestaurant: {}};
+            newState = {...state, allRestaurants: {}};
             action.restaurants.forEach(restaurant => newState.allRestaurants[restaurant.id] = restaurant)
             return newState
         case GET_SINGLE_RESTAURANT:
-            newState = {...state, allRestaurants: {}, singleRestaurant: {}};
+            newState = {...state, singleRestaurant: {}};
             newState.singleRestaurant = action.restaurant
             return newState
 
@@ -59,3 +59,5 @@ export default function reducer( state = initialState, action) {
             return state;
     }
 }
+
+export default restaurantReducer

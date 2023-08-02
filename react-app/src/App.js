@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
@@ -17,6 +17,8 @@ import GetOrder from "./components/Orders/getOrder";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -29,10 +31,10 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/home">
-          <ProtectedRoute>
-            <HomePage />
+            <ProtectedRoute>
+              <HomePage />
             </ProtectedRoute>
-          </Route> */
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -44,23 +46,6 @@ function App() {
               <UserProfile />
             </ProtectedRoute>
           </Route>
-          <Route path="/user_orders">
-            <ProtectedRoute>
-            <GetOrder />
-            </ProtectedRoute>
-          </Route>
-          <Route path="/OrderForm">
-            <ProtectedRoute>
-            <OrderForm />
-            </ProtectedRoute>
-          </Route>
-
-          <Route path="/cart/:userId">
-            <ProtectedRoute>
-            <StartShoppingButton />
-            </ProtectedRoute>
-          </Route>
-
           <Route path="/restaurant/:restaurantId">
             <ProtectedRoute>
               <SingleRestaurantDetail />
