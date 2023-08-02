@@ -32,7 +32,7 @@ function App() {
           <ProtectedRoute>
             <HomePage />
             </ProtectedRoute>
-          </Route> */}
+          </Route> */
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -49,11 +49,11 @@ function App() {
             <GetOrder />
             </ProtectedRoute>
           </Route>
-          {/* <Route path="/OrderForm">
+          <Route path="/OrderForm">
             <ProtectedRoute>
             <OrderForm />
             </ProtectedRoute>
-          </Route> */}
+          </Route>
 
           <Route path="/cart/:userId">
             <ProtectedRoute>
@@ -61,11 +61,11 @@ function App() {
             </ProtectedRoute>
           </Route>
 
-          {/* <Route path="/restaurant/:restaurantId">
+          <Route path="/restaurant/:restaurantId">
             <ProtectedRoute>
               <SingleRestaurantDetail />
             </ProtectedRoute>
-          </Route> */}
+          </Route>
         </Switch>
       )}
     </>
