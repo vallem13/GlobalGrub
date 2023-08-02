@@ -33,32 +33,34 @@ def get_orders():
 
 
 #
-@order_cart_routes.route('/<int:user_id>', methods=['POST'])
 
+@order_cart_routes.route("/<int:user_id>", methods=["POST"])
+@login_required
 def create_order(user_id):
-
-
-
     data = request.get_json()
-
-
     print("is this data", data)
 
     create_order_cart = OrderCart(restaurant_id=data["restaurant_id"], user_id=user_id)
     db.session.add(create_order_cart)
-
     db.session.commit()
-
 
     cart_id = create_order_cart.id
 
-
-    new_orders = [Order(user_id=data["user_id"], menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_items"]]
+    new_orders = [Order(user_id=user_id, menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_items"]]
     print("THIS IS A NEW ORDER", type(new_orders))
     db.session.add_all(new_orders)
     db.session.commit()
 
-    return jsonify({"message": "Successfully added"}) , 200
+    # Convert the new_orders list to a list of dictionaries using the to_dict() method
+    new_orders_data = [order.to_dict() for order in new_orders]
+
+    # Convert the order_cart to a dictionary using the to_dict() method
+    order_cart_data = create_order_cart.to_dict()
+
+    return jsonify({
+        'order_cart': order_cart_data,
+        'new_orders': new_orders_data,
+    }), 200
 
 #split the two queries into two differnt routes
 

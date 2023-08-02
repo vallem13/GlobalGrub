@@ -23,5 +23,5 @@ class Order(db.Model):
             'user_id': self.user_id,
             'menu_item_id': self.menu_item_id,
             'order_cart_id ': self.order_cart_id,
-            'order_cart': self.order_cart.to_dict()
+            # 'order_cart': self.order_cart.to_dict()
         }

@@ -27,5 +27,5 @@ class OrderCart(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'restaurant_id': self.restaurant_id,
-            'orders': [order.to_dict() for order in self.orders]
+            # 'orders': [order.to_dict() for order in self.orders]
         }
