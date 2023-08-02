@@ -24,5 +24,10 @@ class Review(db.Model):
             'comment': self.comment,
             'rating': self.rating,
             'user_id': self.user_id,
-            'restaurant_id': self.restaurant_id
+            'restaurant_id': self.restaurant_id,
+            'user': {
+                'id': self.user.id,
+                'firstName': self.user.first_name,
+                'lastName': self.user.last_name,
+            }
         }

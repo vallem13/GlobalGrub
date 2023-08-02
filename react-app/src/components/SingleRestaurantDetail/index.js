@@ -5,13 +5,18 @@ import { useParams } from 'react-router-dom';
 // import './SingleRestaurant.css'
 import OpenModalButton from '../OpenModalButton'
 
-export default function SingleRestaurant({menu_items}) {
+export default function SingleRestaurant() {
 
     const { restaurantId } = useParams();
     const dispatch = useDispatch();
     const [, setIsLoading] = useState(true);
     const restaurant = useSelector(state => state.restaurant.singleRestaurant)
-    console.log("THIS IS IT!!! -->", restaurant)
+    const items = restaurant.menu_items || [];
+    const user = useSelector(state => state.session.user)
+    const reviews = restaurant.reviews || [];
+    // console.log("THIS IS THE REVIEW --->", reviews)
+
+
 
     useEffect(() => {
         dispatch(getSingleRestaurantThunk(restaurantId));
@@ -19,9 +24,7 @@ export default function SingleRestaurant({menu_items}) {
     }, [dispatch, restaurantId]);
 
     if (!restaurant) return <div>Loading...</div>;
-
-    const items = restaurant.menu_items
-    console.log("ITEMS!!!!",items)
+    const checkReview = user && reviews.find(review => review.user_id === user.id)
 
     return (
         <div className="single-restaurant-wrapper">
@@ -30,18 +33,29 @@ export default function SingleRestaurant({menu_items}) {
             </div>
             <h1>{restaurant.name}</h1>
             <h2>Menu Items</h2>
-            {/* <div>
-                {restaurant.menu_items.map((item) => (
+            <div>
+                {items.map((item) => (
                     <div key={item.id}>
+                        <img className='menu-image' src={item.menu_item_image} alt={item.name}></img>
                         <h2>{item.name}</h2>
                         <p>{item.description}</p>
-                        <p>$ {item.price}</p>
+                        <p>${item.price}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div className="reviews-container">
+                {reviews.map((review) => (
+                    <div key={review.id}>
+                        <h2>{review.comment}</h2>
+                        <p>{review.rating}</p>
+                        {/* <p>By: {review.user.firstName} {review.user.lastName}</p> */}
                     </div>
 
                 ))}
-            </div> */}
 
 
+            </div>
         </div>
 
     )

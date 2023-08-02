@@ -39,5 +39,6 @@ class Restaurant(db.Model):
             'contact_phone_number': self.contact_phone_number,
             'restaurant_image': self.restaurant_image,
             'cuisine_type_id': self.cuisine_type_id,
-            'menu_items': menu_items
+            'menu_items': [item.to_dict() for item in self.menu_items],
+            'reviews': [review.to_dict() for review in self.reviews]
         }
