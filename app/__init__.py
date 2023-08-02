@@ -4,9 +4,8 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User, Restaurant
-from .api import user_routes, auth_routes, order_cart_routes, restaurant_routes
-from .seeds import seed_commands
+from .models import db, User, Restaurant, CuisineType
+from .api import user_routes, auth_routes, order_cart_routes
 from .config import Config
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
@@ -28,7 +27,8 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(order_cart_routes, url_prefix='/api/cart')
-app.register_blueprint(restaurant_routes, url_prefix='/api/restaurant')
+# app.register_blueprint(restaurant_routes, url_prefix='/api/restaurant')
+# app.register_blueprint(restaurant_routes, url_prefix='/api/cuisine_type')
 db.init_app(app)
 Migrate(app, db, render_as_batch=True)
 
