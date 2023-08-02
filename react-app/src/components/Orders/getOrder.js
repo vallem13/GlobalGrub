@@ -18,12 +18,7 @@ const GetOrder = () => {
       <h1>{user.username} Orders</h1>
       
 
-{/* 
-mapping through orders object looking for order_cart_id
-mapping through order[order_cart_id] looking for order_id
 
-
-*/}
 
       {Object.keys(orders).map((orderCartId) => (
         <div key={orderCartId}>

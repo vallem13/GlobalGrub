@@ -54,6 +54,36 @@ def create_order(user_id):
 
     return jsonify({"message": "Successfully added"}) , 200
 
+#split the two queries into two differnt routes
+
+# @order_cart_routes.route("/create_cart/<int:user_id>", methods=["POST"])
+
+# def start_shopping(user_id):
+#     data = request.get_json()
+
+
+
+
+#     create_order_cart = OrderCart(user_id=user_id, restaurant_id=data["restaurant_id"])
+#     if create_order_cart.user_id != current_user.id:
+#         return jsonify({"errors": "user is not authorized"}) , 404
+    
+#     db.session.add(create_order_cart)
+#     db.session.commit()
+
+#     return jsonify({"cart_id": create_order_cart.id}), 200
+
+# @order_cart_routes.route("/create_order/<int:user_id>/<int:cart_id>", methods=["POST"])
+# def create_order(user_id, cart_id):
+#     data = request.get_json()
+
+    
+
+#     new_orders = [Order(user_id=user_id, menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_items"]]
+#     db.session.add_all(new_orders)
+#     db.session.commit()
+
+#     return jsonify({"message": "Successfully added"}), 200
 
 
 

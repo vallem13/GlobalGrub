@@ -9,7 +9,10 @@ import UserProfile from "./components/ManageProfile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage";
 import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
+// import GetOrder from "./components/Orders/getOrder";
+import StartShoppingButton from "./components/Orders/CreateCart";
 import GetOrder from "./components/Orders/getOrder";
+import OrderForm from "./components/Orders/AddToCart";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +20,8 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  
 
   return (
     <>
@@ -39,9 +44,20 @@ function App() {
             <UserProfile />
             </ProtectedRoute>
           </Route>
-          <Route path="/orders">
+          <Route path="/user_orders">
             <ProtectedRoute>
             <GetOrder />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/OrderForm">
+            <ProtectedRoute>
+            <OrderForm />
+            </ProtectedRoute>
+          </Route>
+          
+          <Route path="/cart/:userId">
+            <ProtectedRoute>
+            <StartShoppingButton />
             </ProtectedRoute>
           </Route>
         
