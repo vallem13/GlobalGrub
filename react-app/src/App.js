@@ -21,18 +21,18 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  
+
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/home">
+          {/* <Route path="/home">
           <ProtectedRoute>
             <HomePage />
             </ProtectedRoute>
-          </Route>
+          </Route> */}
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -54,18 +54,18 @@ function App() {
             <OrderForm />
             </ProtectedRoute>
           </Route>
-          
+
           <Route path="/cart/:userId">
             <ProtectedRoute>
             <StartShoppingButton />
             </ProtectedRoute>
           </Route>
-        
-          <Route path="/restaurant/:restaurantId">
+
+          {/* <Route path="/restaurant/:restaurantId">
             <ProtectedRoute>
               <SingleRestaurantDetail />
             </ProtectedRoute>
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

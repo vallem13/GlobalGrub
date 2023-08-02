@@ -5,7 +5,9 @@ const CREATE_CART = "cart/CREATE_CART";
 
 const CREATE_ORDER = "cart/CREATE_ORDER"
 
-//Action 
+const EMPTY_CART = "cart/EMPTY_CART"
+
+//Action
 
 export const getOrder = (cart) => ({
     type: GET_ORDERS,
@@ -14,20 +16,20 @@ export const getOrder = (cart) => ({
 
 export const createCart = (cart) => ({
     type: CREATE_CART,
-    cart,
-   
+    cart
  });
-//  export const createOrder = (cart) => ({
-//     type: CREATE_ORDER,
-//    cart
-    
-//  });
+
+ export const emptyCart = (restaurant_id) => ({
+    type: CREATE_ORDER,
+    restaurant_id
+
+ });
 
 
 // export const createOrder = (cart) => ({
 //     type: CREATE_ORDER,
 //     cart
-    
+
 // })
 
 
@@ -47,22 +49,20 @@ export const getOrderThunk = () => async (dispatch) => {
 
 
 
-export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => async (dispatch) => {
+export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async (dispatch) => {
     const response = await fetch(`/api/cart/${user_id}`, {
         method: 'POST',
         headers: { 'Content-Type': "application/json" },
         body: JSON.stringify({
-            user_id, 
+            user_id,
             restaurant_id,
-            menu_item_id
+            menu_items: menu_item_ids
         })
     });
 
     if (response.ok) {
         const data = await response.json()
-       const thunkDispatch = await dispatch(createCart(cart))
-        console.log("Is this the data", cart)
-        console.log("THIS IS THE THUNK DISPATCH -->", thunkDispatch)
+        await dispatch(emptyCart(restaurant_id))
         return data
 
     } else if (response.status) {
@@ -77,7 +77,7 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 }
 
 // export const thunkCreateCart_Order = (user_id, restaurant_id, menu_items) => async (dispatch) => {
- 
+
 //       // Create the cart first
 //       const response = await fetch("/api/cart/create_cart/1", {
 //         method: 'POST',
@@ -90,13 +90,13 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 //       if (response.ok) {
 //         const data = await (response.json());
 //         const { cartData } = data;
-       
+
 
 //         dispatch(createCart(cartData));
-       
- 
- 
-  
+
+
+
+
 //       // Create the order and add it to the cart
 //       const response = await fetch("/api/cart/create_order/1/60", {
 //         method: 'POST',
@@ -105,20 +105,20 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 //         },
 //         body: JSON.stringify({ menu_items }),
 //       });
-  
+
 //       if (response.ok) {
 //         const data = await (response.json());
 //         const { orderData } = data
 
 //         dispatch(createOrder(orderData));
 //       }
-    
+
 //   }
 // }
-  
+
 
 // WHAT IS GOING ON WITH THIS ENDPOINT?????
-// It's sending back the right erros 
+// It's sending back the right erros
 
 // export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart_id) => async (dispatch) => {
 //     const response = await fetch("/api/cart/create_cart/1", {
@@ -126,7 +126,7 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 //         headers: {
 //           'Content-Type': 'application/json',
 //         },
-//         body: JSON.stringify({ restaurant_id, 
+//         body: JSON.stringify({ restaurant_id,
 //             "menu_items": menu_item_id }),
 //       });
 //     console.log("WHAT IS THIS RESPONSE---->", response)
@@ -134,14 +134,14 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 //     if (response.ok) {
 //         const data = await (response.json());
 
-       
+
 //         dispatch(createCart(data))
 //         console.log("WHAT IS THIS DATA---->", data)
 //         return data
 //     }
 // }
 
-// bring in meny table 
+// bring in meny table
 
 // export const thunkCreateOrder = (user_id, cart_id, menuItems) => async (dispatch) => {
 //     const response = await fetch("/api/cart/create_cart/1", {
@@ -156,7 +156,7 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_id, cart) => a
 //     if (response.ok) {
 //         const data = await (response.json());
         // const { cart_id } = data;
-       
+
 //         dispatch(createCart(cart_id, user_id, restaurant_id))
 //         console.log("WHAT IS THIS DATA---->", data)
 //         return data
@@ -175,31 +175,24 @@ const initialState = {
 
 
 
-export default function reducer( state = initialState, action) {
-   
+export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case GET_ORDERS: {
-            return { ...state, orders: action.cart };
-        }
-            
-        case CREATE_CART: {
-            console.log("action", action.cart)
-
-            const newState = { ...state, orders: {...state.orders}, cart: {...state.cart, ...action.cart}}
-
-
-            console.log("WHAT IS STATE ----->", newState)
-           return newState
-
-        }
-    
-    
-   
-        default:
-        return state
+      case GET_ORDERS:
+        return { ...state, orders: action.cart };
+      case CREATE_CART:
+        return {
+          ...state,
+          cart: { ...state.cart, ...action.cart },
+        };
+      case EMPTY_CART:
+        return {
+          ...state,
+          cart: {},
+        };
+      default:
+        return state;
     }
-
-}
+  }
 
 
 
@@ -249,7 +242,7 @@ export default function reducer( state = initialState, action) {
 //         method: 'POST',
 //         headers: { 'Content-Type': "application/json" },
 //         body: JSON.stringify({
-            
+
 //         })
 //     });
 
@@ -322,7 +315,7 @@ export default function reducer( state = initialState, action) {
 
 // export default function reducer(state = initialState, action) {
 //     switch (action.type) {
-      
+
 //         case CREATE_CART: {
 //             const newState = { ...state };
 //             const restaurant_id = action.cart.restaurant_id;

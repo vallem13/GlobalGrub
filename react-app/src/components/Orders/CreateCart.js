@@ -3,32 +3,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkCreateCart } from '../../store/cart';
 
 
+
+
 const StartShoppingButton = () => {
   const dispatch = useDispatch();
   //make sure that the restaurant id only takes in an integer and not a string, also user should not input this
   const [restaurant_id, setRestaurantId] = useState('')
   const [menu_item_id, setMenuItemId] = useState('');
-
   const [isInput, setIsInput] = useState(false);
-  const user_id = useSelector(state => state.session.user);
-  const cart = useSelector(state => state.cart.cart);
+  const user = useSelector(state => state.session.user);
+  const cart = useSelector(state =>  Object.values(state.cart));
 
-
-
+console.log("this is the cart!", cart)
   const handleStartShopping = async () => {
-    console.log("this is the current user -->", restaurant_id)
-   
-      const newCart = await dispatch(thunkCreateCart(cart));
-  
-    
+
+
+      const newCart = await dispatch(thunkCreateCart(user.id, restaurant_id, menu_item_id));
+
+
       if (newCart) {
         console.log("CART ID NUMBER ------->", newCart, "<----- WAS CREATED")
       } else {
         console.log("CART CAN NOT BE CREATED AT THIS TIME :'(")
       }
 
-
-    
   };
 
   const handleClickMe = () => {
@@ -42,7 +40,7 @@ const StartShoppingButton = () => {
     setMenuItemId(e.target.value);
   };
 
- 
+
   //if input is a truthy ie, it has been clicked open up the input if not "click me"
 
   return (
