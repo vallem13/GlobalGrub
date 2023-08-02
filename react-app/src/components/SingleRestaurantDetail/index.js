@@ -8,6 +8,7 @@ import CreateReviewModal from '../ReviewModal/CreateReviewModal';
 import EditReviewModal from '../ReviewModal/EditReviewModal';
 
 export default function SingleRestaurant() {
+
   const { restaurantId } = useParams();
   const dispatch = useDispatch();
   const [, setIsLoading] = useState(true);
