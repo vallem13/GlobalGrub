@@ -13,6 +13,8 @@ import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 import StartShoppingButton from "./components/Orders/CreateCart";
 import GetOrder from "./components/Orders/getOrder";
 import OrderForm from "./components/Orders/AddToCart";
+import CuisineList from "./components/CuisineList";
+import SingleCuisine from "./components/CuisineType";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +56,24 @@ function App() {
             <OrderForm />
             </ProtectedRoute>
           </Route>
+          
+          <Route path="/cuisineList">
+            
+            <CuisineList />
+            
+          </Route>
+
+          <Route path="/cuisine/:id">
+              <ProtectedRoute>
+                <SingleCuisine />
+              </ProtectedRoute>
+          </Route>
+
+          
+
+          
+
+         
           
           <Route path="/cart/:userId">
             <ProtectedRoute>

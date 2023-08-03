@@ -18,4 +18,5 @@ class CuisineType(db.Model):
             'id': self.id,
             'type': self.type,
             # 'cuisine_logo': self.cuisine_logo
+           'restaurants': [restaurant.to_dict() for restaurant in self.restaurants]
         }
