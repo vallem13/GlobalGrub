@@ -2,9 +2,11 @@
 //Action Creator
 const GET_ORDERS = "cart/GET_ORDERS";
 const CREATE_CART = "cart/CREATE_CART";
+const ADD_ITEM = "cart/ADD_ITEM";
 const EMPTY_CART = "cart/EMPTY_CART";
 const UPDATE_ORDER_CART = "cart/UPDATE_ORDER_CART";
 const UPDATE_NEW_ORDERS = "cart/UPDATE_NEW_ORDERS";
+const YEET_ITEM = "cart/YEET_ITEM";
 
 // Action Creators
 export const getOrder = (cart) => ({
@@ -17,9 +19,13 @@ export const createCart = (cart) => ({
   cart,
 });
 
-export const emptyCart = (restaurant_id) => ({
-  type: EMPTY_CART,
-  restaurant_id,
+export const addItem = (item) => ({
+  type: ADD_ITEM,
+  item,
+});
+
+export const emptyCart = () => ({
+  type: EMPTY_CART
 });
 
 export const updateOrderCart = (cart) => ({
@@ -30,6 +36,11 @@ export const updateOrderCart = (cart) => ({
 export const updateNewOrders = (orders) => ({
   type: UPDATE_NEW_ORDERS,
   orders,
+});
+
+export const yeetItem = (menu_item_id) => ({
+  type: YEET_ITEM,
+  menu_item_id,
 });
 
 // Thunks
@@ -86,209 +97,65 @@ const initialState = {
 };
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case GET_ORDERS:
       return { ...state, orders: action.cart };
+
     case CREATE_CART:
       return {
         ...state,
         cart: { ...state.cart, ...action.cart },
+        currentCartId: action.cart.cart_id
       };
-    case EMPTY_CART:
+
+    case ADD_ITEM:
+      const restaurant_id = action.item.restaurant_id;
+      const item_id = action.item.id;
       return {
         ...state,
-        cart: {},
+        [restaurant_id]: {
+          ...state[restaurant_id],
+          [item_id]: { ...action.item }
+        }
       };
+
+    case EMPTY_CART:
+      return initialState
+
     case UPDATE_ORDER_CART:
       return {
         ...state,
         cart: { ...state.cart, ...action.cart },
       };
+
     case UPDATE_NEW_ORDERS:
       return {
         ...state,
         orders: { ...state.orders, ...action.orders },
       };
+
+    case YEET_ITEM:
+      const itemToRemove = action.menu_item_id;
+      console.log("Item to remove:", itemToRemove);
+      const updatedCart = { ...state.cart };
+      for (const restaurant_id in updatedCart) {
+        const restaurantOrders = updatedCart[restaurant_id];
+        if (restaurantOrders[itemToRemove]) {
+          console.log("Removing item from restaurant:", itemToRemove);
+          // Clone the restaurantOrders object before modifying it
+          const updatedRestaurantOrders = { ...restaurantOrders };
+          delete updatedRestaurantOrders[itemToRemove];
+          updatedCart[restaurant_id] = updatedRestaurantOrders;
+        }
+      }
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+
     default:
       return state;
   }
 };
 
 export default cartReducer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //thunk
-// export const getOrderThunk = () => async (dispatch) => {
-//     const response = await fetch("/api/cart/user_orders");
-
-//     if (response.ok) {
-//         const data = await response.json()
-//         dispatch(getOrder(data))
-//         return data
-//     }
-// }
-
-// export const thunkCreateCart = (user_id) => async (dispatch) => {
-//     const response = await fetch(`/api/cart/${user_id}`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': "application/json" },
-//         body: JSON.stringify({
-
-//         })
-//     });
-
-//     if (response.ok) {
-//         const data = await response.json()
-//         await dispatch(emptyCart(user_id))
-//         console.log("Is this the data", data)
-//         return data
-//     } else if (response.status) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             return data.errors;
-//         }
-//     } else {
-//         return ["An error occurred. Please try again."];
-
-//     }
-// }
-
-// // export const thunkCreateOrder = (user_id, restaurant_id, Orders, menu_item_id) => async (dispatch) => {
-// //   await csrfFetch(`/api/spots/${spot.id}/images`, {
-// //     method: 'POST',
-// //     body: JSON.stringify(image)
-// //   })
-// // }
-
-
-
-// // const createCart = (cart) => ({
-// //     type: CREATE_CART,
-// //     cart,
-// // })
-
-
-
-// // export const getOrderThunk = () => async (dispatch) => {
-// //     const response = await fetch("/api/cart");
-
-// //     if (response.ok) {
-// //         const data = await response.json()
-// //         console.log("IS THIS THE USER'S ORDER????", data)
-// //         dispatch(getOrder(data))
-// //         console.log("WHAT IS THIS???", data)
-// //         return data
-// //     }
-// // }
-
-
-// // export const createCartThunk = (userId) => async (dispatch) => {
-// //     const response = await fetch(`/api/cart/${userId}`, {
-// //       method: "POST",
-// //       headers: {
-// //         "Content-Type": "application/json",
-// //       },
-// //     });
-// //     if (response.ok) {
-// //       const data = await response.json();
-// //       if (data.errors) {
-// //         return;
-// //       }
-// //       dispatch(createCart(data));
-// //     }
-// //   };
-
-
-// const initialState = {
-//     orders: {},
-//     cart: {}
-// }
-
-// export default function reducer(state = initialState, action) {
-//     switch (action.type) {
-
-//         case CREATE_CART: {
-//             const newState = { ...state };
-//             const restaurant_id = action.cart.restaurant_id;
-//             const menu_item_id = action.cart.menu_item_id;
-//             if (newState[restaurant_id]) {
-//                 newState[restaurant_id][menu_item_id] = { ...action.cart }
-//             } else {
-//                 let new_menu_item = {};
-//                 new_menu_item[menu_item_id] = { ...action.cart };
-//                 newState[restaurant_id] = new_menu_item;
-//             }
-//             return newState
-//         };
-//         case EMPTY_CART:
-//             const newState = {...state};
-//             delete newState[action.restaurantId]
-//             return newState
-
-
-//             case GET_ORDERS: {
-//                 return { ...state, orders: action.cart };
-//             }
-
-
-
-//         default:
-//             return state
-//     }
-// }
-
-
-// const CREATE_CART = "cart/CREATE_CART";
-
-// const EMPTY_CART = "cart/EMPTY_CART"
-
-
-
-
-// export const getOrder = (cart) => ({
-//     type: GET_ORDERS,
-//     cart,
-// })
-
-
-
-
-// export const createCart = (cart) => ({
-//     type: CREATE_CART,
-//     cart,
-// });
-
-// export const emptyCart = (restaurantId) => ({
-//     type: EMPTY_CART,
-//     restaurantId
-// })

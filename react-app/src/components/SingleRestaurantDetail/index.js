@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeleteReviewModal from '../ReviewModal/DeleteReviewModal';
 import CreateReviewModal from '../ReviewModal/CreateReviewModal';
 import EditReviewModal from '../ReviewModal/EditReviewModal';
+import { thunkCreateCart, updateNewOrders, updateOrderCart, addItem } from '../../store/cart';
 
 export default function SingleRestaurant() {
 
@@ -17,10 +18,13 @@ export default function SingleRestaurant() {
   const user = useSelector((state) => state.session.user);
   const reviews = restaurant.reviews || [];
 
+
+
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
     setIsLoading(false);
   }, [dispatch, restaurantId]);
+
 
   if (!restaurant) return <div>Loading...</div>;
 
@@ -34,10 +38,14 @@ export default function SingleRestaurant() {
       <div>
         {items.map((item) => (
           <div key={item.id}>
-            <img className="menu-image" src={item.menu_item_image} alt={item.name}></img>
+            <img className="menu-image" src={item.menu_item_image} alt={item.name} style={{ width: '100px', height: '100px' }}></img>
             <h3>{item.name}</h3>
             <p>{item.description}</p>
             <p>${item.price.toFixed(2)}</p>
+            <button onClick={(e) => {
+              e.preventDefault();
+              dispatch(addItem(item));
+            }}>Add to Cart</button>
           </div>
         ))}
       </div>
