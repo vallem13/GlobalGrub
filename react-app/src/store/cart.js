@@ -136,12 +136,12 @@ const cartReducer = (state = initialState, action) => {
 
     case YEET_ITEM:
       const itemToRemove = action.menu_item_id;
-      console.log("Item to remove:", itemToRemove);
+      //console.log("Item to remove:", itemToRemove);
       const updatedCart = { ...state.cart };
       for (const restaurant_id in updatedCart) {
         const restaurantOrders = updatedCart[restaurant_id];
         if (restaurantOrders[itemToRemove]) {
-          console.log("Removing item from restaurant:", itemToRemove);
+          //console.log("Removing item from restaurant:", itemToRemove);
           // Clone the restaurantOrders object before modifying it
           const updatedRestaurantOrders = { ...restaurantOrders };
           delete updatedRestaurantOrders[itemToRemove];

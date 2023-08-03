@@ -28,7 +28,7 @@ const OrderCartModal = ({ user }) => {
         closeModal()
     }
 
-    console.log('-------->', cart_items)
+    //console.log('-------->', cart_items)
 
     return (
         <div>
