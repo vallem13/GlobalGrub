@@ -24,7 +24,8 @@ class User(db.Model, UserMixin):
     # user_profile_icon = db.Column(db.String(255))
 
     reviews = db.relationship('Review', back_populates="user")
-    orders = db.relationship('Order', back_populates="user")
+    orders = db.relationship('Order', back_populates="user", cascade="all, delete-orphan")
+    order_carts = db.relationship('OrderCart', back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):

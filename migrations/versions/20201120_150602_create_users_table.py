@@ -74,8 +74,10 @@ def upgrade():
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('restaurant_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
+    sa.Column('menu_item_id', sa.Integer(), nullable=False),
+    sa.Column('order_cart_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['order_cart_id'], ['order_carts.id'], ),
+    sa.ForeignKeyConstraint(['menu_item_id'], ['menu_items.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -91,10 +93,10 @@ def upgrade():
     )
     op.create_table('order_carts',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('menu_item_id', sa.Integer(), nullable=False),
-    sa.Column('order_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['menu_item_id'], ['menu_items.id'], ),
-    sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('restaurant_id', sa.Integer()),
+    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

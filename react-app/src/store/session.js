@@ -65,7 +65,7 @@ export const editUser = (userId, req_body ) => async (dispatch) => {
         state,
         zipcode
     }
-    console.log(request)
+    //console.log(request)
     const response = await fetch(`/api/users/update/${userId}`, {
         method: "PUT",
         headers: {
