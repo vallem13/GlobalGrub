@@ -9,16 +9,16 @@ const SingleCuisine = () => {
   // const restaurants = cuisine.restaurants || []
 
 
-console.log("What is this ---->", cuisine)
+console.log("Show This ---->", cuisine)
   const { cuisineId } = useParams()
 
-  console.log("What is this ---->", cuisine)
+  console.log("Show This ---->", cuisine)
 
   useEffect(() => {
 
     dispatch(getSingleCuisineThunk(cuisineId));
   }, [dispatch, cuisineId]);
-  console.log("What is this ---->", cuisineId)
+  console.log("Show This ---->", cuisineId)
 
 
   return (

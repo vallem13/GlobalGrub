@@ -1,11 +1,12 @@
 from flask import Blueprint, jsonify
-
+from flask_login import login_required
 from app.models import CuisineType, db
 
 cuisine_routes = Blueprint('cuisine', __name__)
 
 
 @cuisine_routes.route('/')
+@login_required
 def get_all_cuisines():
     cuisine = CuisineType.query.all()
     print(type(cuisine))
@@ -13,6 +14,7 @@ def get_all_cuisines():
     return jsonify(cuisine_list)
 
 @cuisine_routes.route('/<int:id>')
+@login_required
 def get_single_cuisines(id):
     cuisine = CuisineType.query.get(id)
     if cuisine:
