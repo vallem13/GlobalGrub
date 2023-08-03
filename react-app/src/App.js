@@ -57,13 +57,13 @@ function App() {
             </ProtectedRoute>
           </Route>
           
-          <Route path="/cuisineList">
-            
+          <Route path="/cuisine">
+          <ProtectedRoute>
             <CuisineList />
-            
+            </ProtectedRoute>
           </Route>
 
-          <Route path="/cuisine/:id">
+          <Route path="/cuisines">
               <ProtectedRoute>
                 <SingleCuisine />
               </ProtectedRoute>

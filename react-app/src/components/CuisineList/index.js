@@ -4,11 +4,11 @@ import { getCuisineThunk } from "../../store/cuisine";
 
 const CuisineList = () => {
     const dispatch = useDispatch();
-    const cuisine = useSelector(state => state.cuisine.allCuisines);
+    const cuisine = useSelector((state) => state.cuisine.allCuisines);
 
     useEffect(() => {
         dispatch(getCuisineThunk())
-    }, [dispatch])
+    },)
 
     const flagImages = {
         Korean: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
@@ -25,18 +25,28 @@ const CuisineList = () => {
         Indian: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1024px-Flag_of_India.svg.png"
       };
 
+      {flagImages[cuisine.type] && (
+        <img
+          src={flagImages[cuisine.type]}
+          alt={cuisine.type}
+          style={{ width: "100px", height: "100px" }} 
+        />
+      )}
+
     return (
         <div>
             <h1>All Cuisine Types</h1>
             <div style= {{ display: "flex"}}>
             {cuisine && Object.keys(cuisine).map((cuisineId) => (
                 <div key={cuisineId.type} style={{ padding: "10px", border: "4px solid #f39c12" }}>
-                    {/* <h3>CuisineType:{cuisine[cuisineTypeId].type}</h3> */}
-                    <img
-                src={flagImages[cuisine[cuisineId].type]}
-                alt={cuisine[cuisineId].type}
-                style={{ width: "100px", height: "100px" }}
-              />
+                    <h3>CuisineType:{cuisine[cuisineId].type}</h3>
+                    {flagImages[cuisine.type] && (
+        <img
+          src={flagImages[cuisine.type]}
+          alt={cuisine.type}
+          style={{ width: "100px", height: "100px" }} 
+        />
+      )}
                 </div>
             ))}
         </div>
