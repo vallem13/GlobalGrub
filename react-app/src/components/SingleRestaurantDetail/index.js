@@ -52,7 +52,7 @@ export default function SingleRestaurant() {
 
       <div className="reviews-container">
         <div id="post-review-button">
-          <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user={user} restaurant={restaurant} />} />
+          <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
         </div>
 
         {reviews.map((review) => (
@@ -65,7 +65,7 @@ export default function SingleRestaurant() {
             {(review.user_d === user?.id) &&
             <OpenModalButton
               buttonText="Edit Your Review"
-              modalComponent={<EditReviewModal restaurant={restaurant} review={review} user={user} />}
+              modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
             />
             &&
 

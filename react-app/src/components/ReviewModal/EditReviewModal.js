@@ -1,122 +1,118 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { editReviewThunk } from "../../store/review";
-import { getSingleRestaurantThunk } from "../../store/restaurant";
-import { useHistory } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useModal } from '../../context/Modal';
+import { editReviewThunk } from '../../store/review';
+import './ReviewModal.css';
 
-
-const EditReviewModal = ({ restaurant, review, user }) => {
-
-  const { closeModal } = useModal();
-  const history = useHistory()
-  const dispatch = useDispatch();
-  const [editedReview, setEditedReview] = useState(review?.review || "");
-  const [editedStars, setEditedStars] = useState(review?.stars || "");
-  const [activeRating, setActiveRating] = useState(review?.stars || "");
+export default function EditReviewModal({ user_id, review, restaurant }) {
+  const [editedReview, setEditedReview] = useState(review.comment);
+  const [editedStars, setEditedStars] = useState(review.rating);
   const [errors, setErrors] = useState({});
+  const [activeStars, setActiveStars] = useState(null);
+  const [serverError, setServerError] = useState(false);
+
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
+  useEffect(() => {
+    setErrors({});
+  }, [review]);
 
   useEffect(() => {
     let errors = {};
-    if (editedStars < 1) errors.stars = "Stars can not be empty";
-    if (editedReview.length < 10) errors.review = "Review should be 10 characters or more";
+    if (!editedStars) errors.stars = "Stars can't be empty";
+    if (editedReview.length < 10) errors.review = "Review must be at least 10 characters long";
+
     setErrors(errors);
   }, [editedReview, editedStars]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newReview = {
-      review: editedReview,
-      stars: editedStars,
-    };
+    if (Object.values(errors).length > 0) {
+      alert('Please fix the errors you have');
 
-    // console.log('----->',review)
-    // await dispatch(editReviewThunk(editedReview, review.id));
-    // await dispatch(getSingleRestaurantThunk(restaurant.id));
-    // await closeModal();
+    } else {
 
-    if(!Object.values(errors).length) {
-        const editReview = await dispatch(editReviewThunk(newReview, restaurant.id))
+      const editedReviewData = {
+        comment: editedReview,
+        rating: editedStars,
+      };
 
-        if (editReview.errors) setErrors(editReview.errors)
-        else await history.push(`/restaurant/${restaurant.id}`)
+      try {
+        await dispatch(editReviewThunk(editedReviewData, review.id));
+        closeModal();
+      } catch (error) {
+        setServerError(error.message);
+      }
+    }
+  };
+
+  const noShowError = () => {
+    if (editedReview.length < 10) {
+      setServerError(true);
+    } else {
+      setServerError(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div id="login-form">
-        <h1>How was Order?</h1>
-        <textarea
-          id="review-text"
-          placeholder="Leave your review here..."
-          value={editedReview}
-          onChange={(e) => setEditedReview(e.target.value)}
-        />
-        {errors.review && editedReview.length > 0 && (
-          <p className="error-message">{errors.review}</p>
-        )}
-        <div id="stars-container">
-          <div className="stars">
-            <div
-              className={activeRating >= 1 ? "filled" : "empty"}
-              onClick={() => setEditedStars(1)}
-              onMouseEnter={() => setActiveRating(1)}
-              onMouseLeave={() => setActiveRating(editedStars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable"></i>
-            </div>
-            <div
-              className={activeRating >= 2 ? "filled" : "empty"}
-              onClick={() => setEditedStars(2)}
-              onMouseEnter={() => setActiveRating(2)}
-              onMouseLeave={() => setActiveRating(editedStars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable"></i>
-            </div>
-            <div
-              className={activeRating >= 3 ? "filled" : "empty"}
-              onClick={() => setEditedStars(3)}
-              onMouseEnter={() => setActiveRating(3)}
-              onMouseLeave={() => setActiveRating(editedStars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable"></i>
-            </div>
-            <div
-              className={activeRating >= 4 ? "filled" : "empty"}
-              onClick={() => setEditedStars(4)}
-              onMouseEnter={() => setActiveRating(4)}
-              onMouseLeave={() => setActiveRating(editedStars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable"></i>
-            </div>
-            <div
-              className={activeRating >= 5 ? "filled" : "empty"}
-              onClick={() => setEditedStars(5)}
-              onMouseEnter={() => setActiveRating(5)}
-              onMouseLeave={() => setActiveRating(editedStars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable"></i>
-            </div>
-          </div>
-          <div>
-            <label className="star-label">Stars</label>
-          </div>
+    <form className="review-form" onSubmit={handleSubmit}>
+      <h2 className="edit-review-header">Edit Your Review</h2>
+      <textarea
+        value={editedReview}
+        className="review-input"
+        onChange={(e) => setEditedReview(e.target.value)}
+        placeholder="Edit your review here...."
+        onBlur={noShowError}
+      />
+      {serverError && <p className='review-form-errors'>Review must be more than 10 characters.</p>}
+
+      <div className="star-container">
+        <div className={editedStars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
+          onClick={() => setEditedStars(1)}
+          onMouseEnter={() => setActiveStars(1)}
+          onMouseLeave={() => setActiveStars(editedStars)}
+        >
+          <span className="material-symbols-outlined">star</span>
         </div>
-        <div className="submit-button">
-          <button
-            className="submit-review-button"
-            type="submit"
-            disabled={editedReview.length < 10 || !editedStars || Object.values(errors).length > 0}
-          >
-            Submit Your Review
-          </button>
+
+        <div className={editedStars >= 2 || activeStars >= 2 ? 'star-filled' : 'star-empty'}
+          onClick={() => setEditedStars(2)}
+          onMouseEnter={() => setActiveStars(2)}
+          onMouseLeave={() => setActiveStars(editedStars)}
+        >
+          <span className="material-symbols-outlined">star</span>
         </div>
+
+        <div className={editedStars >= 3 || activeStars >= 3 ? 'star-filled' : 'star-empty'}
+          onClick={() => setEditedStars(3)}
+          onMouseEnter={() => setActiveStars(3)}
+          onMouseLeave={() => setActiveStars(editedStars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <div className={editedStars >= 4 || activeStars >= 4 ? 'star-filled' : 'star-empty'}
+          onClick={() => setEditedStars(4)}
+          onMouseEnter={() => setActiveStars(4)}
+          onMouseLeave={() => setActiveStars(editedStars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <div className={editedStars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
+          onClick={() => setEditedStars(1)}
+          onMouseEnter={() => setActiveStars(1)}
+          onMouseLeave={() => setActiveStars(editedStars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <span> Stars</span>
       </div>
+
+      <button type="submit" className="review-button" disabled={Object.values(errors).length > 0} >Submit Changes</button>
     </form>
   );
-
-};
-
-export default EditReviewModal;
+}
