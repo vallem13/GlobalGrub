@@ -8,19 +8,16 @@ const OrderCartModal = ({ user }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal()
     const cart = useSelector(state => state.cart.cart);
-    console.log('-------->1', cart)
     const current_restaurant = Object.keys(cart)
     const items = Object.values(cart)
-    console.log("this is the items", items)
+
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
-    console.log("this is the cart items", cart_items)
+
     const restaurant_id = parseInt(current_restaurant[0])
 
     let menu_items = []
     cart_items.map(item => menu_items.push(item.id))
-    console.log("this is the menu items", menu_items)
-    console.log("this is the restaurant_id", restaurant_id)
-    console.log("this is the user id", user.id)
+
 
     const placeOrder = async (e) => {
         e.preventDefault()
@@ -40,7 +37,7 @@ const OrderCartModal = ({ user }) => {
         <div>
             <h1> testing </h1>
             {cart_items.map(item => (
-                <div>
+                <div key={item.id}>
                     <img src={item.menu_item_image} style={{ width: '50px', height: '50px' }} alt={item.name} />
                     <div>${item.price}</div>
                     <div>{item.name}</div>
