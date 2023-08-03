@@ -75,7 +75,7 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async 
 
     if (response.ok) {
       const data = await response.json();
-      await dispatch(emptyCart(restaurant_id));
+      await dispatch(emptyCart());
       return data;
     } else {
       const data = await response.json();
@@ -113,14 +113,23 @@ const cartReducer = (state = initialState, action) => {
       const item_id = action.item.id;
       return {
         ...state,
-        [restaurant_id]: {
-          ...state[restaurant_id],
-          [item_id]: { ...action.item }
-        }
+        cart: {
+          ...state.cart,
+          [restaurant_id]: {
+            ...(state.cart[restaurant_id] || {}),
+            [item_id]: { ...action.item },
+          },
+        },
+        orders: { ...state }
       };
 
-    case EMPTY_CART:
-      return initialState
+
+
+      case EMPTY_CART:
+        return {
+          ...state,
+          cart: {},
+        };
 
     case UPDATE_ORDER_CART:
       return {
@@ -138,6 +147,7 @@ const cartReducer = (state = initialState, action) => {
       const itemToRemove = action.menu_item_id;
       //console.log("Item to remove:", itemToRemove);
       const updatedCart = { ...state.cart };
+
       for (const restaurant_id in updatedCart) {
         const restaurantOrders = updatedCart[restaurant_id];
         if (restaurantOrders[itemToRemove]) {
@@ -150,6 +160,7 @@ const cartReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        orders: { ...state.orders },
         cart: updatedCart,
       };
 

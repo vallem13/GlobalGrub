@@ -7,18 +7,24 @@ import { useModal } from '../../context/Modal'
 const OrderCartModal = ({ user }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal()
-    const cart = useSelector(state => state.cart);
-    const restaurant_id = Object.keys(cart)[0]
+    const cart = useSelector(state => state.cart.cart);
+    console.log('-------->1', cart)
+    const current_restaurant = Object.keys(cart)
     const items = Object.values(cart)
-    const cart_items = Object.values(items[0])
+    console.log("this is the items", items)
+    const cart_items = items.length > 0 ? Object.values(items[0]) : [];
+    console.log("this is the cart items", cart_items)
+    const restaurant_id = parseInt(current_restaurant[0])
 
     let menu_items = []
     cart_items.map(item => menu_items.push(item.id))
+    console.log("this is the menu items", menu_items)
+    console.log("this is the restaurant_id", restaurant_id)
+    console.log("this is the user id", user.id)
 
     const placeOrder = async (e) => {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
-        await dispatch(emptyCart())
         closeModal()
     }
 
@@ -28,7 +34,7 @@ const OrderCartModal = ({ user }) => {
         closeModal()
     }
 
-    //console.log('-------->', cart_items)
+
 
     return (
         <div>
