@@ -62,18 +62,17 @@ export default function SingleRestaurant() {
             <p>
               {review.user.firstName} {review.user.lastName}
             </p>
-            {(review.user_d === user?.id) &&
+
             <OpenModalButton
               buttonText="Edit Your Review"
               modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
             />
-            &&
 
             <OpenModalButton
               buttonText="Delete Review"
               modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
             />
-            }
+
 
           </div>
         ))}

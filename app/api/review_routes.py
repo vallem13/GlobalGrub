@@ -48,7 +48,7 @@ def edit_review(review_id):
         review.comment=form.data['comment']
         review.rating=form.data['rating']
 
-        db.session.add(review)
+        # db.session.add(review)
         db.session.commit()
         return {"message":f"Successfully edited review for user {review.user_id}"}
     return {'errors': "Could not edit review"}, 500
