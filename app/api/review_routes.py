@@ -35,22 +35,27 @@ def create_review(id):
 @login_required
 def edit_review(review_id):
 
-    current_user_id = current_user.to_dict()['id']
-    review = Review.query.get(review_id)
+    # current_user_id = current_user.to_dict()['id']
+
     #Make sure to check that user owns the review!!
-    if (current_user_id != review.user_id):
-        return {'errors': "You do not own this review"}, 401
+    # if (current_user_id != review.user_id):
+    #     return {'errors': "You do not own this review"}, 401
 
     form = EditReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+
+        review = Review.query.get(review_id)
         review.comment=form.data['comment']
         review.rating=form.data['rating']
 
         # db.session.add(review)
         db.session.commit()
-        return {"message":f"Successfully edited review for user {review.user_id}"}
+        # print('REVIEW!!!!!!', review.to_dict())
+        return review.to_dict()
+
+    print(form.errors)
     return {'errors': "Could not edit review"}, 500
 
 # Delete a Review
