@@ -19,14 +19,21 @@ export default function SingleRestaurant() {
   const items = restaurant.menu_items || [];
   const user = useSelector((state) => state.session.user);
   const reviews = restaurant.reviews || [];
+  const orders = user.order_carts || [];
 
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
     setIsLoading(false);
   }, [dispatch, restaurantId]);
 
-  // console.log("these are the reviews", reviews)
+  let restaurant_ids = []
+  orders.map(order => restaurant_ids.push(order.restaurant_id))
 
+  const reverse_reviews = reviews.reverse()
+
+  const check_order = restaurant_ids.find(order => restaurant.id === order)
+
+  const previousReview = user && reverse_reviews.find((review) => review.user_id === user.id)
 
   if (!restaurant) return <div>Loading...</div>;
 
@@ -54,10 +61,12 @@ export default function SingleRestaurant() {
 
       <div className="reviews-container">
         <div id="post-review-button">
-          <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
-        </div>
 
-        {reviews.map((review) => (
+          {check_order && !previousReview ? (
+            <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
+          ) : ('')}
+        </div>
+        {reverse_reviews.map((review) => (
           <div key={review.id}>
             <h3>{review.comment}</h3>
             <p>{review.rating.toFixed(0)}</p>
@@ -66,17 +75,18 @@ export default function SingleRestaurant() {
             <p>
               {review.user.firstName} {review.user.lastName}
             </p>
-
-            <OpenModalButton
-              buttonText="Edit Your Review"
-              modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
-            />
-
-            <OpenModalButton
-              buttonText="Delete Review"
-              modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
-            />
-
+            {previousReview && (review.user_id === user.id) ? (
+              <div>
+                <OpenModalButton
+                  buttonText="Edit Your Review"
+                  modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
+                />
+                <OpenModalButton
+                  buttonText="Delete Review"
+                  modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
+                />
+              </div>
+            ) : ('')}
 
           </div>
         ))}

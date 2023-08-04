@@ -33,17 +33,20 @@ const SingleCuisine = () => {
 
       {restaurants.map((restaurant) => (
         <div key={restaurant.id} onClick={() => onClick(restaurant.id)}>
-          <h2>{restaurant.name}</h2>
           {restaurant.restaurant_image && (
-            <img
+          <img
               src={restaurant.restaurant_image}
               alt={restaurant.name}
               style={{ width: "200px", height: "200px" }}
             />
           )}
-
-
-
+          <h4>{restaurant.name}</h4>
+          <p>{restaurant.price_range}</p>
+          {restaurant.average_rating !== null ? (
+                    <p>{restaurant.average_rating.toFixed(1)}</p>
+                ) : (
+                    <p>No Reviews Yet</p>
+                )}
         </div>
       ))}
     </div>
