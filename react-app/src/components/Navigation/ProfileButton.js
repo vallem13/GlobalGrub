@@ -11,7 +11,7 @@ import * as sessionActions from '../../store/session';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const ulRef = useRef(null);
   const history = useHistory()
 
   const openMenu = () => {
@@ -23,7 +23,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -33,17 +33,17 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const closeMenu = () => setShowMenu(false);
 
 
   const handleLogout = async (e) => {
     e.preventDefault();
     await dispatch(sessionActions.logout());
-    //closeMenu();
+    closeMenu();
     history.push('/')
 
   };
 
+  const closeMenu = () => setShowMenu(false);
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -54,13 +54,13 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>Hi, {user.firstName}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
             <li>
-              <NavLink exact to="/profile">Profile</NavLink>
+              <NavLink exact to="/profile">Manage Account</NavLink>
             </li>
             <li>
               <NavLink exact to="/user_orders">Orders</NavLink>

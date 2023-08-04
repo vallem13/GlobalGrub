@@ -1,35 +1,42 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OrderCartModal from '../Orders/OrderCartModal'
 import OpenModalButton from '../OpenModalButton';
 import CuisineList from '../AllCuisines';
 import './Navigation.css';
-import SearchBar from '../Search/searchBar';
+//import SearchBar from '../Search/searchBar';
+import logo from './Logo/globalgrub.png'
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
+	const history = useHistory();
+
+	const handleLogoClick = () => {
+		history.push('/');
+	};
 
 	return (
-
-		<ul >
-
+		<ul>
 			{isLoaded && (
-				<div className='nav-bar'>
+				<div>
 					<ProfileButton user={sessionUser} />
 
 					{sessionUser ? (
 						<div>
-							<div className='nav-bar'>
-							<NavLink exact to="/">Home</NavLink>
+
+							<NavLink exact to="/" activeClassName="active-link" onClick={handleLogoClick}>
+								<img src={logo} className="logo" />
+							</NavLink>
 
 							<OpenModalButton
-								buttonText={"Order Cart"}
+
+								buttonText={"Cart"}
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
-							</div>
-							<SearchBar></SearchBar>
+
+							{/* <SearchBar></SearchBar> */}
 
 							<CuisineList />
 						</div>) : ("")}

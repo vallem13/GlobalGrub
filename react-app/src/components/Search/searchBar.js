@@ -1,66 +1,118 @@
 
+
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import { getAllRestaurantsThunk } from "../../store/restaurant";
 
 export default function SearchBar() {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const searchRef = useRef();
-    const restaurant = useSelector(state => state.restaurant.allRestaurants);
-    const [searchRestaurant, setSearchRestaurant] = useState("");
-    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  
-    useEffect(() => {
-      dispatch(getAllRestaurantsThunk());
-    }, [dispatch]);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const restaurant = useSelector((state) => state.restaurant.allRestaurants);
+  const [searchRestaurant, setSearchRestaurant] = useState(""); //store current value
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]); //stores list of restaurant
+  const [restaurantClicked, setRestaurantClicked] = useState(false); //false unless user clicks
+  const [showMenu, setShowMenu] = useState(false); //show menu
+  const searchRef = useRef(null); //for clicking outside of search input
 
-//show all the restaurants when view all is clicked 
-    const handleViewAll = () => {
-        history.push("/home")
-    }
+  useEffect(() => {
+    dispatch(getAllRestaurantsThunk());
+  }, [dispatch]);
 
-    //event handler for when the user is typing 
-    //update search restaurant state 
-    const handleSearchInputs = (e) => {
-      const searchInput = e.target.value;
-      setSearchRestaurant(searchInput); 
-      
-      //user input needs to be 
-      const restaurantInput = Object.values(restaurant).filter(restaurant =>
-        restaurant.name.toLowerCase().includes(searchInput.toLowerCase())
+
+
+//if there's input make restaurant into an array and look for restaurant.name and make the input lowerCase
+  const handleSearch = () => {
+    if (searchRestaurant) {
+      const restaurantMatch = Object.values(restaurant).find(
+        (restaurant) =>
+          restaurant.name.toLowerCase() === searchRestaurant.toLowerCase()
       );
-      setFilteredRestaurants(restaurantInput);
-    };
 
 
-    return (
-      <div>
-        <input
-          type="text"
-          value={searchRestaurant}
-          onChange={handleSearchInputs}
-          placeholder="Search restaurants..."
-        />
+
+      if (restaurantMatch) {
+        setSearchRestaurant("");
+        setFilteredRestaurants([]);
+        setRestaurantClicked(false);
+        
+      }
+    }
+  };
+
+  const closeMenu = (e) => {
+    if (searchRef.current && !searchRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, []);
+
+  const handleInputClick = () => {
+    setShowMenu(true);
+    if (searchRef.current) {
+      searchRef.current.focus();
+    }
+  };
+
+  const handleRestaurantClick = (restaurantId) => {
+    setRestaurantClicked(true);
+    
+    history.push(`/restaurant/${restaurantId}`);
+  };
+
+  useEffect(() => {
+    if (!restaurantClicked) {
+      if (searchRestaurant === "") {
+        setFilteredRestaurants([]);
+      } else {
+        const filtered = Object.values(restaurant).filter((restaurant) =>
+          restaurant.name.toLowerCase().includes(searchRestaurant.toLowerCase())
+        );
+        setFilteredRestaurants(filtered.slice(0, 10));
+      }
+    }
+  }, [searchRestaurant, restaurant, restaurantClicked]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        ref={searchRef}
+        value={searchRestaurant}
+        onChange={(e) => setSearchRestaurant(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleSearch();
+          }
+        }}
+        placeholder="Search restaurants..."
+        onClick={handleInputClick}
+      />
+      {showMenu && searchRestaurant !== "" && !restaurantClicked && (
         <div>
-          {filteredRestaurants.map(restaurant => (
+          {filteredRestaurants.map((restaurant) => (
             <div
               key={restaurant.id}
-              onClick={() => {
-                history.push(`/restaurant/${restaurant.id}`);
-              }}
+              onClick={() => handleRestaurantClick(restaurant.id)}
             >
               {restaurant.name}
             </div>
           ))}
+          {filteredRestaurants.length > 0 && (
+            <button onClick={handleSearch}>Search</button>
+          )}
         </div>
-        {filteredRestaurants.length > 0 && (
-        <button onClick={handleViewAll}>
-          Search All Restaurants
-        </button>
       )}
     </div>
   );
-  }
-  
+}
+
+
+
+

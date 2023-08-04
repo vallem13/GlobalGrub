@@ -1,4 +1,3 @@
-
 //Action Creator
 const GET_ORDERS = "cart/GET_ORDERS";
 const CREATE_CART = "cart/CREATE_CART";
@@ -45,21 +44,17 @@ export const yeetItem = (menu_item_id) => ({
 
 
 // Thunks
-
 export const getOrderThunk = () => async (dispatch) => {
   try {
-    const response = await fetch("/api/cart/user_orders");
+    const response = await fetch('/api/cart/user_orders');
     if (response.ok) {
       const data = await response.json();
-      dispatch(getOrder(data));
-      return data;
+      await dispatch(getOrder(data));
     } else {
-      // Handle error response if needed
-      console.error("Error fetching orders:", response.statusText);
+      console.error('Error fetching orders:', response.statusText);
     }
   } catch (error) {
-    // Handle fetch error if needed
-    console.error("Error fetching orders:", error);
+    console.error('Error fetching orders:', error);
   }
 };
 
@@ -82,12 +77,10 @@ export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async 
     } else {
       const data = await response.json();
       if (data.errors) {
-        // Handle error response if needed
         console.error("Error creating cart:", data.errors);
       }
     }
   } catch (error) {
-    // Handle fetch error if needed
     console.error("Error creating cart:", error);
   }
 };
@@ -125,11 +118,11 @@ const cartReducer = (state = initialState, action) => {
         orders: { ...state }
       };
 
-      case EMPTY_CART:
-        return {
-          ...state,
-          cart: {},
-        };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cart: {},
+      };
 
     case UPDATE_ORDER_CART:
       return {
@@ -145,14 +138,11 @@ const cartReducer = (state = initialState, action) => {
 
     case YEET_ITEM:
       const itemToRemove = action.menu_item_id;
-      //console.log("Item to remove:", itemToRemove);
       const updatedCart = { ...state.cart };
 
       for (const restaurant_id in updatedCart) {
         const restaurantOrders = updatedCart[restaurant_id];
         if (restaurantOrders[itemToRemove]) {
-          //console.log("Removing item from restaurant:", itemToRemove);
-          // Clone the restaurantOrders object before modifying it
           const updatedRestaurantOrders = { ...restaurantOrders };
           delete updatedRestaurantOrders[itemToRemove];
           updatedCart[restaurant_id] = updatedRestaurantOrders;

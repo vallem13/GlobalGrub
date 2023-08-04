@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
@@ -14,7 +13,7 @@ import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
 import SingleCuisine from "./components/SingleCuisineDetail";
 import FilterPrice from "./components/Search/filterPrice";
-import UsersOrders from "./components/UsersOrders"
+import SearchBar from "./components/Search/searchBar";
 
 
 
@@ -38,6 +37,8 @@ function App() {
             </Route>
             <Route path="/home">
               <ProtectedRoute>
+                <SearchBar/>
+              <FilterPrice />
                 <HomePage />
               </ProtectedRoute>
             </Route>
@@ -47,6 +48,11 @@ function App() {
             <Route path="/profile">
               <ProtectedRoute>
                 <UserProfile />
+              </ProtectedRoute>
+            </Route>
+            <Route path="/filter">
+              <ProtectedRoute>
+                <FilterPrice />
               </ProtectedRoute>
             </Route>
             <Route path="/user_orders">
