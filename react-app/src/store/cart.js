@@ -46,20 +46,34 @@ export const yeetItem = (menu_item_id) => ({
 // Thunks
 export const getOrderThunk = () => async (dispatch) => {
   try {
-    const response = await fetch("/api/cart/user_orders");
+    const response = await fetch('/api/cart/user_orders');
     if (response.ok) {
       const data = await response.json();
       dispatch(getOrder(data));
-      return data;
     } else {
-      // Handle error response if needed
-      console.error("Error fetching orders:", response.statusText);
+      console.error('Error fetching orders:', response.statusText);
     }
   } catch (error) {
-    // Handle fetch error if needed
-    console.error("Error fetching orders:", error);
+    console.error('Error fetching orders:', error);
   }
 };
+
+// export const getOrderThunk = () => async (dispatch) => {
+//   try {
+//     const response = await fetch("/api/cart/user_orders");
+//     if (response.ok) {
+//       const data = await response.json();
+//       dispatch(getOrder(data));
+//       return data;
+//     } else {
+//       // Handle error response if needed
+//       console.error("Error fetching orders:", response.statusText);
+//     }
+//   } catch (error) {
+//     // Handle fetch error if needed
+//     console.error("Error fetching orders:", error);
+//   }
+// };
 
 export const thunkCreateCart = (user_id, restaurant_id, menu_item_ids) => async (dispatch) => {
   try {

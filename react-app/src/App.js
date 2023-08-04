@@ -47,11 +47,11 @@ function App() {
                 <UserProfile />
               </ProtectedRoute>
             </Route>
-            <Route path="/orders">
+            {/* <Route path="/orders">
               <ProtectedRoute>
                 <UsersOrders />
               </ProtectedRoute>
-            </Route>
+            </Route> */}
             <Route path="/user_orders">
               <ProtectedRoute>
                 <GetOrder />

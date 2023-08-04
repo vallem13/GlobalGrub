@@ -1,37 +1,38 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getOrderThunk } from "../../store/cart";
-import { useEffect } from "react";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrderThunk } from '../../store/cart';
 
-const GetOrder = () => {
-    const dispatch = useDispatch();
-    const orders = useSelector((state) => state.cart.orders);
-    const user = useSelector(state => state.session.user);
+export default function UsersOrders() {
+  const dispatch = useDispatch();
+  const orders = useSelector((state) => state.cart.orders);
 
 
-    useEffect(() => {
-        dispatch(getOrderThunk())
-    }, [dispatch])
+  console.log("theses are the orders ----->", orders)
 
-    return (
-        <div>
-      <h1>{user.username} Orders</h1>
-      
+  useEffect(() => {
+    dispatch(getOrderThunk());
+  }, [dispatch]);
 
 
 
-      {Object.keys(orders).map((orderCartId) => (
+  let total = 0
+
+  return (
+    <div>
+      <h1>Orders</h1>
+      {Object.entries(orders).map(([orderCartId, orderItems]) => (
         <div key={orderCartId}>
-          <h2>Order Cart: {orderCartId}</h2>
-          {orders[orderCartId].map((order) => (
-            <div key={order.id}>   
-              <p>Menu Item: {order.menu_item_id}</p>
+          <h2>Order Number: {orderCartId}</h2>
+          {orderItems.map((order) => (
+            <div key={order.order_id}>
+
+              <h4>{order.menu_item_name}  ${Number(order.menu_item_price).toFixed(2)}</h4>
             </div>
           ))}
+
+         <h4>Total: </h4>
         </div>
       ))}
     </div>
   );
-};
- 
-export default GetOrder
+}
