@@ -6,7 +6,7 @@ import OrderCartModal from '../Orders/OrderCartModal'
 import OpenModalButton from '../OpenModalButton';
 import CuisineList from '../AllCuisines';
 import './Navigation.css';
-import SearchBar from '../Search/searchBar';
+//import SearchBar from '../Search/searchBar';
 import logo from './Logo/globalgrub.png'
 
 function Navigation({ isLoaded }) {
@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
 
-							<SearchBar></SearchBar>
+							{/* <SearchBar></SearchBar> */}
 
 							<CuisineList />
 						</div>) : ("")}
