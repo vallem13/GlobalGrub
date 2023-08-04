@@ -16,7 +16,7 @@ const GetOrder = () => {
     return (
         <div>
       <h1>{user.username} Orders</h1>
-      
+
 
 
 
@@ -24,7 +24,7 @@ const GetOrder = () => {
         <div key={orderCartId}>
           <h2>Order Cart: {orderCartId}</h2>
           {orders[orderCartId].map((order) => (
-            <div key={order.id}>   
+            <div key={order.id}>
               <p>Menu Item: {order.menu_item_id}</p>
             </div>
           ))}
@@ -33,5 +33,5 @@ const GetOrder = () => {
     </div>
   );
 };
- 
+
 export default GetOrder
