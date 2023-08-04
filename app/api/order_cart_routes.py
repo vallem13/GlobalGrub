@@ -2,7 +2,9 @@ from flask import Blueprint, request, jsonify
 from app.models import OrderCart,db, Order, Restaurant, MenuItem, User
 from flask_login import current_user, login_required
 
+
 order_cart_routes = Blueprint('cart', __name__)
+
 
 @order_cart_routes.route('/user_orders')
 @login_required
@@ -24,8 +26,6 @@ def get_orders():
             'order_cart_id': order.order_cart_id,
             'menu_item_name': menu_item.name,
             'menu_item_price': menu_item.price,
-            # 'restaurant_name': restaurant.name,
-            # Add any other order details you want to include
         }
 
         if order_cart_id in orders_dict:
@@ -34,40 +34,6 @@ def get_orders():
             orders_dict[order_cart_id] = [order_data]
 
     return jsonify(orders_dict), 200
-
-# @order_cart_routes.route('/user_orders')
-# @login_required
-# def get_orders():
-#     user_orders = Order.query.filter_by(user_id=current_user.id).all()
-
-#     orders_dict = []
-#     for order in user_orders:
-#         order_cart = OrderCart.query.get(order.order_cart_id)
-#         print("this is the order cart -------->", type(order_cart))
-#         menu_item = MenuItem.query.get(order.menu_item_id)
-#         print("this is the menuitem -------->", type(menu_item))
-#         restaurant = Restaurant.query.get(order_cart.restaurant_id)
-#         print("this is the restaurant -------->", type(restaurant))
-
-
-
-#         order_data = {
-#             'order_id': order.id,
-#             'user_id': order.user_id,
-#             'menu_item_id': order.menu_item_id,
-#             'order_cart_id': order.order_cart_id,
-#             'menu_item_name': menu_item.name,
-#             'menu_item_price': menu_item.price,
-#             # 'restaurant_name': restaurant.name,
-
-#         }
-
-#         orders_data.append(order_data)
-
-#     return jsonify(orders_data), 200
-
-
-
 
 
 @order_cart_routes.route("/<int:user_id>", methods=["POST"])
@@ -113,7 +79,6 @@ def remove_order(order_id):
     db.session.commit()
 
     return jsonify({"message": "Order succesfully deleted "}) , 200
-
 
 
 @order_cart_routes.route('/delete/<int:order_cart_id>', methods=['DELETE'])

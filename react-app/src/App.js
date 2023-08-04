@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfile from "./components/ManageProfile";
@@ -12,8 +11,6 @@ import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 import SplashPage from "./components/SplashPage";
 import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
-import UsersOrders from "./components/UsersOrders"
-
 
 
 function App() {
@@ -47,11 +44,6 @@ function App() {
                 <UserProfile />
               </ProtectedRoute>
             </Route>
-            {/* <Route path="/orders">
-              <ProtectedRoute>
-                <UsersOrders />
-              </ProtectedRoute>
-            </Route> */}
             <Route path="/user_orders">
               <ProtectedRoute>
                 <GetOrder />
