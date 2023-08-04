@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import RestaurantCard from "../HomePage/RestaurantCard";
 
 export default function FilterPrice() {
   const history = useHistory();
@@ -55,34 +56,21 @@ export default function FilterPrice() {
 
         </span>
       ))}
-
-      <div>
-
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {filteredRestaurant.map((restaurant) => (
-
-            <div key={restaurant.id} onClick={() => onClick(restaurant.id)} >
-              {/* <p>{filteredRestaurant.length} Results</p> */}
-              {restaurant.restaurant_image && (
-                <img
-                  src={restaurant.restaurant_image}
-                  alt={restaurant.name}
-                  style={{ width: "200px", height: "200px" }}
-                />
-              )}
-              <h4>{restaurant.name}</h4>
-              <p>{restaurant.price_range}</p>
-              {restaurant.average_rating !== null ? (
-                <p>{restaurant.average_rating.toFixed(1)}</p>
-              ) : (
-                <p>No Reviews Yet</p>
-              )}
+     
+        <div>
+          
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {filteredRestaurant.map((restaurant) => (
+                
+                <div key={restaurant.id} onClick={() => onClick(restaurant.id)} >
+                  <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+        
+                </div>
+              ))}
             </div>
-          ))}
+        
         </div>
-
-      </div>
-
+     
     </div>
   );
 }
