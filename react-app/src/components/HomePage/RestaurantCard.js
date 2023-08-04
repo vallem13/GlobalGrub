@@ -7,21 +7,18 @@ const RestaurantCard = ({ restaurant }) => {
         history.push(`/restaurant/${restaurant.id}`)
     }
     return (
-    <div onClick = {onClick}>
-        <div>
-        <img src={restaurant.restaurant_image} />
-        <p> Restaurant: {restaurant.name}</p>
-        <p>{restaurant.price_range}</p>
-        <p>{restaurant.description}</p>
-        <div>Location
-        <p>{restaurant.address}</p>
-        <p>{restaurant.city}</p>
-        <p>{restaurant.state}</p>
-        <p>{restaurant.zipcode}</p>
+        <div onClick={onClick}>
+            <div>
+                <img src={restaurant.restaurant_image} alt="Restaurant" />
+                <p> Restaurant: {restaurant.name}</p>
+                <p>{restaurant.price_range}</p>
+                {restaurant.average_rating !== null ? (
+                    <p>{restaurant.average_rating.toFixed(1)}</p>
+                ) : (
+                    <p>No Reviews Yet</p>
+                )}
+            </div>
         </div>
-        <p>{restaurant.contact_phone_number}</p>
-        </div>
-    </div>
-        )
+    )
 }
 export default RestaurantCard;

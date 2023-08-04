@@ -40,5 +40,13 @@ class Restaurant(db.Model):
             'restaurant_image': self.restaurant_image,
             'cuisine_type_id': self.cuisine_type_id,
             'menu_items': [item.to_dict() for item in self.menu_items],
-            'reviews': [review.to_dict() for review in self.reviews]
+            'reviews': [review.to_dict() for review in self.reviews],
+            'average_rating': self.average_rating
         }
+
+    @property
+    def average_rating(self):
+        if not self.reviews:
+            return None
+        total_ratings = sum(review.rating for review in self.reviews)
+        return total_ratings / len(self.reviews) if len(self.reviews) > 0 else None
