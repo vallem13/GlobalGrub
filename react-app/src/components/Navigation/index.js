@@ -6,7 +6,7 @@ import OrderCartModal from '../Orders/OrderCartModal'
 import OpenModalButton from '../OpenModalButton';
 import CuisineList from '../AllCuisines';
 import './Navigation.css';
-import SearchBar from '../Search/searchBar';
+
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
 
-							<SearchBar></SearchBar>
+							
 
 							<CuisineList />
 						</div>) : ("")}

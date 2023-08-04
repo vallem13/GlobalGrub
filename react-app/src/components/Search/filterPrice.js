@@ -36,6 +36,7 @@ export default function FilterPrice() {
     } else {
       setSearchPrice(priceRange);
       FilterPriceThunk(priceRange);
+      history.push("/filter");
     }
   };
 
@@ -57,10 +58,11 @@ export default function FilterPrice() {
      
         <div>
           
-            <div>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
               {filteredRestaurant.map((restaurant) => (
+                
                 <div key={restaurant.id} onClick={() => onClick(restaurant.id)} >
-                   <p>{filteredRestaurant.length} Results</p>
+                   {/* <p>{filteredRestaurant.length} Results</p> */}
                   <h3>{restaurant.name}</h3>
                   {restaurant.restaurant_image && (
             <img 
