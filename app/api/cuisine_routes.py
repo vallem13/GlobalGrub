@@ -16,6 +16,4 @@ def get_all_cuisines():
 @cuisine_routes.route('/<int:id>')
 def get_single_cuisines(id):
     cuisine = CuisineType.query.get(id)
-    if cuisine:
-        return {'cuisine': cuisine.to_dict()}
-        
+    return cuisine.to_dict()

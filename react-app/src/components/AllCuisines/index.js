@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCuisineThunk } from "../../store/cuisine";
+import { useHistory } from "react-router-dom"
 import Korean from "./flags/korea.png"
 import Japanese from "./flags/japan.png"
 import Peruvian from "./flags/peru.png"
@@ -18,13 +19,16 @@ import Indian from "./flags/india.png"
 const CuisineList = () => {
     const dispatch = useDispatch();
     const cuisines = Object.values(useSelector((state) => state.cuisine.allCuisines));
+    const history = useHistory()
 
 
     useEffect(() => {
         dispatch(getCuisineThunk())
     }, [dispatch])
 
-
+    const onClick = (cuisineId) => {
+        history.push(`/cuisine/${cuisineId}`)
+    }
 
 
     const flagImages = {
@@ -35,17 +39,13 @@ const CuisineList = () => {
         <div >
             <div style={{ display: "flex" }}>
                 {cuisines.map(cuisine => (
-                    <div style={{ padding: "10px"}}>
+                    <div key={cuisine.id} style={{ padding: "10px" }} onClick={() => onClick(cuisine.id)}>
                         <img
                             src={flagImages[cuisine.type]}
                             alt={cuisine.type}
                             style={{ width: "70px", height: "70px", marginRight: "40px" }}
                         />
+
                     </div>
                 ))}
             </div >
-        </div>
-    )
-};
-
-export default CuisineList;
