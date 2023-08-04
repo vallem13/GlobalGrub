@@ -13,6 +13,7 @@ import SplashPage from "./components/SplashPage";
 import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
 import SingleCuisine from "./components/SingleCuisineDetail";
+import FilterPrice from "./components/Search/filterPrice";
 
 
 
@@ -45,6 +46,11 @@ function App() {
             <Route path="/profile">
               <ProtectedRoute>
                 <UserProfile />
+              </ProtectedRoute>
+            </Route>
+            <Route path="/filter">
+              <ProtectedRoute>
+                <FilterPrice />
               </ProtectedRoute>
             </Route>
             <Route path="/user_orders">
