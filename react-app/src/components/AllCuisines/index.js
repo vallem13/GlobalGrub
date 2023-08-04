@@ -49,3 +49,8 @@ const CuisineList = () => {
                     </div>
                 ))}
             </div >
+        </div>
+    )
+};
+
+export default CuisineList;
