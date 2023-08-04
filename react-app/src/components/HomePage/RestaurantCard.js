@@ -10,7 +10,7 @@ const RestaurantCard = ({ restaurant }) => {
         <div onClick={onClick}>
             <div>
                 <img src={restaurant.restaurant_image} alt="Restaurant" style={{ width: '400px', height: '400px' }}/>
-                <p> Restaurant: {restaurant.name}</p>
+                <h4>{restaurant.name}</h4>
                 <p>{restaurant.price_range}</p>
                 {restaurant.average_rating !== null ? (
                     <p>{restaurant.average_rating.toFixed(1)}</p>
