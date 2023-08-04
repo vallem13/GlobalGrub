@@ -228,7 +228,7 @@ def seed_restaurants():
         state="CA",
         zipcode=94102,
         contact_phone_number="415-400-0460",
-        restaurant_image = "https://lh3.googleusercontent.com/gps-proxy/AF-Tc0QaeRsLmoNemsfcCaCCVjdXpJo2macRCsPzonLJqEKcxvGwDakZw0xxeHbJ0qX3Zyo3DBbvb0IvGTxhrB4H9Yak6hEvSfZcgNC3zEAuqf5Wxq_7FfFyQtPCBULEZGyjyzT323J70TwEJSHssTWsByaUKr7OjwaYPJ1S5sKMZK5E98QDtwozGkGJ=s680-w680-h510",
+        restaurant_image = "https://cdn.vox-cdn.com/uploads/chorus_asset/file/3947684/PetitCrenn_PChang-6273.0.jpg",
         cuisine_type_id=7
     )
     restaurant20 = Restaurant(
@@ -360,7 +360,7 @@ def seed_restaurants():
         state = "CA",
         zipcode = 94110,
         contact_phone_number = "512-457-2543",
-        restaurant_image = "hhttps://i.pinimg.com/736x/69/bb/d7/69bbd750e7e462c67db8f4e950ade6f8.jpg",
+        restaurant_image = "https://tinyurl.com/4f3ch2hu",
         cuisine_type_id=10
     )
     restaurant31 = Restaurant(
