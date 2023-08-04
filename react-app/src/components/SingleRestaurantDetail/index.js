@@ -23,7 +23,7 @@ export default function SingleRestaurant() {
     setIsLoading(false);
   }, [dispatch, restaurantId]);
 
-  console.log("these are the reviews", reviews)
+  // console.log("these are the reviews", reviews)
 
 
   if (!restaurant) return <div>Loading...</div>;

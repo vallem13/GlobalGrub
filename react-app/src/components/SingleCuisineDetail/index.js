@@ -7,7 +7,7 @@ const SingleCuisine = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cuisine = useSelector((state) => state.cuisine.singleCuisine);
-  console.log("WHAT IS THIS ----->", cuisine)
+  // console.log("WHAT IS THIS ----->", cuisine)
   const restaurants = cuisine.restaurants || []
 
 
@@ -18,7 +18,7 @@ const SingleCuisine = () => {
 
     dispatch(getSingleCuisineThunk(cuisineId));
   }, [dispatch, cuisineId]);
-  
+
 
   const onClick = (restaurantId) => {
     history.push(`/restaurant/${restaurantId}`)
@@ -27,10 +27,10 @@ const SingleCuisine = () => {
 
     return (
     <div>
-    
+
       <h1>Restaurants for {cuisine.type}</h1>
-     
-      
+
+
       {restaurants.map((restaurant) => (
         <div key={restaurant.id} onClick={() => onClick(restaurant.id)}>
           <h2>{restaurant.name}</h2>
@@ -38,18 +38,17 @@ const SingleCuisine = () => {
             <img
               src={restaurant.restaurant_image}
               alt={restaurant.name}
-              style={{ width: "200px", height: "200px" }} 
+              style={{ width: "200px", height: "200px" }}
             />
           )}
 
 
-         
+
         </div>
       ))}
     </div>
-  
+
   );
 };
 
 export default SingleCuisine;
-

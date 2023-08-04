@@ -49,7 +49,7 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
     case GET_ALL_RESTAURANTS:
             newState = { ...state, allRestaurants: {}, singleRestaurant: {} };
-            console.log("=====>", action.restaurants)
+            // console.log("=====>", action.restaurants)
             action.restaurants.forEach((restaurant) => {
                 newState.allRestaurants[restaurant.id] = restaurant;
             });
