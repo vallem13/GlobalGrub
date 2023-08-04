@@ -13,7 +13,7 @@ import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
 import SingleCuisine from "./components/SingleCuisineDetail";
 import FilterPrice from "./components/Search/filterPrice";
-import UsersOrders from "./components/UsersOrders"
+
 
 
 
