@@ -36,6 +36,8 @@ function Navigation({ isLoaded }) {
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
 
+							<SearchBar></SearchBar>
+
 							<CuisineList />
 						</div>) : ("")}
 				</div>
