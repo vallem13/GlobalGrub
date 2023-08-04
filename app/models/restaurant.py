@@ -27,6 +27,15 @@ class Restaurant(db.Model):
     menu_items = db.relationship('MenuItem', back_populates='restaurant', cascade="all, delete-orphan")
 
     def to_dict(self):
+
+        avg_restaurant_rating = 0
+        reviews = [review.to_dict_no_items() for review in self.reviews]
+        if len(reviews) >= 1:
+            for review in reviews:
+                avg_restaurant_rating += review['rating']
+            avg_restaurant_rating /= len(reviews)
+
+
         return {
             'id': self.id,
             'name': self.name,
@@ -40,5 +49,25 @@ class Restaurant(db.Model):
             'restaurant_image': self.restaurant_image,
             'cuisine_type_id': self.cuisine_type_id,
             'menu_items': [item.to_dict() for item in self.menu_items],
-            'reviews': [review.to_dict() for review in self.reviews]
+            'reviews': [review.to_dict() for review in self.reviews],
+            'businessRating': avg_business_rating
+        }
+
+    def to_dict_no_items(self):
+        avg_restaurant_rating = 0
+        reviews = [review.to_dict_no_items() for review in self.reviews]
+        if len(reviews) >= 1:
+            for review in reviews:
+                avg_restaurant_rating += review['rating']
+            avg_restaurant_rating /= len(reviews)
+
+        return {
+            'id': self.id,
+            'name':self.name,
+            'address':self.address,
+            'city':self.city,
+            'state':self.state,
+            'zipcode': self.zipcode,
+            'contact_phone_number': self.contact_phone_number,
+            'businessRating': avg_business_rating
         }
