@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { deleteUser } from "../../../store/session";
+import { logout } from "../../../store/session";
+import * as sessionActions from '../../../store/session';
 
 const DeleteUserAccount = ({userId}) => {
     const dispatch = useDispatch()
@@ -13,6 +15,7 @@ const DeleteUserAccount = ({userId}) => {
         e.preventDefault()
 
         await dispatch(deleteUser(userId))
+        await dispatch(sessionActions.logout());
         history.push('/')
         await closeModal();
     };

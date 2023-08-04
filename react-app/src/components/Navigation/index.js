@@ -20,13 +20,14 @@ function Navigation({ isLoaded }) {
 					{sessionUser ? (
 						<div>
 
+							<NavLink exact to="/">Home</NavLink>
+
 							<OpenModalButton
 								buttonText={"Order Cart"}
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
 
 							<CuisineList />
-							<NavLink exact to="/">Home</NavLink>
 						</div>) : ("")}
 				</div>
 			)}
@@ -35,5 +36,3 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
-
-

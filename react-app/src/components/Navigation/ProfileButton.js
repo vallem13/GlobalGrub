@@ -4,7 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../store/session';
 
 
@@ -58,6 +58,9 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
+            </li>
+            <li>
+              <NavLink exact to="/profile">Profile</NavLink>
             </li>
           </>
         ) : (
