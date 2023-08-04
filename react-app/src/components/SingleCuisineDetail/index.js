@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSingleCuisineThunk } from "../../store/cuisine";
 import { useParams, useHistory} from "react-router-dom";
+import RestaurantCard from "../HomePage/RestaurantCard";
 
 const SingleCuisine = () => {
   const dispatch = useDispatch();
@@ -34,13 +35,7 @@ const SingleCuisine = () => {
       {restaurants.map((restaurant) => (
         <div key={restaurant.id} onClick={() => onClick(restaurant.id)}>
           <h2>{restaurant.name}</h2>
-          {restaurant.restaurant_image && (
-            <img
-              src={restaurant.restaurant_image}
-              alt={restaurant.name}
-              style={{ width: "200px", height: "200px" }}
-            />
-          )}
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
 
 
 

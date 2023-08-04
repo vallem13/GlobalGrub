@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import RestaurantCard from "../HomePage/RestaurantCard";
 
 export default function FilterPrice() {
   const history = useHistory();
@@ -62,15 +63,8 @@ export default function FilterPrice() {
               {filteredRestaurant.map((restaurant) => (
                 
                 <div key={restaurant.id} onClick={() => onClick(restaurant.id)} >
-                   {/* <p>{filteredRestaurant.length} Results</p> */}
-                  <h3>{restaurant.name}</h3>
-                  {restaurant.restaurant_image && (
-            <img 
-              src={restaurant.restaurant_image}
-              alt={restaurant.name}
-              style={{ width: "200px", height: "200px" }} 
-            />
-          )}
+                  <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+        
                 </div>
               ))}
             </div>

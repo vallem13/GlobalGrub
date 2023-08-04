@@ -9,6 +9,7 @@ const RestaurantCard = ({ restaurant }) => {
     return (
         <div onClick={onClick}>
             <div>
+                
                 <img src={restaurant.restaurant_image} alt="Restaurant" style={{ width: '400px', height: '400px' }}/>
                 <p> Restaurant: {restaurant.name}</p>
                 <p>{restaurant.price_range}</p>

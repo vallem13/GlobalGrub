@@ -17,6 +17,7 @@ import SearchBar from "./components/Search/searchBar";
 
 
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
