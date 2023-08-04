@@ -47,7 +47,8 @@ export default function reducer(state = initialState, action) {
             return newState;
         case GET_SINGLE_CUISINE: {
             const newState = { ...state, singleCuisine: {} };
-            newState.singleCuisine = action.cuisine;
+            newState.singleCuisine = action.cuisineId;
+            console.log("----->", action.cuisineId)
             return newState;
         }
         default:
