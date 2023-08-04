@@ -12,22 +12,23 @@ function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
+
+		<ul >
 
 			{isLoaded && (
-				<div>
+				<div className='nav-bar'>
 					<ProfileButton user={sessionUser} />
 
 					{sessionUser ? (
 						<div>
-
+							<div className='nav-bar'>
 							<NavLink exact to="/">Home</NavLink>
 
 							<OpenModalButton
 								buttonText={"Order Cart"}
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
-
+							</div>
 							<SearchBar></SearchBar>
 
 							<CuisineList />
