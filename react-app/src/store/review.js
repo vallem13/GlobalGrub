@@ -72,16 +72,16 @@ export const editReviewThunk = (review, reviewId, rating, comment) => async (dis
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          rating,
           comment,
+          rating,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        // console.log("THIS IS THE DATA BEFORE!", data)
-        dispatch(createRestaurantReview(review));
-        // console.log("THIS IS THE DATA AFTER!", data)
+        console.log("THIS IS THE DATA BEFORE!", response)
+        await dispatch(createRestaurantReview(review));
+        console.log("THIS IS THE DATA AFTER!", data)
         return data;
       }
     } catch (error) {

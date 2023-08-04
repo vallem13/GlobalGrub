@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OrderCartModal from '../Orders/OrderCartModal'
 import OpenModalButton from '../OpenModalButton';
+import CuisineList from '../AllCuisines';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -11,20 +12,28 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+
 			{isLoaded && (
-				<li>
+				<div>
 					<ProfileButton user={sessionUser} />
-					<OpenModalButton
-							buttonText={"Order Cart"}
-							modalComponent={<OrderCartModal user={sessionUser} />}
-						/>
-				</li>
-				)}
+
+					{sessionUser ? (
+						<div>
+
+							<OpenModalButton
+								buttonText={"Order Cart"}
+								modalComponent={<OrderCartModal user={sessionUser} />}
+							/>
+
+							<CuisineList />
+							<NavLink exact to="/">Home</NavLink>
+						</div>) : ("")}
+				</div>
+			)}
 		</ul>
 	);
 }
 
 export default Navigation;
+
+

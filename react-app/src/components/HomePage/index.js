@@ -14,13 +14,11 @@ const HomePage = () => {
 
   return (
     <div>
-      {restaurants.map(restaurant => (
-       <div>
+
        {restaurants.map(restaurant => (
          <RestaurantCard key={restaurant.id} restaurant={restaurant}/>
            ))}
-     </div >
-      ))}
+
     </div >
   );
 };

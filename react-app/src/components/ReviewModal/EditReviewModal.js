@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { editReviewThunk } from '../../store/review';
 import './ReviewModal.css';
+import { useHistory } from 'react-router-dom'
+import { getSingleRestaurantThunk } from '../../store/restaurant'
 
 export default function EditReviewModal({ user_id, review, restaurant }) {
   const [editedReview, setEditedReview] = useState(review.comment);
@@ -13,6 +15,7 @@ export default function EditReviewModal({ user_id, review, restaurant }) {
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const history = useHistory()
 
   useEffect(() => {
     setErrors({});
@@ -40,12 +43,15 @@ export default function EditReviewModal({ user_id, review, restaurant }) {
       };
 
       try {
-        await dispatch(editReviewThunk(editedReviewData, review.id));
-        closeModal();
+        await dispatch(editReviewThunk(editedReviewData, review.id, editedStars, editedReview));
       } catch (error) {
         setServerError(error.message);
       }
+
+      await dispatch(getSingleRestaurantThunk(restaurant.id))
+      await closeModal()
     }
+
   };
 
   const noShowError = () => {
