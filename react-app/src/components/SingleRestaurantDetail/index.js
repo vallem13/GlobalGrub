@@ -7,6 +7,8 @@ import DeleteReviewModal from '../ReviewModal/DeleteReviewModal';
 import CreateReviewModal from '../ReviewModal/CreateReviewModal';
 import EditReviewModal from '../ReviewModal/EditReviewModal';
 import { thunkCreateCart, updateNewOrders, updateOrderCart, addItem } from '../../store/cart';
+import StarRatings from "../StarRatings/starRating"
+
 
 export default function SingleRestaurant() {
 
@@ -58,7 +60,9 @@ export default function SingleRestaurant() {
         {reviews.map((review) => (
           <div key={review.id}>
             <h3>{review.comment}</h3>
-            <p>{review.rating.toFixed(1)}</p>
+            <p>{review.rating.toFixed(0)}</p>
+            {review ? (<StarRatings rating={review.rating} disabled={true} />) : (<StarRatings rating={0} disabled={true} />)}
+
             <p>
               {review.user.firstName} {review.user.lastName}
             </p>

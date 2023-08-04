@@ -1,0 +1,13 @@
+.rating-input .filled {
+    color: #f5b025;
+}
+
+.rating-input .empty {
+    color: #f5d696;
+}
+
+.rating-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

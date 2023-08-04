@@ -4,12 +4,12 @@ import { useModal } from '../../context/Modal';
 import { createRestaurantReviewThunk } from '../../store/review';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
 import './ReviewModal.css';
+import StarRatings from "../StarRatings/starRating"
 
-export default function CreateReviewModal({ user_id, restaurant }) {
+const CreateReviewModal = ({ rating, user_id, restaurant }) => {
   const [review, setReview] = useState('');
   const [stars, setStars] = useState(null);
-  const [errors, setErrors] = useState(false);
-  const [activeStars, setActiveStars] = useState(null);
+  const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState(false);
 
   const dispatch = useDispatch();
@@ -30,11 +30,10 @@ export default function CreateReviewModal({ user_id, restaurant }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (Object.values(errors).length > 0) {
+    if (Object.keys(errors).length > 0) {
       alert('Please fix the errors you have');
     } else {
       let restaurantId = restaurant.id;
-      // let reviews = { stars, review };
 
       try {
         await dispatch(createRestaurantReviewThunk(stars, review, user_id, restaurantId));
@@ -46,6 +45,11 @@ export default function CreateReviewModal({ user_id, restaurant }) {
     }
   };
 
+  const onChange = (number) => {
+    setStars(number);
+  };
+
+
   const noShowError = () => {
     if (review.length < 10) {
       setServerError(true);
@@ -56,7 +60,7 @@ export default function CreateReviewModal({ user_id, restaurant }) {
 
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <h2 className="create-review-header" >How was your Order?</h2>
+      <h2 className="create-review-header">How was your Order?</h2>
       <textarea
         value={review}
         className="review-input"
@@ -66,52 +70,17 @@ export default function CreateReviewModal({ user_id, restaurant }) {
       />
       {serverError && <p className='review-form-errors'>Review must be more than 10 characters.</p>}
 
-      <div className="star-container">
-        <div className={stars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
-          onClick={() => setStars(1)}
-          onMouseEnter={() => setActiveStars(1)}
-          onMouseLeave={() => setActiveStars(stars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
+      <StarRatings
+        disabled={false}
+        onChange={onChange}
+        rating={rating}
+        iconSize={"large"}
+      />
 
-        <div className={stars >= 2 || activeStars >= 2 ? 'star-filled' : 'star-empty'}
-          onClick={() => setStars(2)}
-          onMouseEnter={() => setActiveStars(2)}
-          onMouseLeave={() => setActiveStars(stars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={stars >= 3 || activeStars >= 3 ? 'star-filled' : 'star-empty'}
-          onClick={() => setStars(3)}
-          onMouseEnter={() => setActiveStars(3)}
-          onMouseLeave={() => setActiveStars(stars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={stars >= 4 || activeStars >= 4 ? 'star-filled' : 'star-empty'}
-          onClick={() => setStars(4)}
-          onMouseEnter={() => setActiveStars(4)}
-          onMouseLeave={() => setActiveStars(stars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={stars >= 5 || activeStars >= 5 ? 'star-filled' : 'star-empty'}
-          onClick={() => setStars(5)}
-          onMouseEnter={() => setActiveStars(5)}
-          onMouseLeave={() => setActiveStars(stars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <span> Stars</span>
-      </div>
-
-      <button type="submit" className="review-button" disabled={Object.values(errors).length > 0} >Submit Your Review</button>
+      <button type="submit" className="review-button" disabled={Object.keys(errors).length > 0}>Submit Your Review</button>
 
     </form>
   )
 }
+
+export default CreateReviewModal;

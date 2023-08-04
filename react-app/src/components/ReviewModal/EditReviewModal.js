@@ -5,8 +5,9 @@ import { editReviewThunk } from '../../store/review';
 import './ReviewModal.css';
 import { useHistory } from 'react-router-dom'
 import { getSingleRestaurantThunk } from '../../store/restaurant'
+import StarRatings from "../StarRatings/starRating"
 
-export default function EditReviewModal({ user_id, review, restaurant }) {
+export default function EditReviewModal({ rating, review, restaurant }) {
   const [editedReview, setEditedReview] = useState(review.comment);
   const [editedStars, setEditedStars] = useState(review.rating);
   const [errors, setErrors] = useState({});
@@ -54,6 +55,10 @@ export default function EditReviewModal({ user_id, review, restaurant }) {
 
   };
 
+  const onChange = (number) => {
+    setEditedStars(number);
+  };
+
   const noShowError = () => {
     if (editedReview.length < 10) {
       setServerError(true);
@@ -74,49 +79,12 @@ export default function EditReviewModal({ user_id, review, restaurant }) {
       />
       {serverError && <p className='review-form-errors'>Review must be more than 10 characters.</p>}
 
-      <div className="star-container">
-        <div className={editedStars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
-          onClick={() => setEditedStars(1)}
-          onMouseEnter={() => setActiveStars(1)}
-          onMouseLeave={() => setActiveStars(editedStars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={editedStars >= 2 || activeStars >= 2 ? 'star-filled' : 'star-empty'}
-          onClick={() => setEditedStars(2)}
-          onMouseEnter={() => setActiveStars(2)}
-          onMouseLeave={() => setActiveStars(editedStars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={editedStars >= 3 || activeStars >= 3 ? 'star-filled' : 'star-empty'}
-          onClick={() => setEditedStars(3)}
-          onMouseEnter={() => setActiveStars(3)}
-          onMouseLeave={() => setActiveStars(editedStars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={editedStars >= 4 || activeStars >= 4 ? 'star-filled' : 'star-empty'}
-          onClick={() => setEditedStars(4)}
-          onMouseEnter={() => setActiveStars(4)}
-          onMouseLeave={() => setActiveStars(editedStars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <div className={editedStars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
-          onClick={() => setEditedStars(1)}
-          onMouseEnter={() => setActiveStars(1)}
-          onMouseLeave={() => setActiveStars(editedStars)}
-        >
-          <span className="material-symbols-outlined">star</span>
-        </div>
-
-        <span> Stars</span>
-      </div>
+      <StarRatings
+        disabled={false}
+        onChange={onChange}
+        rating={rating}
+        iconSize={"large"}
+      />
 
       <button type="submit" className="review-button" disabled={Object.values(errors).length > 0} >Submit Changes</button>
     </form>
