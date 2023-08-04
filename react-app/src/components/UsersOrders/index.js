@@ -5,38 +5,33 @@ import { getOrderThunk } from '../../store/cart'
 
 
 export default function UsersOrders() {
-    const [orders, setOrders] = useState([]);
+    const dispatch = useDispatch();
+    const orders = useSelector((state) => state.cart.orders);
+    const user = useSelector(state => state.session.user);
+
 
     useEffect(() => {
-        fetchOrderDetails();
-    }, []);
-
-    const fetchOrderDetails = async () => {
-        try {
-            const response = await fetch('/get_order_details');
-            const data = await response.json();
-            setOrders(data);
-        } catch (error) {
-            console.error('Error fetching order details:', error);
-        }
-    };
+        dispatch(getOrderThunk())
+    }, [dispatch])
 
     return (
         <div>
-            <h1>All Order Details</h1>
-            {Object.entries(orders).map(([orderId, orderDetails]) => (
-                <div key={orderId}>
-                    <h3>Order ID: {orderId}</h3>
-                    <ul>
-                        {orderDetails.map((order) => (
-                            <li key={order.menu_item_id}>
-                                Restaurant: {order.restaurant_name}, User ID: {order.user_id}, Menu Item: {order.menu_item_name}, Price: {order.menu_item_price}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+      <h1>{user.username} Orders</h1>
+
+
+
+
+      {Object.keys(orders).map((orderCartId) => (
+        <div key={orderCartId}>
+          <h2>Order Cart: {orderCartId}</h2>
+          {orders[orderCartId].map((order) => (
+            <div key={order.id}>
+              <p>Menu Item: {order.menu_item_id}</p>
+            </div>
+          ))}
         </div>
-    );
+      ))}
+    </div>
+  );
 
 }

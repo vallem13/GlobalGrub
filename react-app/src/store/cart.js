@@ -43,7 +43,9 @@ export const yeetItem = (menu_item_id) => ({
   menu_item_id,
 });
 
+
 // Thunks
+
 export const getOrderThunk = () => async (dispatch) => {
   try {
     const response = await fetch("/api/cart/user_orders");
@@ -99,7 +101,7 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case GET_ORDERS:
-      return { ...state, orders: action.cart };
+      return { ...state, orders: action.cart }
 
     case CREATE_CART:
       return {
@@ -122,8 +124,6 @@ const cartReducer = (state = initialState, action) => {
         },
         orders: { ...state }
       };
-
-
 
       case EMPTY_CART:
         return {
