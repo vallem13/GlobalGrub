@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
   const handleLogout = async (e) => {
     e.preventDefault();
     await dispatch(sessionActions.logout());
-    //closeMenu();
+    closeMenu();
     history.push('/')
 
   };
@@ -54,13 +54,13 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>Hi, {user.firstName}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
             <li>
-              <NavLink exact to="/profile">Profile</NavLink>
+              <NavLink exact to="/profile">Manage Account</NavLink>
             </li>
             <li>
               <NavLink exact to="/user_orders">Orders</NavLink>
