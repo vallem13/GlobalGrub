@@ -18,12 +18,12 @@ export default function SingleRestaurant() {
   const user = useSelector((state) => state.session.user);
   const reviews = restaurant.reviews || [];
 
-
-
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
     setIsLoading(false);
   }, [dispatch, restaurantId]);
+
+  console.log("these are the reviews", reviews)
 
 
   if (!restaurant) return <div>Loading...</div>;
@@ -52,7 +52,7 @@ export default function SingleRestaurant() {
 
       <div className="reviews-container">
         <div id="post-review-button">
-          <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user={user} restaurant={restaurant} />} />
+          <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
         </div>
 
         {reviews.map((review) => (
@@ -62,15 +62,18 @@ export default function SingleRestaurant() {
             <p>
               {review.user.firstName} {review.user.lastName}
             </p>
+
             <OpenModalButton
               buttonText="Edit Your Review"
-              modalComponent={<EditReviewModal restaurant={restaurant} review={review} user={user} />}
+              modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
             />
 
             <OpenModalButton
               buttonText="Delete Review"
               modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
             />
+
+
           </div>
         ))}
       </div>

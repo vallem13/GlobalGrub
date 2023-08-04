@@ -5,101 +5,113 @@ import { createRestaurantReviewThunk } from '../../store/review';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
 import './ReviewModal.css';
 
-const CreateReviewModal = ({ restaurant, user }) => {
-  const { closeModal } = useModal();
-  const dispatch = useDispatch();
+export default function CreateReviewModal({ user_id, restaurant }) {
   const [review, setReview] = useState('');
-  const [stars, setStars] = useState('');
-  const [activeRating, setActiveRating] = useState(1);
-  const [errors, setErrors] = useState({});
+  const [stars, setStars] = useState(null);
+  const [errors, setErrors] = useState(false);
+  const [activeStars, setActiveStars] = useState(null);
+  const [serverError, setServerError] = useState(false);
+
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
+  let disable = false;
+  review.length > 9 || (disable = true);
+  stars || (disable = true);
 
   useEffect(() => {
     let errors = {};
-    if (stars < 1) errors.stars = 'Stars can not be empty';
-    if (review.length < 10) errors.review = 'Review should be 10 characters or more';
+    if (stars < 1) errors.stars = "Stars can't be empty";
+    if (review.length < 10) errors.review = "Review must be at least 10 characters long";
+
     setErrors(errors);
   }, [review, stars]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const addReview = {
-      review,
-      stars,
-    };
+    if (Object.values(errors).length > 0) {
+      alert('Please fix the errors you have');
+    } else {
+      let restaurantId = restaurant.id;
+      // let reviews = { stars, review };
 
-    await dispatch(createRestaurantReviewThunk(addReview, restaurant.id, user));
-    await dispatch(getSingleRestaurantThunk(restaurant.id));
-    await closeModal();
+      try {
+        await dispatch(createRestaurantReviewThunk(stars, review, user_id, restaurantId));
+        await dispatch(getSingleRestaurantThunk(restaurantId));
+        closeModal();
+      } catch (error) {
+        setServerError(error.message);
+      }
+    }
+  };
+
+  const noShowError = () => {
+    if (review.length < 10) {
+      setServerError(true);
+    } else {
+      setServerError(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div id="login-form">
-        <h1>How was Order?</h1>
-        <textarea
-          id="review-text"
-          placeholder="Leave your review here..."
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-        />
-        {errors.review && review.length > 0 && (
-          <p className='error-message'>{errors.review}</p>
-        )}
-        <div id="stars-container">
-          <div className="stars">
-            <div
-              className={activeRating >= 1 ? "filled" : "empty"}
-              onClick={(e) => setStars(1)}
-              onMouseEnter={(e) => setActiveRating(1)}
-              onMouseLeave={(e) => setActiveRating(stars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable" ></i>
-            </div>
-            <div
-              className={activeRating >= 2 ? "filled" : "empty"}
-              onClick={(e) => setStars(2)}
-              onMouseEnter={(e) => setActiveRating(2)}
-              onMouseLeave={(e) => setActiveRating(stars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable" ></i>
-            </div>
-            <div
-              className={activeRating >= 3 ? "filled" : "empty"}
-              onClick={(e) => setStars(3)}
-              onMouseEnter={(e) => setActiveRating(3)}
-              onMouseLeave={(e) => setActiveRating(stars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable" ></i>
-            </div>
-            <div
-              className={activeRating >= 4 ? "filled" : "empty"}
-              onClick={(e) => setStars(4)}
-              onMouseEnter={(e) => setActiveRating(4)}
-              onMouseLeave={(e) => setActiveRating(stars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable" ></i>
-            </div>
-            <div
-              className={activeRating >= 5 ? "filled" : "empty"}
-              onClick={(e) => setStars(5)}
-              onMouseEnter={(e) => setActiveRating(5)}
-              onMouseLeave={(e) => setActiveRating(stars)}
-            >
-              <i className="fa-solid fa-star medium-big-star clickable" ></i>
-            </div>
-          </div>
-          <div>
-            <label className="star-label">Stars</label>
-          </div>
+    <form className="review-form" onSubmit={handleSubmit}>
+      <h2 className="create-review-header" >How was your Order?</h2>
+      <textarea
+        value={review}
+        className="review-input"
+        onChange={(e) => setReview(e.target.value)}
+        placeholder="Leave your review here...."
+        onBlur={noShowError}
+      />
+      {serverError && <p className='review-form-errors'>Review must be more than 10 characters.</p>}
+
+      <div className="star-container">
+        <div className={stars >= 1 || activeStars >= 1 ? 'star-filled' : 'star-empty'}
+          onClick={() => setStars(1)}
+          onMouseEnter={() => setActiveStars(1)}
+          onMouseLeave={() => setActiveStars(stars)}
+        >
+          <span className="material-symbols-outlined">star</span>
         </div>
-        <div className="submit-button">
-          <button className="submit-review-button" type="submit" disabled={(review.length < 10) || !stars || Object.values(errors).length > 0}>Submit Your Review</button>
+
+        <div className={stars >= 2 || activeStars >= 2 ? 'star-filled' : 'star-empty'}
+          onClick={() => setStars(2)}
+          onMouseEnter={() => setActiveStars(2)}
+          onMouseLeave={() => setActiveStars(stars)}
+        >
+          <span className="material-symbols-outlined">star</span>
         </div>
+
+        <div className={stars >= 3 || activeStars >= 3 ? 'star-filled' : 'star-empty'}
+          onClick={() => setStars(3)}
+          onMouseEnter={() => setActiveStars(3)}
+          onMouseLeave={() => setActiveStars(stars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <div className={stars >= 4 || activeStars >= 4 ? 'star-filled' : 'star-empty'}
+          onClick={() => setStars(4)}
+          onMouseEnter={() => setActiveStars(4)}
+          onMouseLeave={() => setActiveStars(stars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <div className={stars >= 5 || activeStars >= 5 ? 'star-filled' : 'star-empty'}
+          onClick={() => setStars(5)}
+          onMouseEnter={() => setActiveStars(5)}
+          onMouseLeave={() => setActiveStars(stars)}
+        >
+          <span className="material-symbols-outlined">star</span>
+        </div>
+
+        <span> Stars</span>
       </div>
+
+      <button type="submit" className="review-button" disabled={Object.values(errors).length > 0} >Submit Your Review</button>
+
     </form>
-  );
-
-};
-
-export default CreateReviewModal;
+  )
+}

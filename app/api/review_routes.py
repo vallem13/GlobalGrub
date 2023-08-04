@@ -1,12 +1,12 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import Review, db
+from app.models import Review, db, Order
 from app.forms import EditReviewForm, ReviewForm
 
 review_routes = Blueprint('review', __name__)
 
 # Create a New Review
-@review_routes.route('', methods=['POST'])
+@review_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def create_review(id):
 
@@ -15,9 +15,9 @@ def create_review(id):
 
     if form.validate_on_submit():
         # User must have an order from restaurant to make review validation
-        previous_order = Order.query.filter_by(user_id=current_user.id,restaurant_id=id).first()
-        if not previous_order:
-            return{'errors': "You must have ordered from this restaurant before making a review"}, 403
+        # previous_order = Order.query.filter_by(user_id=current_user.id,restaurant_id=id).first()
+        # if not previous_order:
+        #     return{'errors': "You must have ordered from this restaurant before making a review"}, 403
 
         new_review = Review(
             comment=form.data['comment'],
@@ -27,7 +27,7 @@ def create_review(id):
         )
         db.session.add(new_review)
         db.session.commit()
-        return {"message":f"Successfully added review for user {data['user_id']}"}
+        return {"message": f"Successfully added review for user {form.data['user_id']}"}
     return {'errors': "Could not create new review"}, 500
 
 # Edit a Review
@@ -35,22 +35,27 @@ def create_review(id):
 @login_required
 def edit_review(review_id):
 
-    current_user_id = current_user.to_dict()['id']
-    review = Review.query.get(review_id)
-    #Make sure to check that user owns the review!!
-    if (current_user_id != review.user_id):
-        return {'errors': "You do not own this review"}, 401
+    # current_user_id = current_user.to_dict()['id']
 
-    form = ReviewEditForm()
+    #Make sure to check that user owns the review!!
+    # if (current_user_id != review.user_id):
+    #     return {'errors': "You do not own this review"}, 401
+
+    form = EditReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+
+        review = Review.query.get(review_id)
         review.comment=form.data['comment']
         review.rating=form.data['rating']
 
-        db.session.add(review)
+        # db.session.add(review)
         db.session.commit()
-        return {"message":f"Successfully edited review for user {review.user_id}"}
+        # print('REVIEW!!!!!!', review.to_dict())
+        return review.to_dict()
+
+    print(form.errors)
     return {'errors': "Could not edit review"}, 500
 
 # Delete a Review
