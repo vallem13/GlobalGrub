@@ -1,7 +1,22 @@
 .profile-dropdown {
   position: absolute;
+  background-color: white;
+  width: 250px;
+  /* box-shadow: 1px 0px 0.5px black; */
+  height: 1000px;
+  top: 0px;
+  left: 0px;
+
 }
 
 .hidden {
   display: none;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  size: 70px;
+  margin-left: 10px;
 }
