@@ -11,7 +11,7 @@ export default function GetOrder() {
     dispatch(getOrderThunk());
   }, [dispatch]);
 
-  console.log("-------->", all_orders);
+  // console.log("-------->", all_orders);
 
   if (Object.keys(orders).length === 0) {
     return <div>Loading...</div>; // Handle the initial loading state
