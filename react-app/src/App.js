@@ -12,6 +12,7 @@ import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 import SplashPage from "./components/SplashPage";
 import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
+import UsersOrders from "./components/UsersOrders"
 
 
 
@@ -44,6 +45,11 @@ function App() {
             <Route path="/profile">
               <ProtectedRoute>
                 <UserProfile />
+              </ProtectedRoute>
+            </Route>
+            <Route path="/orders">
+              <ProtectedRoute>
+                <UsersOrders />
               </ProtectedRoute>
             </Route>
             <Route path="/user_orders">
