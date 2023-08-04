@@ -1,9 +1,10 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getOrderThunk } from "../../store/cart";
-import { useEffect } from "react";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+//import { useParams } from 'react-router-dom';
+import { getOrderThunk } from '../../store/cart'
 
-const GetOrder = () => {
+
+export default function UsersOrders() {
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.cart.orders);
     const user = useSelector(state => state.session.user);
@@ -32,6 +33,5 @@ const GetOrder = () => {
       ))}
     </div>
   );
-};
 
-export default GetOrder
+}

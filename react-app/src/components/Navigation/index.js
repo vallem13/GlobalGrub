@@ -6,27 +6,32 @@ import OrderCartModal from '../Orders/OrderCartModal'
 import OpenModalButton from '../OpenModalButton';
 import CuisineList from '../AllCuisines';
 import './Navigation.css';
+import SearchBar from '../Search/searchBar';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
+
+		<ul >
 
 			{isLoaded && (
-				<div>
+				<div className='nav-bar'>
 					<ProfileButton user={sessionUser} />
 
 					{sessionUser ? (
 						<div>
+							<div className='nav-bar'>
+							<NavLink exact to="/">Home</NavLink>
 
 							<OpenModalButton
 								buttonText={"Order Cart"}
 								modalComponent={<OrderCartModal user={sessionUser} />}
 							/>
+							</div>
+							<SearchBar></SearchBar>
 
 							<CuisineList />
-							<NavLink exact to="/">Home</NavLink>
 						</div>) : ("")}
 				</div>
 			)}
@@ -35,5 +40,3 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
-
-

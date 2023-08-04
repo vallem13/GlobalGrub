@@ -79,9 +79,9 @@ export const editReviewThunk = (review, reviewId, rating, comment) => async (dis
 
       if (response.ok) {
         const data = await response.json();
-        console.log("THIS IS THE DATA BEFORE!", response)
+        // console.log("THIS IS THE DATA BEFORE!", response)
         await dispatch(createRestaurantReview(review));
-        console.log("THIS IS THE DATA AFTER!", data)
+        // console.log("THIS IS THE DATA AFTER!", data)
         return data;
       }
     } catch (error) {

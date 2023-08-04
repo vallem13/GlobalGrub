@@ -12,6 +12,9 @@ import SingleRestaurantDetail from "./components/SingleRestaurantDetail"
 import SplashPage from "./components/SplashPage";
 import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
+import SingleCuisine from "./components/SingleCuisineDetail";
+import FilterPrice from "./components/Search/filterPrice";
+import UsersOrders from "./components/UsersOrders"
 
 
 
@@ -49,6 +52,11 @@ function App() {
             <Route path="/user_orders">
               <ProtectedRoute>
                 <GetOrder />
+              </ProtectedRoute>
+            </Route>
+            <Route path="/cuisine/:cuisineId">
+              <ProtectedRoute>
+                <SingleCuisine />
               </ProtectedRoute>
             </Route>
             <Route path="/cart/:userId">

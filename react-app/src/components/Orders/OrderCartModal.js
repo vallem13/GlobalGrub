@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { emptyCart, thunkCreateCart, updateNewOrders, updateOrderCart, yeetItem } from '../../store/cart';
 import { useModal } from '../../context/Modal'
@@ -9,7 +9,10 @@ const OrderCartModal = ({ user }) => {
     const { closeModal } = useModal()
     const cart = useSelector(state => state.cart.cart);
     const current_restaurant = Object.keys(cart)
+    const [totalPrice, setTotalPrice] = useState(0);
     const items = Object.values(cart)
+
+
 
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
 
@@ -17,6 +20,14 @@ const OrderCartModal = ({ user }) => {
 
     let menu_items = []
     cart_items.map(item => menu_items.push(item.id))
+
+    useEffect(() => {
+        let total = 0;
+        cart_items.forEach((item) => {
+          total += item.price;
+        });
+        setTotalPrice(total);
+      }, [cart_items]);
 
 
     const placeOrder = async (e) => {
@@ -30,8 +41,6 @@ const OrderCartModal = ({ user }) => {
         await dispatch(emptyCart())
         closeModal()
     }
-
-
 
     return (
         <div>
@@ -47,6 +56,7 @@ const OrderCartModal = ({ user }) => {
                     }}>Delete</button>
                 </div>
             ))}
+            <div>Total: ${totalPrice}</div>
             <button onClick={placeOrder}>Place Order</button>
             <button onClick={cancelOrder}>Cancel Order</button>
         </div>
