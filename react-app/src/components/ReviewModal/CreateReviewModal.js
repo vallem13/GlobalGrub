@@ -20,11 +20,11 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
   stars || (disable = true);
 
   useEffect(() => {
-    let errors = {};
-    if (stars < 1) errors.stars = "Stars can't be empty";
-    if (review.length < 10) errors.review = "Review must be at least 10 characters long";
+    let serverError = {};
+    if (stars < 1) serverError.stars = "Stars can't be empty";
+    if (review.length < 10) serverError.review = "Review must be at least 10 characters long";
 
-    setErrors(errors);
+    setServerError(errors);
   }, [review, stars]);
 
   const handleSubmit = async (e) => {
@@ -68,7 +68,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
         placeholder="Leave your review here...."
         onBlur={noShowError}
       />
-      {serverError && <p className='review-form-errors'>Review must be more than 10 characters.</p>}
+      {serverError && <p className='review-form-errors'>{serverError.review}</p>}
 
       <StarRatings
         disabled={false}
