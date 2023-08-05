@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -19,6 +19,47 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [frontendErrors, setFrontendErrors] = useState({})
+
+	useEffect(() => {
+    const frontendErrors = {}
+
+		if(address.length < 2) {
+      frontendErrors.address = "Address is required"
+    }
+		if(city.length < 2) {
+      frontendErrors.city = "City is required"
+    }
+		if(state.length < 2) {
+      frontendErrors.state = "State is required"
+    }
+		if(zipcode.length < 2) {
+      frontendErrors.zipcode = "Zipcode is required"
+    }
+		if(firstName.length < 2) {
+      frontendErrors.firstName = "First Name is required"
+    }
+		if(lastName.length < 2) {
+      frontendErrors.lastName= "Last Name is required"
+    }
+		if(username.length < 4) {
+      frontendErrors.username = "Username is required"
+    }
+    if(email.length < 2) {
+      frontendErrors.email = "Email is required"
+    }
+		if(phoneNumber.length < 4) {
+      frontendErrors.phoneNumber = "Phone number is required"
+    }
+    if(password.length < 6) {
+      frontendErrors.password = "Password is required"
+    }
+    if(confirmPassword.length < 2) {
+      frontendErrors.confirmPassword = "Confirm Password is required"
+    }
+
+    setFrontendErrors(frontendErrors)
+  }, [email, username, firstName, lastName, confirmPassword, password, address, city, state, zipcode, phoneNumber])
 
 	// const handleSubmit = async (e) => {
 	// 	e.preventDefault();
@@ -83,6 +124,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.firstName && firstName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.firstName}</p>}
 				<label>
 					Last Name:
 					<input
@@ -92,6 +134,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.lastName && lastName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.lastName}</p>}
 				<label>
 					Username:
 					<input
@@ -101,6 +144,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.username && username.length > 0 &&<p className='on-submit-errors'>{frontendErrors.username}</p>}
 				<label>
 					Email:
 					<input
@@ -110,6 +154,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.email && email.length > 0 &&<p className='on-submit-errors'>{frontendErrors.email}</p>}
 				<label>
 					Address:
 					<input
@@ -119,6 +164,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.address && address.length > 0 &&<p className='on-submit-errors'>{frontendErrors.address}</p>}
 				<label>
 					City:
 					<input
@@ -128,6 +174,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.city && city.length > 0 &&<p className='on-submit-errors'>{frontendErrors.city}</p>}
 				<label>
 					State:
 					<input
@@ -137,6 +184,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.state && state.length > 0 &&<p className='on-submit-errors'>{frontendErrors.state}</p>}
 				<label>
 					Zipcode:
 					<input
@@ -146,6 +194,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.zipcode && zipcode.length > 0 &&<p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
 				<label>
 					Phone Number:
 					<input
@@ -155,6 +204,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.phoneNumber && phoneNumber.length > 0 &&<p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
 				<label>
 					Password
 					<input
@@ -164,6 +214,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.password && password.length > 0 &&<p className='on-submit-errors'>{frontendErrors.password}</p>}
 				<label>
 					Confirm Password
 					<input
@@ -173,6 +224,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.confirmPassword && confirmPassword.length > 0 &&<p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
 				<button type="submit">Sign Up</button>
 			</form>
 		</>
