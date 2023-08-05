@@ -43,7 +43,7 @@ const CuisineList = () => {
                 <img
                   src={flagImages[cuisine.type]}
                   alt={cuisine.type}
-                  style={{ width: "45px", height: "45px", marginBottom: "2px", marginLeft: '5px' }}
+                  style={{ width: "60px", height: "60px", marginBottom: "2px", marginLeft: '5px', marginTop:'10px' }}
                 />
                 <div className="cuisine-type">{cuisine.type}</div>
               </div>

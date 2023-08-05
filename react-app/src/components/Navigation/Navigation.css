@@ -2,7 +2,6 @@
   position: absolute;
   background-color: white;
   width: 250px;
-  /* box-shadow: 1px 0px 0.5px black; */
   height: 1000px;
   top: 0px;
   left: 0px;
@@ -14,10 +13,9 @@
 }
 
 .logo {
-  width: 120px;
+  width: 160px;
   height: auto;
   cursor: pointer;
-  size: 70px;
   margin-left: 10px;
   margin-top: 2px;
 }
@@ -26,11 +24,13 @@
   border: none;
   background-color: #f00b51 ;
   border-radius: 20px;
-  padding: 5px;
+  padding: 6px;
   width: 60px;
   padding-top: 6px;
   color: white;
-  margin-left: 190px;
+  margin-left: 270px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .style-cart {
@@ -45,19 +45,23 @@
 .profile-logo-cart-nav {
   display: flex;
   flex-direction: row;
+  margin-top: 13px;
 }
 
 .profile-button button {
   border: none;
   background-color: white;
   margin-top: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
 .search-bar {
-  margin-top: 5px;
+  margin-top: 8px;
   padding-right: 50px;
-  padding-left: 150px;
-  /* border: none; */
+  padding-left: 120px;
+
 }
 
 .cart-button button {
@@ -70,22 +74,19 @@
 
 .search-input-container {
   position: relative;
-  /* background-color: #eee; */
   border-radius: 50px;
-  /* overflow: hidden; */
-  /* border: 1px solid black; */
+
 }
 
 .search-icon {
   position: absolute;
-  left: 28px; /* Adjust the left position to place the icon where you want */
+  left: 110px;
   top: 50%;
   transform: translateY(-50%);
   color: black;
   font-size: 12px;
 }
 
-/* Apply styles to the search input's placeholder text */
 .search-input::placeholder {
   padding-left: 25px;
 }
@@ -94,9 +95,10 @@
   border-radius: 50px;
   border: .5px solid white;
   padding: 4px;
-  margin-left: 20px;
+  margin-left: 100px;
   width: 200px;
   background-color: #eee;
+  cursor: pointer;
 }
 
 .cart-icon-wrapper {
@@ -106,26 +108,11 @@
 
 }
 
-/* .cart-icon-count {
-  position: absolute;
-  top: -6px;
-  right: 233px;
-  background-color: purple;
-  color: white;
-  border-radius: 50%;
-  padding: 4px;
-  font-size: 12px;
-  width: 10px;
-  height: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .cart-icon-count {
   position: absolute;
   top: -15px;
-  right: 50px; /* Adjust this value to position the count correctly */
+  right: 50px;
   background-color: purple;
   color: white;
   border-radius: 50%;
@@ -140,7 +127,7 @@
 
 
 .cuisine-nav-bar  {
-  font-size: 12px;
+  font-size: 15px;
   margin-left: 15px;
 }
 
