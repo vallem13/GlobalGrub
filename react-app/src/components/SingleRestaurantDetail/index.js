@@ -8,6 +8,7 @@ import CreateReviewModal from '../ReviewModal/CreateReviewModal';
 import EditReviewModal from '../ReviewModal/EditReviewModal';
 import { thunkCreateCart, updateNewOrders, updateOrderCart, addItem } from '../../store/cart';
 import StarRatings from "../StarRatings/starRating"
+import './SingleRestaurant.css'
 
 
 export default function SingleRestaurant() {
@@ -20,6 +21,8 @@ export default function SingleRestaurant() {
   const user = useSelector((state) => state.session.user);
   const reviews = restaurant.reviews || [];
   const orders = user.order_carts || [];
+  const rating = restaurant.average_rating || ('')
+  console.log(rating)
 
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
@@ -38,41 +41,57 @@ export default function SingleRestaurant() {
   if (!restaurant) return <div>Loading...</div>;
 
   return (
-    <div className="single-restaurant-wrapper">
-      <div>
+    <div id="single-restaurant-wrapper">
+      <div className='restaurant-wrapper'>
         <img className="single-prevImg" src={restaurant.restaurant_image} alt={restaurant.name}></img>
+        <h2>{restaurant.name}</h2>
       </div>
-      <h2>{restaurant.name}</h2>
       <h3>Menu</h3>
-      <div>
+      <div className='menu-items-wrapper'>
         {items.map((item) => (
-          <div key={item.id}>
-            <img className="menu-image" src={item.menu_item_image} alt={item.name} style={{ width: '100px', height: '100px' }}></img>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <p>${item.price.toFixed(2)}</p>
-            <button onClick={(e) => {
-              e.preventDefault();
-              dispatch(addItem(item));
-            }}>Add to Cart</button>
+          <div className='single-menu-items-wrapper' key={item.id}>
+            <div className="image-container">
+              <img className="menu-image" src={item.menu_item_image} alt={item.name} />
+              <button className="add-to-cart-button" onClick={(e) => {
+                e.preventDefault();
+                dispatch(addItem(item));
+              }}>
+                <i className="fa-solid fa-circle-plus" style={{ fontSize: "3rem", color: "#f00b51" }}></i>
+              </button>
+            </div>
+            <div className="item-details">
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+            </div>
+            <div className="item-price">
+              <p>${item.price.toFixed(2)}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="reviews-container">
+
+      <h3>Reviews</h3>
+      {/* {restaurant.average_rating !== null ? (
+                    <p>{restaurant.average_rating.toFixed(1)}</p>
+                ) : (
+                    <p>No Reviews Yet</p>
+                )} */}
+
+      <div className="reviews-wrapper">
         <div id="post-review-button">
 
           {check_order && !previousReview ? (
             <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
           ) : ('')}
         </div>
+
         {reverse_reviews.map((review) => (
           <div key={review.id}>
-            <h3>{review.comment}</h3>
             <p>{review.rating.toFixed(0)}</p>
             {review ? (<StarRatings rating={review.rating} disabled={true} />) : (<StarRatings rating={0} disabled={true} />)}
-
             <p>
+            <h3>{review.comment}</h3>
               {review.user.firstName} {review.user.lastName}
             </p>
             {previousReview && (review.user_id === user.id) ? (
@@ -87,7 +106,6 @@ export default function SingleRestaurant() {
                 />
               </div>
             ) : ('')}
-
           </div>
         ))}
       </div>

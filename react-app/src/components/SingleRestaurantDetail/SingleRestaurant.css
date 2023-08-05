@@ -1,0 +1,66 @@
+#single-restaurant-wrapper {
+    border: 3px solid green;
+    width: 1026px;
+    display: block;
+    align-items: center;
+}
+
+.restaurant-wrapper {
+    border: 3px solid red;
+    width: 1026px;
+}
+
+.single-prevImg {
+    width: 1026px;
+}
+
+.menu-items-wrapper {
+    border: 3px solid purple;
+    width: 1026px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+
+.single-menu-items-wrapper {
+    border: 3px solid blue;
+    border-radius: 21px;
+
+}
+
+.menu-image {
+    width: 332px;
+    height: 332px;
+    border-radius: 21px 21px 0 0;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+
+.add-to-cart-button {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    padding: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    /* Additional button styles if needed */
+}
+
+.item-details {
+    padding-left: 5px;
+}
+
+.item-price {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 5px;
+    font-size: x-large;
+}
+
+.reviews-wrapper {
+    border: 3px solid red;
+}
