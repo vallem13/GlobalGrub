@@ -44,7 +44,7 @@ const OrderCartModal = ({ user }) => {
 
     return (
         <div>
-            <h1> testing </h1>
+            <h1> {user.firstName}'s Cart</h1>
             {cart_items.map(item => (
                 <div key={item.id}>
                     <img src={item.menu_item_image} style={{ width: '50px', height: '50px' }} alt={item.name} />
