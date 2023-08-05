@@ -39,7 +39,7 @@ function LoginFormModal() {
 
   const demoUser = (e) => {
     e.preventDefault();
-    return dispatch(login( "demo@aa.io", "password"))
+    return dispatch(login("demo@aa.io", "password"))
       .then(closeModal)
   }
 
@@ -85,7 +85,9 @@ function LoginFormModal() {
         </div>
         <div className='login-and-demo-user'>
           <button disabled={Object.keys(errors).length > 0} type="submit">Log In</button>
-          <button onClick={demoUser} className="demo-user-button">Demo User</button>
+          <div>
+            <button onClick={demoUser} className="demo-user-button">Demo User</button>
+          </div>
         </div>
       </form>
     </>
