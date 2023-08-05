@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../store/session';
+import UserProfile from "../ManageProfile";
 
 
 function ProfileButton({ user }) {
@@ -43,6 +44,18 @@ function ProfileButton({ user }) {
 
   };
 
+  const handleManageAccount = async (e) => {
+    e.preventDefault();
+    closeMenu();
+    history.push('/profile')
+  }
+
+  const handleOrders = async (e) => {
+    e.preventDefault();
+    closeMenu();
+    history.push('/user_orders')
+  }
+
   const closeMenu = () => setShowMenu(false);
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -56,17 +69,17 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Hi, {user.firstName}</li>
-            <li>{user.email}</li>
-            <li>
+            <p>Hi, {user.firstName}</p>
+            <p>{user.email}</p>
+            <p>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
-            <li>
-              <NavLink exact to="/profile">Manage Account</NavLink>
-            </li>
-            <li>
-              <NavLink exact to="/user_orders">Orders</NavLink>
-            </li>
+            </p>
+            <p>
+              <button onClick={handleManageAccount} type="submit">Manage Account</button>
+            </p>
+            <button onClick={handleOrders} type="submit">Orders</button>
+            <p>
+            </p>
           </>
         ) : (
           <>

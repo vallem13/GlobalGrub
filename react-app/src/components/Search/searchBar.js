@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllRestaurantsThunk } from "../../store/restaurant";
+import RestaurantCard from "../HomePage/RestaurantCard";
 
 export default function SearchBar() {
   const history = useHistory();
@@ -101,7 +102,7 @@ export default function SearchBar() {
               key={restaurant.id}
               onClick={() => handleRestaurantClick(restaurant.id)}
             >
-              {restaurant.name}
+              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
             </div>
           ))}
           {filteredRestaurants.length > 0 && (

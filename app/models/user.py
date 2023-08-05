@@ -52,4 +52,5 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'hashed_password': self.hashed_password,
             # 'user_profile_icon': self.user_profile_icon
+            'order_carts': [order_cart.to_dict() for order_cart in self.order_carts],
         }
