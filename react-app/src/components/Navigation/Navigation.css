@@ -19,30 +19,131 @@
   cursor: pointer;
   size: 70px;
   margin-left: 10px;
+  margin-top: 2px;
 }
 
-/* .cart-icon-wrapper {
-  width: 250px;
-} */
-
-.shopping-cart-button {
-  width: 100px;
+.cart-icon-wrapper button {
+  border: none;
+  background-color: #f00b51 ;
+  border-radius: 20px;
+  padding: 5px;
+  width: 60px;
+  padding-top: 6px;
+  color: white;
+  margin-left: 190px;
 }
 
+.style-cart {
+  color: white;
+}
+
+.whole-bar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-logo-cart-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-button button {
+  border: none;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.search-bar {
+  margin-top: 5px;
+  padding-right: 50px;
+  padding-left: 150px;
+  /* border: none; */
+}
+
+.cart-button button {
+  background-color: black;
+}
+
+.shopping-cart-button button {
+  color: black;
+}
+
+.search-input-container {
+  position: relative;
+  /* background-color: #eee; */
+  border-radius: 50px;
+  /* overflow: hidden; */
+  /* border: 1px solid black; */
+}
+
+.search-icon {
+  position: absolute;
+  left: 28px; /* Adjust the left position to place the icon where you want */
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  font-size: 12px;
+}
+
+/* Apply styles to the search input's placeholder text */
+.search-input::placeholder {
+  padding-left: 25px;
+}
+
+.search-input {
+  border-radius: 50px;
+  border: .5px solid white;
+  padding: 4px;
+  margin-left: 20px;
+  width: 200px;
+  background-color: #eee;
+}
+
+.cart-icon-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+}
 
 /* .cart-icon-count {
   position: absolute;
-  top: 10px;
-  right: -110px;
-  background-color: red;
+  top: -6px;
+  right: 233px;
+  background-color: purple;
   color: white;
   border-radius: 50%;
   padding: 4px;
-  font-size: 18px;
+  font-size: 12px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.cart-icon-count {
+  position: absolute;
+  top: -15px;
+  right: 50px; /* Adjust this value to position the count correctly */
+  background-color: purple;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo-cart-nav {
-  display: flex;
-  flex-direction: row;
-  gap: 950px;
-} */
+
+.cuisine-nav-bar  {
+  font-size: 12px;
+  margin-left: 15px;
+}
+
+.cuisine-type {
+  margin-left: 2px;
+}

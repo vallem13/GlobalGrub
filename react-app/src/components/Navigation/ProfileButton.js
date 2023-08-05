@@ -60,7 +60,7 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
+    <div className="profile-button">
       <button onClick={openMenu}>
         {/* <i className="fas fa-user-circle" /> */}
         <i className="fas fa-bars" style={{ color: "#000000" }} />
@@ -97,7 +97,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

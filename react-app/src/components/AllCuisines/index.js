@@ -36,21 +36,23 @@ const CuisineList = () => {
     }
 
     return (
-        <div >
-            <div style={{ display: "flex" }}>
-                {cuisines.map(cuisine => (
-                    <div key={cuisine.id} style={{ padding: "10px" }} onClick={() => onClick(cuisine.id)}>
-                        <img
-                            src={flagImages[cuisine.type]}
-                            alt={cuisine.type}
-                            style={{ width: "70px", height: "70px", marginRight: "40px" }}
-                        />
-
-                    </div>
-                ))}
-            </div >
+        <div className="cuisine-nav-bar">
+          <div style={{ display: "flex" }}>
+            {cuisines.map((cuisine) => (
+              <div key={cuisine.id} style={{ padding: "7px", display: "flex", flexDirection: "column", alignItems: "center" }} onClick={() => onClick(cuisine.id)}>
+                <img
+                  src={flagImages[cuisine.type]}
+                  alt={cuisine.type}
+                  style={{ width: "45px", height: "45px", marginBottom: "2px", marginLeft: '5px' }}
+                />
+                <div className="cuisine-type">{cuisine.type}</div>
+              </div>
+            ))}
+          </div>
         </div>
-    )
+      );
+
+
 };
 
 export default CuisineList;

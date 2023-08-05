@@ -13,10 +13,6 @@ import GetOrder from "./components/Orders/getOrder";
 import StartShoppingButton from "./components/Orders/CreateCart";
 import SingleCuisine from "./components/SingleCuisineDetail";
 import FilterPrice from "./components/Search/filterPrice";
-import SearchBar from "./components/Search/searchBar";
-
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +34,6 @@ function App() {
             </Route>
             <Route path="/home">
               <ProtectedRoute>
-                <SearchBar/>
               <FilterPrice />
                 <HomePage />
               </ProtectedRoute>

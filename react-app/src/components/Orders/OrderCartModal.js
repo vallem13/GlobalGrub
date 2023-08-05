@@ -26,7 +26,7 @@ const OrderCartModal = ({ user }) => {
         cart_items.forEach((item) => {
           total += item.price;
         });
-        setTotalPrice(total);
+        setTotalPrice(total.toFixed(2));
       }, [cart_items]);
 
 

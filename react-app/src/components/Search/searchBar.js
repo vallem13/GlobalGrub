@@ -36,7 +36,7 @@ export default function SearchBar() {
         setSearchRestaurant("");
         setFilteredRestaurants([]);
         setRestaurantClicked(false);
-        
+
       }
     }
   };
@@ -62,7 +62,7 @@ export default function SearchBar() {
 
   const handleRestaurantClick = (restaurantId) => {
     setRestaurantClicked(true);
-    
+
     history.push(`/restaurant/${restaurantId}`);
   };
 
@@ -80,21 +80,7 @@ export default function SearchBar() {
   }, [searchRestaurant, restaurant, restaurantClicked]);
 
   return (
-    <div>
-      <input
-        type="text"
-        ref={searchRef}
-        value={searchRestaurant}
-        onChange={(e) => setSearchRestaurant(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            handleSearch();
-          }
-        }}
-        placeholder="Search restaurants..."
-        onClick={handleInputClick}
-      />
+    <div className="search-bar">
       {showMenu && searchRestaurant !== "" && !restaurantClicked && (
         <div>
           {filteredRestaurants.map((restaurant) => (
@@ -106,14 +92,32 @@ export default function SearchBar() {
             </div>
           ))}
           {filteredRestaurants.length > 0 && (
-            <button onClick={handleSearch}>Search</button>
+            <button className="search-button" type="submit" onClick={handleSearch}>Search</button>
           )}
         </div>
       )}
+
+      <div className="search-input-container">
+        <i className="fa-solid fa-magnifying-glass search-icon"></i>
+        <input
+          type="text"
+          ref={searchRef}
+          value={searchRestaurant}
+          onChange={(e) => setSearchRestaurant(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch();
+            }
+          }}
+          placeholder="Food, drinks, etc"
+          onClick={handleInputClick}
+          className="search-input"
+        />
+      </div>
     </div>
   );
+
+
+
 }
-
-
-
-
