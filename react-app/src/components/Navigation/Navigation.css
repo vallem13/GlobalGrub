@@ -28,7 +28,7 @@
   width: 60px;
   padding-top: 6px;
   color: white;
-  margin-left: 270px;
+  margin-left: 740px;
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -80,11 +80,12 @@
 
 .search-icon {
   position: absolute;
-  left: 110px;
+  left: 280px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-1170%);
   color: black;
   font-size: 12px;
+  z-index: 1;
 }
 
 .search-input::placeholder {
@@ -92,6 +93,9 @@
 }
 
 .search-input {
+  position: absolute;
+  left: 170px;
+  bottom: 122px;
   border-radius: 50px;
   border: .5px solid white;
   padding: 4px;

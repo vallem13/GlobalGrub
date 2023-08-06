@@ -9,7 +9,6 @@ import SignupFormModal from "../SignupFormModal";
 import CuisineList from '../AllCuisines';
 import './Navigation.css';
 import logo from './Logo/globalgrub.png'
-import SearchBar from "../Search/searchBar";
 
 
 function Navigation({ isLoaded }) {
@@ -75,9 +74,6 @@ function Navigation({ isLoaded }) {
 								<NavLink exact to="/" activeClassName="active-link" onClick={handleLogoClick}>
 									<img src={logo} className="logo" />
 								</NavLink>
-
-								<SearchBar/>
-
 								<div className='cart-icon-wrapper'>
 									{itemCount > 0 && <p className='cart-icon-count'>{String(itemCount)}</p>}
 									<div className='shopping-cart-button'>
