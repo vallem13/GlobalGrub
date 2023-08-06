@@ -72,19 +72,28 @@ function Navigation({ isLoaded }) {
 							<CuisineList />
 						</div>
 					) : (
-						<>
-							<OpenModalButton
-								buttonText="Log In"
-								onItemClick={closeMenu}
-								modalComponent={<LoginFormModal />}
-							/>
+						<div className='login-signup-modal'>
 
-							<OpenModalButton
-								buttonText="Sign Up"
-								onItemClick={closeMenu}
-								modalComponent={<SignupFormModal />}
-							/>
-						</>
+							<div className='log-in-modal'>
+
+								<OpenModalButton
+									buttonText="Log In"
+									onItemClick={closeMenu}
+									modalComponent={<LoginFormModal />}
+								/>
+							</div>
+
+
+							<div className='sign-up-modal'>
+
+								<OpenModalButton
+									buttonText="Sign Up"
+									onItemClick={closeMenu}
+									modalComponent={<SignupFormModal />}
+								/>
+							</div>
+
+						</div>
 					)}
 				</div>
 			)}

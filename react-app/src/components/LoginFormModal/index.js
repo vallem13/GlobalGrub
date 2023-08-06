@@ -44,14 +44,14 @@ function LoginFormModal() {
   }
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <h1 className='log-in'>Log In</h1>
+      <form className='log-in-container' onSubmit={handleSubmit}>
         {/* <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul> */}
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul> */}
         <label>
           Email
           <input
@@ -84,13 +84,13 @@ function LoginFormModal() {
           </p>
         </div>
         <div className='login-and-demo-user'>
-          <button disabled={Object.keys(errors).length > 0} type="submit">Log In</button>
+          <button disabled={Object.keys(errors).length > 0} className='log-in-submit' type="submit">Log In</button>
           <div>
             <button onClick={demoUser} className="demo-user-button">Demo User</button>
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

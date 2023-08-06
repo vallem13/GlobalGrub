@@ -108,14 +108,16 @@ function SignupFormModal() {
 
 	return (
 		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+			<h1 className='sign-up'>Sign Up</h1>
+			<form className='sign-up-form-container' onSubmit={handleSubmit}>
+
+				{/* <ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul>
-				<label>
+
+				</ul> */}
+				<label className='sign-up-label'>
 					First Name:
 					<input
 						type="text"
@@ -125,7 +127,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.firstName && firstName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.firstName}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Last Name:
 					<input
 						type="text"
@@ -133,9 +135,9 @@ function SignupFormModal() {
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
-				</label>
+				</label >
 				{frontendErrors.lastName && lastName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.lastName}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Username:
 					<input
 						type="text"
@@ -145,7 +147,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.username && username.length > 0 &&<p className='on-submit-errors'>{frontendErrors.username}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Email:
 					<input
 						type="text"
@@ -155,7 +157,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.email && email.length > 0 &&<p className='on-submit-errors'>{frontendErrors.email}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Address:
 					<input
 						type="text"
@@ -165,7 +167,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.address && address.length > 0 &&<p className='on-submit-errors'>{frontendErrors.address}</p>}
-				<label>
+				<label className='sign-up-label'>
 					City:
 					<input
 						type="text"
@@ -175,7 +177,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.city && city.length > 0 &&<p className='on-submit-errors'>{frontendErrors.city}</p>}
-				<label>
+				<label className='sign-up-label'>
 					State:
 					<input
 						type="text"
@@ -185,7 +187,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.state && state.length > 0 &&<p className='on-submit-errors'>{frontendErrors.state}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Zipcode:
 					<input
 						type="text"
@@ -195,7 +197,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.zipcode && zipcode.length > 0 &&<p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Phone Number:
 					<input
 						type="text"
@@ -205,7 +207,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.phoneNumber && phoneNumber.length > 0 &&<p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Password
 					<input
 						type="password"
@@ -215,7 +217,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.password && password.length > 0 &&<p className='on-submit-errors'>{frontendErrors.password}</p>}
-				<label>
+				<label className='sign-up-label'>
 					Confirm Password
 					<input
 						type="password"
@@ -225,7 +227,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.confirmPassword && confirmPassword.length > 0 &&<p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
-				<button type="submit">Sign Up</button>
+				<button type="submit" className='signup-button'>Sign Up</button>
 			</form>
 		</>
 	);

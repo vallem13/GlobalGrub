@@ -15,7 +15,7 @@ const UserProfile = () => {
     if (!user) return (<h1>LOADING...</h1>)
 
     return (
-        <div>
+        <div className='manage-profile-container'>
             <h1> {user.username} Account Info</h1>
             <h3>Name: </h3>
             <p> {user.firstName}  {user.lastName}</p>
@@ -32,7 +32,7 @@ const UserProfile = () => {
             <h3>Zipcode:</h3>
             <p> {user.zipcode} </p>
 
-            <div>
+            <div className='delete-edit-button'>
 
             <OpenModalButton
                 buttonText={"Delete Account"}

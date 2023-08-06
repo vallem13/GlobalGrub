@@ -1,0 +1,60 @@
+
+
+.delete-edit-button > button,
+.delete-account,
+.cancel-delete-account {
+  width: 150px;
+ padding: 10px;
+ background-color: #f00b51;
+ color: white;
+ border: none;
+ border-radius: 21px;
+ cursor: pointer;
+ margin-bottom: 10px;
+ /* gap: 20px; */
+ margin: 20px;
+ font-size: 12px
+}
+
+.delete-edit-button > button:hover,
+ .delete-account:hover,
+ .cancel-delete-account:hover
+ {
+  background-color: purple;
+}
+
+
+.manage-profile-container {
+  display: block;
+  /* align-items: center; */
+  justify-content: center;
+  text-align: center;
+}
+
+.confirm-delete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-content > .confirm-delete-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.sign-up-form-container button {
+  width: 150px;
+  padding: 10px;
+  background-color: #f00b51;
+  color: white;
+  border: none;
+  border-radius: 21px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  /* gap: 20px; */
+  margin: 20px;
+  font-size: 12px
+}
