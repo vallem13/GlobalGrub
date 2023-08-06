@@ -1,0 +1,11 @@
+#cuisine-restaurant-wrapper {
+    max-width: 1026px;
+    
+  }
+
+  .cuisine-restaurants {
+    width: 1026px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+  }

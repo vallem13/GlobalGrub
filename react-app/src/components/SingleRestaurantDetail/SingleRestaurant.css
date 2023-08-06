@@ -2,7 +2,6 @@
     /* border: 3px solid green; */
     width: 1026px;
     display: block;
-    align-items: center;
 }
 
 .restaurant-wrapper {
@@ -23,7 +22,7 @@
 
 .menu-items-wrapper {
     /* border: 3px solid purple; */
-    
+
     width: 1026px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -45,7 +44,7 @@
 .image-container {
     position: relative;
     display: inline-block;
-  }
+}
 
 .add-to-cart-button {
     position: absolute;
@@ -129,4 +128,38 @@
 
 .review-buttons button:hover {
     background-color: purple;
+}
+
+.name-rating-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.restaurant-name-rating-price {
+    row-gap: 5px;
+    /* border: 1px solid red; */
+}
+
+.restaurant-average-rating {
+    border: #ff851b;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff851b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.restaurant-price-range {
+    padding-left: 10px;
+}
+
+.restaurant-name {
+    font-weight: bolder;
 }
