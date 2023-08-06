@@ -1,21 +1,29 @@
 #single-restaurant-wrapper {
-    border: 3px solid green;
+    /* border: 3px solid green; */
     width: 1026px;
     display: block;
     align-items: center;
 }
 
 .restaurant-wrapper {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     width: 1026px;
+}
+
+.menu-review-title {
+    color: #f00b51;
+    font-weight: bold;
 }
 
 .single-prevImg {
-    width: 1026px;
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
 }
 
 .menu-items-wrapper {
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
+    
     width: 1026px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -23,15 +31,15 @@
 }
 
 .single-menu-items-wrapper {
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     border-radius: 21px;
-
 }
 
 .menu-image {
     width: 332px;
     height: 332px;
     border-radius: 21px 21px 0 0;
+    object-fit: cover;
 }
 
 .image-container {
@@ -41,13 +49,18 @@
 
 .add-to-cart-button {
     position: absolute;
-    top: 10px; /* Adjust the top position as needed */
-    right: 10px; /* Adjust the right position as needed */
+    top: 10px;
+    right: 10px;
     padding: 8px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    /* Additional button styles if needed */
+}
+
+.add-to-cart-button :hover {
+    transform: translateY(-2px);
+    background-color: white;
+    border-radius: 100px;
 }
 
 .item-details {
@@ -57,10 +70,63 @@
 .item-price {
     text-align: right;
     font-weight: bold;
-    padding-right: 5px;
+    padding-right: 20px;
     font-size: x-large;
 }
 
 .reviews-wrapper {
-    border: 3px solid red;
+    padding-left: 10px;
+    border-top: 2px solid #ff851b;
+
+}
+
+.post-review-container {
+    padding-bottom: 20px;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.review-fristName {
+    color: purple;
+}
+
+.rating-container {
+    display: flex;
+    margin-right: 10px;
+    column-gap: 3px;
+}
+
+.review-details {
+    flex: 1;
+    row-gap: 20px;
+}
+
+.review-list p {
+    margin: 0;
+}
+
+.review-list p {
+    margin: 0;
+}
+
+.review-actions {
+    display: flex;
+    column-gap: 10px;
+}
+
+.review-buttons button {
+    border-radius: 21px;
+    cursor: pointer;
+    background-color: #ff851b;
+    color: white;
+    border: #ff851b;
+    padding: 5px 5px 5px 5px;
+}
+
+.review-buttons button:hover {
+    background-color: purple;
 }

@@ -46,7 +46,7 @@ export default function SingleRestaurant() {
         <img className="single-prevImg" src={restaurant.restaurant_image} alt={restaurant.name}></img>
         <h2>{restaurant.name}</h2>
       </div>
-      <h3>Menu</h3>
+      <h3 className='menu-review-title'>Menu</h3>
       <div className='menu-items-wrapper'>
         {items.map((item) => (
           <div className='single-menu-items-wrapper' key={item.id}>
@@ -70,44 +70,47 @@ export default function SingleRestaurant() {
         ))}
       </div>
 
-
-      <h3>Reviews</h3>
-      {/* {restaurant.average_rating !== null ? (
-                    <p>{restaurant.average_rating.toFixed(1)}</p>
-                ) : (
-                    <p>No Reviews Yet</p>
-                )} */}
-
       <div className="reviews-wrapper">
-        <div id="post-review-button">
-
-          {check_order && !previousReview ? (
-            <OpenModalButton buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
-          ) : ('')}
-        </div>
-
-        {reverse_reviews.map((review) => (
-          <div key={review.id}>
-            <p>{review.rating.toFixed(0)}</p>
-            {review ? (<StarRatings rating={review.rating} disabled={true} />) : (<StarRatings rating={0} disabled={true} />)}
-            <p>
-            <h3>{review.comment}</h3>
-              {review.user.firstName} {review.user.lastName}
-            </p>
-            {previousReview && (review.user_id === user.id) ? (
-              <div>
-                <OpenModalButton
-                  buttonText="Edit Your Review"
-                  modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
-                />
-                <OpenModalButton
-                  buttonText="Delete Review"
-                  modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
-                />
+        <h3 className='menu-review-title'>Reviews</h3>
+        <div>
+        <div className='post-review-container'>
+        {check_order && !previousReview ? (
+          <div className='review-buttons'>
+              <OpenModalButton className='review-buttons' buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
               </div>
             ) : ('')}
           </div>
-        ))}
+          </div>
+        <div className="review-list">
+          {reverse_reviews.map((review) => (
+            <div className="review-item" key={review.id}>
+              <div className="rating-container">
+                {/* <p>{review.rating.toFixed(0)}</p> */}
+                {review ? (<StarRatings rating={review.rating} disabled={true} />) : (<StarRatings rating={0} disabled={true} />)}
+              </div>
+              <div className="review-details">
+                <p className='review-fristName'>{review.user.firstName}</p>
+                <h3>{review.comment}</h3>
+              </div>
+              {previousReview && (review.user_id === user.id) ? (
+                <div className="review-actions">
+                  <div className='review-buttons'>
+                  <OpenModalButton
+                    buttonText="Edit Your Review"
+                    modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
+                  />
+                  </div>
+                  <div className='review-buttons'>
+                  <OpenModalButton
+                    buttonText="Delete Review"
+                    modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
+                  />
+                  </div>
+                </div>
+              ) : ('')}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
