@@ -1,24 +1,21 @@
-/* Assuming this is your SearchBar.css */
 
-/* Styling for the entire search bar container */
 .search-bar {
     position: relative;
   }
   
-  /* Styling for the search suggestions dropdown */
   .search-suggestions {
     position: absolute;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    left: 60%;
+    left: 50%;
     transform: translateX(-50%);
     margin-top: -110px;
     z-index: 10;
     width: max-content;
   }
   
-  /* Styling for each suggestion item */
+
   .search-suggestion {
     padding: 10px;
     cursor: pointer;
@@ -27,10 +24,10 @@
     align-items: center;
   }
   
-  /* Styling for the restaurant information within a suggestion item */
+  
   .restaurant-info {
     margin-right: 10px;
-    /* Add any additional styling for restaurant information */
+   
   }
   
   .search-suggestion:hover {
