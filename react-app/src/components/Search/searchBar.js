@@ -88,12 +88,13 @@ export default function SearchBar() {
               key={restaurant.id}
               onClick={() => handleRestaurantClick(restaurant.id)}
             >
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+              <div key={restaurant.id} restaurant={restaurant} />
+              {restaurant.name}
             </div>
           ))}
-          {filteredRestaurants.length > 0 && (
+          {/* {filteredRestaurants.length > 0 && (
             <button className="search-button" type="submit" onClick={handleSearch}>Search</button>
-          )}
+          )} */}
         </div>
       )}
 
