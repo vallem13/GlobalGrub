@@ -51,48 +51,57 @@ const RestaurantCarousel = () => {
   const displayHighestRatedRestaurants = highestRated.slice(topRatedIdx, topRatedIdx + itemsPerPage);
   const displayAllRestaurants = restaurants.slice(allRestaurantsIdx, allRestaurantsIdx + itemsPerPage);
 
-  return (
-    <div>
 
+return (
 
-      <div className="carousel-wrapper">
-        <h3>Top Rated</h3>
-        <div className="carousel">
-          {displayHighestRatedRestaurants.map(restaurant => (
-            <div key={restaurant.id} className="carousel-item">
-              <RestaurantCard restaurant={restaurant} />
-            </div>
-          ))}
+  <div className="carousel-wrapper">
+  <div>
+    <h3>Top Rated</h3>
+    <div className="carousel-top-wrapper">
+      {displayHighestRatedRestaurants.map(restaurant => (
+        <div key={restaurant.id} className="carousel-item">
+          <img
+            src={restaurant.restaurant_image}
+            alt="Restaurant"
+            style={{ width: '400px', height: '400px' }}
+          />
         </div>
-        <div className="carousel-buttons">
-          <button className="prev-button" onClick={() => handleClickPrev('topRated')}>
-            &lt;
-          </button>
-          <button className="next-button" onClick={() => handleClickNext('topRated')}>
-            &gt;
-          </button>
-        </div>
-      </div>
-      <div className="carousel-wrapper">
-        <h3>All Restaurants</h3>
-        <div className="carousel">
-          {displayAllRestaurants.map(restaurant => (
-            <div key={restaurant.id} className="carousel-item">
-              <RestaurantCard restaurant={restaurant} />
-            </div>
-          ))}
-        </div>
-        <div className="carousel-buttons">
-          <button className="prev-button" onClick={() => handleClickPrev('allRestaurants')}>
-            &lt;
-          </button>
-          <button className="next-button" onClick={() => handleClickNext('allRestaurants')}>
-            &gt;
-          </button>
-        </div>
-      </div>
+      ))}
     </div>
-  );
-};
+    <div className="carousel-buttons">
+      <button className="prev-button" onClick={() => handleClickPrev('topRated')}>
+        &lt;
+      </button>
+      <button className="next-button" onClick={() => handleClickNext('topRated')}>
+        &gt;
+      </button>
+    </div>
+  </div>
+  <div>
+    <h3>All Restaurants</h3>
+    <div className="carousel">
+      {displayAllRestaurants.map(restaurant => (
+        <div key={restaurant.id} className="carousel-item">
+          <img
+            src={restaurant.restaurant_image}
+            alt="Restaurant"
+            style={{ width: '400px', height: '400px' }}
+          />
+        </div>
+      ))}
+    </div>
+    <div className="carousel-buttons">
+      <button className="prev-button" onClick={() => handleClickPrev('allRestaurants')}>
+        &lt;
+      </button>
+      <button className="next-button" onClick={() => handleClickNext('allRestaurants')}>
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>
+)
+      }
+
 
 export default RestaurantCarousel;
