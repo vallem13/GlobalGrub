@@ -14,6 +14,7 @@ import Thai from "./flags/thailand.png"
 import Somali from "./flags/somalia.png"
 import Jamaican from "./flags/jamaica.png"
 import Indian from "./flags/india.png"
+import './AllCuisine.css'
 
 
 const CuisineList = () => {
@@ -39,7 +40,7 @@ const CuisineList = () => {
         <div className="cuisine-nav-bar">
           <div style={{ display: "flex" }}>
             {cuisines.map((cuisine) => (
-              <div key={cuisine.id} style={{ padding: "7px", display: "flex", flexDirection: "column", alignItems: "center" }} onClick={() => onClick(cuisine.id)}>
+              <div className='flag-cuisine' key={cuisine.id} style={{ padding: "7px", display: "flex", flexDirection: "column", alignItems: "center" }} onClick={() => onClick(cuisine.id)}>
                 <img
                   src={flagImages[cuisine.type]}
                   alt={cuisine.type}

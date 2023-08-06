@@ -3,7 +3,7 @@
     margin: 0 auto; /* Add this line to center the container horizontally */
 
   }
-  
+
   .carousel-container {
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,7 @@
     width: 1026px;
     margin: 0 auto;
   }
-  
+
   .carousel {
     display: flex;
     overflow: hidden;
@@ -23,7 +23,7 @@
     font-size: larger;
     font-weight: bold;
   }
-  
+
   .carousel-item {
     width: 250px;
     height: auto;
@@ -35,46 +35,46 @@
     display: flex;
     flex-direction: column; /* Stack the image and name vertically */
 }
-  
+
   .carousel-item img {
     width: 100%;
     height: auto;
     object-fit: cover;
   }
-  
+
   .restaurant-name {
     padding: 10px;
-    
+
     border-top: 1px solid #ddd;
     text-align: center;
     font-weight: bold;
   }
-  
+
   .carousel-buttons button {
     background-color: transparent;
     border: none;
     font-size: 20px;
     cursor: pointer;
     padding: 5px 10px;
-    
+
   }
-  
+
   .prev-button {
     margin-right: 10px;
     color:#f00b51;
   }
-  
+
   .next-button {
     margin-left: 10px;
      color:#f00b51;
   }
-  
+
   .carousel-top-wrapper,
   .carousel {
     display: flex;
     transition: transform 0.3s ease-in-out;
   }
-  
+
   .carousel-item:hover {
     transform: scale(1.1);
     /* box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); */
@@ -97,7 +97,3 @@
     align-items: center;
     font-weight: bold;
 }
-
-
-
-  
