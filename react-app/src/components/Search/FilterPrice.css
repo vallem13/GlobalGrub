@@ -23,7 +23,6 @@
   
 }
 .restaurant-cards-filter {
-  /* background-color: #645e60; */
   gap: 5px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -49,23 +48,30 @@
 .price-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .price-button {
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
-  border: 2px solid transparent; 
+  border: 2px solid transparent;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  background-color: #ff851bbd;
+  color: #ffffff; 
 }
 
 .price-button.active {
-  background-color: transparent; /* Set background to transparent */
-  color: #f00b51; /* Change text color */
-  border-color: #f00b51; /* Add border color */
+  background-color: transparent;
+  color: #f00b51;
+  border-color: #f00b51;
+}
+
+.price-button:hover {
+  background-color: #ffd2e8; 
+  color: #ebced6; 
 }
 
 

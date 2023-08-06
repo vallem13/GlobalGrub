@@ -13,10 +13,17 @@ export default function FilterPrice() {
   const price_range = ["$", "$$", "$$$", "$$$$"];
 
   const FilterPriceThunk = async (priceRange) => {
-    const res = await fetch(`/api/search/restaurants?price_range=${priceRange}`);
-    if (res.ok) {
-      const result = await res.json();
-      setFilteredRestaurant(result.restaurants);
+    try {
+      const res = await fetch(`/api/search/restaurants?price_range=${priceRange}`);
+      if (res.ok) {
+        const result = await res.json();
+        console.log("Filtered Restaurants:", result.restaurants);
+        setFilteredRestaurant(result.restaurants);
+      } else {
+        console.log("API request failed with status:", res.status);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -26,7 +33,7 @@ export default function FilterPrice() {
     } else {
       setSearchPrice(priceRange);
       FilterPriceThunk(priceRange);
-      history.push("/filter");
+      
     }
   };
 

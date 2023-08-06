@@ -1,7 +1,7 @@
 
 .carousel-wrapper {
     width: 1026px;
-    margin: 0 auto; /* Add this line to center the container horizontally */
+    margin: 0 auto; 
     padding-left: 100px;
   }
   
@@ -32,10 +32,10 @@
     overflow: hidden;
     border-radius: 8px;
     margin-right: 20px;
-    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
+    
     transition: transform 0.3s ease-in-out;
     display: flex;
-    flex-direction: column; /* Stack the image and name vertically */
+    flex-direction: column; 
 }
   
   .carousel-item img {
@@ -57,21 +57,21 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
-    padding: 5px 10px; /* Separate padding for top and bottom */
+    padding: 5px 10px; 
   }
     
   
   
   .prev-button {
-    margin: 0 auto 0 ; /* Center the button horizontally */
+    margin: 0 auto 0 ; 
     color: #f00b51;
-    padding-right: 20px; /* Add some spacing between the buttons */
+    padding-right: 20px; 
   }
   
   .next-button {
-    margin: 0 0 0 auto; /* Center the button horizontally */
+    margin: 0 0 0 auto; 
     color: #f00b51;
-    padding-left: 20px; /* Add some spacing between the buttons */
+    padding-left: 20px; 
   }
   .carousel-top-wrapper,
   .carousel {
@@ -81,7 +81,7 @@
   
   .carousel-item:hover {
     transform: scale(1.1);
-    /* box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); */
+    
   }
   .carousel-item-details {
     display: flex;
