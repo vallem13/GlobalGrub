@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllRestaurantsThunk } from "../../store/restaurant";
 import RestaurantCard from "../HomePage/RestaurantCard";
-
+import  "./SearchBar.css"
 export default function SearchBar() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -82,22 +82,25 @@ export default function SearchBar() {
   return (
     <div className="search-bar">
       {showMenu && searchRestaurant !== "" && !restaurantClicked && (
-        <div>
+        <div className="search-suggestions">
           {filteredRestaurants.map((restaurant) => (
             <div
               key={restaurant.id}
               onClick={() => handleRestaurantClick(restaurant.id)}
+            className="search-suggestion"
             >
               <div key={restaurant.id} restaurant={restaurant} />
               {restaurant.name}
-            </div>
+              </div>
+              
+           
           ))}
           {/* {filteredRestaurants.length > 0 && (
             <button className="search-button" type="submit" onClick={handleSearch}>Search</button>
           )} */}
         </div>
       )}
-
+<div >
       <div className="search-input-container">
         <i className="fa-solid fa-magnifying-glass search-icon"></i>
         <input
@@ -116,6 +119,7 @@ export default function SearchBar() {
           className="search-input"
         >
           </input>
+          </div>
 
       </div>
     </div>
