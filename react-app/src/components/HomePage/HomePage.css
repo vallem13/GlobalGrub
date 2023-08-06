@@ -1,24 +1,28 @@
-.carousel-wrapper {
-    width: 1026px;
-     /* Add this line to center the container horizontally */
-    padding-left: 100px;
+.home {
+  width: 1026px;
+}
+
+/* .carousel-wrapper-filter {
+  border: 2px solid green;
+  width: 200px;
+} */
+
+.bothocarousel-wrapper {
+  width: 770px;
+  position: fixed;
+  /* top: 90%; Adjust this value to position the box vertically */
+  right: 20px; /* Adjust this value to set the distance from the right edge */
+  transform: translateY(-27%);
+  /* transform: translateX(-27%); */
+  border: 2px solid blue;
   }
 
-  .carousel-container {
+
+  .carousel-top-wrapper {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    width: 1026px;
-
-
-
+    flex-direction: row;
   }
 
-  .carousel {
-    display: flex;
-    overflow: hidden;
-  }
   .carousel-title {
     color:#f00b51;
     font-size: larger;

@@ -35,10 +35,9 @@ function App() {
             </Route>
             <Route path="/home">
               <ProtectedRoute>
-              <SearchBar/>
-              <FilterPrice />
+                <SearchBar />
+                <FilterPrice />
                 <HomePage />
-
               </ProtectedRoute>
             </Route>
             <Route path="/signup">

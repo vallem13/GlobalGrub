@@ -1,12 +1,7 @@
-.filter-page-container {
-  width: 1026px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5px;
-}
 
 .filter-container {
-  position: absolute;
+  border: 2px solid blue;
+  /* position: absolute; */
   left: 0;
   top: 30%;
   border: 3px solid #f7e9f2;
@@ -19,9 +14,8 @@
   max-width: 130px;
   height: 500px;
   margin-left: 10px;
-
-  
 }
+
 .restaurant-cards-filter {
   gap: 5px;
   display: grid;
@@ -60,7 +54,7 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   background-color: #ff851bbd;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .price-button.active {
@@ -70,8 +64,6 @@
 }
 
 .price-button:hover {
-  background-color: #ffd2e8; 
-  color: #ebced6; 
+  background-color: #ffd2e8;
+  color: #ebced6;
 }
-
-

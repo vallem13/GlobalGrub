@@ -50,79 +50,71 @@ const RestaurantCarousel = () => {
   return (
 
     <div className="home">
-
-   
-   
-    <div className="carousel-wrapper">
-     {/* <div>
-      <FilterPrice></FilterPrice>
-      </div> */}
-     
-     
-      <div className="carousel-wrapper">
-        <h3 className="carousel-title">Highest Rated Restaurants</h3>
-        <div className="carousel-top-wrapper">
-          {displayHighestRatedRestaurants.map(restaurant => (
-            <div
-              key={restaurant.id}
-              className="carousel-item"
-              onClick={() => handleOnClick(restaurant.id)} // Handle click to navigate to restaurant details
-            >
-              <img
-                src={restaurant.restaurant_image}
-                alt="Restaurant"
-                style={{ width: '250px', height: '250px' }}
-              />
-              <div className="carousel-item-details">
-                <div className="restaurant-carousel-name">{restaurant.name}</div>
-                <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button>
+        <div className="carousel-wrapper-filter">
+          {/* <FilterPrice></FilterPrice> */}
+        </div>
+        <div className="bothocarousel-wrapper">
+        <div className="carousel-wrapper">
+          <h3 className="carousel-title">Highest Rated Restaurants</h3>
+          <div className="carousel-top-wrapper">
+            {displayHighestRatedRestaurants.map(restaurant => (
+              <div
+                key={restaurant.id}
+                className="carousel-item"
+                onClick={() => handleOnClick(restaurant.id)} // Handle click to navigate to restaurant details
+              >
+                <img
+                  src={restaurant.restaurant_image}
+                  alt="Restaurant"
+                  style={{ width: '250px', height: '250px' }}
+                />
+                <div className="carousel-item-details">
+                  <div className="restaurant-carousel-name">{restaurant.name}</div>
+                  <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button>
+                </div>
+                ,</div>
+            ))}
+          </div>
+          <div className="carousel-buttons">
+            <button className="prev-button" onClick={() => handleClickPrev('topRated')}>
+              &lt;
+            </button>
+            <button className="next-button" onClick={() => handleClickNext('topRated')}>
+              &gt;
+            </button>
+          </div>
+        </div>
+        <div className="carousel-wrapper">
+          <h3 className="carousel-title">View All Restaurants</h3>
+          <div className="carousel-top-wrapper">
+            {displayAllRestaurants.map(restaurant => (
+              <div
+                key={restaurant.id}
+                className="carousel-item"
+                onClick={() => handleOnClick(restaurant.id)} // Handle click to navigate to restaurant details
+              >
+                <img
+                  src={restaurant.restaurant_image}
+                  alt="Restaurant"
+                  style={{ width: '250px', height: '250px' }}
+                />
+                <div className="carousel-item-details">
+                  <div className="restaurant-carousel-name">{restaurant.name}</div>
+                  <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button>
+                </div>
               </div>
-              ,</div>
-          ))}
+            ))}
+          </div>
+          <div className="carousel-buttons">
+            <button className="prev-button" onClick={() => handleClickPrev('allRestaurants')}>
+              &lt;
+            </button>
+            <button className="next-button" onClick={() => handleClickNext('allRestaurants')}>
+              &gt;
+            </button>
+          </div>
+          </div>
         </div>
-        <div className="carousel-buttons">
-          <button className="prev-button" onClick={() => handleClickPrev('topRated')}>
-            &lt;
-          </button>
-          <button className="next-button" onClick={() => handleClickNext('topRated')}>
-            &gt;
-          </button>
-        </div>
-      </div>
-      <div className="carousel-wrapper">
-        <h3 className="carousel-title">View All Restaurants</h3>
-        <div className="carousel-top-wrapper">
-          {displayAllRestaurants.map(restaurant => (
-            <div
-              key={restaurant.id}
-              className="carousel-item"
-              onClick={() => handleOnClick(restaurant.id)} // Handle click to navigate to restaurant details
-            >
-              <img
-                src={restaurant.restaurant_image}
-                alt="Restaurant"
-                style={{ width: '250px', height: '250px' }}
-              />
-              <div className="carousel-item-details">
-                <div className="restaurant-carousel-name">{restaurant.name}</div>
-                <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-
-
-        <div className="carousel-buttons">
-          <button className="prev-button" onClick={() => handleClickPrev('allRestaurants')}>
-            &lt;
-          </button>
-          <button className="next-button" onClick={() => handleClickNext('allRestaurants')}>
-            &gt;
-          </button>
-        </div>
-      </div>
-    </div>
     </div>
   )
 }
