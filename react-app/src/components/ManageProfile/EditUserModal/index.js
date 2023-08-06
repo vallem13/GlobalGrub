@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom"
 import { editUser } from "../../../store/session"
+import '../ManageProfile.css'
 
 
 
@@ -99,12 +100,12 @@ const EditUserAccount = ({ userId }) => {
     };
 
     return (
-        <div>
-            <h1>Edit Account Info</h1>
-            <form onSubmit={handleSubmit}>
-                <ul>
+        < >
+            <h1 className='sign-up'>Edit Account Info</h1>
+            <form className='sign-up-form-container' onSubmit={handleSubmit}>
+                {/* <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+                </ul> */}
                 <label>
                     First Name:
                     <input
@@ -186,10 +187,10 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
-                <button type="submit">Update Account</button>
+                <button type="submit" className='update-account-button'>Update Account</button>
                 <button type="submit" onClick={submitCancel}>Cancel</button>
             </form>
-        </div>
+        </>
     )
 
 }

@@ -22,3 +22,10 @@
   position: absolute;
   background-color:white;
 }
+
+.on-submit-errors {
+  color:#f00b51;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 15px
+}

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { deleteUser } from "../../../store/session";
 import { logout } from "../../../store/session";
 import * as sessionActions from '../../../store/session';
+import '../ManageProfile.css'
 
 const DeleteUserAccount = ({userId}) => {
     const dispatch = useDispatch()
@@ -25,13 +26,16 @@ const DeleteUserAccount = ({userId}) => {
     };
 
     return (
-        <div>
+        <div className='confirm-delete-container'>
             <h1>Confirm Delete</h1>
             <p>So many good places you haven't tried, you sure you want to delete your account</p>
-            <button type="sumbit" onClick={submitDelete}>
+            <div>
+
+            <button type="sumbit" className='delete-account' onClick={submitDelete}>
                 Delete my account
             </button>
-            <button type="submit" onClick={sumbitCancel}>Keep my account</button>
+            <button type="submit" className='cancel-delete-account' onClick={sumbitCancel}>Keep my account</button>
+            </div>
         </div>
     )
 
