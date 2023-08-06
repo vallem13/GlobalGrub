@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllRestaurantsThunk } from "../../store/restaurant";
 import './HomePage.css';
 import { useHistory } from "react-router-dom";
+import FilterPrice from "../Search/filterPrice";
 
 
 const RestaurantCarousel = () => {
@@ -47,8 +48,18 @@ const RestaurantCarousel = () => {
 
 
   return (
+
+    <div className="home">
+
+   
+   
     <div className="carousel-wrapper">
-      <div>
+     {/* <div>
+      <FilterPrice></FilterPrice>
+      </div> */}
+     
+     
+      <div className="carousel-wrapper">
         <h3 className="carousel-title">Highest Rated Restaurants</h3>
         <div className="carousel-top-wrapper">
           {displayHighestRatedRestaurants.map(restaurant => (
@@ -78,7 +89,7 @@ const RestaurantCarousel = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div className="carousel-wrapper">
         <h3 className="carousel-title">View All Restaurants</h3>
         <div className="carousel-top-wrapper">
           {displayAllRestaurants.map(restaurant => (
@@ -111,6 +122,7 @@ const RestaurantCarousel = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   )
 }

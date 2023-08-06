@@ -1,7 +1,7 @@
 .carousel-wrapper {
     width: 1026px;
     margin: 0 auto; /* Add this line to center the container horizontally */
-
+    padding-left: 100px;
   }
   
   .carousel-container {
@@ -9,9 +9,10 @@
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
     width: 1026px;
-    margin: 0 auto;
+ 
+    
+    
   }
   
   .carousel {
@@ -55,20 +56,22 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
-    padding: 5px 10px;
-    
+    padding: 5px 10px; /* Separate padding for top and bottom */
   }
+    
+  
   
   .prev-button {
-    margin-right: 10px;
-    color:#f00b51;
+    margin: 0 auto 0 ; /* Center the button horizontally */
+    color: #f00b51;
+    padding-right: 20px; /* Add some spacing between the buttons */
   }
   
   .next-button {
-    margin-left: 10px;
-     color:#f00b51;
+    margin: 0 0 0 auto; /* Center the button horizontally */
+    color: #f00b51;
+    padding-left: 20px; /* Add some spacing between the buttons */
   }
-  
   .carousel-top-wrapper,
   .carousel {
     display: flex;
@@ -97,7 +100,3 @@
     align-items: center;
     font-weight: bold;
 }
-
-
-
-  
