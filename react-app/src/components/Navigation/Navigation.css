@@ -75,6 +75,7 @@
 .search-input-container {
   position: relative;
   border-radius: 50px;
+  grid-area: search;
 
 }
 

@@ -19,8 +19,6 @@ function Navigation({ isLoaded }) {
 	const carts = useSelector(state => state.cart.cart);
 	const [itemCount, setItemCount] = useState(0);
 	const closeMenu = () => setShowMenu(false);
-	// const location = useLocation();
-
 
 	useEffect(() => {
 		let cartItems = 0;
@@ -48,20 +46,6 @@ function Navigation({ isLoaded }) {
 		history.push('/');
 	};
 
-	// if (location.pathname === "/login" || location.pathname === "/signup") {
-	// 	return (
-	// 		<ul className={'nav-list dark-background'}>
-	// 			<div className='home-sidebar-wrapper dark-background'>
-	// 				<li className='nav-list-item'>
-	// 					<button className='home-button dark-background'>
-	// 						<NavLink exact to="/">Super<span className='bold'>Eats</span></NavLink>
-	// 					</button>
-	// 				</li>
-	// 			</div>
-	// 		</ul>
-	// 	);
-	// }
-
 	return (
 		<>
 			{isLoaded && (
@@ -85,9 +69,7 @@ function Navigation({ isLoaded }) {
 									</div>
 								</div>
 							</div>
-
 							<CuisineList />
-
 						</div>
 					) : (
 						<>

@@ -113,7 +113,9 @@ export default function SearchBar() {
           placeholder="Food, drinks, etc"
           onClick={handleInputClick}
           className="search-input"
-        />
+        >
+          </input>
+
       </div>
     </div>
   );
