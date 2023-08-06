@@ -1,3 +1,10 @@
+.filter-page-container {
+  width: 1026px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
 .filter-container {
   position: absolute;
   left: 0;
@@ -12,12 +19,18 @@
   max-width: 130px;
   height: 500px;
   margin-left: 10px;
+
+  
 }
-.restaurant-cards-container {
-  display: flex;
-  background-color: #645e60;
-  flex-direction: row;
+.restaurant-cards-filter {
+  /* background-color: #645e60; */
+  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  padding-left: 230px;
 }
+
 
 .filter-container span {
   display: inline-block;

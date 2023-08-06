@@ -55,7 +55,7 @@ return (
           </div>
         </div>
         <div className="restaurant-cards-container">
-          <div className="restaurant-cards">
+          <div className="restaurant-cards-filter">
             {filteredRestaurant.map((restaurant) => (
               // <div key={restaurant.id} className="restaurant-card">
                 <RestaurantCard key={restaurant.id} restaurant={restaurant} />
