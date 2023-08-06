@@ -1,6 +1,6 @@
 .carousel-wrapper {
     width: 1026px;
-    margin: 0 auto; 
+     /* Add this line to center the container horizontally */
     padding-left: 100px;
   }
 
@@ -10,9 +10,9 @@
     flex-direction: column;
     align-items: center;
     width: 1026px;
- 
-    
-    
+
+
+
   }
 
   .carousel {
@@ -31,10 +31,10 @@
     overflow: hidden;
     border-radius: 8px;
     margin-right: 20px;
-    
+
     transition: transform 0.3s ease-in-out;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
   .carousel-item img {
@@ -61,15 +61,15 @@
   }
 
   .prev-button {
-    margin: 0 auto 0 ; 
+    margin: 0 auto 0 ;
     color: #f00b51;
-    padding-right: 20px; 
+    padding-right: 20px;
   }
 
   .next-button {
-    margin: 0 0 0 auto; 
+    margin: 0 0 0 auto;
     color: #f00b51;
-    padding-left: 20px; 
+    padding-left: 20px;
   }
 
   .carousel-top-wrapper,
@@ -80,7 +80,7 @@
 
   .carousel-item:hover {
     transform: scale(1.1);
-    
+
   }
   .carousel-item-details {
     display: flex;
