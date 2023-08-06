@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllRestaurantsThunk } from "../../store/restaurant";
 import './HomePage.css';
 import { useHistory } from "react-router-dom";
-import FilterPrice from "../Search/filterPrice";
 
 
 const RestaurantCarousel = () => {

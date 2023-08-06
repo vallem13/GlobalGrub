@@ -100,7 +100,7 @@ export default function SearchBar() {
           )} */}
         </div>
       )}
-<div >
+
       <div className="search-input-container">
         <i className="fa-solid fa-magnifying-glass search-icon"></i>
         <input
@@ -119,7 +119,7 @@ export default function SearchBar() {
           className="search-input"
         >
           </input>
-          </div>
+          
 
       </div>
     </div>

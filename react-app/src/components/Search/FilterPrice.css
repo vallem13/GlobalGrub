@@ -3,13 +3,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
+  
 }
 
 .filter-container {
   position: absolute;
   left: 0;
   top: 30%;
-  border: 3px solid #f7e9f2;
+  border: 3px solid#ffffff;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 20px;
@@ -41,9 +42,9 @@
 }
 
 .filter-container span.active {
-  background-color: #e784ca;
+  background-color: #ffffff;
   color: white;
-  border-color: #bda5b8;
+  border-color: #ffffff;
 }
 .price-buttons {
   display: flex;
@@ -52,15 +53,18 @@
 }
 
 .price-button {
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
+  
+  font-size: 32px; 
+  font-weight: bolder;
+  height: 65px;
+  width: 200px;
   border: 2px solid transparent;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  background-color: #ff851bbd;
-  color: #ffffff; 
+  font-family: 'Nunito Sans', sans-serif;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  color: #ffffff;
+  background-color:#e08805e5;
 }
 
 .price-button.active {
@@ -70,8 +74,9 @@
 }
 
 .price-button:hover {
-  background-color: #ffd2e8; 
-  color: #ebced6; 
+  background-color: purple;
+  color: #ebced6;
 }
+
 
 

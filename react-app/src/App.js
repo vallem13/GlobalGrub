@@ -36,8 +36,8 @@ function App() {
             <Route path="/home">
               <ProtectedRoute>
               <SearchBar/>
-              <FilterPrice />
                 <HomePage />
+              <FilterPrice />
 
               </ProtectedRoute>
             </Route>
