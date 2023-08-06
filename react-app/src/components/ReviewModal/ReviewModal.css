@@ -1,0 +1,51 @@
+.review-form {
+  background-color: white;
+  width: 400px;
+  height: 300px
+}
+
+.review-button,
+.delete-button-container button {
+  width: 150px;
+  padding: 10px;
+  background-color: #f00b51;
+  color: white;
+  border: none;
+  border-radius: 21px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  gap: 20px;
+  margin-top: 25px
+}
+
+.review-form .review-input {
+  height: 150px;
+  width: 250px;
+  margin-bottom: 5px;
+  margin: 10px
+}
+
+.review-button:hover,
+.delete-button-container button:hover {
+  background-color: purple;
+}
+
+
+.delete-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px
+}
+
+#modal-content > .delete-review-modal {
+  padding: 25px
+}
+
+.review-form i {
+  padding-top: 30px
+}
+
+
+.edit-review-header {
+  margin-bottom: 0px
+}

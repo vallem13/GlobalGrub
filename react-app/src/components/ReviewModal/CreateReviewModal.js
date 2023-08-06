@@ -24,7 +24,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
     if (stars < 1) serverError.stars = "Stars can't be empty";
     if (review.length < 10) serverError.review = "Review must be at least 10 characters long";
 
-    setServerError(errors);
+    setServerError(serverError);
   }, [review, stars]);
 
   const handleSubmit = async (e) => {
@@ -37,11 +37,11 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
 
       try {
         await dispatch(createRestaurantReviewThunk(stars, review, user_id, restaurantId));
-        await dispatch(getSingleRestaurantThunk(restaurantId));
-        closeModal();
       } catch (error) {
         setServerError(error.message);
       }
+      await dispatch(getSingleRestaurantThunk(restaurantId));
+      closeModal();
     }
   };
 
@@ -68,7 +68,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
         placeholder="Leave your review here...."
         onBlur={noShowError}
       />
-      {serverError && <p className='review-form-errors'>{serverError.review}</p>}
+      {serverError.review && review.length > 0 && <p className='on-submit-errors'>{serverError.review}</p>}
 
       <StarRatings
         disabled={false}
@@ -77,7 +77,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
         iconSize={"large"}
       />
 
-      <button type="submit" className="review-button" disabled={Object.keys(errors).length > 0}>Submit Your Review</button>
+      <button type="submit" className="review-button" disabled={Object.keys(serverError).length > 0}>Submit Your Review</button>
 
     </form>
   )
