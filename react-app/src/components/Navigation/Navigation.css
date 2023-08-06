@@ -1,8 +1,8 @@
 /* Profile Drop Down */
 .profile-dropdown {
-  position: absolute;
-  top: -25px; /* Adjust the vertical position of the dropdown as needed */
-  right: 760px; /* Adjust the horizontal position of the dropdown as needed */
+  position: relative;
+  top: -70px;
+  right: 7px;
   padding: 10px;
   width: 250px;
   height: 2000px;
@@ -119,6 +119,7 @@
 }
 
 .search-bar {
+  position: fixed;
   margin-top: 8px;
   padding-right: 50px;
   padding-left: 120px;
@@ -141,9 +142,9 @@
 }
 
 .search-icon {
-  position: absolute;
-  left: 280px;
-  top: 50%;
+  position: fixed;
+  left: 410px;
+  top: 167px;
   transform: translateY(-1170%);
   color: black;
   font-size: 12px;
@@ -155,9 +156,9 @@
 }
 
 .search-input {
-  position: absolute;
-  left: 170px;
-  bottom: 122px;
+  position: fixed;
+  left:300px;
+  top: 20px;
   border-radius: 50px;
   border: .5px solid white;
   padding: 4px;
