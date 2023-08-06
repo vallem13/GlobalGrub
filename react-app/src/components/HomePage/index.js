@@ -56,15 +56,16 @@ return (
 
   <div className="carousel-wrapper">
   <div>
-    <h3>Top Rated</h3>
+    <h3>Highest Rated Restaurants</h3>
     <div className="carousel-top-wrapper">
       {displayHighestRatedRestaurants.map(restaurant => (
         <div key={restaurant.id} className="carousel-item">
           <img
             src={restaurant.restaurant_image}
             alt="Restaurant"
-            style={{ width: '400px', height: '400px' }}
+            style={{ width: '250px', height: '250px' }}
           />
+          
         </div>
       ))}
     </div>
@@ -78,18 +79,21 @@ return (
     </div>
   </div>
   <div>
-    <h3>All Restaurants</h3>
+    <h3>View All Restaurants</h3>
     <div className="carousel">
       {displayAllRestaurants.map(restaurant => (
+      
         <div key={restaurant.id} className="carousel-item">
           <img
             src={restaurant.restaurant_image}
             alt="Restaurant"
-            style={{ width: '400px', height: '400px' }}
+            style={{ width: '250px', height: '250px' }}
           />
+          <div className="restaurant-name"> Restaurant {restaurant.name} </div>
         </div>
       ))}
     </div>
+ 
     <div className="carousel-buttons">
       <button className="prev-button" onClick={() => handleClickPrev('allRestaurants')}>
         &lt;

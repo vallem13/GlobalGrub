@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RestaurantCard from "../HomePage/RestaurantCard";
-
+import  "./FilterPrice.css"
 export default function FilterPrice() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,31 +46,26 @@ export default function FilterPrice() {
   }
 
   return (
-    <div>
-      <h2>Filter by Price:</h2>
-      {price_range.map((price) => (
-        <span key={price} onClick={() => priceOnClick(price)}>
-          <img src={priceRangeImages[price]} alt={price} width="20" height="20" />
-
-
-
-        </span>
-      ))}
-     
-        <div>
-          
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {filteredRestaurant.map((restaurant) => (
-                
-                <div key={restaurant.id} onClick={() => onClick(restaurant.id)} >
-                  <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-        
-                </div>
-              ))}
-            </div>
-        
-        </div>
-     
-    </div>
+    <div className="filter-wrapper">
+  <h2>Filter by Price:</h2>
+  <div className="price-buttons">
+    {price_range.map((price) => (
+      <span
+        key={price}
+        className={`price-button ${searchPrice === price ? 'active' : ''}`}
+        onClick={() => priceOnClick(price)}
+      >
+        <img src={priceRangeImages[price]} alt={price} width="20" height="20" />
+      </span>
+    ))}
+  </div>
+  <div className="restaurant-cards">
+    {filteredRestaurant.map((restaurant) => (
+      <div key={restaurant.id} className="restaurant-card" onClick={() => onClick(restaurant.id)}>
+        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+      </div>
+    ))}
+  </div>
+</div>
   );
 }

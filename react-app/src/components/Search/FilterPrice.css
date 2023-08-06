@@ -1,0 +1,40 @@
+/* .filter-wrapper {
+    position: absolute;
+    border: 3px solid #f7e9f2;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-weight: bold;
+    top: 25%;
+    width: 200px;
+    height: 600px;
+    
+  }
+  
+  .price-button {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.25rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .price-button.active {
+    background-color: #e784ca;
+    color: white;
+    border-color: #bda5b8;
+  }
+  
+  .restaurant-cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .restaurant-card {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+  } */
+  
