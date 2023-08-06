@@ -1,17 +1,78 @@
+/* Profile Drop Down */
 .profile-dropdown {
   position: absolute;
-  background-color: white;
+  top: -25px; /* Adjust the vertical position of the dropdown as needed */
+  right: 760px; /* Adjust the horizontal position of the dropdown as needed */
+  padding: 10px;
   width: 250px;
-  height: 1000px;
-  top: 0px;
-  left: 0px;
+  height: 2000px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1000; /* Ensure the dropdown is on top of other elements */
+}
 
+.profile-dropdown p {
+  cursor: pointer;
+}
+
+.user-email {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: -5px;
+}
+
+.user-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  font-size: 20px;
+}
+
+.fa-heart {
+  color:#f00b51;
+  padding-left: 2px;
+}
+
+.user-name {
+  margin-top: 30px;
+  padding-left: 4px;
+  font-size: 25px;
+}
+
+.created-by {
+  margin-top: 420px;
+  font-size: 10.92px;
+}
+
+.manage-account-button {
+  color: #f00b51;}
+
+.orders-button:hover {
+  color: #f00b51;}
+
+.logout-button:hover {
+  color: #f00b51;}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.800); /* Semi-transparent black */
+  z-index: 999; /* Ensure the overlay is on top of other elements */
+}
+.profile-dropdown.hidden {
+  display: none;
 }
 
 .hidden {
   display: none;
 }
 
+/* Nav Bar */
 .logo {
   width: 160px;
   height: auto;
