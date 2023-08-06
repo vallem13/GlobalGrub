@@ -1,6 +1,6 @@
 .carousel-wrapper {
     width: 1026px;
-    margin: 0 auto; /* Add this line to center the container horizontally */
+     /* Add this line to center the container horizontally */
     padding-left: 100px;
   }
 
@@ -10,9 +10,9 @@
     flex-direction: column;
     align-items: center;
     width: 1026px;
- 
-    
-    
+
+
+
   }
 
   .carousel {
