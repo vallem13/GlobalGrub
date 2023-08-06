@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RestaurantCard from "../HomePage/RestaurantCard";
-import "./FilterPrice.css"; // Make sure to import your CSS file
+import "./FilterPrice.css"; 
 
 export default function FilterPrice() {
   const history = useHistory();
@@ -26,6 +26,10 @@ export default function FilterPrice() {
       console.error("Error fetching data:", error);
     }
   };
+//   useEffect(() => {
+//      dispatch(FilterPriceThunk())
+// }, [dispatch])
+
 
   const priceOnClick = (priceRange) => {
     if (searchPrice === priceRange) {
@@ -45,8 +49,8 @@ export default function FilterPrice() {
 
 
 return (
-      <div className="filter-page-container">
-        <div className="filter-container">
+      <div id="filter-page-wrapper">
+        {/* <div className="filter-container"> */}
           <div className="filter-wrapper">
             <h2>Filter by Price:</h2>
             <div className="price-buttons">
@@ -61,16 +65,15 @@ return (
               ))}
             </div>
           </div>
-        </div>
-        <div className="restaurant-cards-container">
-          <div className="restaurant-cards-filter">
+       
+          <div className="restaurant-cards-container">
             {filteredRestaurant.map((restaurant) => (
-              // <div key={restaurant.id} className="restaurant-card">
+              <div className="one-restaurant-card">
                 <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-              
+            </div>
             ))}
           </div>
-        </div>
+     
       </div>
     );
     
