@@ -1,0 +1,109 @@
+.cart-modal {
+    position: fixed;
+    top: 0;
+    top: -25px;
+    right: 470px;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+  }
+
+  .cart-modal.open {
+    right: 0;
+  }
+
+  .open-cart-button {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .cart-item img {
+    width: 50px;
+    height: 50px;
+    /* margin-right: 10px; */
+
+  }
+
+  .delete-item {
+    position: absolute;
+    right: 5px;
+    padding: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#fas-fa-trash {
+    /* Set the initial color of the delete icon */
+    color: #f00b51;
+    font-size: 2rem;
+    /* Add any other styles you need for the icon */
+  }
+
+  #fas-fa-trash:hover {
+    /* Set the color of the delete icon on hover */
+    color: purple;
+  }
+
+.total-buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.order-place-cancel-buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.place-order-button {
+    border-radius: 21px;
+    cursor: pointer;
+    background-color: #f00b51;
+    color: white;
+    border: #f00b51;
+    padding: 5px 5px 5px 5px;
+}
+
+.cancel-order-button {
+    border-radius: 21px;
+    cursor: pointer;
+    background-color: #ff851b;
+    color: white;
+    border: #ff851b;
+    padding: 5px 5px 5px 5px;
+}
+
+.place-order-button:hover {
+    border-radius: 21px;
+    cursor: pointer;
+    background-color: purple;
+    color: white;
+    border: purple;
+    padding: 5px 5px 5px 5px;
+}
+
+.cancel-order-button:hover {
+    border-radius: 21px;
+    cursor: pointer;
+    background-color: purple;
+    color: white;
+    border: purple;
+    padding: 5px 5px 5px 5px;
+}
