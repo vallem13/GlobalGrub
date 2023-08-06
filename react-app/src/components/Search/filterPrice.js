@@ -33,6 +33,7 @@ export default function FilterPrice() {
     } else {
       setSearchPrice(priceRange);
       FilterPriceThunk(priceRange);
+      history.push("/filter");
       
     }
   };

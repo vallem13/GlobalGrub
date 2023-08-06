@@ -1,20 +1,20 @@
 .home {
+  display: flex;
   width: 1026px;
 }
 
-/* .carousel-wrapper-filter {
-  border: 2px solid green;
+.carousel-wrapper-filter {
   width: 200px;
-} */
+}
 
-.bothocarousel-wrapper {
-  width: 770px;
-  position: fixed;
+.both-carousel-wrapper {
+ 
+  /* position: fixed; */
+  top: 145px;
   /* top: 90%; Adjust this value to position the box vertically */
   right: 20px; /* Adjust this value to set the distance from the right edge */
-  transform: translateY(-27%);
-  /* transform: translateX(-27%); */
-  border: 2px solid blue;
+  transform: translateY(-50%);
+  transform: translateX(2%);
   }
 
 

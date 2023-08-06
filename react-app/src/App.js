@@ -36,7 +36,7 @@ function App() {
             <Route path="/home">
               <ProtectedRoute>
                 <SearchBar />
-                <FilterPrice />
+                {/* <FilterPrice /> */}
                 <HomePage />
               </ProtectedRoute>
             </Route>

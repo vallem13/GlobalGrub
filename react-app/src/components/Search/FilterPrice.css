@@ -1,7 +1,6 @@
 
-.filter-container {
+/* .filter-container {
   border: 2px solid blue;
-  /* position: absolute; */
   left: 0;
   top: 30%;
   border: 3px solid #f7e9f2;
@@ -13,8 +12,8 @@
   font-weight: bold;
   max-width: 130px;
   height: 500px;
-  margin-left: 10px;
-}
+  margin-left: 10px; */
+
 
 .restaurant-cards-filter {
   gap: 5px;
@@ -47,8 +46,8 @@
 
 .price-button {
   padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 70px;
+  font-weight: lighter;
   border: 2px solid transparent;
   border-radius: 6px;
   cursor: pointer;

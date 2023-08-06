@@ -51,9 +51,9 @@ const RestaurantCarousel = () => {
 
     <div className="home">
         <div className="carousel-wrapper-filter">
-          {/* <FilterPrice></FilterPrice> */}
+          <FilterPrice />
         </div>
-        <div className="bothocarousel-wrapper">
+        <div className="both-carousel-wrapper">
         <div className="carousel-wrapper">
           <h3 className="carousel-title">Highest Rated Restaurants</h3>
           <div className="carousel-top-wrapper">
