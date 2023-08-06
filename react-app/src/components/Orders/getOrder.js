@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderThunk } from '../../store/cart';
+import './UsersOrders.css'
 
 export default function GetOrder() {
   const dispatch = useDispatch();
@@ -30,11 +31,11 @@ export default function GetOrder() {
   }
 
   return (
-    <div>
+    <div className='users-orders-wrapper'>
       <h1>Orders</h1>
       {all_orders.map(([orderCartId, orderItems]) => (
-        <div key={orderCartId}>
-          <h2>Order Number: {orderCartId}</h2>
+        <div className='single-order-list' key={orderCartId}>
+          <h2 className='order-number-title' >Order Number: {orderCartId}</h2>
           {Array.isArray(orderItems) ? (
             orderItems.map((order) => (
               <div key={order.order_id}>

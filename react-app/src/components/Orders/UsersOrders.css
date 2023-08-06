@@ -1,0 +1,13 @@
+.users-orders-wrapper {
+    width: 1026px;
+    padding-left: 20px;
+}
+
+.single-order-list {
+    display: grid;
+    border-bottom: 1px solid #ff851b;
+}
+
+.order-number-title {
+    color: #f00b51;
+}
