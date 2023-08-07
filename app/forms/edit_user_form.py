@@ -3,7 +3,13 @@ from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, Email
 from flask_login import current_user
 from app.models import User
+import re
 
+def is_valid_email(form, field):
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    email = field.data
+    if not re.match(email_pattern, email):
+        raise ValidationError('Invalid email address.')
 
 def validate_phone_number(form, field):
     phone_number = field.data
