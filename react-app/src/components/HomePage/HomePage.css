@@ -4,12 +4,10 @@
 }
 
 .carousel-wrapper-filter {
-  width: 150px;
-  border: 2px solid #c41e50;
+  width: 200px;
 }
 
 .both-carousel-wrapper {
-  border: 2px solid #c41e50;
   /* position: fixed; */
   top: 151px;
   /* top: 90%; Adjust this value to position the box vertically */
@@ -23,7 +21,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 2px solid #10b310;
     width: 800px;
   }
 
@@ -39,7 +36,6 @@
     overflow: hidden;
     border-radius: 8px;
     margin-right: 20px;
-    border: 2px solid #2111b6;
 
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 3s ease-in-out;
     display: flex;
