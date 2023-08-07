@@ -6,9 +6,9 @@ import { getSingleRestaurantThunk } from '../../store/restaurant';
 import './ReviewModal.css';
 import StarRatings from "../StarRatings/starRating"
 
-const CreateReviewModal = ({ rating, user_id, restaurant }) => {
+const CreateReviewModal = ({ user_id, restaurant}) => {
   const [review, setReview] = useState('');
-  const [stars, setStars] = useState(null);
+  const [rating, setRating] = useState("");
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState(false);
 
@@ -17,15 +17,15 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
 
   let disable = false;
   review.length > 9 || (disable = true);
-  stars || (disable = true);
+  rating || (disable = true);
 
   useEffect(() => {
     let serverError = {};
-    if (stars < 1) serverError.stars = "Stars can't be empty";
+    if (rating < 1) serverError.rating = "rating can't be empty";
     if (review.length < 10) serverError.review = "Review must be at least 10 characters long";
 
     setServerError(serverError);
-  }, [review, stars]);
+  }, [review, rating]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
       let restaurantId = restaurant.id;
 
       try {
-        await dispatch(createRestaurantReviewThunk(stars, review, user_id, restaurantId));
+        await dispatch(createRestaurantReviewThunk(rating, review, user_id, restaurantId));
       } catch (error) {
         setServerError(error.message);
       }
@@ -46,7 +46,7 @@ const CreateReviewModal = ({ rating, user_id, restaurant }) => {
   };
 
   const onChange = (number) => {
-    setStars(number);
+    setRating(number);
   };
 
 

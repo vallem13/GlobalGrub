@@ -32,11 +32,12 @@ export default function SingleRestaurant() {
   let restaurant_ids = []
   orders.map(order => restaurant_ids.push(order.restaurant_id))
 
-  const reverse_reviews = reviews.reverse()
+  const reverse_reviews = [...reviews].reverse()
+  console.log("-------->", reverse_reviews)
 
   const check_order = restaurant_ids.find(order => restaurant.id === order)
 
-  const previousReview = user && reverse_reviews.find((review) => review.user_id === user.id)
+  const previousReview = user && reviews.find((review) => review.user_id === user.id)
 
   if (!restaurant) return <div>Loading...</div>;
 

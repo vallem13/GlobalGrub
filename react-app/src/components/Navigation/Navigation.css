@@ -146,12 +146,13 @@
 
 .search-icon {
   position: absolute;
-  left: 410px;
-  top: 171px;
+  left: 412px;
+  top: 173px;
   transform: translateY(-1170%);
   color: purple;
   font-size: 12px;
   font-weight: bolder;
+  z-index: 2;
 }
 
 .search-input::placeholder {
