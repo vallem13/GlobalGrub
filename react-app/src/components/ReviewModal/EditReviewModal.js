@@ -3,20 +3,17 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { editReviewThunk } from '../../store/review';
 import './ReviewModal.css';
-import { useHistory } from 'react-router-dom'
 import { getSingleRestaurantThunk } from '../../store/restaurant'
 import StarRatings from "../StarRatings/starRating"
 
-export default function EditReviewModal({ rating, review, restaurant }) {
+export default function EditReviewModal({  review, restaurant }) {
   const [editedReview, setEditedReview] = useState(review.comment);
-  const [editedStars, setEditedStars] = useState(review.rating);
+  const [rating,setRating] = useState(review.rating);
   const [errors, setErrors] = useState({});
-  const [activeStars, setActiveStars] = useState(null);
   const [serverError, setServerError] = useState(false);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const history = useHistory()
 
   useEffect(() => {
     setErrors({});
@@ -24,11 +21,11 @@ export default function EditReviewModal({ rating, review, restaurant }) {
 
   useEffect(() => {
     let errors = {};
-    if (!editedStars) errors.stars = "Stars can't be empty";
+    if (!rating) errors.stars = "Stars can't be empty";
     if (editedReview.length < 10) errors.review = "Review must be at least 10 characters long";
 
     setErrors(errors);
-  }, [editedReview, editedStars]);
+  }, [editedReview, rating]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,11 +37,11 @@ export default function EditReviewModal({ rating, review, restaurant }) {
 
       const editedReviewData = {
         comment: editedReview,
-        rating: editedStars,
+        rating: rating,
       };
 
       try {
-        await dispatch(editReviewThunk(editedReviewData, review.id, editedStars, editedReview));
+        await dispatch(editReviewThunk(editedReviewData, review.id, rating, editedReview));
       } catch (error) {
         setServerError(error.message);
       }
@@ -56,7 +53,7 @@ export default function EditReviewModal({ rating, review, restaurant }) {
   };
 
   const onChange = (number) => {
-    setEditedStars(number);
+    setRating(number);
   };
 
   const noShowError = () => {
