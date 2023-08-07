@@ -6,7 +6,7 @@ import './UsersOrders.css'
 export default function GetOrder() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.cart.orders);
-  const all_orders = Object.entries(orders)
+  const all_orders = (Object.entries(orders)).reverse()
 
   useEffect(() => {
     dispatch(getOrderThunk());

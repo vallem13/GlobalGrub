@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 import { emptyCart, thunkCreateCart, updateNewOrders, updateOrderCart, yeetItem } from '../../store/cart';
 import { useModal } from '../../context/Modal'
 import './OrderCartModal.css'
@@ -7,6 +8,7 @@ import './OrderCartModal.css'
 
 const OrderCartModal = ({ user }) => {
     const dispatch = useDispatch();
+    const history = useHistory()
     const { closeModal } = useModal()
     const cart = useSelector(state => state.cart.cart);
     const current_restaurant = Object.keys(cart)
@@ -33,9 +35,9 @@ const OrderCartModal = ({ user }) => {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
         closeModal()
-        window.location.reload();
+        history.push('/user_orders')
     }
-    
+
 
     const cancelOrder = async (e) => {
         e.preventDefault()
@@ -77,6 +79,3 @@ const OrderCartModal = ({ user }) => {
 };
 
 export default OrderCartModal;
-
-
-
