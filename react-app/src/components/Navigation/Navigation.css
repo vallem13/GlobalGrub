@@ -134,7 +134,7 @@
   color: black;
   position: relative;
   z-index: 4
- 
+
 }
 
 /* .search-input-container {
@@ -186,7 +186,6 @@
   display: flex;
   align-items: center;
   position: relative;
-
 }
 
 
@@ -204,7 +203,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  z-index: 600;
 }
 
 
