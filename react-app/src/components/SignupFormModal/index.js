@@ -43,7 +43,7 @@ function SignupFormModal() {
       frontendErrors.lastName= "Last Name is required"
     }
 		if(username.length < 4) {
-      frontendErrors.username = "Username is required"
+      frontendErrors.username = "Username must be at least 4 characters"
     }
     if(email.length < 2) {
       frontendErrors.email = "Email is required"
@@ -52,7 +52,7 @@ function SignupFormModal() {
       frontendErrors.phoneNumber = "Phone number is required"
     }
     if(password.length < 6) {
-      frontendErrors.password = "Password is required"
+      frontendErrors.password = "Password must be at least 6 characters"
     }
     if(confirmPassword.length < 2) {
       frontendErrors.confirmPassword = "Confirm Password is required"
@@ -111,12 +111,7 @@ function SignupFormModal() {
 			<h1 className='sign-up'>Sign Up</h1>
 			<form className='sign-up-form-container' onSubmit={handleSubmit}>
 
-				{/* <ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
 
-				</ul> */}
 				<label className='sign-up-label'>
 					First Name:
 					<input
@@ -227,6 +222,12 @@ function SignupFormModal() {
 					/>
 				</label>
 				{frontendErrors.confirmPassword && confirmPassword.length > 0 &&<p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
+				<ul>
+					{errors.map((error, idx) => (
+						<li key={idx}>{error}</li>
+					))}
+
+				</ul>
 				<button type="submit" className='signup-button'>Sign Up</button>
 			</form>
 		</>

@@ -24,40 +24,42 @@ const EditUserAccount = ({ userId }) => {
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [frontendErrors, setFrontendErrors] = useState({})
 
     useEffect(() => {
-        const errors = []
-        if (!address) {
-            errors.address = "Address is required";
+        const frontendErrors = {}
+
+            if(address.length < 2) {
+          frontendErrors.address = "Address is required"
         }
-        if (!city) {
-            errors.city = "City is required";
+            if(city.length < 2) {
+          frontendErrors.city = "City is required"
         }
-        if (!state) {
-            errors.state = "State is required";
+            if(state.length < 2) {
+          frontendErrors.state = "State is required"
         }
-        if (!zipcode) {
-            errors.zipcode = "Zip Code is required";
+            if(zipcode.length < 2) {
+          frontendErrors.zipcode = "Zipcode is required"
         }
-        if (!firstName) {
-            errors.firstName = "First name is required";
+            if(firstName.length < 2) {
+          frontendErrors.firstName = "First Name is required"
         }
-        if (!lastName) {
-            errors.lastName = "Last name is required";
+            if(lastName.length < 2) {
+          frontendErrors.lastName= "Last Name is required"
         }
-        if (!username) {
-            errors.username = "Username is required";
+            if(username.length < 4) {
+          frontendErrors.username = "Username must be at least 4 characters"
         }
-        if (!email) {
-            errors.email = "Email is required";
+        if(email.length < 2) {
+          frontendErrors.email = "Email is required"
         }
-        if (!phoneNumber) {
-            errors.phoneNumber = "Phone number is required";
+            if(phoneNumber.length < 4) {
+          frontendErrors.phoneNumber = "Phone number is required"
         }
-        setErrors(errors)
 
 
-    }, [address, city, state, zipcode, firstName, lastName, username, email, phoneNumber])
+        setFrontendErrors(frontendErrors)
+      }, [email, username, firstName, lastName, address, city, state, zipcode, phoneNumber])
 
 
 
@@ -103,9 +105,6 @@ const EditUserAccount = ({ userId }) => {
         < >
             <h1 className='sign-up'>Edit Account Info</h1>
             <form className='sign-up-form-container' onSubmit={handleSubmit}>
-                {/* <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul> */}
                 <label>
                     First Name:
                     <input
@@ -115,6 +114,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.firstName && firstName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.firstName}</p>}
                 <label>
                     Last Name:
                     <input
@@ -124,6 +124,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.lastName && lastName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.lastName}</p>}
                 <label>
                     Username:
                     <input
@@ -142,6 +143,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.email && email.length > 0 &&<p className='on-submit-errors'>{frontendErrors.email}</p>}
                 <label>
                     Address:
                     <input
@@ -151,6 +153,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.address && address.length > 0 &&<p className='on-submit-errors'>{frontendErrors.address}</p>}
                 <label>
                     City:
                     <input
@@ -160,6 +163,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.city && city.length > 0 &&<p className='on-submit-errors'>{frontendErrors.city}</p>}
                 <label>
                     State:
                     <input
@@ -169,6 +173,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.state && state.length > 0 &&<p className='on-submit-errors'>{frontendErrors.state}</p>}
                 <label>
                     Zipcode:
                     <input
@@ -178,6 +183,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.zipcode && zipcode.length > 0 &&<p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
                 <label>
                     Phone Number:
                     <input
@@ -187,6 +193,10 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
+                {frontendErrors.phoneNumber && phoneNumber.length > 0 &&<p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <button type="submit" className='update-account-button'>Update Account</button>
                 <button type="submit" onClick={submitCancel}>Cancel</button>
             </form>
