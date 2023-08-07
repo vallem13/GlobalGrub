@@ -190,7 +190,7 @@
 
 
 .cart-icon-count {
-  position: fixed;
+  position: absolute;
   top: -8px;
   right: 50px;
   background-color: purple;
@@ -203,7 +203,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3
   
 }
 

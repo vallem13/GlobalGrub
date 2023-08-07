@@ -9,7 +9,7 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: right 0.3s ease;
-    z-index: 5;
+    z-index: 2;
 }
 
   .open-cart-button {
@@ -21,7 +21,7 @@
     color: #fff;
     border: none;
     cursor: pointer;
-    z-index: 999;
+    /* z-index: 999; */
   }
 
   .cart-item {
