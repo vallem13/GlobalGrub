@@ -118,13 +118,13 @@
   margin-left: 5px;
 }
 
-.search-bar {
+/* .search-bar {
   position: fixed;
   margin-top: 8px;
   padding-right: 50px;
   padding-left: 120px;
 
-}
+} */
 
 .cart-button button {
   background-color: black;
@@ -132,17 +132,18 @@
 
 .shopping-cart-button button {
   color: black;
+  position: relative;
 }
 
-.search-input-container {
-  position: relative;
+/* .search-input-container {
+  position: fixed;
   border-radius: 50px;
   grid-area: search;
 
-}
+} */
 
 .search-icon {
-  position: fixed;
+  position: absolute;
   left: 410px;
   top: 167px;
   transform: translateY(-1170%);
@@ -155,7 +156,7 @@
   padding-left: 25px;
 }
 
-.search-input {
+/* .search-input {
   position: fixed;
   left:300px;
   top: 20px;
@@ -166,6 +167,14 @@
   width: 200px;
   background-color: #eee;
   cursor: pointer;
+} */
+
+.search-input {
+  position: absolute;
+  margin-left: 405px;
+  margin-top: 20px;
+  padding-left: 5px;
+
 }
 
 .cart-icon-wrapper {
