@@ -2,16 +2,15 @@
  #search-bar {
   position: fixed;
     position: absolute;
-    top: 0; /* Set the top position */
-    left: 5; /* Set the left position */
-    width: 100%; /* Make the search bar span the full width */
-    background-color: rgb(56, 173, 33); /* Add any desired background color */
-    z-index: 100; /* Adjust z-index if needed */
+    top: 0; 
+    left: 5; 
+    width: 100%; 
+    background-color: rgb(56, 173, 33); 
   }
    
   .search-suggestions {
     position: relative;
-    position: fixed;
+    position: absolute;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

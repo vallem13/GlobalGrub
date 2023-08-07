@@ -21,6 +21,8 @@
 #modal-content {
   position: absolute;
   background-color:white;
+  border-radius: 21px;
+  margin: 10px;
 }
 
 .on-submit-errors {
