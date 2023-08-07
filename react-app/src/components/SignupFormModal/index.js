@@ -22,7 +22,7 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [frontendErrors, setFrontendErrors] = useState({})
-	
+
 	useEffect(() => {
 		const frontendErrors = {}
 		if (address.length < 2) {
@@ -103,8 +103,8 @@ function SignupFormModal() {
 			]);
 		}
 	};
-	
-	
+
+
 	return (
 		<>
 			<h1 className='sign-up'>Sign Up</h1>

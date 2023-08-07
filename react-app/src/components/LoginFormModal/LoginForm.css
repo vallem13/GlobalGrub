@@ -104,7 +104,7 @@ button:disabled {
 
 #modal-content > .sign-up {
   width: 400px;
-  height: 550px;
+  height: 600px;
   display: flex;
   padding-top: 5px;
   border: none;
@@ -197,7 +197,7 @@ background-color: purple;
   padding-top: 120px;
   width: 380px;
   padding-left: 10px;
- 
+
 }
 
 .sign-up-form-container input {
@@ -223,6 +223,3 @@ background-color: purple;
   margin: 0; /* Remove margin to prevent shifting */
   visibility: hidden; /* Hide the placeholder */
 }
-
-
-

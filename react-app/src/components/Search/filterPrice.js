@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RestaurantCard from "../HomePage/RestaurantCard";
-import "./FilterPrice.css"; 
+import "./FilterPrice.css";
 
 export default function FilterPrice() {
   const history = useHistory();
@@ -38,7 +38,7 @@ export default function FilterPrice() {
       setSearchPrice(priceRange);
       FilterPriceThunk(priceRange);
       history.push("/filter");
-      
+
     }
   };
 
@@ -51,7 +51,7 @@ export default function FilterPrice() {
 return (
       <div id="filter-page-wrapper">
         {/* <div className="filter-container"> */}
-          <div className="filter-wrapper">
+          <div className="pper">
             <h2>Filter by Price:</h2>
             <div className="price-buttons">
               {price_range.map((price) => (
@@ -65,7 +65,7 @@ return (
               ))}
             </div>
           </div>
-       
+
           <div className="restaurant-cards-container">
             {filteredRestaurant.map((restaurant) => (
               <div className="one-restaurant-card">
@@ -73,8 +73,8 @@ return (
             </div>
             ))}
           </div>
-     
+
       </div>
     );
-    
+
   }

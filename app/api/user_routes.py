@@ -73,12 +73,3 @@ def edit_user(id):
     print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# # Get a User by ID
-# @user_routes.route('/<int:id>')
-# @login_required
-# def user(id):
-#     """
-#     Query for a user by id and returns that user in a dictionary
-#     """
-#     user = User.query.get(id)
-#     return user.to_dict()

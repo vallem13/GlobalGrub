@@ -4,15 +4,15 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
   max-width: 1026px;
- 
+
 } */
 
 #filter-page-wrapper {
   display: flex;
   /* border: 5px solid rgb(12, 12, 12); */
   margin-top: 100px;
-  
- 
+  padding-left: 30px;
+
 }
 
 #filter-page-wrapper h2 {

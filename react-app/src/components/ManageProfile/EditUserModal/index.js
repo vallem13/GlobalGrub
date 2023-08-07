@@ -22,9 +22,14 @@ const EditUserAccount = ({ userId }) => {
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [frontendErrors, setFrontendErrors] = useState({})
-    
+
     useEffect(() => {
         const frontendErrors = {}
+
+        const check_email = email.split('')
+        const reversed_check_email = check_email.reverse()
+
+
             if(address.length < 2) {
           frontendErrors.address = "Address is required"
         }
@@ -46,16 +51,16 @@ const EditUserAccount = ({ userId }) => {
             if(username.length < 4) {
           frontendErrors.username = "Username must be at least 4 characters"
         }
-        if(email.length < 2) {
-          frontendErrors.email = "Email is required"
+        if(email.length < 2 || !(check_email.find((element) => element === '@' ) && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
+          frontendErrors.email = "Please input a valid email"
         }
             if(phoneNumber.length < 4) {
           frontendErrors.phoneNumber = "Phone number is required"
         }
         setFrontendErrors(frontendErrors)
       }, [email, username, firstName, lastName, address, city, state, zipcode, phoneNumber])
-    
-    
+
+
       const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
@@ -72,13 +77,10 @@ const EditUserAccount = ({ userId }) => {
         };
         try {
           const editedUser = await dispatch(editUser(userId, updatedUser));
-        //   console.log('------->', editedUser);
-          // Check if there are errors in the response and handle them
           if (editedUser && editedUser.errors) {
             setErrors(editedUser.errors);
           }
         } catch (error) {
-          // Handle any other errors that might occur during the API request
           console.error("An error occurred:", error.message);
         }
         await closeModal();
@@ -86,8 +88,8 @@ const EditUserAccount = ({ userId }) => {
     const submitCancel = () => {
         closeModal()
     };
-    
-    
+
+
     return (
         < >
             <h1 className='sign-up'>Edit Account Info</h1>
@@ -130,7 +132,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
-                {frontendErrors.email && email.length > 0 &&<p className='on-submit-errors'>{frontendErrors.email}</p>}
+                {frontendErrors.email && email.length > 0 && <p className='on-submit-errors'>{frontendErrors.email}</p>}
                 <label>
                     Address:
                     <input
@@ -150,7 +152,7 @@ const EditUserAccount = ({ userId }) => {
                         required
                     />
                 </label>
-                {frontendErrors.city && city.length > 0 &&<p className='on-submit-errors'>{frontendErrors.city}</p>}
+                {frontendErrors.city && city.length > 0 && <p className='on-submit-errors'>{frontendErrors.city}</p>}
                 <label>
                     State:
                     <input
@@ -184,7 +186,7 @@ const EditUserAccount = ({ userId }) => {
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <button type="submit" className='update-account-button'>Update Account</button>
+                <button type="submit" className='update-account-button' disabled={Object.keys(frontendErrors).length > 0}>Update Account</button>
                 <button type="submit" onClick={submitCancel}>Cancel</button>
             </form>
         </>
