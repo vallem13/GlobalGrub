@@ -1,11 +1,11 @@
 /* Profile Drop Down */
 .profile-dropdown {
-  position: relative;
-  top: -70px;
-  right: 7px;
+  position: absolute;
+  top: -20px;
+  left: 0px;
   padding: 10px;
-  width: 250px;
-  height: 100%;
+  width: 275px;
+  height: 2000px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -133,6 +133,8 @@
 .shopping-cart-button button {
   color: black;
   position: relative;
+  z-index: 4
+ 
 }
 
 /* .search-input-container {
@@ -150,7 +152,6 @@
   color: purple;
   font-size: 12px;
   font-weight: bolder;
-  z-index: 1;
 }
 
 .search-input::placeholder {
@@ -189,8 +190,8 @@
 
 
 .cart-icon-count {
-  position: absolute;
-  top: -15px;
+  position: fixed;
+  top: -8px;
   right: 50px;
   background-color: purple;
   color: white;
@@ -202,6 +203,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3
+  
 }
 
 

@@ -121,6 +121,9 @@ button:disabled {
   padding-bottom: 5px;
 }
 
+.sign-up h1 {
+  color: #f00b51;
+}
 
 .login-signup-modal button:hover,
 .log-in-container button:hover,
@@ -189,9 +192,12 @@ background-color: purple;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-height: 450px; /* Set a max height for the form */
+  max-height: 425px; /* Set a max height for the form */
   overflow-y: auto;
-  padding-top: 120px
+  padding-top: 120px;
+  width: 380px;
+  padding-left: 10px;
+ 
 }
 
 .sign-up-form-container input {
