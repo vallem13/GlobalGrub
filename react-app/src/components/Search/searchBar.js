@@ -80,7 +80,7 @@ export default function SearchBar() {
   }, [searchRestaurant, restaurant, restaurantClicked]);
 
   return (
-    <div className="search-bar">
+    <div id="search-bar">
       {showMenu && searchRestaurant !== "" && !restaurantClicked && (
         <div className="search-suggestions">
           {filteredRestaurants.map((restaurant) => (

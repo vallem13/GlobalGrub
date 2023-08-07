@@ -8,9 +8,8 @@
 }
 
 .both-carousel-wrapper {
- 
   /* position: fixed; */
-  top: 145px;
+  top: 151px;
   /* top: 90%; Adjust this value to position the box vertically */
   right: 20px; /* Adjust this value to set the distance from the right edge */
   transform: translateY(-50%);
@@ -21,22 +20,24 @@
   .carousel-top-wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    width: 800px;
   }
 
   .carousel-title {
-    color:#f00b51;
-    font-size: larger;
-    font-weight: bold;
+    color: #f00b51;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
   }
 
   .carousel-item {
-    width: 250px;
-    height: auto;
+    width: 200px;
     overflow: hidden;
     border-radius: 8px;
     margin-right: 20px;
 
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 3s ease-in-out;
     display: flex;
     flex-direction: column;
 }
@@ -55,37 +56,51 @@
     font-weight: bold;
   }
 
-  .carousel-buttons button {
-    background-color: transparent;
-    border: none;
+  .carousel-buttons  {
     font-size: 20px;
     cursor: pointer;
-    padding: 5px 10px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    /* padding: 5px 10px; */
+    
   }
 
-  .prev-button {
-    margin: 0 auto 0 ;
+  .carousel-buttons button {
+    font-size: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    color:#ff851b;;
+
+    background-color: transparent
+  }
+  .prev-button button{
+    /* margin: 0 auto 0 ; */
     color: #f00b51;
-    padding-right: 20px;
+    padding-right: 40px;
+   
   }
 
-  .next-button {
-    margin: 0 0 0 auto;
+  .next-button button {
+    /* margin: 0 0 0 auto; */
     color: #f00b51;
     padding-left: 20px;
+    margin-left: auto
+
+   
+   
   }
 
-  .carousel-top-wrapper,
-  .carousel {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-  }
+
 
   .carousel-item:hover {
     transform: scale(1.1);
-
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+
+
   .carousel-item-details {
     display: flex;
     align-items: center;
