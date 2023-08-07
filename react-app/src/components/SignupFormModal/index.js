@@ -4,6 +4,8 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 
+
+
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
@@ -20,98 +22,93 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [frontendErrors, setFrontendErrors] = useState({})
-
+	
 	useEffect(() => {
-    const frontendErrors = {}
-
-		if(address.length < 2) {
-      frontendErrors.address = "Address is required"
-    }
-		if(city.length < 2) {
-      frontendErrors.city = "City is required"
-    }
-		if(state.length < 2) {
-      frontendErrors.state = "State is required"
-    }
-		if(zipcode.length < 2) {
-      frontendErrors.zipcode = "Zipcode is required"
-    }
-		if(firstName.length < 2) {
-      frontendErrors.firstName = "First Name is required"
-    }
-		if(lastName.length < 2) {
-      frontendErrors.lastName= "Last Name is required"
-    }
-		if(username.length < 4) {
-      frontendErrors.username = "Username must be at least 4 characters"
-    }
-    if(email.length < 2) {
-      frontendErrors.email = "Email is required"
-    }
-		if(phoneNumber.length < 4) {
-      frontendErrors.phoneNumber = "Phone number is required"
-    }
-    if(password.length < 6) {
-      frontendErrors.password = "Password must be at least 6 characters"
-    }
-    if(confirmPassword.length < 2) {
-      frontendErrors.confirmPassword = "Confirm Password is required"
-    }
-
-    setFrontendErrors(frontendErrors)
-  }, [email, username, firstName, lastName, confirmPassword, password, address, city, state, zipcode, phoneNumber])
-
+		const frontendErrors = {}
+		if (address.length < 2) {
+			frontendErrors.address = "Address is required"
+		}
+		if (city.length < 2) {
+			frontendErrors.city = "City is required"
+		}
+		if (state.length < 2) {
+			frontendErrors.state = "State is required"
+		}
+		if (zipcode.length < 2) {
+			frontendErrors.zipcode = "Zipcode is required"
+		}
+		if (firstName.length < 2) {
+			frontendErrors.firstName = "First Name is required"
+		}
+		if (lastName.length < 2) {
+			frontendErrors.lastName = "Last Name is required"
+		}
+		if (username.length < 4) {
+			frontendErrors.username = "Username must be at least 4 characters"
+		}
+		if (email.length < 2) {
+			frontendErrors.email = "Email is required"
+		}
+		if (phoneNumber.length < 4) {
+			frontendErrors.phoneNumber = "Phone number is required"
+		}
+		if (password.length < 6) {
+			frontendErrors.password = "Password must be at least 6 characters"
+		}
+		if (confirmPassword.length < 2) {
+			frontendErrors.confirmPassword = "Confirm Password is required"
+		}
+		setFrontendErrors(frontendErrors)
+	}, [email, username, firstName, lastName, confirmPassword, password, address, city, state, zipcode, phoneNumber])
 	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	if (password === confirmPassword) {
-	// 		const data = await dispatch(signUp(username, email, password, firstName, lastName, address, city, state, zipcode, phoneNumber));
-	// 		if (data) {
-	// 			setErrors(data);
-	// 		} else {
-	// 			closeModal();
-	// 		}
-	// 	} else {
-	// 		setErrors([
-	// 			"Confirm Password field must be the same as the Password field",
-	// 		]);
-	// 	}
+	//  e.preventDefault();
+	//  if (password === confirmPassword) {
+	//    const data = await dispatch(signUp(username, email, password, firstName, lastName, address, city, state, zipcode, phoneNumber));
+	//    if (data) {
+	//      setErrors(data);
+	//    } else {
+	//      closeModal();
+	//    }
+	//  } else {
+	//    setErrors([
+	//      "Confirm Password field must be the same as the Password field",
+	//    ]);
+	//  }
 	// };
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-		  const data = await dispatch(
-			signUp(
-			  email,
-			  phoneNumber,
-			  firstName,
-			  username,
-			  lastName,
-			  address,
-			  city,
-			  state,
-			  zipcode,
-			  password
-			)
-		  );
-		  if (data) {
-			setErrors(data);
-		  } else {
-			closeModal();
-		  }
+			const data = await dispatch(
+				signUp(
+					email,
+					phoneNumber,
+					firstName,
+					username,
+					lastName,
+					address,
+					city,
+					state,
+					zipcode,
+					password
+				)
+			);
+			if (data) {
+				setErrors(data);
+			} else {
+				closeModal();
+			}
 		} else {
-		  setErrors([
-			"Confirm Password field must be the same as the Password field",
-		  ]);
+			setErrors([
+				"Confirm Password field must be the same as the Password field",
+			]);
 		}
-	  };
-
+	};
+	
+	
 	return (
 		<>
 			<h1 className='sign-up'>Sign Up</h1>
 			<form className='sign-up-form-container' onSubmit={handleSubmit}>
-
-
 				<label className='sign-up-label'>
 					First Name:
 					<input
@@ -121,7 +118,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.firstName && firstName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.firstName}</p>}
+				{frontendErrors.firstName && firstName.length > 0 && <p className='on-submit-errors'>{frontendErrors.firstName}</p>}
 				<label className='sign-up-label'>
 					Last Name:
 					<input
@@ -131,7 +128,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label >
-				{frontendErrors.lastName && lastName.length > 0 &&<p className='on-submit-errors'>{frontendErrors.lastName}</p>}
+				{frontendErrors.lastName && lastName.length > 0 && <p className='on-submit-errors'>{frontendErrors.lastName}</p>}
 				<label className='sign-up-label'>
 					Username:
 					<input
@@ -141,7 +138,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.username && username.length > 0 &&<p className='on-submit-errors'>{frontendErrors.username}</p>}
+				{frontendErrors.username && username.length > 0 && <p className='on-submit-errors'>{frontendErrors.username}</p>}
 				<label className='sign-up-label'>
 					Email:
 					<input
@@ -151,7 +148,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.email && email.length > 0 &&<p className='on-submit-errors'>{frontendErrors.email}</p>}
+				{frontendErrors.email && email.length > 0 && <p className='on-submit-errors'>{frontendErrors.email}</p>}
 				<label className='sign-up-label'>
 					Address:
 					<input
@@ -161,7 +158,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.address && address.length > 0 &&<p className='on-submit-errors'>{frontendErrors.address}</p>}
+				{frontendErrors.address && address.length > 0 && <p className='on-submit-errors'>{frontendErrors.address}</p>}
 				<label className='sign-up-label'>
 					City:
 					<input
@@ -171,7 +168,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.city && city.length > 0 &&<p className='on-submit-errors'>{frontendErrors.city}</p>}
+				{frontendErrors.city && city.length > 0 && <p className='on-submit-errors'>{frontendErrors.city}</p>}
 				<label className='sign-up-label'>
 					State:
 					<input
@@ -181,7 +178,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.state && state.length > 0 &&<p className='on-submit-errors'>{frontendErrors.state}</p>}
+				{frontendErrors.state && state.length > 0 && <p className='on-submit-errors'>{frontendErrors.state}</p>}
 				<label className='sign-up-label'>
 					Zipcode:
 					<input
@@ -191,7 +188,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.zipcode && zipcode.length > 0 &&<p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
+				{frontendErrors.zipcode && zipcode.length > 0 && <p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
 				<label className='sign-up-label'>
 					Phone Number:
 					<input
@@ -201,7 +198,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.phoneNumber && phoneNumber.length > 0 &&<p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
+				{frontendErrors.phoneNumber && phoneNumber.length > 0 && <p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
 				<label className='sign-up-label'>
 					Password
 					<input
@@ -211,7 +208,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.password && password.length > 0 &&<p className='on-submit-errors'>{frontendErrors.password}</p>}
+				{frontendErrors.password && password.length > 0 && <p className='on-submit-errors'>{frontendErrors.password}</p>}
 				<label className='sign-up-label'>
 					Confirm Password
 					<input
@@ -221,17 +218,15 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.confirmPassword && confirmPassword.length > 0 &&<p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
+				{frontendErrors.confirmPassword && confirmPassword.length > 0 && <p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-
 				</ul>
 				<button type="submit" className='signup-button'>Sign Up</button>
 			</form>
 		</>
 	);
 }
-
 export default SignupFormModal;

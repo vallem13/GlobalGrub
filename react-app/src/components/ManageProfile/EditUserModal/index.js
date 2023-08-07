@@ -5,10 +5,7 @@ import { useHistory } from "react-router-dom"
 import { editUser } from "../../../store/session"
 import '../ManageProfile.css'
 
-
-
 const EditUserAccount = ({ userId }) => {
-
     const dispatch = useDispatch()
     const { closeModal } = useModal();
     const history = useHistory()
@@ -25,10 +22,9 @@ const EditUserAccount = ({ userId }) => {
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [frontendErrors, setFrontendErrors] = useState({})
-
+    
     useEffect(() => {
         const frontendErrors = {}
-
             if(address.length < 2) {
           frontendErrors.address = "Address is required"
         }
@@ -56,17 +52,13 @@ const EditUserAccount = ({ userId }) => {
             if(phoneNumber.length < 4) {
           frontendErrors.phoneNumber = "Phone number is required"
         }
-
-
         setFrontendErrors(frontendErrors)
       }, [email, username, firstName, lastName, address, city, state, zipcode, phoneNumber])
-
-
-
-    const handleSubmit = async (e) => {
+    
+    
+      const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-
         const updatedUser = {
           email,
           phoneNumber,
@@ -78,11 +70,9 @@ const EditUserAccount = ({ userId }) => {
           state,
           zipcode,
         };
-
         try {
           const editedUser = await dispatch(editUser(userId, updatedUser));
         //   console.log('------->', editedUser);
-
           // Check if there are errors in the response and handle them
           if (editedUser && editedUser.errors) {
             setErrors(editedUser.errors);
@@ -91,16 +81,13 @@ const EditUserAccount = ({ userId }) => {
           // Handle any other errors that might occur during the API request
           console.error("An error occurred:", error.message);
         }
-
         await closeModal();
       };
-
-
-
     const submitCancel = () => {
         closeModal()
     };
-
+    
+    
     return (
         < >
             <h1 className='sign-up'>Edit Account Info</h1>
@@ -202,7 +189,5 @@ const EditUserAccount = ({ userId }) => {
             </form>
         </>
     )
-
 }
-
 export default EditUserAccount
