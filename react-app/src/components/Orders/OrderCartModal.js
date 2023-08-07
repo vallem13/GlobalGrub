@@ -13,8 +13,6 @@ const OrderCartModal = ({ user }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const items = Object.values(cart)
 
-
-
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
 
     const restaurant_id = parseInt(current_restaurant[0])
@@ -31,11 +29,13 @@ const OrderCartModal = ({ user }) => {
     }, [cart_items]);
 
 
-    const placeOrder = async (e) => {
+    const placeOrder = async (e)=> {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
         closeModal()
+        window.location.reload();
     }
+    
 
     const cancelOrder = async (e) => {
         e.preventDefault()
