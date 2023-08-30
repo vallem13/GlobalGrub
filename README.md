@@ -2,6 +2,8 @@
 
 GlobalGrub is a spinoff of UberEats website that invites you to experience 12 unique cuisines from around the World. Users have full CRUD on Restaurants, Reviews, Menu Items and Shopping Cart. We have also included an additional search bar feature.
 
+Check out GlobalGrub Live [here](https://globalgrub-sp4x.onrender.com/home)
+
 ## Getting started
 1. Clone this repository (only this branch)
 
