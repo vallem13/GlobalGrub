@@ -13,7 +13,8 @@ def seed_restaurants():
         zipcode = 94118,
         contact_phone_number = "415-668-6007",
         restaurant_image = "https://tinyurl.com/2nm4xud3",
-        cuisine_type_id= 1
+        cuisine_type_id= 1,
+        user_id = 1
     )
     restaurant2 = Restaurant(
         name = "Daeho Kalbijim & Beef Soup",
@@ -25,7 +26,8 @@ def seed_restaurants():
         zipcode = 94115,
         contact_phone_number = "415-563-1388",
         restaurant_image = "https://tinyurl.com/4ne3ttb8",
-        cuisine_type_id= 1
+        cuisine_type_id= 1,
+        user_id = 1
     )
     restaurant3 = Restaurant(
         name = "Cherry Blossom Bakery",
@@ -37,7 +39,8 @@ def seed_restaurants():
         zipcode = 94118,
         contact_phone_number = "415-876-2727",
         restaurant_image = "https://tinyurl.com/4d8p4d4h",
-        cuisine_type_id=1
+        cuisine_type_id=1,
+        user_id = 1
     )
     restaurant4 = Restaurant(
         name = "Ryoko's Japanese Restaurant & Bar",
@@ -49,7 +52,8 @@ def seed_restaurants():
         zipcode = 94102,
         contact_phone_number = "415-775-1028",
         restaurant_image = "https://tinyurl.com/ypu342hc",
-        cuisine_type_id=2
+        cuisine_type_id=2,
+        user_id = 1
     )
     restaurant5 = Restaurant(
         name = "Okoze Sushi",
@@ -61,7 +65,8 @@ def seed_restaurants():
         zipcode = 94109,
         contact_phone_number = "415-567-3397",
         restaurant_image = "https://tinyurl.com/4xwbhava",
-        cuisine_type_id=2
+        cuisine_type_id=2,
+        user_id = 1
     )
     restaurant6 = Restaurant(
         name = "Waraku",
@@ -73,7 +78,8 @@ def seed_restaurants():
         zipcode = 94115,
         contact_phone_number = "415-292-3388",
         restaurant_image = "https://tinyurl.com/5n8kwzvc",
-        cuisine_type_id=2
+        cuisine_type_id=2,
+        user_id = 1
     )
     restaurant7 = Restaurant(
         name = "Mi Lindo Peru",
@@ -85,7 +91,8 @@ def seed_restaurants():
         zipcode = 94110,
         contact_phone_number = "415-642-4897",
         restaurant_image = "https://tinyurl.com/yct2yahr",
-        cuisine_type_id=3
+        cuisine_type_id=3,
+        user_id = 1
     )
     restaurant8 = Restaurant(
         name = "El Aji Peruvian Restaurant",
@@ -97,7 +104,8 @@ def seed_restaurants():
         zipcode = 94110,
         contact_phone_number = "415-658-7349",
         restaurant_image = "https://tinyurl.com/mr2d2pme",
-        cuisine_type_id=3
+        cuisine_type_id=3,
+        user_id = 2
     )
     restaurant9 = Restaurant(
         name = "Piqueo's",
@@ -109,19 +117,21 @@ def seed_restaurants():
         zipcode = 94110,
         contact_phone_number = "415-282-8812",
         restaurant_image = "https://tinyurl.com/42cv64d5",
-        cuisine_type_id=3
+        cuisine_type_id=3,
+        user_id = 2
     )
     restaurant10 = Restaurant(
-    name="Yummy Yummy",
-    price_range="$$",
-    description="This eatery offers the standard Vietnamese dishes like pho & banh xeo in a no-frills setting.",
-    address="1015 Irving St",
-    city="San Francisco",
-    state="CA",
-    zipcode=94122,
-    contact_phone_number="415-566-4722",
-    restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipMThhGe45QxTSkGv8OknKK_5KRoY-lyoHs2kGTI=w1080-h608-p-k-no-v0",
-    cuisine_type_id=4
+        name="Yummy Yummy",
+        price_range="$$",
+        description="This eatery offers the standard Vietnamese dishes like pho & banh xeo in a no-frills setting.",
+        address="1015 Irving St",
+        city="San Francisco",
+        state="CA",
+        zipcode=94122,
+        contact_phone_number="415-566-4722",
+        restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipMThhGe45QxTSkGv8OknKK_5KRoY-lyoHs2kGTI=w1080-h608-p-k-no-v0",
+        cuisine_type_id=4,
+        user_id = 2
     )
     restaurant11 = Restaurant(
         name = "Sunflower Garden",
@@ -133,7 +143,8 @@ def seed_restaurants():
         zipcode = 94122,
         contact_phone_number = "415-571-8850",
         restaurant_image = "https://www.1368sunflowergarden.com/wp-content/uploads/1368sunflowergarden.com/2021/06/k03.jpg",
-        cuisine_type_id=4
+        cuisine_type_id=4,
+        user_id = 2
     )
     restaurant12 = Restaurant(
         name = "Perilla",
@@ -145,7 +156,8 @@ def seed_restaurants():
         zipcode = 94122,
         contact_phone_number = "415-564-9980",
         restaurant_image = "https://lh5.googleusercontent.com/p/AF1QipNgtvK3_MYYi-025_2qf9BqVzMriEprmtuKB98v=w408-h300-k-no",
-        cuisine_type_id=4
+        cuisine_type_id=4,
+        user_id = 2
     )
     restaurant13 = Restaurant(
         name = "Nopalito",
@@ -157,7 +169,8 @@ def seed_restaurants():
         zipcode = 94117,
         contact_phone_number = "415-437-0303",
         restaurant_image = "https://s3-media0.fl.yelpcdn.com/bphoto/q6g3q0irrDND4BePQb0_ow/348s.jpg",
-        cuisine_type_id=5
+        cuisine_type_id=5,
+        user_id = 3
     )
     restaurant14 = Restaurant(
         name = "San Jalisco",
@@ -169,7 +182,8 @@ def seed_restaurants():
         zipcode = 94110,
         contact_phone_number = "415-648-8383",
         restaurant_image = "https://s3-media0.fl.yelpcdn.com/bphoto/D5jU4iuex489htX48_IpSg/348s.jpg",
-        cuisine_type_id=5
+        cuisine_type_id=5,
+        user_id = 3
     )
     restaurant15 = Restaurant(
         name = "Papito Hayes",
@@ -181,7 +195,8 @@ def seed_restaurants():
         zipcode = 94102,
         contact_phone_number = "415-554-0541",
         restaurant_image = "https://lh5.googleusercontent.com/p/AF1QipPOoLT5D6WtZKCwC8UimJZtK3egtAsOE2o3PAJv=w408-h272-k-no",
-        cuisine_type_id=5
+        cuisine_type_id=5,
+        user_id = 3
     )
     restaurant16 = Restaurant(
         name = "Bellota",
@@ -193,7 +208,8 @@ def seed_restaurants():
         zipcode = 94103,
         contact_phone_number = "415-430-6580",
         restaurant_image = "https://photos.singleplatform.com/c_limit,w_1024,fl_progressive/1fc6479d3722b2054ea18ae808363cae5164026f.jpg",
-        cuisine_type_id=6
+        cuisine_type_id=6,
+        user_id = 3
     )
     restaurant17 = Restaurant(
         name = "Coqueta",
@@ -205,7 +221,8 @@ def seed_restaurants():
         zipcode = 94111,
         contact_phone_number = "415-704-8866",
         restaurant_image = "https://lh5.googleusercontent.com/p/AF1QipMwVAbGhAq35HCSI4-EqSWDMvAvdWmeNkPUNcXp=w426-h240-k-no",
-        cuisine_type_id=6
+        cuisine_type_id=6,
+        user_id = 3
     )
     restaurant18 = Restaurant(
         name = "El Lopo",
@@ -217,7 +234,8 @@ def seed_restaurants():
         zipcode = 94109,
         contact_phone_number = "415-237-3072",
         restaurant_image = "https://s3-media0.fl.yelpcdn.com/bphoto/tdWH6LBAn9v6xH79Jvw9EA/348s.jpg",
-        cuisine_type_id=6
+        cuisine_type_id=6,
+        user_id = 3
     )
     restaurant19 = Restaurant(
         name="Petit Crenn",
@@ -229,7 +247,8 @@ def seed_restaurants():
         zipcode=94102,
         contact_phone_number="415-400-0460",
         restaurant_image = "https://cdn.vox-cdn.com/uploads/chorus_asset/file/3947684/PetitCrenn_PChang-6273.0.jpg",
-        cuisine_type_id=7
+        cuisine_type_id=7,
+        user_id = 4
     )
     restaurant20 = Restaurant(
         name="Frances",
@@ -241,7 +260,8 @@ def seed_restaurants():
         zipcode=94114,
         contact_phone_number="415-621-3870",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipMbjvHjocxPGNdNfT5VKpZVui-HBy7zYuVbMPMc=s680-w680-h510",
-        cuisine_type_id=7
+        cuisine_type_id=7,
+        user_id = 4
     )
     restaurant21 = Restaurant(
         name="Chapeau",
@@ -253,7 +273,8 @@ def seed_restaurants():
         zipcode=94118,
         contact_phone_number="415-750-9787",
         restaurant_image = "https://cdn.sfstation.com/assets/images/businesses/94/14941608370864_orig.jpg",
-        cuisine_type_id=7
+        cuisine_type_id=7,
+        user_id = 4
     )
     restaurant22 = Restaurant(
         name="TRULY Mediterranean",
@@ -265,7 +286,8 @@ def seed_restaurants():
         zipcode=94103,
         contact_phone_number="415-252-7482",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipMnLrtSKa5tz5cZtC-sxfhijRX0Zvo-627reopj=s1360-w1360-h1020",
-        cuisine_type_id=8
+        cuisine_type_id=8,
+        user_id = 4
     )
     restaurant23 = Restaurant(
         name="La Mediterranee",
@@ -277,7 +299,8 @@ def seed_restaurants():
         zipcode=94115,
         contact_phone_number="415-921-2956",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipO9vhHWFfHcfkaXmKyQQovdIXFIfYJiEGmhOdoS=s1360-w1360-h1020",
-        cuisine_type_id=8
+        cuisine_type_id=8,
+        user_id = 4
     )
     restaurant24 = Restaurant(
         name="Mediterranean Aroma",
@@ -289,7 +312,8 @@ def seed_restaurants():
         zipcode=94107,
         contact_phone_number="415-829-3119",
         restaurant_image = "https://lh5.googleusercontent.com/p/AF1QipP8qeSUcWg1SaeK-T25zTqNxaknkU7gtg_-2fo7=w260-h175-n-k-no",
-        cuisine_type_id=8
+        cuisine_type_id=8,
+        user_id = 4
     )
     restaurant25 = Restaurant(
         name="Farmhouse Kitchen Thai Cuisine",
@@ -313,7 +337,8 @@ def seed_restaurants():
         zipcode=94109,
         contact_phone_number="415-673-5774",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipM1d30D3zKoaJY5PFda_5f9tWUlpEsQJgVv1nnC=s1360-w1360-h1020",
-        cuisine_type_id=9
+        cuisine_type_id=9,
+        user_id = 5
     )
     restaurant27 = Restaurant(
         name="New Thai Elephant",
@@ -325,7 +350,8 @@ def seed_restaurants():
         zipcode=94133,
         contact_phone_number="415-818-8999",
         restaurant_image = "https://lh3.googleusercontent.com/p/AF1QipMBlQBw1uJ_LMAwmd3v-pJT-8oYRH2razim8g3s=s1360-w1360-h1020",
-        cuisine_type_id=9
+        cuisine_type_id=9,
+        user_id = 5
     )
     restaurant28 = Restaurant(
         name = "Hoyo's Kitchen",
@@ -337,7 +363,8 @@ def seed_restaurants():
         zipcode = 94105,
         contact_phone_number = "555-123-4567",
         restaurant_image = "https://www.columbusmonthly.com/gcdn/authoring/2019/12/09/NCOA/ghows-OH-875de120-788a-487f-bf8f-3aadecda6a9f-e07fa004.jpeg",
-        cuisine_type_id=10
+        cuisine_type_id=10,
+        user_id = 5
     )
     restaurant29 = Restaurant(
         name = "Afro Deli & Grill",
@@ -349,7 +376,8 @@ def seed_restaurants():
         zipcode = 94102,
         contact_phone_number = "555-987-6543",
         restaurant_image = "https://media-cdn.tripadvisor.com/media/photo-s/13/56/7c/bf/i-forgot-the-name-but.jpg",
-        cuisine_type_id=10
+        cuisine_type_id=10,
+        user_id = 5
     )
     restaurant30 = Restaurant(
         name = "Banadir Somali Restaurant",
@@ -361,7 +389,8 @@ def seed_restaurants():
         zipcode = 94110,
         contact_phone_number = "512-457-2543",
         restaurant_image = "https://tinyurl.com/4f3ch2hu",
-        cuisine_type_id=10
+        cuisine_type_id=10,
+        user_id = 5
     )
     restaurant31 = Restaurant(
         name = "Negril Village",
@@ -373,7 +402,8 @@ def seed_restaurants():
         zipcode = 94103,
         contact_phone_number = "415-555-5678",
         restaurant_image = "https://res.cloudinary.com/the-infatuation/image/upload/v1656121917/cms/reviews/negril-1/DavidALee_NYC_Negril_BK_All_Dishes_004.jpg",
-        cuisine_type_id=11
+        cuisine_type_id=11,
+        user_id = 5
     )
     restaurant32 = Restaurant(
         name = "Flavas Jamaican Grill",
@@ -385,7 +415,8 @@ def seed_restaurants():
         zipcode = 94107,
         contact_phone_number = "415-555-6789",
         restaurant_image = "https://flavasjamaicangrillsf.com/wp-content/uploads/2019/10/authenticjamaican.jpg",
-        cuisine_type_id=11
+        cuisine_type_id=11,
+        user_id = 5
     )
     restaurant33  = Restaurant(
         name = "Miss Lily's",
@@ -397,7 +428,8 @@ def seed_restaurants():
         zipcode = 94124,
         contact_phone_number = "415-555-9876",
         restaurant_image = "https://images.squarespace-cdn.com/content/v1/5d9a6c4434030a6df9f05729/1572062929178-PROV4UVH5ZKD3LNKCTY0/RedHouseSF-28.jpg",
-        cuisine_type_id=11
+        cuisine_type_id=11,
+        user_id = 5
     )
     restaurant34 = Restaurant (
         name = "Amber India",
@@ -409,7 +441,8 @@ def seed_restaurants():
         zipcode = 41056,
         contact_phone_number = "415-555-4321",
         restaurant_image = "https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/66983283-3c06-47cc-8181-16693a11af2e.jpg",
-        cuisine_type_id=12
+        cuisine_type_id=12,
+        user_id = 1
     )
     restaurant35 = Restaurant(
         name = "Copra",
@@ -421,7 +454,8 @@ def seed_restaurants():
         zipcode = 94107,
         contact_phone_number = "515-555-4321",
         restaurant_image = "https://whatnowsf.com/wp-content/uploads/sites/6/2022/10/copra2.jpeg",
-        cuisine_type_id=12
+        cuisine_type_id=12,
+        user_id = 1
     )
     restaurant36  = Restaurant(
         name = "Star India",
@@ -433,7 +467,8 @@ def seed_restaurants():
         zipcode = 94102,
         contact_phone_number = "415-555-4322",
         restaurant_image = "https://www.thebollywoodbites.com/wp-content/uploads/2018/09/Buffet.jpg",
-        cuisine_type_id=12
+        cuisine_type_id=12,
+        user_id = 1
     )
 
 

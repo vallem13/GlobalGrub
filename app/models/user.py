@@ -23,9 +23,11 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     # user_profile_icon = db.Column(db.String(255))
 
+    # Relationships
     reviews = db.relationship('Review', back_populates="user")
     orders = db.relationship('Order', back_populates="user", cascade="all, delete-orphan")
     order_carts = db.relationship('OrderCart', back_populates="user", cascade="all, delete-orphan")
+    restaurants = db.relationship('Restaurant', back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -53,4 +55,5 @@ class User(db.Model, UserMixin):
             'hashed_password': self.hashed_password,
             # 'user_profile_icon': self.user_profile_icon
             'order_carts': [order_cart.to_dict() for order_cart in self.order_carts],
+            'restaurants': [restaurant.to_dict() for restaurant in self.restaurants],
         }
