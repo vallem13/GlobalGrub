@@ -12,7 +12,7 @@ const getSingletCuisine = (cuisineId) => ({
 })
 
 export const getCuisineThunk = () => async (dispatch) => {
-    const response = await fetch("/api/cuisine_type");
+    const response = await fetch("/api/cuisine_type/");
     if (response.ok) {
         const data = await response.json()
         // console.log("is this the response ---->", data)
