@@ -18,13 +18,17 @@ class Restaurant(db.Model):
     zipcode = db.Column(db.Integer, nullable=False)
     contact_phone_number = db.Column(db.String(12), nullable=False, unique=True)
     restaurant_image = db.Column(db.String(255), nullable=False)
-    cuisine_type_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("cuisine_types.id")))
 
-    # Relationships goes here
+    #Foreign Keys
+    cuisine_type_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("cuisine_types.id")))
+    user_id = user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+
+    # Relationships
     reviews = db.relationship('Review', back_populates='restaurant', cascade="all, delete-orphan")
     cuisine_type = db.relationship('CuisineType', back_populates='restaurants')
     order_carts = db.relationship('OrderCart', back_populates='restaurant')
     menu_items = db.relationship('MenuItem', back_populates='restaurant', cascade="all, delete-orphan")
+    user = db.relationship('User', back_populates='restaurants')
 
     def to_dict(self):
         return {
@@ -39,6 +43,12 @@ class Restaurant(db.Model):
             'contact_phone_number': self.contact_phone_number,
             'restaurant_image': self.restaurant_image,
             'cuisine_type_id': self.cuisine_type_id,
+            'user_id': self.user_id,
+            'user': {
+                'id': self.user.id,
+                'firstName': self.user.first_name,
+                'lastName': self.user.last_name,
+            },
             'menu_items': [item.to_dict() for item in self.menu_items],
             'reviews': [review.to_dict() for review in self.reviews],
             'average_rating': self.average_rating

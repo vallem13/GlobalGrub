@@ -63,7 +63,9 @@ def upgrade():
     sa.Column('contact_phone_number', sa.String(length=12), nullable=False),
     sa.Column('restaurant_image', sa.String(length=255), nullable=False),
     sa.Column('cuisine_type_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cuisine_type_id'], ['cuisine_types.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('contact_phone_number')
     )
