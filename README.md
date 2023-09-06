@@ -1,6 +1,53 @@
-# Flask React Project
+# Welcome to GlobalGrub 🌎🍴
 
-This is the starter for the Flask React project.
+GlobalGrub is a spinoff of UberEats website that invites you to experience 12 unique cuisines from around the World. Users have full CRUD on Restaurants, Reviews, Menu Items and Shopping Cart. We have also included an additional search bar feature.
+
+Check out GlobalGrub Live [here](https://globalgrub-sp4x.onrender.com/home)!
+
+## Technologies Used
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) 
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) 
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-%23FCA121.svg?style=for-the-badge&logo=sqlalchemy&logoColor=white)
+
+## Features
+### Users
+* Users can sign up, log in, and log out.
+* Users can edit their account.
+* Users can use a demo login to navigate through the site.
+* Users can delete their account.
+### Restaurants
+* Users should be able to view all restaurants for delivery.
+* Users should be able to create a restaurant.
+* Users should be able to update their restaurant(s).
+* Users should be able to delete their restaurant(s).
+### Reviews
+* Users should be able to view all reviews on a restaurant.
+* Users should be able to create a review for a restaurant.
+* Users should be able to update their review for a restaurant.
+* Users should be able to delete their review from a restaurant.
+### Shopping Cart
+* Users should be able to view all products added to their cart.
+* Users should be able to add products to their shopping cart.
+* Users should be able to remove products from their shopping cart.
+* Users should be able to preform a “transaction” to complete their purchase.
+### Menu Items
+* Users should be able to view all menu items for a restaurant.
+* Users should be able to add menu items to their restaurants.
+* Users should be able to update menu items on their restaurants.
+* Users should be able to delete menu items from their restaurants.
+### Bonus: Search
+* Users should be able to search for restaurants.
+* Users should be able to view the results of their search.
+### Bonus: Filter
+* Users should be able to filter through Cuisine Types
+
+
 
 ## Getting started
 1. Clone this repository (only this branch)
