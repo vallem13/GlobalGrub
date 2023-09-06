@@ -15,7 +15,7 @@ const getSingleRestaurant = (restaurant) => ({
 
 // Thunk
 export const getAllRestaurantsThunk = () => async (dispatch) => {
-    const response = await fetch('/api/restaurant');
+    const response = await fetch('/api/restaurant/');
     // console.log("------>", response)
     if (response.ok) {
         const restaurants = await response.json();
