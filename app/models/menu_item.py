@@ -14,7 +14,6 @@ class MenuItem(db.Model):
     menu_item_image = db.Column(db.String(1000), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")))
 
-
     # Relationship goes here
     restaurant = db.relationship("Restaurant", back_populates='menu_items')
     order = db.relationship("Order", back_populates='menu_items')
@@ -26,7 +25,5 @@ class MenuItem(db.Model):
             'description': self.description,
             'price': self.price,
             'menu_item_image': self.menu_item_image,
-            'restaurant_id': self.restaurant_id
+            'restaurant_id': self.restaurant_id,
         }
-
-
