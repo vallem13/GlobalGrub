@@ -55,6 +55,18 @@ function ProfileButton({ user }) {
     history.push('/user_orders');
   };
 
+  const handleManageBusinesses = async (e) => {
+    e.preventDefault();
+    closeMenu();
+    history.push('/my_restaurants');
+  };
+
+  const handleCreateRestaurant = async (e) => {
+    e.preventDefault();
+    closeMenu();
+    history.push('/restaurant/new-restaurant');
+  };
+
   const closeMenu = () => setShowMenu(false);
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -88,6 +100,14 @@ function ProfileButton({ user }) {
 
             <p className="custom-paragraph">
               <button onClick={handleLogout} className="logout-button">Log Out</button>
+            </p>
+
+            <p className="custom-paragraph">
+              <button onClick={handleManageBusinesses} className="Manage your Businesses">Manage your Businesses</button>
+            </p>
+
+            <p className="custom-paragraph">
+              <button onClick={handleCreateRestaurant} className="Add your Restaurant">Add your Restaurant</button>
             </p>
 
             <p className="created-by">
