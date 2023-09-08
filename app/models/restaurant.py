@@ -21,7 +21,7 @@ class Restaurant(db.Model):
 
     #Foreign Keys
     cuisine_type_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("cuisine_types.id")))
-    user_id = user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
     # Relationships
     reviews = db.relationship('Review', back_populates='restaurant', cascade="all, delete-orphan")
