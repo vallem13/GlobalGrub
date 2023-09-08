@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useModal } from "../../context/Modal";
 import { createRestaurantThunk, getAllRestaurantsThunk } from "../../store/restaurant";
 import "./Restaurant.css";
 
@@ -15,7 +14,6 @@ const CreateRestaurant = () => {
     const newRestaurant = restaurants[restaurants.length - 1]
 
     const [name, setName] = useState('');
-    const [priceRange, setPriceRange] = useState('');
     const [imageLoading, setImageLoading] = useState(false);
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
@@ -24,7 +22,6 @@ const CreateRestaurant = () => {
     const [zipcode, setZipcode] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [restaurantImage, setRestaurantImage] = useState(null);
-    const [cuisineType, setCuisineType] = useState('');
     const [frontendErrors, setFrontendErrors] = useState({});
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
@@ -55,9 +52,6 @@ const CreateRestaurant = () => {
         { id: 11, name: 'Jamaican' },
         { id: 12, name: 'Indian' },
     ];
-
-
-
 
 
 
@@ -128,6 +122,8 @@ const CreateRestaurant = () => {
             formData.append("cuisine_type_id", selectedCuisineType.id);
             formData.append('user_id', user.id)
 
+            console.log("this is the cuisine --------->", selectedCuisineType)
+
             setImageLoading(true);
 
             if (!restaurantImage) return null
@@ -137,12 +133,13 @@ const CreateRestaurant = () => {
 
 
 
-            if (data) {
-                setErrors(data);
-            } else {
-                // await history.push('/profile')
+            // if (data) {
+            //     setErrors(data);
+            // } else {
+
+            await history.push('/my_restaurants')
                 // await closeModal();
-            }
+            // }
         }
 
     };
@@ -269,15 +266,15 @@ const CreateRestaurant = () => {
                     Cuisine Type
                     <select
                         className="modal-input"
-                        value={selectedCuisineType.id}
+                        value={selectedCuisineType}
                         onChange={(e) => {
                             const selectedId = e.target.value;
                             const selectedName = cuisineTypeOptions.find((option) => option.id === selectedId)?.name || '';
+                            console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
                             setSelectedCuisineType({ id: selectedId, name: selectedName });
                         }}
                         required
                     >
-
                         <option value="" disabled>
                             Select cuisine type
                         </option>

@@ -20,7 +20,7 @@ const ManageRestaurants = () => {
     }
 
     const editRestaurant = (restaurantId) => {
-        history.push(`/restaurant/edit${restaurantId}/`)
+        history.push(`/restaurant/edit/${restaurantId}/`)
     }
 
     return (
@@ -35,7 +35,8 @@ const ManageRestaurants = () => {
                             <RestaurantCard key={restaurant.id} manage={true} restaurant={restaurant} />
 
                             <div className="">
-                            <button className="" onClick={() => editRestaurant(restaurant.id)}>Update Restaurant</button>
+                            {/* <button className="" onClick={() => editRestaurant(restaurant.id)}>Update Restaurant</button> */}
+                            <OpenModalButton buttonText="Edit Restaurant" modalComponent={<EditRestaurant restaurant={restaurant}/>}/>
 
                             <OpenModalButton buttonText="Delete Restaurant" modalComponent={<DeleteRestaurant restaurantId={restaurant.id}/>}/>
 
