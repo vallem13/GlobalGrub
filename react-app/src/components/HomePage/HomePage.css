@@ -6,6 +6,7 @@
 
 .carousel-wrapper-filter {
   width: 200px;
+
 }
 
 .both-carousel-wrapper {
@@ -21,13 +22,14 @@
     flex-direction: row;
     justify-content: space-around;
     width: 800px;
+    margin-left: 20px;
   }
   .carousel-button-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     width: 780px;
   }
 
@@ -53,7 +55,7 @@
     cursor: pointer;
     border: none;
     color:#ff851b;;
-    border: 2px solid maroon;
+    /* border: 2px solid maroon; */
     align-self: center;
     text-align: center;
     background-color: transparent

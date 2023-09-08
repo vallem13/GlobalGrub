@@ -4,6 +4,8 @@ import { getAllRestaurantsThunk } from "../../store/restaurant";
 import './HomePage.css';
 import { useHistory } from "react-router-dom";
 import FilterPrice from "../Search/filterPrice";
+import RestaurantCard from "../HomePage/RestaurantCard";
+
 
 
 const RestaurantCarousel = () => {
@@ -88,7 +90,7 @@ const RestaurantCarousel = () => {
                   <div className="restaurant-carousel-name">{restaurant.name}</div>
                   <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button>
                 </div>
-                ,</div>
+                </div>
             ))}
           </div>
 
@@ -101,13 +103,15 @@ const RestaurantCarousel = () => {
                 key={restaurant.id}
 
                 onClick={() => handleOnClick(restaurant.id)}
-              >
+              > 
                 <img
                   src={restaurant.restaurant_image}
 
                 />
                 <div >
                   <div >{restaurant.name}</div>
+                  {/* <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button> */}
+
                 </div>
               </div>
             ))}

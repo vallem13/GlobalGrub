@@ -2,6 +2,7 @@
     transform: translateY(-2px);
     text-decoration: underline;
     color: #f00b51;
+    cursor: pointer;
   }
 
 .cuisine-type:hover {
