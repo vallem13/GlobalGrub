@@ -1,17 +1,17 @@
 .home {
   display: flex;
   width: 1026px;
+  margin-top: 8%;
 }
 
 .carousel-wrapper-filter {
   width: 200px;
+
 }
 
 .both-carousel-wrapper {
-  /* position: fixed; */
   top: 151px;
-  /* top: 90%; Adjust this value to position the box vertically */
-  right: 20px; /* Adjust this value to set the distance from the right edge */
+  right: 20px; 
   transform: translateY(-50%);
   transform: translateX(2%);
   }
@@ -20,21 +20,52 @@
   .carousel-top-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     width: 800px;
+    margin-left: 20px;
+  }
+  .carousel-button-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid pink; */
+    width: 780px;
   }
 
   .carousel-title {
-    color: #f00b51;
+    color: hsla(342, 91%, 49%, 0.719);
     font-size: 30px;
-    font-weight: bolder;
-    text-align: center;
+    font-weight: 800px;
+    /* text-align: center; */
   }
+  .material-symbols-outlined{
+    color: #f00b5085;
+    font-size: 35px;
+    font-weight: 800px;
+    /* text-align: center; */
+    /* background-color: gray ; */
+  }
+  .material-symbols-outlined:hover{
+    font-size: 38px;
+  }
+  .carousel-icons {
+    /* width: 100px;
+    height: 40px; */
+    cursor: pointer;
+    border: none;
+    color:#ff851b;;
+    /* border: 2px solid maroon; */
+    align-self: center;
+    text-align: center;
+    background-color: transparent
+  }
+ 
 
   .carousel-item {
-    width: 200px;
+    width: 250px;
     overflow: hidden;
-    border-radius: 8px;
+    /* border-radius: 30px; */
     margin-right: 20px;
 
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 3s ease-in-out;
@@ -43,9 +74,11 @@
 }
 
   .carousel-item img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 200px;
     object-fit: cover;
+    border-radius: 20px;
+
   }
 
   .restaurant-name {
@@ -56,42 +89,6 @@
     font-weight: bold;
   }
 
-  .carousel-buttons  {
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    /* padding: 5px 10px; */
-    
-  }
-
-  .carousel-buttons button {
-    font-size: 40px;
-    margin-top: 10px;
-    cursor: pointer;
-    border: none;
-    color:#ff851b;;
-
-    background-color: transparent
-  }
-  .prev-button button{
-    /* margin: 0 auto 0 ; */
-    color: #f00b51;
-    padding-right: 40px;
-   
-  }
-
-  .next-button button {
-    /* margin: 0 0 0 auto; */
-    color: #f00b51;
-    padding-left: 20px;
-    margin-left: auto
-
-   
-   
-  }
 
 
 
@@ -107,6 +104,13 @@
     justify-content: space-between;
     padding: 10px;
   }
+
+  .all-restaurant-wrapper h3 {
+    color: hsla(342, 91%, 49%, 0.719);
+    font-size: 35px;
+    font-weight: 800px;
+
+  }
   .restaurant-carousel-avg  {
     border: #ff851b;
     width: 30px;
@@ -119,3 +123,33 @@
     align-items: center;
     font-weight: bold;
 }
+
+.restaurant-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
+}
+
+.restaurant-container > * {
+  flex: 1 0 calc(33.33% - 40px);  
+margin-bottom: 50px;
+margin-left: 20px;
+margin-right: 20px;
+}
+
+.single-restaurant{
+  width: auto;
+  height: 150px;
+}
+
+.single-restaurant img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  cursor: pointer;
+  
+}
+
+
+

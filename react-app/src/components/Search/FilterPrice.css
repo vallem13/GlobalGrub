@@ -1,17 +1,11 @@
-/* #filter-page-wrapper {
-  border: 3px solid rgb(30, 17, 219);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 5px;
-  max-width: 1026px;
-
-} */
+/* 
 
 #filter-page-wrapper {
   display: flex;
-  /* border: 5px solid rgb(12, 12, 12); */
+  border: 5px solid rgb(12, 12, 12);
   margin-top: 100px;
   padding-left: 30px;
+  position: static;
 
 }
 
@@ -21,7 +15,6 @@
 
 
 .restaurant-cards-container {
-  /* border: 3px solid rgb(243, 242, 238); */
   gap: 5px;
   display: grid;
   grid-template-columns: repeat(3, 2fr);
@@ -55,7 +48,6 @@
   border-radius: 30px;
   cursor: pointer;
   border: transparent;
-  /* font-family: 'Nunito Sans', sans-serif; */
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   background-color:  rgba(247, 240, 242, 0.8);
   color: #f00b51;
@@ -72,4 +64,72 @@
 .price-button:hover {
   background-color: rgb(128, 0, 128);
   color: #ffffff;
+} */
+#filter-page-wrapper {
+  display: flex;
+  flex-direction: row;
+  /* align-items: top; */
+  width: 100%;
+  margin-top: 5%;
 }
+
+.pper {
+  position: sticky;
+  background-color: white; 
+  z-index: 2; 
+  padding: 10px 0;  
+  top: 0;
+}
+
+.price-buttons {
+  display: flex;
+  gap: 15px;  
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  height: 100px;
+  width: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+  
+.price-button {
+  
+  font-weight: lighter;
+  font-family: monospace;
+  border-radius: 10px;
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 0px;
+  background-color: #f00b5041 ;
+}
+.price-button:hover {
+  background-color: #ff851bad;
+  color: #ffffff;
+} */
+
+.restaurant-cards-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;  /* center the cards if they don't span the full width */
+}
+
+.restaurant-cards-container {
+  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-gap: 3px;
+  width: fit-content;
+}
+
+.one-restaurant-card {
+  /* width: 250px;
+  height: auto;
+  overflow: hidden;
+  object-fit: cover; */
+}
+

@@ -101,6 +101,7 @@
 .whole-bar-nav {
   display: flex;
   flex-direction: column;
+  border-bottom: .5px solid #80808028;
 }
 
 .profile-logo-cart-nav {

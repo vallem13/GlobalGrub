@@ -51,7 +51,7 @@ function App() {
                 <UserProfile />
               </ProtectedRoute>
             </Route>
-            <Route path="/filter">
+            <Route path="/filter/:priceRange">
               <ProtectedRoute>
                 <FilterPrice />
               </ProtectedRoute>

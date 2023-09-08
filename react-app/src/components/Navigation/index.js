@@ -49,7 +49,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<>
 			{isLoaded && (
-				<div className='whole-nav-bar'>
+				<div className='whole-nav-bar' style={{ borderBottom: ".5px solid #80808028" }}>
 					{sessionUser ? (
 						<div>
 							<div className='profile-logo-cart-nav'>
