@@ -19,11 +19,16 @@ const EditRestaurant = ({ restaurant }) => {
   const [zipcode, setZipcode] = useState(restaurant.zipcode);
   const [contactNumber, setContactNumber] = useState(restaurant.contact_phone_number);
   const [restaurantImage, setRestaurantImage] = useState(restaurant.restaurant_image);
-  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.selectedPriceRange || "");
-  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.selectedCuisineType || "");
+  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.price_range
+    || "");
+  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.cuisine_type_id
+    || "");
   const [frontendErrors, setFrontendErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+
+  console.log('------>1', restaurant)
+  console.log('------>', restaurant.selectedCuisineType)
 
   const priceRangeOptions = [
     { value: '$', label: '$' },
