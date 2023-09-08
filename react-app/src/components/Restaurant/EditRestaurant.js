@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from '../../context/Modal';
-import { useHistory, useParams } from "react-router-dom";
-import { editRestaurantThunk, getSingleRestaurantThunk } from "../../store/restaurant";
+import { useHistory } from "react-router-dom";
+import { editRestaurantThunk, getAllRestaurantsThunk } from "../../store/restaurant";
 import "./Restaurant.css";
 
 const EditRestaurant = ({ restaurant }) => {
@@ -11,7 +11,7 @@ const EditRestaurant = ({ restaurant }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [name, setName] = useState(restaurant.name);
-  const [imageLoading, setImageLoading] = useState(restaurant.imageLoading);
+  const [imageLoading, setImageLoading] = useState(false);
   const [description, setDescription] = useState(restaurant.description);
   const [address, setAddress] = useState(restaurant.address);
   const [city, setCity] = useState(restaurant.city);
@@ -87,7 +87,7 @@ const EditRestaurant = ({ restaurant }) => {
     }
 
     setFrontendErrors(frontendErrors)
-  }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage])
+  }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,8 +95,8 @@ const EditRestaurant = ({ restaurant }) => {
     setSubmitted(true)
 
     const hasFrontendErrors = Object.keys(frontendErrors).length > 0;
-    if (!hasFrontendErrors) {
 
+    if (!hasFrontendErrors) {
 
       const formData = new FormData();
       formData.append("name", name);
@@ -123,13 +123,15 @@ const EditRestaurant = ({ restaurant }) => {
       // setImageLoading(true);
 
       try {
-        const data = await dispatch(editRestaurantThunk(formData, restaurant.id));
+        const data = await dispatch(editRestaurantThunk(restaurant.id, formData));
+        await dispatch(getAllRestaurantsThunk())
         if (data) {
           setErrors(data);
         }
       } catch (error) {
         console.error("An error occurred:", error.message);
       }
+      await history.push(`/my_restaurants`)
       await closeModal()
     }
   }
@@ -265,8 +267,9 @@ const EditRestaurant = ({ restaurant }) => {
             value={selectedCuisineType.id || ""}
             onChange={(e) => {
               const selectedId = e.target.value;
+              console.log("Selected Value:", selectedId); // Add this line for debugging
               const selectedName = cuisineTypeOptions.find((option) => option.id === selectedId)?.name || '';
-              console.log("Selected Cuisine Type:", selectedName);
+              console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
               setSelectedCuisineType({ id: selectedId, name: selectedName });
             }}
             required
