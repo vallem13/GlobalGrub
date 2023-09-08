@@ -6,13 +6,11 @@ import "./Restaurant.css";
 
 const CreateRestaurant = () => {
 
-
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const restaurants = Object.values(useSelector(state => state.restaurant.allRestaurants))
     const newRestaurant = restaurants[restaurants.length - 1]
-
     const [name, setName] = useState('');
     const [imageLoading, setImageLoading] = useState(false);
     const [description, setDescription] = useState('');
@@ -27,9 +25,6 @@ const CreateRestaurant = () => {
     const [submitted, setSubmitted] = useState(false);
     const [selectedPriceRange, setSelectedPriceRange] = useState('');
     const [selectedCuisineType, setSelectedCuisineType] = useState('');
-
-
-
 
     const priceRangeOptions = [
         { value: '$', label: '$' },
@@ -52,8 +47,6 @@ const CreateRestaurant = () => {
         { id: 11, name: 'Jamaican' },
         { id: 12, name: 'Indian' },
     ];
-
-
 
     useEffect(() => {
         const frontendErrors = {}
@@ -101,7 +94,6 @@ const CreateRestaurant = () => {
     }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType])
 
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
@@ -122,24 +114,13 @@ const CreateRestaurant = () => {
             formData.append("cuisine_type_id", selectedCuisineType.id);
             formData.append('user_id', user.id)
 
-            console.log("this is the cuisine --------->", selectedCuisineType)
-
             setImageLoading(true);
 
             if (!restaurantImage) return null
 
             const data = await dispatch(createRestaurantThunk(formData));
             await dispatch(getAllRestaurantsThunk())
-
-
-
-            // if (data) {
-            //     setErrors(data);
-            // } else {
-
             await history.push('/my_restaurants')
-                // await closeModal();
-            // }
         }
 
     };

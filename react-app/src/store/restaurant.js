@@ -92,6 +92,9 @@ export const editRestaurantThunk = (restaurantId, formData) => async (dispatch) 
         body: formData
     });
 
+    console.log('URL:', `/api/restaurant/edit/${restaurantId}`);
+    console.log('restaurantId:', restaurantId);
+
     if(response.ok) {
         const data = await response.json()
         dispatch(createRestaurant(formData))

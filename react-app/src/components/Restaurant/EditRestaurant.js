@@ -5,22 +5,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { editRestaurantThunk, getSingleRestaurantThunk } from "../../store/restaurant";
 import "./Restaurant.css";
 
-const EditRestaurant = ({restaurant}) => {
+const EditRestaurant = ({ restaurant }) => {
 
   const { closeModal } = useModal();
-
-  const { restaurantId } = useParams();
-  // const allRestaurants = useSelector((state) => console.log("the state---->", state));
-
-  // Find the restaurant with the matching ID
-  // const restaurant = allRestaurants.find((r) => r.id === parseInt(restaurantId));
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user);
-  // const restaurant = useSelector(state => state.restaurant.singleRestaurant);
-  console.log("The restaurant---->", restaurant)
   const [name, setName] = useState(restaurant.name);
-  const [imageLoading, setImageLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(restaurant.imageLoading);
   const [description, setDescription] = useState(restaurant.description);
   const [address, setAddress] = useState(restaurant.address);
   const [city, setCity] = useState(restaurant.city);
@@ -28,19 +19,11 @@ const EditRestaurant = ({restaurant}) => {
   const [zipcode, setZipcode] = useState(restaurant.zipcode);
   const [contactNumber, setContactNumber] = useState(restaurant.contact_phone_number);
   const [restaurantImage, setRestaurantImage] = useState(restaurant.restaurant_image);
-  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.selectedPriceRange);
-  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.selectedCuisineType);
+  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.selectedPriceRange || "");
+  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.selectedCuisineType || "");
   const [frontendErrors, setFrontendErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-
-  // useEffect(() => {
-  //   // Populate selectedCuisineType only if it's not already set
-  //   if (!selectedCuisineType) {
-  //     setSelectedCuisineType(restaurant.selectedCuisineType);
-  //   }
-  // }, [restaurant, selectedCuisineType]);
-
 
   const priceRangeOptions = [
     { value: '$', label: '$' },
@@ -64,16 +47,14 @@ const EditRestaurant = ({restaurant}) => {
     { id: 12, name: 'Indian' },
   ];
 
-
-
   useEffect(() => {
     const frontendErrors = {}
-    // if (name.length < 1) {
-    //   frontendErrors.name = "Restaurant name must be at least 1 character"
-    // }
-    // if (name.length > 50) {
-    //   frontendErrors.name = "Restaurant name must be 50 characters or less"
-    // }
+    if (name.length < 1) {
+      frontendErrors.name = "Restaurant name must be at least 1 character"
+    }
+    if (name.length > 50) {
+      frontendErrors.name = "Restaurant name must be 50 characters or less"
+    }
     if (!name) {
       frontendErrors.name = "Enter a Restaurant name"
     }
@@ -101,10 +82,9 @@ const EditRestaurant = ({restaurant}) => {
     if (!restaurantImage) {
       frontendErrors.restaurantImage = "An image is required to create a Restaurant."
     }
-    // if (!selectedCuisineType) {
-    //   frontendErrors.selectedCuisineType = "Restaurant cuisine type is required to create a Restaurant"
-    // }
-
+    if (!selectedCuisineType) {
+      frontendErrors.selectedCuisineType = "Restaurant cuisine type is required to edit a Restaurant"
+    }
 
     setFrontendErrors(frontendErrors)
   }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage])
@@ -117,42 +97,46 @@ const EditRestaurant = ({restaurant}) => {
     const hasFrontendErrors = Object.keys(frontendErrors).length > 0;
     if (!hasFrontendErrors) {
 
+
       const formData = new FormData();
       formData.append("name", name);
+      console.log('------>name', name)
       formData.append("price_range", selectedPriceRange);
+      console.log('------>selectedPriceRange', selectedPriceRange)
       formData.append("description", description);
+      console.log('------>description', description)
       formData.append("address", address);
+      console.log('------>address', address)
       formData.append("city", city);
+      console.log('------>city', city)
       formData.append("state", state);
+      console.log('------>state', state)
       formData.append("zipcode", zipcode);
+      console.log('------>zipcode', zipcode)
       formData.append("contact_phone_number", contactNumber);
+      console.log('------>contact_phone_number', contactNumber)
       formData.append("restaurant_image", restaurantImage);
+      console.log('------>restaurantImage', restaurantImage)
       formData.append("cuisine_type_id", selectedCuisineType.id);
+      console.log('------>selectedCuisineType.id)', selectedCuisineType.id)
 
-      setImageLoading(true);
+      // setImageLoading(true);
 
       try {
-
-
         const data = await dispatch(editRestaurantThunk(formData, restaurant.id));
         if (data) {
           setErrors(data);
-
         }
       } catch (error) {
         console.error("An error occurred:", error.message);
       }
-
-      // await dispatch(getSingleRestaurantThunk(restaurant.id))
       await closeModal()
-
-
     }
   }
 
   const submitCancel = () => {
-    history.push(`/restaurant/${restaurant.id}`)
-    // closeModal()
+    history.push(`/my_restaurants`)
+    closeModal()
   };
 
 
@@ -278,11 +262,11 @@ const EditRestaurant = ({restaurant}) => {
           Cuisine Type
           <select
             className="modal-input"
-            value={selectedCuisineType}
+            value={selectedCuisineType.id || ""}
             onChange={(e) => {
               const selectedId = e.target.value;
               const selectedName = cuisineTypeOptions.find((option) => option.id === selectedId)?.name || '';
-              console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
+              console.log("Selected Cuisine Type:", selectedName);
               setSelectedCuisineType({ id: selectedId, name: selectedName });
             }}
             required

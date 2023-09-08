@@ -14,7 +14,7 @@ const DeleteRestaurant = ({ restaurantId }) => {
     const deleteRestaurant = async (e) => {
         e.preventDefault();
         await dispatch(deleteRestaurantThunk(restaurantId));
-        window.location.href = '/my_restaurants';
+        await history.push('/my_restaurants')
         await closeModal();
     };
 

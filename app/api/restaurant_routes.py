@@ -28,16 +28,16 @@ def delete_restaurant(restaurant_id):
     return {"message":f"Successfully deleted restaurant {restaurant_id}"}
 
 # Edit a Restaurant
-@restaurant_routes.route('/edit/<int:restaurant_id>', methods=['PUT'])
+@restaurant_routes.route('/edit/<int:restaurantId>', methods=['PUT'])
 @login_required
-def edit_restaurant(restaurant_id):
+def edit_restaurant(restaurantId):
 
     form = EditRestaurantForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
 
-        restaurant = Restaurant.query.get(restaurant_id)
+        restaurant = Restaurant.query.get(restaurantId)
 
         image = form.data["restaurant_image"]
         image.filename = get_unique_filename(image.filename)
