@@ -134,9 +134,9 @@ export default function reducer(state = initialState, action) {
         return newState
 
     case DELETE_RESTAURANT:
-        newState = { ...state, allRestaurants: { ...state.allRestaurants}, singlePin: {}}
-        delete newState.allRestaurants[action.restaurantId]
-        return newState
+        newState = { ...state };
+        delete newState.allRestaurants[action.restaurantId];
+        return newState;
 
     default:
         return state;
