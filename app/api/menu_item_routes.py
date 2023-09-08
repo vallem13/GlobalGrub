@@ -33,8 +33,9 @@ def get_menu_item_by_id(menu_item_id):
 def create_menu_item(restaurant_id):
     form = MenuItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # upload = {'url': None} 
+    upload = {'url': None} 
 
+    print("-----REQUEST FILE----->",request.files)  # Debug: print the files in the request
     if form.validate_on_submit():
 
 
@@ -42,7 +43,9 @@ def create_menu_item(restaurant_id):
         if image:
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
-            print(upload)
+            print("-----UPLOAD----->",upload)
+            print("-----IMAGE FILE NAME----->",image.filename)
+            print("-----IMAGE----->",image)
 
             if "url" not in upload:
                 return upload['errors']
