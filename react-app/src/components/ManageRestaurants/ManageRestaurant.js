@@ -20,7 +20,7 @@ const ManageRestaurants = () => {
     }
 
     const editRestaurant = (restaurantId) => {
-        history.push(`/restaurant/edit${restaurantId}/`)
+        history.push(`/restaurant/edit/${restaurantId}/`)
     }
 
     return (

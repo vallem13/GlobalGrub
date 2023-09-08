@@ -60,7 +60,7 @@ function App() {
                 <GetOrder />
               </ProtectedRoute>
             </Route>
-            <Route path="/my_restaurants">
+            <Route exact path="/my_restaurants">
               <ProtectedRoute>
                 <ManageRestaurants />
               </ProtectedRoute>
