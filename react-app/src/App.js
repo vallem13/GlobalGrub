@@ -14,6 +14,9 @@ import StartShoppingButton from "./components/Orders/CreateCart";
 import SingleCuisine from "./components/SingleCuisineDetail";
 import FilterPrice from "./components/Search/filterPrice";
 import SearchBar from './components/Search/searchBar'
+import CreateRestaurant from './components/Restaurant/CreateRestaurant'
+import ManageRestaurants from "./components/ManageRestaurants/ManageRestaurant";
+import EditRestaurant from './components/Restaurant/EditRestaurant'
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +61,16 @@ function App() {
                 <GetOrder />
               </ProtectedRoute>
             </Route>
+            <Route exact path="/my_restaurants">
+              <ProtectedRoute>
+                <ManageRestaurants />
+              </ProtectedRoute>
+            </Route>
+            <Route path="/restaurant/new-restaurant">
+            <ProtectedRoute>
+              <CreateRestaurant />
+            </ProtectedRoute>
+          </Route>
             <Route path="/cuisine/:cuisineId">
               <ProtectedRoute>
                 <SingleCuisine />
@@ -68,6 +81,11 @@ function App() {
                 <StartShoppingButton />
               </ProtectedRoute>
             </Route>
+            {/* <Route path="/restaurant/edit/:restaurantId">
+              <ProtectedRoute>
+                <EditRestaurant />
+              </ProtectedRoute>
+            </Route> */}
             <Route path="/restaurant/:restaurantId">
               <ProtectedRoute>
                 <SingleRestaurantDetail />

@@ -6,7 +6,7 @@ from app.models import CuisineType, db
 cuisine_routes = Blueprint('cuisine_type', __name__)
 
 
-@cuisine_routes.route('')
+@cuisine_routes.route('/')
 @login_required
 def get_all_cuisines():
     cuisines = CuisineType.query.all()

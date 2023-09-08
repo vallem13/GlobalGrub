@@ -44,11 +44,11 @@ class Restaurant(db.Model):
             'restaurant_image': self.restaurant_image,
             'cuisine_type_id': self.cuisine_type_id,
             'user_id': self.user_id,
-            'user': {
-                'id': self.user.id,
-                'firstName': self.user.first_name,
-                'lastName': self.user.last_name,
-            },
+            # 'user': {
+            #     'id': self.user.id,
+            #     'firstName': self.user.first_name,
+            #     'lastName': self.user.last_name,
+            # },
             'menu_items': [item.to_dict() for item in self.menu_items],
             'reviews': [review.to_dict() for review in self.reviews],
             'average_rating': self.average_rating
