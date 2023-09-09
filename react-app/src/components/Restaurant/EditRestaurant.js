@@ -28,7 +28,7 @@ const EditRestaurant = ({ restaurant }) => {
   const [submitted, setSubmitted] = useState(false);
 
   console.log('------>1', restaurant)
-  console.log('------>', restaurant.selectedCuisineType)
+  console.log('------>', restaurant.cuisine_type_id)
 
   const priceRangeOptions = [
     { value: '$', label: '$' },
@@ -51,6 +51,13 @@ const EditRestaurant = ({ restaurant }) => {
     { id: 11, name: 'Jamaican' },
     { id: 12, name: 'Indian' },
   ];
+
+  const [selectedCuisineTypeName, setSelectedCuisineTypeName] = useState(
+    restaurant.cuisine_type_id
+      ? cuisineTypeOptions.find((option) => option.id === restaurant.cuisine_type_id)
+        ?.name || ""
+      : ""
+  );
 
   useEffect(() => {
     const frontendErrors = {}
@@ -97,49 +104,51 @@ const EditRestaurant = ({ restaurant }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setSubmitted(true)
+    setSubmitted(true);
 
-    const hasFrontendErrors = Object.keys(frontendErrors).length > 0;
+    const formData = new FormData();
 
-    if (!hasFrontendErrors) {
+    // Check if the name field has changed
+    console.log("the cuisine id------>", selectedCuisineType.id)
+    console.log("the selected cuisine------>", selectedCuisineType)
+    console.log("the cuisine name------>", selectedCuisineType.name)
 
-      const formData = new FormData();
-      formData.append("name", name);
-      console.log('------>name', name)
-      formData.append("price_range", selectedPriceRange);
-      console.log('------>selectedPriceRange', selectedPriceRange)
-      formData.append("description", description);
-      console.log('------>description', description)
-      formData.append("address", address);
-      console.log('------>address', address)
-      formData.append("city", city);
-      console.log('------>city', city)
-      formData.append("state", state);
-      console.log('------>state', state)
-      formData.append("zipcode", zipcode);
-      console.log('------>zipcode', zipcode)
-      formData.append("contact_phone_number", contactNumber);
-      console.log('------>contact_phone_number', contactNumber)
-      formData.append("restaurant_image", restaurantImage);
-      console.log('------>restaurantImage', restaurantImage)
-      formData.append("cuisine_type_id", selectedCuisineType.id);
-      console.log('------>selectedCuisineType.id)', selectedCuisineType.id)
+    formData.append("name", name);
+    formData.append("price_range", selectedPriceRange);
+    formData.append("description", description);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("zipcode", zipcode);
+    formData.append("contact_phone_number", contactNumber);
+    formData.append("restaurant_image", restaurantImage);
+    formData.append("cuisine_type_id", selectedCuisineType.id ? selectedCuisineType.id : selectedCuisineType);
 
-      // setImageLoading(true);
 
-      try {
-        const data = await dispatch(editRestaurantThunk(restaurant.id, formData));
-        await dispatch(getAllRestaurantsThunk())
-        if (data) {
-          setErrors(data);
-        }
-      } catch (error) {
-        console.error("An error occurred:", error.message);
-      }
-      await history.push(`/my_restaurants`)
-      await closeModal()
+    // Check if any changes were made before submitting
+    if (formData.entries().next().done) {
+      // No changes were made, so close the modal without making a request
+      history.push(`/my_restaurants`);
+      closeModal();
+      return;
     }
-  }
+
+    try {
+
+      const data = await dispatch(editRestaurantThunk(restaurant.id, formData));
+      if (data) {
+        setErrors(data);
+      } else {
+        // Close the modal only if there are no errors
+        await dispatch(getAllRestaurantsThunk());
+        await history.push(`/my_restaurants`);
+        await closeModal();
+      }
+    } catch (error) {
+      console.error("An error occurred:", error.message);
+    }
+  };
+
 
   const submitCancel = () => {
     history.push(`/my_restaurants`)
@@ -266,29 +275,32 @@ const EditRestaurant = ({ restaurant }) => {
         </label>
         {frontendErrors.restaurantImage && submitted && <p className="modal-error">{frontendErrors.restaurantImage}</p>}
         <label className="modal-label">
-          Cuisine Type
-          <select
-            className="modal-input"
-            value={selectedCuisineType.id || ""}
-            onChange={(e) => {
-              const selectedId = e.target.value;
-              console.log("Selected Value:", selectedId); // Add this line for debugging
-              const selectedName = cuisineTypeOptions.find((option) => option.id === selectedId)?.name || '';
-              console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
-              setSelectedCuisineType({ id: selectedId, name: selectedName });
-            }}
-            required
-          >
-            <option value="" disabled>
-              Select cuisine type
-            </option>
-            {cuisineTypeOptions.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-        </label>
+  Cuisine Type
+  <select
+    className="modal-input"
+    value={selectedCuisineTypeName} // Use selectedCuisineType.name as the value
+    onChange={(e) => {
+      const selectedName = e.target.value;
+      const selectedId = cuisineTypeOptions.find(
+        (option) => option.name === selectedName
+      )?.id || "";
+      setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName }); // Parse the ID to an integer
+      setSelectedCuisineTypeName(selectedName);
+    }}
+    required
+  >
+    <option value="" disabled>
+      Select cuisine type
+    </option>
+    {cuisineTypeOptions.map((option) => (
+      <option key={option.id} value={option.name}>
+        {option.name}
+      </option>
+    ))}
+  </select>
+</label>
+
+
 
         {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
 
