@@ -108,11 +108,6 @@ const EditRestaurant = ({ restaurant }) => {
 
     const formData = new FormData();
 
-    // Check if the name field has changed
-    console.log("the cuisine id------>", selectedCuisineType.id)
-    console.log("the selected cuisine------>", selectedCuisineType)
-    console.log("the cuisine name------>", selectedCuisineType.name)
-
     formData.append("name", name);
     formData.append("price_range", selectedPriceRange);
     formData.append("description", description);
@@ -125,25 +120,14 @@ const EditRestaurant = ({ restaurant }) => {
     formData.append("cuisine_type_id", selectedCuisineType.id ? selectedCuisineType.id : selectedCuisineType);
 
 
-    // Check if any changes were made before submitting
-    if (formData.entries().next().done) {
-      // No changes were made, so close the modal without making a request
-      history.push(`/my_restaurants`);
-      closeModal();
-      return;
-    }
+   
 
     try {
 
-      const data = await dispatch(editRestaurantThunk(restaurant.id, formData));
-      if (data) {
-        setErrors(data);
-      } else {
-        // Close the modal only if there are no errors
-        await dispatch(getAllRestaurantsThunk());
-        await history.push(`/my_restaurants`);
-        await closeModal();
-      }
+      await dispatch(editRestaurantThunk(restaurant.id, formData));
+      await dispatch(getAllRestaurantsThunk());
+      await history.push(`/my_restaurants`);
+      await closeModal();
     } catch (error) {
       console.error("An error occurred:", error.message);
     }
@@ -275,30 +259,30 @@ const EditRestaurant = ({ restaurant }) => {
         </label>
         {frontendErrors.restaurantImage && submitted && <p className="modal-error">{frontendErrors.restaurantImage}</p>}
         <label className="modal-label">
-  Cuisine Type
-  <select
-    className="modal-input"
-    value={selectedCuisineTypeName} // Use selectedCuisineType.name as the value
-    onChange={(e) => {
-      const selectedName = e.target.value;
-      const selectedId = cuisineTypeOptions.find(
-        (option) => option.name === selectedName
-      )?.id || "";
-      setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName }); // Parse the ID to an integer
-      setSelectedCuisineTypeName(selectedName);
-    }}
-    required
-  >
-    <option value="" disabled>
-      Select cuisine type
-    </option>
-    {cuisineTypeOptions.map((option) => (
-      <option key={option.id} value={option.name}>
-        {option.name}
-      </option>
-    ))}
-  </select>
-</label>
+          Cuisine Type
+          <select
+            className="modal-input"
+            value={selectedCuisineTypeName} // Use selectedCuisineType.name as the value
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              const selectedId = cuisineTypeOptions.find(
+                (option) => option.name === selectedName
+              )?.id || "";
+              setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName }); // Parse the ID to an integer
+              setSelectedCuisineTypeName(selectedName);
+            }}
+            required
+          >
+            <option value="" disabled>
+              Select cuisine type
+            </option>
+            {cuisineTypeOptions.map((option) => (
+              <option key={option.id} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </label>
 
 
 
