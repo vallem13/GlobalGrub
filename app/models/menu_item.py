@@ -26,4 +26,6 @@ class MenuItem(db.Model):
             'price': self.price,
             'menu_item_image': self.menu_item_image,
             'restaurant_id': self.restaurant_id,
+            # 'restaurants': [restaurant.to_dict() for restaurant in self.restaurants]
+
         }

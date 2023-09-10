@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory, NavLink } from "react-router-dom/cjs/react-router-dom.min"
 import OpenModalButton from '../OpenModalButton'
 import RestaurantCard from '../HomePage/RestaurantCard'
 import DeleteRestaurant from "../Restaurant/DeleteRestaurant"
 import EditRestaurant from "../Restaurant/EditRestaurant"
 import "./ManageRestaurant.css"
 import { getAllRestaurantsThunk } from "../../store/restaurant"
+import ManageMenuItems from './ManageMenuItems';
 
 const ManageRestaurants = () => {
 
@@ -24,6 +25,9 @@ const ManageRestaurants = () => {
     const createNewRestaurantButton = () => {
         history.push('/restaurant/new-restaurant')
     }
+    const handleManageMenu = (restaurantId) => {
+        history.push(`/menu_item/${restaurantId}`)
+    }
 
     return (
         <div className="">
@@ -38,7 +42,10 @@ const ManageRestaurants = () => {
                             <div className="">
                             <OpenModalButton buttonText="Edit Restaurant" modalComponent={<EditRestaurant restaurant={restaurant}/>}/>
                             <OpenModalButton buttonText="Delete Restaurant" modalComponent={<DeleteRestaurant restaurantId={restaurant.id}/>}/>
+                            <button className="" onClick={() => handleManageMenu(restaurant.id)}>Manage Menu Items</button>
+                            {/* <NavLink  to="/menu_item/:restaurantId" className="your-optional-class-name" restaurant={restaurant.id}>View Your Menu Items</NavLink> */}
                             </div>
+                            
                         </div>
                     )
                 )}
