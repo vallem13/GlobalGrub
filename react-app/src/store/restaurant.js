@@ -88,7 +88,7 @@ export const deleteRestaurantThunk = (restaurantId) => async (dispatch) => {
 
 export const editRestaurantThunk = (restaurantId, formData) => async (dispatch) => {
     const response = await fetch(`/api/restaurant/edit/${restaurantId}`, {
-        method: 'PUT',
+        method: 'PATCH',
         body: formData
     });
 
