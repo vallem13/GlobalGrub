@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from "react-router-dom/cjs/react-router-dom.min"
@@ -30,13 +31,13 @@ const ManageMenuItems = () => {
     <div className="manage-restaurants-page">
       <div className="title-create-container">
         <h1>Manage {restaurant.name}'s Menu</h1>
-        <h3>{items.length <= 0 ? 'Add your first Menu Item!' : ''}</h3>
         <button className="create-restaurant-button" onClick={() => createNewMenuItemButton(restaurantId)}>Create a New Menu Item</button>
       </div>
+      <h2>{items.length <= 0 ? 'Add your first Menu Item!' : ''}</h2>
       <div className="restaurant-cards-buttons-container">
-        {items.map((item) => (
+        {[...items].reverse().map((item) => (
           <div className="single-restaurant-cards-buttons" key={item.id}>
-            <div className='single-restaurant-card' style={{}} >
+            <div className='single-restaurant-card' >
               <div className='image-button-container'>
                 <img style={{ objectFit: "cover", width: "150px", height: "150px" }} className='restaurant-image' src={item.menu_item_image} alt={item.name} />
                 <OpenModalButton

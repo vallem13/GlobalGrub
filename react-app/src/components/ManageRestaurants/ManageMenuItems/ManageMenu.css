@@ -1,0 +1,34 @@
+#create-menu form{
+
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    top: 450px;
+    
+    }
+    
+    
+    .add-menu-item-field p{
+        text-align: start;
+    }
+    
+    .material-symbols-outlined {
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        height: 230px;
+    }
+    
+    .material-symbols-outlined img{
+    
+        object-fit: cover;
+        width: 280px;
+        height: 230px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    
+    
