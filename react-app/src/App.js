@@ -17,6 +17,9 @@ import SearchBar from './components/Search/searchBar'
 import CreateRestaurant from './components/Restaurant/CreateRestaurant'
 import ManageRestaurants from "./components/ManageRestaurants/ManageRestaurant";
 import EditRestaurant from './components/Restaurant/EditRestaurant'
+import ManageMenuItems from "./components/ManageRestaurants/ManageMenuItems";
+import CreateMenuItem from "./components/ManageRestaurants/ManageMenuItems/CreateMenuItem";
+import EditMenuItem from "./components/ManageRestaurants/ManageMenuItems/EditMenuItem";
 
 function App() {
   const dispatch = useDispatch();
@@ -71,6 +74,21 @@ function App() {
               <CreateRestaurant />
             </ProtectedRoute>
           </Route>
+            <Route path="/menu_item/:restaurantId">
+            <ProtectedRoute>
+              <ManageMenuItems />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/new/:restaurantId">
+            <ProtectedRoute>
+              <CreateMenuItem />
+            </ProtectedRoute>
+          </Route>
+          {/* <Route path="/edit/:menuItemsId">
+            <ProtectedRoute>
+              <EditMenuItem/>
+            </ProtectedRoute>
+          </Route> */}
             <Route path="/cuisine/:cuisineId">
               <ProtectedRoute>
                 <SingleCuisine />

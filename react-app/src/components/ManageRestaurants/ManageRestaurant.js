@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory, NavLink } from "react-router-dom/cjs/react-router-dom.min"
 import OpenModalButton from '../OpenModalButton'
 import DeleteRestaurant from "../Restaurant/DeleteRestaurant"
 import EditRestaurant from "../Restaurant/EditRestaurant"
 import EditRestaurantImage from "../Restaurant/EditRestaurantImage"
 import { getAllRestaurantsThunk } from "../../store/restaurant"
+import ManageMenuItems from './ManageMenuItems';
 import "./ManageRestaurant.css"
 
 const ManageRestaurants = () => {
@@ -28,6 +29,9 @@ const ManageRestaurants = () => {
     const onClick = (restaurantId) => {
         history.push(`/restaurant/${restaurantId}`);
     };
+    const handleManageMenu = (restaurantId) => {
+        history.push(`/menu_item/${restaurantId}`)
+    }
 
     return (
         <div className="manage-restaurants-page">
@@ -69,6 +73,8 @@ const ManageRestaurants = () => {
                                     <h4 className='title'>Description: </h4>
                                     <h4>{restaurant.description}</h4>
                                 </div>
+                            <button className="" onClick={() => handleManageMenu(restaurant.id)}>Manage Menu Items</button>
+                            {/* <NavLink  to="/menu_item/:restaurantId" className="your-optional-class-name" restaurant={restaurant.id}>View Your Menu Items</NavLink> */}
                             </div>
 
 
@@ -79,6 +85,7 @@ const ManageRestaurants = () => {
                             <OpenModalButton buttonText="Edit Restaurant Info" modalComponent={<EditRestaurant restaurant={restaurant} />} />
                             <OpenModalButton buttonText="Delete Restaurant" modalComponent={<DeleteRestaurant restaurantId={restaurant.id} />} />
                         </div>
+                            
                     </div>
                 )
                 )}
