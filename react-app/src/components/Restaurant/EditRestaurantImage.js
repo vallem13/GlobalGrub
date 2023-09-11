@@ -55,7 +55,7 @@ const EditRestaurantImage = ({ restaurant }) => {
 
     return (
         <div className="create-restaurant">
-            <h1 className="restaurant-title">Add your Restaurant</h1>
+            <h1 className="restaurant-title">Update Restaurant Image</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <label className="modal-label">
                     Store Image
@@ -69,17 +69,17 @@ const EditRestaurantImage = ({ restaurant }) => {
                 {frontendErrors.restaurantImage && submitted && <p className="modal-error">{frontendErrors.restaurantImage}</p>}
                 <button
                     type="submit"
-                    onClick={submitCancel}
-                    className="cancel-pin-button"
-                >
-                    Cancel
-                </button>
-                <button
-                    type="submit"
                     onClick={handleSubmit}
                     className="modal-button save-pin-button"
                 >
                     Save
+                </button>
+                <button
+                    type="submit"
+                    onClick={submitCancel}
+                    className="cancel-pin-button"
+                >
+                    Cancel
                 </button>
                 {imageLoading && <p>Loading...</p>}
             </form>
