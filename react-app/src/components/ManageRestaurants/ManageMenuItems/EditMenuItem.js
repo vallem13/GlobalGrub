@@ -6,6 +6,7 @@ import { getSingleRestaurantThunk } from "../../../store/restaurant";
 import { editMenuItemThunk } from "../../../store/menu";
 
 const EditMenuItem = ({ item }) => {
+  console.log("------->", item)
   const { closeModal } = useModal()
   const dispatch = useDispatch();
   const history = useHistory();
@@ -55,7 +56,7 @@ const EditMenuItem = ({ item }) => {
       await dispatch(editMenuItemThunk(item, formData));
       closeModal()
       dispatch(getSingleRestaurantThunk(singleRestaurant.id))
-      await history.push(`/menu_item/${singleRestaurant.id}`)
+      // await history.push(`/menu_item/${singleRestaurant.id}`)
     }
   };
 

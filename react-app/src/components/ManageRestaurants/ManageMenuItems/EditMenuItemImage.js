@@ -9,6 +9,8 @@ const EditMenuItemImage = ({ item }) => {
     const { closeModal } = useModal()
     const dispatch = useDispatch();
     const history = useHistory();
+    const singleRestaurant = useSelector((state) => state.restaurant.singleRestaurant)
+
     const [menu_item_image, setMenu_item_image] = useState(item.menu_item_image);
     const [imageLoading, setImageLoading] = useState(false);
     const [frontendErrors, setFrontendErrors] = useState({});
@@ -38,8 +40,8 @@ const EditMenuItemImage = ({ item }) => {
 
             await dispatch(editMenuItemImageThunk(item.id, formData));
             closeModal()
-            dispatch(getSingleRestaurantThunk(item.id))
-            await history.push(`/menu_item/${item.id}`)
+            dispatch(getSingleRestaurantThunk(singleRestaurant.id))
+            // await history.push(`/menu_item/${item.id}`)
         }
     };
 
