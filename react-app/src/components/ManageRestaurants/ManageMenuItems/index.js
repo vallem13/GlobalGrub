@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from "react-router-dom/cjs/react-router-dom.min"
 import { getSingleRestaurantThunk } from '../../../store/restaurant';
 import EditMenuItem from './EditMenuItem';
+import EditMenuItemImage from './EditMenuItemImage'
 import OpenModalButton from '../../OpenModalButton'
 import DeleteMenuItem from './DeleteMenuItem';
 
@@ -24,7 +25,7 @@ const ManageMenuItems = () => {
   const onClick = (restaurantId) => {
     history.push(`/restaurant/${restaurantId}`);
   };
-  
+
   return (
     <div className="manage-restaurants-page">
       <div className="title-create-container">
@@ -38,6 +39,9 @@ const ManageMenuItems = () => {
             <div className='single-restaurant-card' style={{}} >
               <div className='image-button-container'>
                 <img style={{ objectFit: "cover", width: "150px", height: "150px" }} className='restaurant-image' src={item.menu_item_image} alt={item.name} />
+                <OpenModalButton
+                buttonText={<i class="fa-solid fa-pen-to-square" style={{ fontSize: "3rem", color: "#f00b51" }}></i>}
+                modalComponent={<EditMenuItemImage item={item} />} />
               </div>
               <div className='single-restaurant-info'>
                 <div>
@@ -49,7 +53,7 @@ const ManageMenuItems = () => {
                   <h4>{item.description}</h4>
                 </div>
                 <div>
-                  <h4 className='title'>price: </h4>
+                  <h4 className='title'>Price: </h4>
                   <h4>${item.price.toFixed(2)}</h4>
                 </div>
               </div>
