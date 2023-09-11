@@ -23,14 +23,12 @@ const DeleteRestaurant = ({ restaurantId }) => {
     }
 
     return (
-        <div>
-            <div>
+        <div className='delete-restaurant-container'>
                 <h2>Confirm Delete Restaurant</h2>
-                <div className='delete-pin-buttons'>
-                    <button onClick={deleteRestaurant}>Delete</button>
-                    <button onClick={dontDeleteRestaurant}>Cancel</button>
+                <div className='delete-restaurant-buttons'>
+                    <button className="delete-restaurant-button" onClick={deleteRestaurant}>Delete</button>
+                    <button className="cancel-restaurant-button" onClick={dontDeleteRestaurant}>Cancel</button>
                 </div>
-            </div>
         </div>
     )
 }

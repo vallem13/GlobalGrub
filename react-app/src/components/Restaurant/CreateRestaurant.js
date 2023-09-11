@@ -126,168 +126,194 @@ const CreateRestaurant = () => {
     };
 
     return (
-        <div className="create-restaurant">
-            <h1 className="restaurant-title">Add your Restaurant</h1>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                {/* <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx} className="modal-error">
-                            {error}
-                        </li>
-                    ))}
-                </ul> */}
 
-                <label className="modal-label">
-                    Restaurant Name
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
-                <label className="modal-label">
-                    Price Range
-                    <select
-                        className="modal-input"
-                        value={selectedPriceRange}
-                        onChange={(e) => setSelectedPriceRange(e.target.value)}
-                        required
+
+        <form onSubmit={handleSubmit} encType="multipart/form-data" id="create-restaurant-form">
+            <div className="page-content">
+                <div className="content-left">
+                    <h1>Let us help you grow your business</h1>
+                    <h3>Connect with more customers and grow your business on your terms.</h3>
+                </div>
+                <div className="content-right">
+                    <h1 className="restaurant-title">Add your Restaurant</h1>
+                    <div className="form-fields">
+                        <label className="add-restaurant-field">
+                            Restaurant Name
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.name && submitted && (
+                            <p className="modal-error">{frontendErrors.name}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Price Range
+                            <select
+                                className="restaurant-dropdown"
+                                value={selectedPriceRange}
+                                onChange={(e) => setSelectedPriceRange(e.target.value)}
+                                required
+                            >
+                                <option value="" disabled>
+                                    Select price range
+                                </option>
+                                {priceRangeOptions.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        {frontendErrors.selectedPriceRange && submitted && (
+                            <p className="modal-error">{frontendErrors.selectedPriceRange}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Description
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.description && submitted && (
+                            <p className="modal-error">{frontendErrors.description}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Store address
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.title && submitted && (
+                            <p className="modal-error">{frontendErrors.title}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            City
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.city && submitted && (
+                            <p className="modal-error">{frontendErrors.city}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            State
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.state && submitted && (
+                            <p className="modal-error">{frontendErrors.state}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Zipcode
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={zipcode}
+                                onChange={(e) => setZipcode(e.target.value)}
+                                required
+                            />
+                        </label>
+                        {frontendErrors.zipcode && submitted && (
+                            <p className="modal-error">{frontendErrors.zipcode}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Contact Phone Number
+                            <input
+                                className="restaurant-input"
+                                type="text"
+                                value={contactNumber}
+                                onChange={(e) => setContactNumber(e.target.value)}
+                                required
+                            />
+                        </label>
+
+                        <label className="add-restaurant-field">
+                            Store Image
+                            <input
+                                className="restaurant-input"
+                                type="file"
+                                accept="image/*, image/jpeg, image/jpg, image/gif"
+                                onChange={(e) => setRestaurantImage(e.target.files[0])}
+                            />
+                        </label>
+                        {frontendErrors.restaurantImage && submitted && (
+                            <p className="modal-error">{frontendErrors.restaurantImage}</p>
+                        )}
+
+                        <label className="add-restaurant-field">
+                            Cuisine Type
+                            <select
+                                className="restaurant-dropdown"
+                                value={selectedCuisineType}
+                                onChange={(e) => {
+                                    const selectedId = e.target.value;
+                                    const selectedName =
+                                        cuisineTypeOptions.find((option) => option.id === selectedId)
+                                            ?.name || '';
+                                    console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
+                                    setSelectedCuisineType({ id: selectedId, name: selectedName });
+                                }}
+                                required
+                            >
+                                <option value="" disabled>
+                                    Select cuisine type
+                                </option>
+                                {cuisineTypeOptions.map((option) => (
+                                    <option key={option.id} value={option.id}>
+                                        {option.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        {frontendErrors.selectedCuisineType && submitted && (
+                            <p className="modal-error">{frontendErrors.selectedCuisineType}</p>
+                        )}
+                    </div>
+
+                    <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="modal-button save-pin-button restaurant-save-button"
                     >
-                        <option value="" disabled>
-                            Select price range
-                        </option>
-                        {priceRangeOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                        Save
+                    </button>
+                    {imageLoading && <p className="loading-message">Loading...</p>}
+                </div>
+            </div>
+        </form>
 
-                {frontendErrors.selectedPriceRange && submitted && <p className="modal-error">{frontendErrors.selectedPriceRange}</p>}
-                <label className="modal-label">
-                    Description
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
-                <label className="modal-label">
-                    Store address
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.title && submitted && <p className="modal-error">{frontendErrors.title}</p>}
-                <label className="modal-label">
-                    City
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.city && submitted && <p className="modal-error">{frontendErrors.city}</p>}
-                <label className="modal-label">
-                    State
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.state && submitted && <p className="modal-error">{frontendErrors.state}</p>}
-                <label className="modal-label">
-                    Zipcode
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={zipcode}
-                        onChange={(e) => setZipcode(e.target.value)}
-                        required
-                    />
-                </label>
-                {frontendErrors.zipcode && submitted && <p className="modal-error">{frontendErrors.zipcode}</p>}
-                <label className="modal-label">
-                    Contact Phone Number
-                    <input
-                        className="modal-input"
-                        type="text"
-                        value={contactNumber}
-                        onChange={(e) => setContactNumber(e.target.value)}
-                        required
-                    />
-                </label>
-                <label className="modal-label">
-                    Store Image
-                    <input
-                        className="modal-input"
-                        type="file"
-                        accept="image/*, image/jpeg, image/jpg, image/gif"
-                        onChange={(e) => setRestaurantImage(e.target.files[0])}
-                    />
-                </label>
-                {frontendErrors.restaurantImage && submitted && <p className="modal-error">{frontendErrors.restaurantImage}</p>}
-                <label className="modal-label">
-                    Cuisine Type
-                    <select
-                        className="modal-input"
-                        value={selectedCuisineType}
-                        onChange={(e) => {
-                            const selectedId = e.target.value;
-                            const selectedName = cuisineTypeOptions.find((option) => option.id === selectedId)?.name || '';
-                            console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
-                            setSelectedCuisineType({ id: selectedId, name: selectedName });
-                        }}
-                        required
-                    >
-                        <option value="" disabled>
-                            Select cuisine type
-                        </option>
-                        {cuisineTypeOptions.map((option) => (
-                            <option key={option.id} value={option.id}>
-                                {option.name}
-                            </option>
-                        ))}
-                    </select>
-                </label>
 
-                {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
 
-                {/* <div className="modal-user">
-                    <img
-                        src={user.image}
-                        style={{ width: '50px', height: '50px' }}
-                        alt={user.firstName}
-                    />
-                    {user.first_name}
-                </div> */}
 
-                <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="modal-button save-pin-button"
-                >
-                    Save
-                </button>
-                {imageLoading && <p>Loading...</p>}
-            </form>
-        </div>
     );
 };
 
