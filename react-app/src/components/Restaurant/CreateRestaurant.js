@@ -25,6 +25,7 @@ const CreateRestaurant = () => {
     const [submitted, setSubmitted] = useState(false);
     const [selectedPriceRange, setSelectedPriceRange] = useState('');
     const [selectedCuisineType, setSelectedCuisineType] = useState('');
+    const [imagePreview, setImagePreview] = useState(null);
 
     const priceRangeOptions = [
         { value: '$', label: '$' },
@@ -86,21 +87,19 @@ const CreateRestaurant = () => {
         if (!selectedCuisineType) {
             frontendErrors.selectedCuisineType = "Restaurant cuisine type is required to create a Restaurant"
         }
-
-
         if (!newRestaurant) return null
 
         setFrontendErrors(frontendErrors)
+
     }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType])
 
-
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         setSubmitted(true)
 
         const hasFrontendErrors = Object.keys(frontendErrors).length > 0;
         if (!hasFrontendErrors) {
-
             const formData = new FormData();
             formData.append("name", name);
             formData.append("price_range", selectedPriceRange);
@@ -113,21 +112,26 @@ const CreateRestaurant = () => {
             formData.append("restaurant_image", restaurantImage);
             formData.append("cuisine_type_id", selectedCuisineType.id);
             formData.append('user_id', user.id)
-
             setImageLoading(true);
-
             if (!restaurantImage) return null
-
             const data = await dispatch(createRestaurantThunk(formData));
-            await dispatch(getAllRestaurantsThunk())
-            await history.push('/my_restaurants')
+            dispatch(getAllRestaurantsThunk())
+            history.push('/my_restaurants')
         }
-
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setRestaurantImage(file)
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
     };
 
     return (
-
-
         <form onSubmit={handleSubmit} encType="multipart/form-data" id="create-restaurant-form">
             <div className="page-content">
                 <div className="content-left">
@@ -150,7 +154,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.name && submitted && (
                             <p className="modal-error">{frontendErrors.name}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Price Range
                             <select
@@ -169,11 +172,9 @@ const CreateRestaurant = () => {
                                 ))}
                             </select>
                         </label>
-
                         {frontendErrors.selectedPriceRange && submitted && (
                             <p className="modal-error">{frontendErrors.selectedPriceRange}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Description
                             <input
@@ -187,7 +188,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.description && submitted && (
                             <p className="modal-error">{frontendErrors.description}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Store address
                             <input
@@ -201,7 +201,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.title && submitted && (
                             <p className="modal-error">{frontendErrors.title}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             City
                             <input
@@ -215,7 +214,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.city && submitted && (
                             <p className="modal-error">{frontendErrors.city}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             State
                             <input
@@ -229,7 +227,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.state && submitted && (
                             <p className="modal-error">{frontendErrors.state}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Zipcode
                             <input
@@ -243,7 +240,6 @@ const CreateRestaurant = () => {
                         {frontendErrors.zipcode && submitted && (
                             <p className="modal-error">{frontendErrors.zipcode}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Contact Phone Number
                             <input
@@ -254,20 +250,47 @@ const CreateRestaurant = () => {
                                 required
                             />
                         </label>
-
-                        <label className="add-restaurant-field">
-                            Store Image
-                            <input
-                                className="restaurant-input"
-                                type="file"
-                                accept="image/*, image/jpeg, image/jpg, image/gif"
-                                onChange={(e) => setRestaurantImage(e.target.files[0])}
-                            />
-                        </label>
+                        <div className="store-image-preview" style={{ textAlign: "left" }}>
+                            Store Preview Image
+                            <label className="store-image-preview" style={{ textAlign: "left" }} >
+                                <input
+                                    style={{ display: "none", textAlign: "left" }}
+                                    className="hidden-input"
+                                    id="menu-item-input-update"
+                                    type="file"
+                                    accept="image/*, image/jpeg, image/jpg, image/gif, /image/png"
+                                    onChange={handleImageChange}
+                                />
+                                <span
+                                    className="material-symbols-outlined"
+                                    style={{
+                                        width: "480px",
+                                        height: "230px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        cursor: "pointer",
+                                        border: imagePreview ? "none" : "1px solid #ccc"
+                                    }}
+                                    onClick={() => document.getElementById('menu-item-input-update').click()}
+                                >
+                                    {!imagePreview && "image"}
+                                    {imagePreview && (
+                                        <img
+                                            style={{
+                                                width: "480px",
+                                                height: "230px",
+                                            }}
+                                            src={imagePreview}
+                                            alt="Preview"
+                                        />
+                                    )}
+                                </span>
+                            </label>
+                        </div>
                         {frontendErrors.restaurantImage && submitted && (
                             <p className="modal-error">{frontendErrors.restaurantImage}</p>
                         )}
-
                         <label className="add-restaurant-field">
                             Cuisine Type
                             <select
@@ -293,12 +316,10 @@ const CreateRestaurant = () => {
                                 ))}
                             </select>
                         </label>
-
                         {frontendErrors.selectedCuisineType && submitted && (
                             <p className="modal-error">{frontendErrors.selectedCuisineType}</p>
                         )}
                     </div>
-
                     <button
                         type="submit"
                         onClick={handleSubmit}
@@ -310,10 +331,6 @@ const CreateRestaurant = () => {
                 </div>
             </div>
         </form>
-
-
-
-
     );
 };
 
