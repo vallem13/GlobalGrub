@@ -97,19 +97,15 @@ const ManageRestaurants = () => {
                                     <h4 className='title'>Description: </h4>
                                     <h4>{restaurant.description}</h4>
                                 </div>
-                            <button className="" onClick={() => handleManageMenu(restaurant.id)}>Manage Menu Items</button>
-                            {/* <NavLink  to="/menu_item/:restaurantId" className="your-optional-class-name" restaurant={restaurant.id}>View Your Menu Items</NavLink> */}
                             </div>
-
-
-                            {/* <RestaurantCard key={restaurant.id} manage={true} restaurant={restaurant} /> */}
                         </div>
                         <div className="buttons-container">
                             <button onClick={() => onClick(restaurant.id)}>View Restaurant</button>
                             <OpenModalButton buttonText="Edit Restaurant Info" modalComponent={<EditRestaurant restaurant={restaurant} />} />
                             <OpenModalButton buttonText="Delete Restaurant" modalComponent={<DeleteRestaurant restaurantId={restaurant.id} />} />
+                            <button className="" onClick={() => handleManageMenu(restaurant.id)}>Manage Menu Items</button>
                         </div>
-                            
+
                     </div>
                 )
                 )}
