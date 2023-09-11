@@ -33,6 +33,8 @@ const ManageMenuItems = (  ) => {
     return (
         <>
         <h2>Manage {restaurant.name}'s Menu Items</h2>
+        <h3>{items.length <= 0 ? 'Add your first Menu Item!' : 'Manage your Restaurants'}</h3>
+
         <Link to={`/new/${restaurantId}`}>Create Menu Item</Link>
         <div className='menu-items-wrapper'>
         {items.map((item) => (
