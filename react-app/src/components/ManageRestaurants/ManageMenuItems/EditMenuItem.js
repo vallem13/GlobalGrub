@@ -8,13 +8,11 @@ import {  getSingleRestaurantThunk } from "../../../store/restaurant";
 import { editMenuItemThunk } from "../../../store/menu";
 
 const EditMenuItem = ({ item }) => {
-  // const { menuItemId } = useParams();
-console.log("ITEM ID", item)
-    const { closeModal } = useModal()
+  const { closeModal } = useModal()
   const dispatch = useDispatch();
 
   const history = useHistory();
-  // const menuItems = Object.values(useSelector((state) => state.menu.singleMenuItems))
+
   const singleRestaurant = useSelector((state) => state.restaurant.singleRestaurant)
   const items = singleRestaurant.menu_items || [];
   const itemsDetail = items.find((menuItem) => menuItem.id === item)
@@ -77,7 +75,7 @@ console.log("ITEM ID", item)
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT">
         <div className="form-group"></div>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
@@ -115,12 +113,11 @@ console.log("ITEM ID", item)
                 <label className="modal-label">
                     Menu Item Image
                     <input
-                    className="modal-input"
-                    type="text"
-                    value={menu_item_image}
-                    onChange={(e) => setMenu_item_image(e.target.value)}
-                    required
-                    />
+            className="modal-input"
+            type="file"
+            accept="image/*, image/jpeg, image/jpg, image/gif"
+            onChange={(e) => setMenu_item_image(e.target.files[0])}
+          />
                 </label>
                 <button
                     type="submit"

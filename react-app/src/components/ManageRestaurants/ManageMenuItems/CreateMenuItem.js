@@ -13,7 +13,7 @@ const CreateMenuItem = ( ) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [menu_item_image, setMenu_item_image] = useState("");
+  const [menu_item_image, setMenu_item_image] = useState(null);
   const [frontendErrors, setFrontendErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -56,8 +56,9 @@ const CreateMenuItem = ( ) => {
     formData.append("restaurant_id", restaurantId);
 
 dispatch(createMenuItemThunk(restaurantId, formData));
-    dispatch(getSingleRestaurantThunk(restaurantId))
- await history.push(`/menu_item/${restaurantId}`)
+await dispatch(getSingleRestaurantThunk(restaurantId))
+await history.push(`/menu_item/${restaurantId}`)
+
  
 }
 };
@@ -66,11 +67,12 @@ dispatch(createMenuItemThunk(restaurantId, formData));
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data" method='POST'>
         <div className="form-group"></div>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
         {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
+        {frontendErrors.menu_item_image && submitted && <p className="modal-error">{frontendErrors.menu_item_image}</p>}
         <label className="modal-label">
                     Menu Item Name
                     <input
@@ -104,13 +106,20 @@ dispatch(createMenuItemThunk(restaurantId, formData));
                 <label className="modal-label">
                     Menu Item Image
                     <input
+                        className="modal-input"
+                        type="file"
+                        accept="image/*, image/jpeg, image/jpg, image/gif"
+                        onChange={(e) => setMenu_item_image(e.target.files[0])}
+                    />
+                </label>
+                    {/* <input
                     className="modal-input"
                     type="text"
                     value={menu_item_image}
                     onChange={(e) => setMenu_item_image(e.target.value)}
                     required
                     />
-                </label>
+                </label> */}
                 <button
                     type="submit"
                     onClick={handleSubmit}

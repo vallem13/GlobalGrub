@@ -43,21 +43,21 @@ def create_menu_item(restaurant_id):
     print(" ------------> Entered create_menu_item route", restaurant_id) 
     form = MenuItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-   
+    print('form--->', form.data)
 
-    print("-----REQUEST FILE----->",request.files)  # Debug: print the files in the request
     if form.validate_on_submit():
 
 
-        # image = form.data["menu_item_image"]
-        # image.filename = get_unique_filename(image.filename)
-        # upload = upload_file_to_s3(image)
-        # print(upload)
-        # print("-------->", image.filename)
-        # print("-------->", image)
+        image = form.data["menu_item_image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload)
+        print("-------->", image.filename)
+        print("-------->", image)
+        print("-----REQUEST FILE----->",request.files)  
 
-        # if 'url' not in upload:
-        #     return upload['errors']
+        if 'url' not in upload:
+            return {'error': upload['errors']}
          
     
 
@@ -67,7 +67,8 @@ def create_menu_item(restaurant_id):
             name=form.name.data,
             description=form.description.data,
             price=form.price.data,
-            menu_item_image=form.menu_item_image.data,
+            # menu_item_image=form.menu_item_image.data,
+            menu_item_image=upload['url'],
             restaurant_id=restaurant_id,
         )
         db.session.add(new_menu_item)
@@ -76,43 +77,35 @@ def create_menu_item(restaurant_id):
     else:
         return {'errors': form.errors}, 400
     
-
 @menu_item_routes.route('/edit/<int:id>', methods=['PUT'])
 @login_required
 def edit_menu_item(id):
-
-    
-
-
-    menu_item = MenuItem.query.get(id)
-    data = request.form
-    name = data.get('name')
-    price = data.get('price')
-    description = data.get('description')
-    menu_item_image = data.get('menu_item_image')
-
     form = EditMenuItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
-        menu_item.name = name
-        menu_item.price = price
-        menu_item.description = description
-        menu_item.menu_item_image = menu_item_image
+        menu_item = MenuItem.query.get(id)
+        
+        if menu_item is None:
+            return {"error": "Menu item not found"}, 404
 
-    db.session.commit()
-    return menu_item.to_dict(), 201
-        # image = form.data["menu_image_ item"]
-        # image.filename = get_unique_filename(image.filename)
-        # upload = upload_file_to_s3(image)
-        # print(upload)
+        image = form.data["menu_item_image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload)
 
-        # if 'url' not in upload:
-        #     return upload['errors']
+        if 'url' not in upload:
+            return upload['errors']
 
-        # menu_item.name=form.data['name']
-        # menu_item.description=form.data['description']
-        # menu_item.price=form.data['price']
-        # menu_item.menu_item_image=form.data['menu_item_image']
+        menu_item.name = form.data['name']
+        menu_item.price = form.data['price']
+        menu_item.description = form.data['description']
+        menu_item.menu_item_image = upload['url']
+
+        db.session.commit()
+        return menu_item.to_dict(), 201
+
+    return {"error": "Invalid form submission"}, 400
 
 
 
