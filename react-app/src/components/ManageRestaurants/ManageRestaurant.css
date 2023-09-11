@@ -36,6 +36,7 @@
     height: 300px;
     border-radius: 18px;
     display: block;
+    object-fit: cover;
 }
 
 .image-button-container button {
