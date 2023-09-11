@@ -111,3 +111,19 @@
 .buttons-container button:hover {
     background-color: purple;
 }
+
+
+/* update menu item modal */
+
+#edit-menu-item-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+
+#menu-item-input-update {
+    border-radius: 3px;
+}
+
+
