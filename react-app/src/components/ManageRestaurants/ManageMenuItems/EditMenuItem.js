@@ -70,7 +70,7 @@ const EditMenuItem = ({ item }) => {
         <h1 className="menu-item-title">Update Menu Item</h1>
 
         <label className="add-menu-item-field">
-          Menu Item Name
+          <p> Menu Item Name </p>
           <input
             id="menu-item-input-update"
             type="text"
@@ -81,7 +81,7 @@ const EditMenuItem = ({ item }) => {
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
         <label className="add-menu-item-field">
-          Price
+          <p>Price</p>
           <input
             id="menu-item-input-update"
             type="text"
@@ -92,7 +92,7 @@ const EditMenuItem = ({ item }) => {
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
         <label className="add-menu-item-field edit-menu-item-description">
-          Description
+          <p>Description</p>
           <input
             id="menu-item-input-update"
             type="text"
