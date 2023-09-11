@@ -9,4 +9,3 @@ class EditMenuItemForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired()])
     price = FloatField('price', validators=[DataRequired()])
-    menu_item_image = FileField("menu_item_image",  validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
