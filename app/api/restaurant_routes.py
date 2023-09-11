@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import Restaurant, db
-from app.forms import RestaurantForm, EditRestaurantForm
+from app.forms import RestaurantForm, EditRestaurantForm, EditRestaurantImageForm
 from flask_login import current_user, login_required
 from .aws_helpers import (upload_file_to_s3, get_unique_filename)
 from .auth_routes import validation_errors_to_error_messages
@@ -27,13 +27,17 @@ def delete_restaurant(restaurant_id):
 
     return {"message":f"Successfully deleted restaurant {restaurant_id}"}
 
-# Edit a Restaurant
-@restaurant_routes.route("/edit/<int:restaurantId>", methods=["PATCH"])
+
+# Edit a Restaurant Image
+@restaurant_routes.route("/edit/<int:restaurantId>/image", methods=["PATCH"])
 @login_required
-def edit_restaurant(restaurantId):
-    form = EditRestaurantForm()
+def edit_restaurant_image(restaurantId):
+
+    form = EditRestaurantImageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
+
         restaurant = Restaurant.query.get(restaurantId)
         image = form.data["restaurant_image"]
         image.filename = get_unique_filename(image.filename)
@@ -41,6 +45,26 @@ def edit_restaurant(restaurantId):
         print(upload)
         if "url" not in upload:
             return upload["errors"]
+        restaurant.restaurant_image =upload["url"]
+
+        db.session.add(restaurant)
+        db.session.commit()
+        return restaurant.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# Edit a Restaurant
+@restaurant_routes.route("/edit/<int:restaurantId>", methods=["PATCH"])
+@login_required
+def edit_restaurant(restaurantId):
+
+    form = EditRestaurantForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+
+        restaurant = Restaurant.query.get(restaurantId)
+
         restaurant.name = form.data["name"]
         restaurant.price_range = form.data["price_range"]
         restaurant.description = form.data["description"]
@@ -49,14 +73,13 @@ def edit_restaurant(restaurantId):
         restaurant.state = form.data["state"]
         restaurant.zipcode = form.data["zipcode"]
         restaurant.contact_phone_number = form.data["contact_phone_number"]
-        restaurant.restaurant_image =upload["url"]
         restaurant.cuisine_type_id = form.data["cuisine_type_id"]
+
         db.session.add(restaurant)
         db.session.commit()
         return restaurant.to_dict()
+
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
-
-
 
 
 # Create a Restaurant
