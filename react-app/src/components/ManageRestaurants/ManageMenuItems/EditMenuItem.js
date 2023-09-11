@@ -66,10 +66,10 @@ const EditMenuItem = ({ item }) => {
 
   return (
     <div id="update-restaurant" >
-     
+
       <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT"  id="edit-restaurant-form">
       <h1 className="restaurant-title">Update Menu Item</h1>
-      
+
         <label className="add-restaurant-field">
           Menu Item Name
           <input
@@ -121,7 +121,7 @@ const EditMenuItem = ({ item }) => {
         </div>
       </form>
     </div>
-    
+
 
   )
 }

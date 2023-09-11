@@ -49,34 +49,34 @@ const EditMenuItemImage = ({ item }) => {
     };
 
     return (
-        <div>
+        <div className="update-restaurant-image">
             <h1 className="restaurant-title">Update Menu Item Image</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT">
-                <div className="form-group"></div>
-                <label className="modal-label">
-                    Menu Item Image
+                <label className="edit-image-display">
                     <input
-                        className="modal-input"
+                        className="modal-input-image"
                         type="file"
                         accept="image/*, image/jpeg, image/jpg, image/gif"
                         onChange={(e) => setMenu_item_image(e.target.files[0])}
                     />
                 </label>
                 {frontendErrors.menu_item_image && submitted && <p className="modal-error">{frontendErrors.menu_item_image}</p>}
-                <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="modal-button save-pin-button"
-                >
-                    Save
-                </button>
-                <button
-                    type="submit"
-                    onClick={submitCancel}
-                    className="cancel-pin-button"
-                >
-                    Cancel
-                </button>
+                <div className='save-cancel-edit-res'>
+                    <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="restaurant-save-button"
+                    >
+                        Save
+                    </button>
+                    <button
+                        type="submit"
+                        onClick={submitCancel}
+                        className="cancel-restaurant-button"
+                    >
+                        Cancel
+                    </button>
+                </div>
                 {imageLoading && <p>Loading...</p>}
             </form>
         </div>

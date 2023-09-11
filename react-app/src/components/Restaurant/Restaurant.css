@@ -263,3 +263,46 @@
   display: flex;
   gap: 25px
 }
+
+
+
+
+
+/*  styles for edit image modal */
+
+.update-restaurant-image {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.restaurant-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+
+.modal-input-image {
+  border-radius: 3px
+}
+
+
+.modal-error {
+  color: #ff0000;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+
+.loading-message {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}

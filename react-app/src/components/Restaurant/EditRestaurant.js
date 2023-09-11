@@ -297,8 +297,6 @@ const EditRestaurant = ({ restaurant }) => {
         </div>
       </form>
       </div>
-
-
     </div>
 
 
