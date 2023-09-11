@@ -108,6 +108,9 @@ const EditRestaurant = ({ restaurant }) => {
     formData.append("contact_phone_number", contactNumber);
     formData.append("cuisine_type_id", selectedCuisineType.id ? selectedCuisineType.id : selectedCuisineType);
 
+
+
+
     try {
 
       await dispatch(editRestaurantThunk(restaurant.id, formData));
@@ -127,24 +130,30 @@ const EditRestaurant = ({ restaurant }) => {
 
 
   return (
-    <div className="create-restaurant">
-      <h1 className="restaurant-title">Add your Restaurant</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label className="modal-label">
+    <div id="update-restaurant">
+
+      <div id="scrollable-form-container">
+
+      <form onSubmit={handleSubmit} id="edit-restaurant-form" encType="multipart/form-data" >
+        <h1 id="restaurant-title">Edit your Restaurant</h1>
+        <label className="add-restaurant-field">
           Restaurant Name
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
-        <label className="modal-label">
+        {frontendErrors.name && submitted && (
+          <p className="modal-error">{frontendErrors.name}</p>
+        )}
+
+        <label className="add-restaurant-field">
           Price Range
           <select
-            className="modal-input"
+            className="restaurant-dropdown"
             value={selectedPriceRange}
             onChange={(e) => setSelectedPriceRange(e.target.value)}
             required
@@ -159,66 +168,85 @@ const EditRestaurant = ({ restaurant }) => {
             ))}
           </select>
         </label>
-        {frontendErrors.selectedPriceRange && submitted && <p className="modal-error">{frontendErrors.selectedPriceRange}</p>}
-        <label className="modal-label">
+
+        {frontendErrors.selectedPriceRange && submitted && (
+          <p className="modal-error">{frontendErrors.selectedPriceRange}</p>
+        )}
+
+        <label className="add-restaurant-field edit-res-description">
           Description
-          <input
-            className="modal-input"
+          <textarea
+            className="restaurant-input-update"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
-        <label className="modal-label">
+        {frontendErrors.description && submitted && (
+          <p className="modal-error">{frontendErrors.description}</p>
+        )}
+
+        <label className="add-restaurant-field">
           Store address
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.title && submitted && <p className="modal-error">{frontendErrors.title}</p>}
-        <label className="modal-label">
+        {frontendErrors.title && submitted && (
+          <p className="modal-error">{frontendErrors.title}</p>
+        )}
+
+        <label className="add-restaurant-field">
           City
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.city && submitted && <p className="modal-error">{frontendErrors.city}</p>}
-        <label className="modal-label">
+        {frontendErrors.city && submitted && (
+          <p className="modal-error">{frontendErrors.city}</p>
+        )}
+
+        <label className="add-restaurant-field">
           State
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.state && submitted && <p className="modal-error">{frontendErrors.state}</p>}
-        <label className="modal-label">
+        {frontendErrors.state && submitted && (
+          <p className="modal-error">{frontendErrors.state}</p>
+        )}
+
+        <label className="add-restaurant-field">
           Zipcode
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={zipcode}
             onChange={(e) => setZipcode(e.target.value)}
             required
           />
         </label>
-        {frontendErrors.zipcode && submitted && <p className="modal-error">{frontendErrors.zipcode}</p>}
-        <label className="modal-label">
+        {frontendErrors.zipcode && submitted && (
+          <p className="modal-error">{frontendErrors.zipcode}</p>
+        )}
+
+        <label className="add-restaurant-field">
           Contact Phone Number
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
@@ -228,8 +256,8 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="modal-label">
           Cuisine Type
           <select
-            className="modal-input"
-            value={selectedCuisineTypeName}
+            className="restaurant-dropdown"
+            value={selectedCuisineType}
             onChange={(e) => {
               const selectedName = e.target.value;
               const selectedId = cuisineTypeOptions.find(
@@ -244,29 +272,35 @@ const EditRestaurant = ({ restaurant }) => {
               Select cuisine type
             </option>
             {cuisineTypeOptions.map((option) => (
-              <option key={option.id} value={option.name}>
+              <option key={option.id} value={option.id}>
                 {option.name}
               </option>
             ))}
           </select>
         </label>
         {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
-        <button
-          type="submit"
-          onClick={submitCancel}
-          className="cancel-pin-button"
-        >
-          Cancel
-        </button>
+        <div className='save-cancel-edit-res'>
         <button
           type="submit"
           onClick={handleSubmit}
-          className="modal-button save-pin-button"
+          className="restaurant-save-button"
         >
           Save
         </button>
+        <button
+          type="submit"
+          onClick={submitCancel}
+          className="cancel-restaurant-button"
+        >
+          Cancel
+        </button>
+        </div>
       </form>
+      </div>
+
+
     </div>
+
 
   )
 

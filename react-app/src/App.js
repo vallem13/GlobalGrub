@@ -89,6 +89,11 @@ function App() {
               <EditMenuItem/>
             </ProtectedRoute>
           </Route> */}
+              <Route path="/restaurant/new-restaurant">
+                <ProtectedRoute>
+                  <CreateRestaurant />
+                </ProtectedRoute>
+              </Route>
             <Route path="/cuisine/:cuisineId">
               <ProtectedRoute>
                 <SingleCuisine />
