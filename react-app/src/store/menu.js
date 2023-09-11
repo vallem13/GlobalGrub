@@ -28,9 +28,9 @@ const editMenuItem = (item) => ({
 })
 
 
-const deleteMenuItem = (id) => ({
+const deleteMenuItem = (item) => ({
     type: DELETE_MENU_ITEM,
-    id,
+    item,
 });
 
 // Thunk
@@ -107,7 +107,7 @@ export const editMenuItemThunk = ( id, formData) => async (dispatch) => {
 	}
 }
 
-export const deleteMenuItemThunk = (id) => async (dispatch) => {
+export const deleteMenuItemThunk = (id, item) => async (dispatch) => {
     const response = await fetch(`/api/menu_item/delete/${id}`, {
         method: 'DELETE',
     });
@@ -116,7 +116,7 @@ export const deleteMenuItemThunk = (id) => async (dispatch) => {
 
     if(response.ok) {
         const data = await response.json()
-        dispatch(deleteMenuItem(id))
+        dispatch(deleteMenuItem(id, item))
         return data
     } else if (response.status < 500) {
         const data = await response.json();

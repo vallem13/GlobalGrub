@@ -4,7 +4,9 @@ import { useHistory, useParams } from "react-router-dom"
 import { deleteMenuItemThunk } from '../../../store/menu';
 import { getSingleRestaurantThunk } from '../../../store/restaurant';
 
-const DeleteMenuItem = ({  id }) => {
+const DeleteMenuItem = ({ item }) => {
+console.log("ITEM ID -->",item)
+const singleRestaurant = useSelector((state) => state.restaurant.singleRestaurant)
 
     const { closeModal } = useModal()
     const dispatch = useDispatch()
@@ -13,9 +15,9 @@ const DeleteMenuItem = ({  id }) => {
 
     const deleteMenuItem = async (e) => {
         e.preventDefault();
-        await dispatch(deleteMenuItemThunk(id));
-        await closeModal();
-        await history.push('/my_restaurants')
+        await dispatch(deleteMenuItemThunk(item));
+        closeModal()
+        await dispatch(getSingleRestaurantThunk(singleRestaurant.id))
 
 
     };
