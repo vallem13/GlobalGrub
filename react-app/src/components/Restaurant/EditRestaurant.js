@@ -143,14 +143,14 @@ const EditRestaurant = ({ restaurant }) => {
   return (
     <div id="update-restaurant">
 
-      <h1 id="restaurant-title">Edit your Restaurant</h1>
-      <div id="edit-restaurant-form">
+      <div id="scrollable-form-container">
 
-      <form onSubmit={handleSubmit} encType="multipart/form-data" >
+      <form onSubmit={handleSubmit} id="edit-restaurant-form" encType="multipart/form-data" >
+        <h1 id="restaurant-title">Edit your Restaurant</h1>
         <label className="add-restaurant-field">
           Restaurant Name
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -186,8 +186,8 @@ const EditRestaurant = ({ restaurant }) => {
 
         <label className="add-restaurant-field edit-res-description">
           Description
-          <input
-            className="restaurant-input"
+          <textarea
+            className="restaurant-input-update"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -201,7 +201,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           Store address
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -215,7 +215,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           City
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -229,7 +229,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           State
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
@@ -243,7 +243,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           Zipcode
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={zipcode}
             onChange={(e) => setZipcode(e.target.value)}
@@ -257,7 +257,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           Contact Phone Number
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="text"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
@@ -268,7 +268,7 @@ const EditRestaurant = ({ restaurant }) => {
         <label className="add-restaurant-field">
           Store Image
           <input
-            className="restaurant-input"
+            className="restaurant-input-update"
             type="file"
             accept="image/*, image/jpeg, image/jpg, image/gif"
             onChange={(e) => setRestaurantImage(e.target.files[0])}
@@ -288,7 +288,6 @@ const EditRestaurant = ({ restaurant }) => {
               const selectedName =
                 cuisineTypeOptions.find((option) => option.id === selectedId)
                   ?.name || '';
-              console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
               setSelectedCuisineType({ id: selectedId, name: selectedName });
             }}
             required
@@ -311,14 +310,16 @@ const EditRestaurant = ({ restaurant }) => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="modal-button save-pin-button restaurant-save-button"
+          className="restaurant-save-button"
         >
           Save
         </button>
         {imageLoading && <p className="loading-message">Loading...</p>}
       </form>
-    </div>
       </div>
+
+
+    </div>
 
 
   )
