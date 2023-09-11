@@ -7,4 +7,5 @@ from .restaurant_form import RestaurantForm
 from .edit_restaurant_form import EditRestaurantForm
 from .menu_item_form import MenuItemForm
 from .edit_menu_item_form import EditMenuItemForm
-from .edit_restaurant_image import EditRestaurantImageForm
+from .edit_restaurant_image_form import EditRestaurantImageForm
+from .edit_menu_item_image_form import EditMenuItemImageForm
