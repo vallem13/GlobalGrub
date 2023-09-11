@@ -11,24 +11,17 @@ const EditRestaurant = ({ restaurant }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [name, setName] = useState(restaurant.name);
-  const [imageLoading, setImageLoading] = useState(false);
   const [description, setDescription] = useState(restaurant.description);
   const [address, setAddress] = useState(restaurant.address);
   const [city, setCity] = useState(restaurant.city);
   const [state, setState] = useState(restaurant.state);
   const [zipcode, setZipcode] = useState(restaurant.zipcode);
   const [contactNumber, setContactNumber] = useState(restaurant.contact_phone_number);
-  const [restaurantImage, setRestaurantImage] = useState(restaurant.restaurant_image);
-  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.price_range
-    || "");
-  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.cuisine_type_id
-    || "");
+  const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.price_range || "");
+  const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.cuisine_type_id || "");
   const [frontendErrors, setFrontendErrors] = useState({});
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-
-  console.log('------>1', restaurant)
-  console.log('------>', restaurant.cuisine_type_id)
 
   const priceRangeOptions = [
     { value: '$', label: '$' },
@@ -91,15 +84,12 @@ const EditRestaurant = ({ restaurant }) => {
     if (!contactNumber) {
       frontendErrors.contactNumber = "Restaurant zipcode is required to create a Restaurant"
     }
-    if (!restaurantImage) {
-      frontendErrors.restaurantImage = "An image is required to create a Restaurant."
-    }
     if (!selectedCuisineType) {
       frontendErrors.selectedCuisineType = "Restaurant cuisine type is required to edit a Restaurant"
     }
 
     setFrontendErrors(frontendErrors)
-  }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType])
+  }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, selectedCuisineType])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,11 +106,7 @@ const EditRestaurant = ({ restaurant }) => {
     formData.append("state", state);
     formData.append("zipcode", zipcode);
     formData.append("contact_phone_number", contactNumber);
-    formData.append("restaurant_image", restaurantImage);
     formData.append("cuisine_type_id", selectedCuisineType.id ? selectedCuisineType.id : selectedCuisineType);
-
-
-   
 
     try {
 
@@ -144,14 +130,6 @@ const EditRestaurant = ({ restaurant }) => {
     <div className="create-restaurant">
       <h1 className="restaurant-title">Add your Restaurant</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        {/* <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx} className="modal-error">
-                            {error}
-                        </li>
-                    ))}
-                </ul> */}
-
         <label className="modal-label">
           Restaurant Name
           <input
@@ -181,7 +159,6 @@ const EditRestaurant = ({ restaurant }) => {
             ))}
           </select>
         </label>
-
         {frontendErrors.selectedPriceRange && submitted && <p className="modal-error">{frontendErrors.selectedPriceRange}</p>}
         <label className="modal-label">
           Description
@@ -249,26 +226,16 @@ const EditRestaurant = ({ restaurant }) => {
           />
         </label>
         <label className="modal-label">
-          Store Image
-          <input
-            className="modal-input"
-            type="file"
-            accept="image/*, image/jpeg, image/jpg, image/gif"
-            onChange={(e) => setRestaurantImage(e.target.files[0])}
-          />
-        </label>
-        {frontendErrors.restaurantImage && submitted && <p className="modal-error">{frontendErrors.restaurantImage}</p>}
-        <label className="modal-label">
           Cuisine Type
           <select
             className="modal-input"
-            value={selectedCuisineTypeName} // Use selectedCuisineType.name as the value
+            value={selectedCuisineTypeName}
             onChange={(e) => {
               const selectedName = e.target.value;
               const selectedId = cuisineTypeOptions.find(
                 (option) => option.name === selectedName
               )?.id || "";
-              setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName }); // Parse the ID to an integer
+              setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
               setSelectedCuisineTypeName(selectedName);
             }}
             required
@@ -283,21 +250,14 @@ const EditRestaurant = ({ restaurant }) => {
             ))}
           </select>
         </label>
-
-
-
         {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
-
-        {/* <div className="modal-user">
-                    <img
-                        src={user.image}
-                        style={{ width: '50px', height: '50px' }}
-                        alt={user.firstName}
-                    />
-                    {user.first_name}
-                </div> */}
-        <button type="submit" onClick={submitCancel} className="cancel-pin-button">Cancel</button>
-
+        <button
+          type="submit"
+          onClick={submitCancel}
+          className="cancel-pin-button"
+        >
+          Cancel
+        </button>
         <button
           type="submit"
           onClick={handleSubmit}
@@ -305,7 +265,6 @@ const EditRestaurant = ({ restaurant }) => {
         >
           Save
         </button>
-        {imageLoading && <p>Loading...</p>}
       </form>
     </div>
 

@@ -29,6 +29,21 @@ const ManageRestaurants = () => {
         history.push(`/restaurant/${restaurantId}`);
     };
 
+    const cuisineTypeOptions = [
+        { id: 1, name: 'Korean' },
+        { id: 2, name: 'Japanese' },
+        { id: 3, name: 'Peruvian' },
+        { id: 4, name: 'Vietnamese' },
+        { id: 5, name: 'Mexican' },
+        { id: 6, name: 'Spanish' },
+        { id: 7, name: 'French' },
+        { id: 8, name: 'Mediterranean' },
+        { id: 9, name: 'Thai' },
+        { id: 10, name: 'Somali' },
+        { id: 11, name: 'Jamaican' },
+        { id: 12, name: 'Indian' },
+    ];
+
     return (
         <div className="manage-restaurants-page">
             <div className="title-create-container">
@@ -64,6 +79,15 @@ const ManageRestaurants = () => {
                                 <div>
                                     <h4 className='title'>Price Range: </h4>
                                     <h4>{restaurant.price_range}</h4>
+                                </div>
+                                <div>
+                                    <h4 className='title'>Cuisine Type: </h4>
+                                    <h4>{
+                                        restaurant.cuisine_type_id
+                                            ? cuisineTypeOptions.find((option) => option.id === restaurant.cuisine_type_id)
+                                                ?.name || ""
+                                            : ""
+                                    }</h4>
                                 </div>
                                 <div>
                                     <h4 className='title'>Description: </h4>

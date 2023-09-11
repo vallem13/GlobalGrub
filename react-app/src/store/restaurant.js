@@ -109,6 +109,26 @@ export const editRestaurantThunk = (restaurantId, formData) => async (dispatch) 
 	}
 }
 
+export const editRestaurantImageThunk = (restaurantId, formData) => async (dispatch) => {
+    const response = await fetch(`/api/restaurant/edit/${restaurantId}/image`, {
+        method: 'PATCH',
+        body: formData
+    });
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(createRestaurant(formData))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
 
 
 
