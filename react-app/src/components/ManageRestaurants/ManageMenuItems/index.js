@@ -40,7 +40,7 @@ const ManageMenuItems = () => {
               <div className='image-button-container'>
                 <img style={{ objectFit: "cover", width: "150px", height: "150px" }} className='restaurant-image' src={item.menu_item_image} alt={item.name} />
                 <OpenModalButton
-                buttonText={<i class="fa-solid fa-pen-to-square" style={{ fontSize: "3rem", color: "#f00b51" }}></i>}
+                buttonText={<i class="fa-solid fa-pen-to-square" style={{ fontSize: "1.5rem", color: "#f00b51" }}></i>}
                 modalComponent={<EditMenuItemImage item={item} />} />
               </div>
               <div className='single-restaurant-info'>

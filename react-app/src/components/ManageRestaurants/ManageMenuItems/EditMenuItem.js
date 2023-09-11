@@ -65,14 +65,15 @@ const EditMenuItem = ({ item }) => {
   };
 
   return (
-    <div>
+    <div id="update-restaurant" >
+     
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT"  id="edit-restaurant-form">
       <h1 className="restaurant-title">Update Menu Item</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT">
-        <div className="form-group"></div>
-        <label className="modal-label">
+      
+        <label className="add-restaurant-field">
           Menu Item Name
           <input
-            className="modal-input"
+             className="restaurant-input-update"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -80,10 +81,10 @@ const EditMenuItem = ({ item }) => {
           />
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
-        <label className="modal-label">
+        <label className="add-restaurant-field">
           Price
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -91,10 +92,10 @@ const EditMenuItem = ({ item }) => {
           />
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
-        <label className="modal-label">
+        <label className="add-restaurant-field edit-res-description">
           Description
           <input
-            className="modal-input"
+            className="restaurant-input-update"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -102,22 +103,25 @@ const EditMenuItem = ({ item }) => {
           />
         </label>
         {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
+        <div className='save-cancel-edit-res'>
         <button
           type="submit"
           onClick={handleSubmit}
-          className="modal-button save-pin-button"
+          className="restaurant-save-button"
         >
           Save
         </button>
         <button
           type="submit"
           onClick={submitCancel}
-          className="cancel-pin-button"
+          className="cancel-restaurant-button"
         >
           Cancel
         </button>
+        </div>
       </form>
     </div>
+    
 
   )
 }

@@ -62,56 +62,65 @@ await history.push(`/menu_item/${restaurantId}`)
  
 }
 };
+const submitCancel = () => {
+  history.push(`/menu_item/${restaurantId}`)
+
+};
 
 
 
   return (
-    <div>
-            <form onSubmit={handleSubmit} encType="multipart/form-data" method='POST'>
-        <div className="form-group"></div>
-        {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
-        {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
-        {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
-        {frontendErrors.menu_item_image && submitted && <p className="modal-error">{frontendErrors.menu_item_image}</p>}
-        <label className="modal-label">
+    <div id="update-restaurant">
+      
+            <form onSubmit={handleSubmit} encType="multipart/form-data" method='POST'  >
+            <h1 id="restaurant-title">Create Your Menu Item</h1>
+        <label className="add-restaurant-field">
                     Menu Item Name
                     <input
-                        className="modal-input"
+                        className="restaurant-input-update"
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
                 </label>
-                <label className="modal-label">
+                {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
+
+                <label className="add-restaurant-field">
                     Price
                     <input
-                    className="modal-input"
+                    className="restaurant-input-update"
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     required
                     />
                 </label>
-                <label className="modal-label">
+                {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
+
+                <label className="add-restaurant-field edit-res-description">
                     Description
                     <input
-                    className="modal-input"
+                    className="restaurant-input-update"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                     />
                 </label>
-                <label className="modal-label">
+                {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
+
+                <label className="add-restaurant-field">
                     Menu Item Image
                     <input
-                        className="modal-input"
+                        className="restaurant-input"
                         type="file"
                         accept="image/*, image/jpeg, image/jpg, image/gif"
                         onChange={(e) => setMenu_item_image(e.target.files[0])}
                     />
                 </label>
+                {frontendErrors.menu_item_image && submitted && <p className="modal-error">{frontendErrors.menu_item_image}</p>}
+
                     {/* <input
                     className="modal-input"
                     type="text"
@@ -120,16 +129,26 @@ await history.push(`/menu_item/${restaurantId}`)
                     required
                     />
                 </label> */}
-                <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="modal-button save-pin-button"
-                >
-                    Save
-                </button>
+ <div className='save-cancel-edit-res' style={{ justifyContent: "center" }}>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="restaurant-save-button"
+        >
+          Save
+        </button>
+        <button
+          type="submit"
+          onClick={submitCancel}
+          className="cancel-restaurant-button"
+        >
+          Cancel
+        </button>
+        </div>
         
         </form>
         </div>
+        
 
 )
 } 
