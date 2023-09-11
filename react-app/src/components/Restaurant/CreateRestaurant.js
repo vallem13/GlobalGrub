@@ -26,6 +26,7 @@ const CreateRestaurant = () => {
     const [selectedPriceRange, setSelectedPriceRange] = useState('');
     const [selectedCuisineType, setSelectedCuisineType] = useState('');
 
+
     const priceRangeOptions = [
         { value: '$', label: '$' },
         { value: '$$', label: '$$' },
@@ -268,30 +269,56 @@ const CreateRestaurant = () => {
                             <p className="modal-error">{frontendErrors.restaurantImage}</p>
                         )}
 
+{/* <label className="add-restaurant-field">
+          Cuisine Type
+          <select
+            className="restaurant-dropdown"
+            value={selectedCuisineType}
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              const selectedId = cuisineTypeOptions.find(
+                (option) => option.name === selectedName
+              )?.id || "";
+              setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
+              setSelectedCuisineTypeName(selectedName);
+            }}
+            required
+          >
+            <option value="" disabled>
+              Select cuisine type
+            </option>
+            {cuisineTypeOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </label> */}
+
                         <label className="add-restaurant-field">
                             Cuisine Type
                             <select
-                                className="restaurant-dropdown"
-                                value={selectedCuisineType}
-                                onChange={(e) => {
-                                    const selectedId = e.target.value;
-                                    const selectedName =
-                                        cuisineTypeOptions.find((option) => option.id === selectedId)
-                                            ?.name || '';
-                                    console.log("Selected Cuisine Type:", selectedName); // Add this line for debugging
-                                    setSelectedCuisineType({ id: selectedId, name: selectedName });
-                                }}
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select cuisine type
-                                </option>
-                                {cuisineTypeOptions.map((option) => (
-                                    <option key={option.id} value={option.id}>
-                                        {option.name}
-                                    </option>
-                                ))}
-                            </select>
+  className="restaurant-dropdown"
+  value={selectedCuisineType.id}
+  onChange={(e) => {
+    const selectedId = e.target.value;
+    const selectedName =
+      cuisineTypeOptions.find((option) => option.id === parseInt(selectedId))
+        ?.name || '';
+    setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
+  }}
+  required
+>
+  <option value="" disabled>
+    Select cuisine type
+  </option>
+  {cuisineTypeOptions.map((option) => (
+    <option key={option.id} value={option.id}>
+      {option.name}
+    </option>
+  ))}
+</select>
+
                         </label>
 
                         {frontendErrors.selectedCuisineType && submitted && (
