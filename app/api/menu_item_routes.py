@@ -118,14 +118,14 @@ def edit_menu_item(id):
 
    
 
-@menu_item_routes.route('/delete/<int:menu_items_id>', methods=['DELETE'])
+@menu_item_routes.route('/delete/<int:id>', methods=['DELETE'])
 @login_required
-def delete_menu_item(menu_items_id):
+def delete_menu_item(id):
 
-    menu_item = MenuItem.query.get(menu_items_id)
+    menu_item = MenuItem.query.get(id)
 
     db.session.delete(menu_item)
     db.session.commit()
 
-    return {"message":f"Successfully deleted menu item with id {menu_items_id}"}
+    return {"message":f"Successfully deleted menu item with id {id}"}
 

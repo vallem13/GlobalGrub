@@ -32,8 +32,11 @@ const CreateMenuItem = ( ) => {
 dispatch(createMenuItemThunk(restaurantId, formData));
     dispatch(getSingleRestaurantThunk(restaurantId))
  await history.push(`/menu_item/${restaurantId}`)
+ 
     
 };
+
+
 
   return (
     <div>

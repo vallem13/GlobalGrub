@@ -38,8 +38,8 @@ const ManageMenuItems = (  ) => {
         {items.map((item) => (
           <div className='single-menu-items-wrapper' key={item.id}>
             <div className="image-container">
-            <OpenModalButton  buttonText="Edit Menu Item" modalComponent={<EditMenuItem />}/>
-            <OpenModalButton  buttonText="Delete Menu Item" modalComponent={<DeleteMenuItem />}/>
+            <OpenModalButton  buttonText="Edit Menu Item" modalComponent={<EditMenuItem item={item.id}/>}/>
+            <OpenModalButton  buttonText="Delete Menu Item" modalComponent={<DeleteMenuItem item={item.id}/>}/>
 
               <img className="menu-image" src={item.menu_item_image} alt={item.name} />
              

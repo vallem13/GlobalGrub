@@ -2,21 +2,22 @@ import { useModal } from '../../../context/Modal'
 import { useDispatch, useSelector  } from "react-redux";
 import { useHistory, useParams } from "react-router-dom"
 import { deleteMenuItemThunk } from '../../../store/menu';
+import { getSingleRestaurantThunk } from '../../../store/restaurant';
 
-const DeleteMenuItem = ({  menuItemsId }) => {
-    const menuItem = useSelector((state) => state.menu.singleMenuItems)
+const DeleteMenuItem = ({  id }) => {
 
     const { closeModal } = useModal()
-    const { restaurantId } = useParams();
     const dispatch = useDispatch()
     const history = useHistory()
 
 
     const deleteMenuItem = async (e) => {
         e.preventDefault();
-        await dispatch(deleteMenuItemThunk(menuItemsId));
-        await history.push(`/menu_item/${restaurantId}/`)
+        await dispatch(deleteMenuItemThunk(id));
         await closeModal();
+        await history.push('/my_restaurants')
+
+
     };
 
     const dontDeleteMenuItem = () => {

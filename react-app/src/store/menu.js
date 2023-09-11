@@ -1,6 +1,7 @@
 // Action
 const GET_ALL_MENU_ITEMS = "menu/GET_ALL_MENU_ITEMS";
 const GET_SINGLE_MENU_ITEM ="menu/GET_SINGLE_MENU_ITEM";
+const EDIT_MENU_ITEM = "menu/EDIT_MENU_ITEM";
 const CREATE_MENU_ITEM = "menu/CREATE_MENU_ITEM";
 const DELETE_MENU_ITEM = "menu/DELETE_MENU_ITEM";
 
@@ -19,11 +20,17 @@ const createMenuItem = (item) => ({
     type: CREATE_MENU_ITEM,
     item,
 
+    
+})
+const editMenuItem = (item) => ({
+    type: CREATE_MENU_ITEM,
+    item,
 })
 
-const deleteMenuItem = (menuItemsId) => ({
+
+const deleteMenuItem = (id) => ({
     type: DELETE_MENU_ITEM,
-    menuItemsId,
+    id,
 });
 
 // Thunk
@@ -78,46 +85,48 @@ export const createMenuItemThunk = ( restaurantId, formData) => async (dispatch)
 	}
 }
 
-export const deleteMenuItemThunk = (menuItemsId) => async (dispatch) => {
-    const response = await fetch(`/api/menu_item/delete/${menuItemsId}`, {
-        method: 'DELETE',
-    });
 
-    if(response.ok) {
-        const menuItemsId = await response.json()
-        dispatch(deleteMenuItem(menuItemsId))
-        return response
-    } else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
-};
-
-export const editMenuItemThunk = (menuItemsId, formData) => async (dispatch) => {
-    const response = await fetch(`/api/menu_item/edit/${menuItemsId}`, {
+export const editMenuItemThunk = ( id, formData) => async (dispatch) => {
+    const response = await fetch(`/api/menu_item/edit/${id}`, {
         method: 'PUT',
         body: formData
     });
     console.log("Menu Item Id: ---->", response);
-    console.log("THUNK Menu Item Id: ---->", menuItemsId);
+    console.log("THUNK Menu Item Id: ---->", id);
     if(response.ok) {
         const item = await response.json()
-        dispatch(createMenuItem(item))
+        dispatch(editMenuItem(id, item))
         return response
     } else if (response.status < 500) {
-		const data = await response.json();
+        const data = await response.json();
 		if (data.errors) {
-			return data.errors;
+            return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
+        return ["An error occurred. Please try again."];
 	}
 }
 
+export const deleteMenuItemThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/menu_item/delete/${id}`, {
+        method: 'DELETE',
+    });
+    console.log("Menu Item Id: ---->", response);
+    console.log("THUNK Menu Item Id: ---->", id);
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(deleteMenuItem(id))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
 
 
 
@@ -146,6 +155,11 @@ const menuItemReducer = (state = initialState, action) => {
     case CREATE_MENU_ITEM:
         newState = { ...state, allMenuItems: { ...state.allMenuItems}, singleMenuItems: { ...action.item} }
         return newState
+
+    case EDIT_MENU_ITEM:
+        newState = {...state}
+        newState.allMenuItems[action.item.id] = action.item;
+        return newState;
 
     case DELETE_MENU_ITEM:
         newState = { ...state };

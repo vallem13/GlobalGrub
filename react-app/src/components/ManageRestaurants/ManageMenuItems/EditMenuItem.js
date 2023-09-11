@@ -8,22 +8,26 @@ import {  getSingleRestaurantThunk } from "../../../store/restaurant";
 import { editMenuItemThunk } from "../../../store/menu";
 
 const EditMenuItem = ({ item }) => {
-  const { restaurantId } = useParams();
-    
+  // const { menuItemId } = useParams();
+console.log("ITEM ID", item)
     const { closeModal } = useModal()
-    console.log("item: ---->", item);
   const dispatch = useDispatch();
 
   const history = useHistory();
-  const menuItem = useSelector((state) => state.menu.singleMenuItems)
-  const restaurant = Object.values(useSelector((state) => state.restaurant.singleRestaurant))
-  console.log("MenuItem State: ---->", menuItem);
-  const [name, setName] = useState(menuItem.name);
-  const [price, setPrice] = useState(menuItem.price);
-  const [description, setDescription] = useState(menuItem.description);
-  const [menu_item_image, setMenu_item_image] = useState(menuItem.menu_item_image);
+  // const menuItems = Object.values(useSelector((state) => state.menu.singleMenuItems))
+  const singleRestaurant = useSelector((state) => state.restaurant.singleRestaurant)
+  const items = singleRestaurant.menu_items || [];
+  const itemsDetail = items.find((menuItem) => menuItem.id === item)
+
+  
+
+  console.log("MenuItem State: ---->", items, itemsDetail);
+  const [name, setName] = useState(itemsDetail.name);
+  const [price, setPrice] = useState(itemsDetail.price);
+  const [description, setDescription] = useState(itemsDetail.description);
+  const [menu_item_image, setMenu_item_image] = useState(itemsDetail.menu_item_image);
  
-  console.log("RESTAURANT ID", restaurant)
+  console.log("RESTAURANT ID", singleRestaurant.id)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +38,10 @@ const EditMenuItem = ({ item }) => {
     formData.append("description", description);
     formData.append("menu_item_image", menu_item_image);
 
-    await dispatch(editMenuItemThunk(  item, formData));
-    dispatch(getSingleRestaurantThunk(restaurantId))
- await history.push(`/menu_item/${restaurantId}`)
+    await dispatch(editMenuItemThunk( item, formData));
+    closeModal()
+    dispatch(getSingleRestaurantThunk(singleRestaurant.id))
+    await history.push(`/menu_item/${singleRestaurant.id}`)
 };
 
   return (
