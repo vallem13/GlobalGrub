@@ -12,14 +12,14 @@
         text-align: start;
     }
     
-    .material-symbols-outlined {
+    #preview-image-icon {
         display: flex;
         flex-direction: column;
         width: 280px;
         height: 230px;
     }
     
-    .material-symbols-outlined img{
+    #preview-image-icon img{
     
         object-fit: cover;
         width: 280px;

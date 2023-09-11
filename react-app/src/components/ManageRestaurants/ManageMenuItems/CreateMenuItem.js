@@ -138,6 +138,7 @@ const CreateMenuItem = () => {
             />
             <span
               className="material-symbols-outlined"
+              id="preview-image-icon"
               style={{
                 display: "flex",
                 justifyContent: "center",
