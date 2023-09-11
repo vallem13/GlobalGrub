@@ -119,13 +119,6 @@
   margin-left: 5px;
 }
 
-/* .search-bar {
-  position: fixed;
-  margin-top: 8px;
-  padding-right: 50px;
-  padding-left: 120px;
-
-} */
 
 .cart-button button {
   background-color: black;
@@ -138,12 +131,7 @@
 
 }
 
-/* .search-input-container {
-  position: fixed;
-  border-radius: 50px;
-  grid-area: search;
 
-} */
 
 .search-icon {
   position: absolute;
@@ -160,18 +148,7 @@
   padding-left: 7px;
 }
 
-/* .search-input {
-  position: fixed;
-  left:300px;
-  top: 20px;
-  border-radius: 50px;
-  border: .5px solid white;
-  padding: 4px;
-  margin-left: 100px;
-  width: 200px;
-  background-color: #eee;
-  cursor: pointer;
-} */
+
 
 .search-input {
   position: absolute;
