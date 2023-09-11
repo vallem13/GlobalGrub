@@ -25,6 +25,8 @@ const CreateRestaurant = () => {
     const [submitted, setSubmitted] = useState(false);
     const [selectedPriceRange, setSelectedPriceRange] = useState('');
     const [selectedCuisineType, setSelectedCuisineType] = useState('');
+    const [imagePreview, setImagePreview] = useState(null);
+
 
     const priceRangeOptions = [
         { value: '$', label: '$' },
@@ -124,6 +126,22 @@ const CreateRestaurant = () => {
         }
 
     };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+    
+        if (file) {
+          setRestaurantImage(file)
+          const reader = new FileReader();
+    
+          reader.onloadend = () => {
+            setImagePreview(reader.result);
+          }
+    
+          reader.readAsDataURL(file);
+        }
+      };
+    
 
     return (
 
@@ -254,8 +272,45 @@ const CreateRestaurant = () => {
                                 required
                             />
                         </label>
+                        <div className="store-image-preview" style={{ textAlign: "left" }}>
+   Store Preview Image
+  <label className="store-image-preview" style={{ textAlign: "left" }} >
+    <input 
+      style={{ display: "none", textAlign: "left"}}
+      className="hidden-input"
+      id="menu-item-input-update"
+      type="file"
+      accept="image/*, image/jpeg, image/jpg, image/gif"
+      onChange={handleImageChange}
+    />
+    <span
+  className="material-symbols-outlined"
+  style={{
+    width: "480px",
+    height: "230px",
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center", 
+    cursor: "pointer",
+    border: imagePreview ? "none" : "1px solid #ccc" 
+  }}
+  onClick={() => document.getElementById('menu-item-input-update').click()}
+>
+  {!imagePreview && "image"}
+  
+  {imagePreview && (
+    <img 
+    style={{  width: "480px",
+    height: "230px", }}
+      src={imagePreview} 
+      alt="Preview" 
+    />
+  )}
+</span>
+  </label>
+</div>
 
-                        <label className="add-restaurant-field">
+                        {/* <label className="add-restaurant-field">
                             Store Image
                             <input
                                 className="restaurant-input"
@@ -263,7 +318,7 @@ const CreateRestaurant = () => {
                                 accept="image/*, image/jpeg, image/jpg, image/gif"
                                 onChange={(e) => setRestaurantImage(e.target.files[0])}
                             />
-                        </label>
+                        </label> */}
                         {frontendErrors.restaurantImage && submitted && (
                             <p className="modal-error">{frontendErrors.restaurantImage}</p>
                         )}

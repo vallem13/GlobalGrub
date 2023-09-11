@@ -66,10 +66,11 @@ const EditMenuItem = ({ item }) => {
 
   return (
     <div id="update-menu-item">
-      <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT" id="edit-menu-item-form">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="PUT" style={{ alignItems: "none" }} id="edit-menu-item-form">
         <h1 className="menu-item-title">Update Menu Item</h1>
 
-        <label className="add-menu-item-field">
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>
           <p> Menu Item Name </p>
           <input
             id="menu-item-input-update"
@@ -80,8 +81,9 @@ const EditMenuItem = ({ item }) => {
           />
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
-        <label className="add-menu-item-field">
-          <p>Price</p>
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }} >
+        <p >Price</p>
           <input
             id="menu-item-input-update"
             type="text"
@@ -91,8 +93,9 @@ const EditMenuItem = ({ item }) => {
           />
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
-        <label className="add-menu-item-field edit-menu-item-description">
-          <p>Description</p>
+        <label style={{ 
+          alignItems: "self-start" }} className="add-menu-item-field edit-menu-item-description">
+          <p>Description </p>
           <input
             id="menu-item-input-update"
             type="text"

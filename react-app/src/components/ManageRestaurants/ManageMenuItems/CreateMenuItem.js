@@ -90,7 +90,8 @@ const CreateMenuItem = () => {
 
       <form onSubmit={handleSubmit} id="create-menu" encType="multipart/form-data" method='POST'  >
         <h1 id="restaurant-title">Create Your Menu Item</h1>
-        <label className="add-menu-item-field">
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>
           <p> Menu Item Name </p>
           <input
             id="menu-item-input-update"
@@ -102,7 +103,8 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
 
-        <label className="add-menu-item-field">
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>
           Price
           <input
             id="menu-item-input-update"
@@ -114,7 +116,8 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
 
-        <label className="add-menu-item-field">                    Description
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>                    Description
           <input
             id="menu-item-input-update"
             type="text"
@@ -126,7 +129,8 @@ const CreateMenuItem = () => {
         {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
 
         <div className="store-image-preview" style={{ alignSelf: "start" }}>
-  <label className="store-image-preview" >
+  <label className="store-image-preview" style={{ 
+          alignItems: "self-start" }}>
     Store Preview Image
     <input
       style={{ display: "none" }}

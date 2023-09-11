@@ -6,6 +6,8 @@ text-align: start;
 top: 450px;
 
 }
+
+
 .add-menu-item-field p{
     text-align: start;
 }
@@ -18,7 +20,6 @@ top: 450px;
 }
 
 .material-symbols-outlined img{
-    padding-top: 10px;
 
     object-fit: cover;
     width: 280px;
