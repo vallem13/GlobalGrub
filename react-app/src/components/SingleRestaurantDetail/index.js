@@ -67,16 +67,16 @@ export default function SingleRestaurant() {
         ))}
       </div>
       <div className="reviews-wrapper">
-        <h3 className='menu-review-title'>Reviews</h3>
+        <h3 className='menu-review-title'>{Number(rating).toFixed(2)} <i class="fa-solid fa-star" style={{ color: "#f00b52" }}></i> · {reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</h3>
         <div>
-        <div className='post-review-container'>
-        {check_order && !previousReview ? (
-          <div className='review-buttons'>
-              <OpenModalButton className='review-buttons' buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
+          <div className='post-review-container'>
+            {check_order && !(restaurant.user_id === user.id) && !previousReview ? (
+              <div className='review-buttons'>
+                <OpenModalButton className='review-buttons' buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
               </div>
             ) : ('')}
           </div>
-          </div>
+        </div>
         <div className="review-list">
           {reverse_reviews.map((review) => (
             <div className="review-item" key={review.id}>
@@ -90,16 +90,16 @@ export default function SingleRestaurant() {
               {previousReview && (review.user_id === user.id) ? (
                 <div className="review-actions">
                   <div className='review-buttons'>
-                  <OpenModalButton
-                    buttonText="Edit Your Review"
-                    modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
-                  />
+                    <OpenModalButton
+                      buttonText="Edit Your Review"
+                      modalComponent={<EditReviewModal restaurant={restaurant} review={review} user_id={user.id} />}
+                    />
                   </div>
                   <div className='review-buttons'>
-                  <OpenModalButton
-                    buttonText="Delete Review"
-                    modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
-                  />
+                    <OpenModalButton
+                      buttonText="Delete Review"
+                      modalComponent={<DeleteReviewModal reviewId={review.id} restaurantId={restaurant.id} />}
+                    />
                   </div>
                 </div>
               ) : ('')}
