@@ -27,11 +27,11 @@ const singleRestaurant = useSelector((state) => state.restaurant.singleRestauran
     }
 
     return (
-        <div>
-            <div>
+        <div className='delete-restaurant-container'>
                 <h2>Confirm Delete Restaurant</h2>
-                    <button onClick={deleteMenuItem}>Delete</button>
-                    <button onClick={dontDeleteMenuItem}>Cancel</button>
+                <div className='delete-restaurant-buttons'>
+                    <button className="delete-restaurant-button" onClick={deleteMenuItem}>Delete</button>
+                    <button className="cancel-restaurant-button" onClick={dontDeleteMenuItem}>Cancel</button>
                 </div>
             </div>
         
