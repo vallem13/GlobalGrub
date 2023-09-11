@@ -108,18 +108,7 @@
 }
 
 
-.restaurant-save-button {
-  border: none;
-  background-color: #ff9900; ;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
 
-.restaurant-save-button:hover {
-  background-color: purple;
-}
 
 
 
@@ -198,16 +187,7 @@
   margin-top: 5px; /* Spacing above error messages */
 }
 
-.restaurant-save-button {
-  background-color: #ff9900;
-  color: #fff;
-  border: none;
-  border-radius: 21px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+
 
 .modal-button:hover {
   background-color: #e68000;
@@ -218,7 +198,7 @@
   margin-top: 10px; /* Spacing above loading message */
 }
 
-
+.cancel-restaurant-button:hover,
 .restaurant-save-button:hover {
   background-color: purple;
 
@@ -251,6 +231,7 @@
   margin-top: 20px;
 }
 
+.restaurant-save-button,
 .delete-restaurant-buttons .delete-restaurant-button {
   background-color: #f00b51;
   color: #fff;
@@ -262,6 +243,7 @@
   transition: background-color 0.3s ease;
 }
 
+.cancel-restaurant-button,
 .delete-restaurant-buttons .cancel-restaurant-button {
   background-color: #ff851b;;
   color: #fff;
@@ -277,3 +259,7 @@
   background-color: purple;
 }
 
+.save-cancel-edit-res {
+  display: flex;
+  gap: 25px
+}

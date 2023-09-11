@@ -89,14 +89,11 @@ function App() {
               <EditMenuItem/>
             </ProtectedRoute>
           </Route> */}
-            <div className={location.pathname === "/restaurant/new-restaurant" ? "page-container" : ""}>
-
               <Route path="/restaurant/new-restaurant">
                 <ProtectedRoute>
                   <CreateRestaurant />
                 </ProtectedRoute>
               </Route>
-            </div>
             <Route path="/cuisine/:cuisineId">
               <ProtectedRoute>
                 <SingleCuisine />

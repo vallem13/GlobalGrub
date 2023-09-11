@@ -279,13 +279,7 @@ const EditRestaurant = ({ restaurant }) => {
           </select>
         </label>
         {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
-        <button
-          type="submit"
-          onClick={submitCancel}
-          className="cancel-pin-button"
-        >
-          Cancel
-        </button>
+        <div className='save-cancel-edit-res'>
         <button
           type="submit"
           onClick={handleSubmit}
@@ -293,6 +287,14 @@ const EditRestaurant = ({ restaurant }) => {
         >
           Save
         </button>
+        <button
+          type="submit"
+          onClick={submitCancel}
+          className="cancel-restaurant-button"
+        >
+          Cancel
+        </button>
+        </div>
       </form>
       </div>
 
