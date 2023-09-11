@@ -6,7 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeleteReviewModal from '../ReviewModal/DeleteReviewModal';
 import CreateReviewModal from '../ReviewModal/CreateReviewModal';
 import EditReviewModal from '../ReviewModal/EditReviewModal';
-import { thunkCreateCart, updateNewOrders, updateOrderCart, addItem } from '../../store/cart';
+import { addItem } from '../../store/cart';
 import StarRatings from "../StarRatings/starRating"
 import './SingleRestaurant.css'
 
@@ -22,7 +22,6 @@ export default function SingleRestaurant() {
   const reviews = restaurant.reviews || [];
   const orders = user.order_carts || [];
   const rating = restaurant.average_rating || ('')
-  console.log(rating)
 
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
@@ -33,10 +32,7 @@ export default function SingleRestaurant() {
   orders.map(order => restaurant_ids.push(order.restaurant_id))
 
   const reverse_reviews = [...reviews].reverse()
-  console.log("-------->", reverse_reviews)
-
   const check_order = restaurant_ids.find(order => restaurant.id === order)
-
   const previousReview = user && reviews.find((review) => review.user_id === user.id)
 
   if (!restaurant) return <div>Loading...</div>;
@@ -70,7 +66,6 @@ export default function SingleRestaurant() {
           </div>
         ))}
       </div>
-
       <div className="reviews-wrapper">
         <h3 className='menu-review-title'>Reviews</h3>
         <div>
@@ -86,7 +81,6 @@ export default function SingleRestaurant() {
           {reverse_reviews.map((review) => (
             <div className="review-item" key={review.id}>
               <div className="rating-container">
-                {/* <p>{review.rating.toFixed(0)}</p> */}
                 {review ? (<StarRatings rating={review.rating} disabled={true} />) : (<StarRatings rating={0} disabled={true} />)}
               </div>
               <div className="review-details">
