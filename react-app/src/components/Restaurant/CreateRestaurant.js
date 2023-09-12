@@ -280,6 +280,7 @@ const CreateRestaurant = () => {
                                             style={{
                                                 width: "480px",
                                                 height: "230px",
+                                                objectFit: "cover",
                                             }}
                                             src={imagePreview}
                                             alt="Preview"
