@@ -1,4 +1,4 @@
-/* 
+/*
 
 #filter-page-wrapper {
   display: flex;
@@ -75,15 +75,15 @@
 
 .pper {
   position: sticky;
-  background-color: white; 
-  z-index: 2; 
-  padding: 10px 0;  
+  background-color: white;
+  /* z-index: 2;  */
+  padding: 10px 0;
   top: 0;
 }
 
 .price-buttons {
   display: flex;
-  gap: 15px;  
+  gap: 15px;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   height: 100px;
   width: 150px;
@@ -93,9 +93,9 @@
   margin-right: 20px;
 }
 
-  
+
 .price-button {
-  
+
   font-weight: lighter;
   font-family: monospace;
   border-radius: 10px;
