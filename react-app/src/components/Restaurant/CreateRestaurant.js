@@ -294,26 +294,26 @@ const CreateRestaurant = () => {
                         <label className="add-restaurant-field">
                             Cuisine Type
                             <select
-  className="restaurant-dropdown"
-  value={selectedCuisineType.id}
-  onChange={(e) => {
-    const selectedId = e.target.value;
-    const selectedName =
-      cuisineTypeOptions.find((option) => option.id === parseInt(selectedId))
-        ?.name || '';
-    setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
-  }}
-  required
->
-  <option value="" disabled>
-    Select cuisine type
-  </option>
-  {cuisineTypeOptions.map((option) => (
-    <option key={option.id} value={option.id}>
-      {option.name}
-    </option>
-  ))}
-</select>
+                                className="restaurant-dropdown"
+                                value={selectedCuisineType.id}
+                                onChange={(e) => {
+                                    const selectedId = e.target.value;
+                                    const selectedName =
+                                        cuisineTypeOptions.find((option) => option.id === parseInt(selectedId))
+                                            ?.name || '';
+                                    setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
+                                }}
+                                required
+                            >
+                                <option value="" disabled>
+                                    Select cuisine type
+                                </option>
+                                {cuisineTypeOptions.map((option) => (
+                                    <option key={option.id} value={option.id}>
+                                        {option.name}
+                                    </option>
+                                ))}
+                            </select>
 
                         </label>
                         {frontendErrors.selectedCuisineType && submitted && (
