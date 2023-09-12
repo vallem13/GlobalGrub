@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleRestaurantThunk } from "../../../store/restaurant";
 import { createMenuItemThunk, getSingleMenuItemThunk } from "../../../store/menu";
-import './ManageMenu.css'
+import './ManageMenu.css';
 const CreateMenuItem = () => {
 
 
@@ -57,7 +57,7 @@ const CreateMenuItem = () => {
       formData.append("restaurant_id", restaurantId);
 
       await dispatch(createMenuItemThunk(restaurantId, formData));
-      await dispatch(getSingleRestaurantThunk(restaurantId))
+      dispatch(getSingleRestaurantThunk(restaurantId))
       await history.push(`/menu_item/${restaurantId}`)
 
 
@@ -86,11 +86,12 @@ const CreateMenuItem = () => {
 
 
   return (
-    <div id="create-menu" style={{}}>
+    <div id="create-menu" style={{  }}>
 
       <form onSubmit={handleSubmit} id="create-menu" encType="multipart/form-data" method='POST'  >
         <h1 id="restaurant-title">Create Your Menu Item</h1>
-        <label className="add-menu-item-field">
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>
           <p> Menu Item Name </p>
           <input
             id="menu-item-input-update"
@@ -102,7 +103,8 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
 
-        <label className="add-menu-item-field">
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>
           Price
           <input
             id="menu-item-input-update"
@@ -114,7 +116,8 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
 
-        <label className="add-menu-item-field">                    Description
+        <label className="add-menu-item-field" style={{ 
+          alignItems: "self-start" }}>                    Description
           <input
             id="menu-item-input-update"
             type="text"
@@ -126,38 +129,47 @@ const CreateMenuItem = () => {
         {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
 
         <div className="store-image-preview" style={{ alignSelf: "start" }}>
-          <label className="store-image-preview" >
-            Store Preview Image
-            <input
-              style={{ display: "none" }}
-              className="hidden-input"
-              id="menu-item-input-update"
-              type="file"
-              accept="image/*, image/jpeg, image/jpg, image/gif"
-              onChange={handleImageChange}
-            />
-            <span
-              className="material-symbols-outlined"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                border: imagePreview ? "none" : "1px solid #ccc"
-              }}
-              onClick={() => document.getElementById('menu-item-input-update').click()}
-            >
-              {!imagePreview && "image"}
-
-              {imagePreview && (
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                />
-              )}
-            </span>
-          </label>
-        </div>
+  <label className="store-image-preview" style={{ 
+          alignItems: "self-start" }}>
+    Store Preview Image
+    <input
+      style={{ display: "none" }}
+      className="hidden-input"
+      id="menu-item-input-update"
+      type="file"
+      accept="image/*, image/jpeg, image/jpg, image/gif"
+      onChange={handleImageChange}
+    />
+    <span
+  className="material-symbols-outlined"
+  style={{
+    width: "280px",
+    height: "230px",
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center", 
+    cursor: "pointer",
+    border: imagePreview ? "none" : "1px solid #ccc" 
+  }}
+  onClick={() => document.getElementById('menu-item-input-update').click()}
+>
+  {!imagePreview && "image"}
+  
+  {imagePreview && (
+    <img 
+      src={imagePreview} 
+      alt="Preview" 
+      style={{
+        width: "280px",
+        height: "230px",
+        objectFit: "cover",
+        borderRadius: "20px",
+    }}
+    />
+  )}
+</span>
+  </label>
+</div>
 
         {frontendErrors.menu_item_image && submitted && <p className="modal-error">{frontendErrors.menu_item_image}</p>}
 
