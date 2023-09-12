@@ -254,8 +254,8 @@ const CreateRestaurant = () => {
                             Store Preview Image
                             <label className="store-image-preview" style={{ textAlign: "left" }} >
                                 <input
-                                    style={{ display: "none", textAlign: "left" }}
-                                    className="hidden-input"
+                                    
+                                    className="restaurant-input"
                                     id="menu-item-input-update"
                                     type="file"
                                     accept="image/*, image/jpeg, image/jpg, image/gif, /image/png"
@@ -280,6 +280,7 @@ const CreateRestaurant = () => {
                                             style={{
                                                 width: "480px",
                                                 height: "230px",
+                                                objectFit: "cover",
                                             }}
                                             src={imagePreview}
                                             alt="Preview"

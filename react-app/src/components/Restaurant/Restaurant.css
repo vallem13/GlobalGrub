@@ -306,3 +306,9 @@
   margin-top: 20px;
   font-weight: bold;
 }
+
+.hidden-input {
+    opacity: 0;
+  position: absolute;
+  z-index: index -1;
+}

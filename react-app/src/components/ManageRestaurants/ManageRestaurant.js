@@ -55,7 +55,7 @@ const ManageRestaurants = () => {
                 <button className="create-restaurant-button" onClick={createNewRestaurantButton} >Create a New Restaurant</button>
             </div>
             <div className="restaurant-cards-buttons-container">
-                {userRestaurants.map(restaurant => (
+                {userRestaurants.reverse().map(restaurant => (
                     <div className="single-restaurant-cards-buttons">
                         <div className='single-restaurant-card'>
                             <div className='image-button-container'>
