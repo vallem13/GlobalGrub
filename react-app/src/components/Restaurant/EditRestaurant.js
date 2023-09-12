@@ -254,30 +254,30 @@ const EditRestaurant = ({ restaurant }) => {
           />
         </label>
         <label className="modal-label">
-          Cuisine Type
-          <select
-            className="restaurant-dropdown"
-            value={selectedCuisineType}
-            onChange={(e) => {
-              const selectedName = e.target.value;
-              const selectedId = cuisineTypeOptions.find(
-                (option) => option.name === selectedName
-              )?.id || "";
-              setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
-              setSelectedCuisineTypeName(selectedName);
-            }}
-            required
-          >
-            <option value="" disabled>
-              Select cuisine type
-            </option>
-            {cuisineTypeOptions.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-        </label>
+  Cuisine Type
+  <select
+    className="restaurant-dropdown"
+    value={selectedCuisineType}
+    onChange={(e) => {
+      const selectedId = e.target.value;
+      const selectedName = cuisineTypeOptions.find(
+        (option) => option.id === parseInt(selectedId)
+      )?.name || "";
+      setSelectedCuisineType(parseInt(selectedId));
+    }}
+    required
+  >
+    <option value="" disabled>
+      Select cuisine type
+    </option>
+    {cuisineTypeOptions.map((option) => (
+      <option key={option.id} value={option.id}>
+        {option.name}
+      </option>
+    ))}
+  </select>
+</label>
+
         {frontendErrors.selectedCuisineType && submitted && <p className="modal-error">{frontendErrors.selectedCuisineType}</p>}
         <div className='save-cancel-edit-res'>
         <button
