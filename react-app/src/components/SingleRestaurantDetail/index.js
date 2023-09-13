@@ -70,7 +70,7 @@ export default function SingleRestaurant() {
         <h3 className='menu-review-title'>{Number(rating).toFixed(2)} <i class="fa-solid fa-star" style={{ color: "#f00b52" }}></i> · {reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</h3>
         <div>
           <div className='post-review-container'>
-            {check_order && !(restaurant.user_id === user.id) && !previousReview ? (
+            {check_order && (restaurant.user_id !== user.id) && !previousReview ? (
               <div className='review-buttons'>
                 <OpenModalButton className='review-buttons' buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
               </div>
