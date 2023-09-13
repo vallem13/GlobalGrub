@@ -13,12 +13,9 @@
   margin-bottom: 0px;
 }
 
-
 .content-left h3 {
   margin-top: 5px
 }
-
-
 
 .page-content {
   background-image: url('./../../assets/background.jpg');
@@ -62,6 +59,7 @@
 .add-restaurant-field {
   display: block;
   margin-bottom: 15px;
+  font-family: inherit;
 }
 
 .restaurant-dropdown {
@@ -70,6 +68,7 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 16px;
+  font-family: inherit;
 }
 
 .restaurant-input {
@@ -78,13 +77,23 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 16px;
+  font-family: inherit;
+}
+
+.restaurant-input-state {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: inherit;
 }
 
 .modal-error {
   color: red;
   font-size: 14px;
-
   margin-top: 5px;
+  font-family: inherit;
 }
 
 .modal-button {
@@ -105,6 +114,14 @@
 .loading-message {
   font-size: 18px;
   margin-top: 20px;
+}
+
+.add-restaurant-field input {
+  font-family: inherit;
+}
+
+.add-restaurant-field textarea {
+  font-family: inherit;
 }
 
 

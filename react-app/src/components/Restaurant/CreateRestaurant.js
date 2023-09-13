@@ -49,6 +49,17 @@ const CreateRestaurant = () => {
         { id: 12, name: 'Indian' },
     ];
 
+    const statesList = [
+        'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID',
+        'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS',
+        'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
+        'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+    ];
+
+    const handleStateChange = (e) => {
+        setState(e.target.value);
+    };
+
     useEffect(() => {
         const frontendErrors = {}
         if (name.length < 1) {
@@ -75,8 +86,8 @@ const CreateRestaurant = () => {
         if (!state) {
             frontendErrors.state = "Restaurant state is required to create a Restaurant"
         }
-        if (!zipcode) {
-            frontendErrors.zipcode = "Restaurant zipcode is required to create a Restaurant"
+        if (!zipcode || zipcode.length < 5) {
+            frontendErrors.zipcode = "A valid zipcode is required to create a Restaurant"
         }
         if (!contactNumber) {
             frontendErrors.contactNumber = "Restaurant zipcode is required to create a Restaurant"
@@ -214,15 +225,19 @@ const CreateRestaurant = () => {
                         {frontendErrors.city && submitted && (
                             <p className="modal-error">{frontendErrors.city}</p>
                         )}
-                        <label className="add-restaurant-field">
-                            State
-                            <input
-                                className="restaurant-input"
-                                type="text"
+                        <label className='add-restaurant-field'>
+                            State:
+                            <select
                                 value={state}
-                                onChange={(e) => setState(e.target.value)}
+                                onChange={handleStateChange}
+                                className="restaurant-input-state"
                                 required
-                            />
+                            >
+                                <option value="">Select a state</option>
+                                {statesList.map((state) => (
+                                    <option key={state} value={state}>{state}</option>
+                                ))}
+                            </select>
                         </label>
                         {frontendErrors.state && submitted && (
                             <p className="modal-error">{frontendErrors.state}</p>
@@ -293,29 +308,29 @@ const CreateRestaurant = () => {
                             <p className="modal-error">{frontendErrors.restaurantImage}</p>
                         )}
                         <label className="add-restaurant-field">
-  Cuisine Type
-  <select
-    className="restaurant-dropdown"
-    value={selectedCuisineType.id || ""}
-    onChange={(e) => {
-      const selectedId = e.target.value;
-      const selectedName = cuisineTypeOptions.find(
-        (option) => option.id === parseInt(selectedId)
-      )?.name || '';
-      setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
-    }}
-    required
-  >
-    <option value="" disabled>
-      Select cuisine type
-    </option>
-    {cuisineTypeOptions.map((option) => (
-      <option key={option.id} value={option.id}>
-        {option.name}
-      </option>
-    ))}
-  </select>
-</label>
+                            Cuisine Type
+                            <select
+                                className="restaurant-dropdown"
+                                value={selectedCuisineType.id || ""}
+                                onChange={(e) => {
+                                    const selectedId = e.target.value;
+                                    const selectedName = cuisineTypeOptions.find(
+                                        (option) => option.id === parseInt(selectedId)
+                                    )?.name || '';
+                                    setSelectedCuisineType({ id: parseInt(selectedId), name: selectedName });
+                                }}
+                                required
+                            >
+                                <option value="" disabled>
+                                    Select cuisine type
+                                </option>
+                                {cuisineTypeOptions.map((option) => (
+                                    <option key={option.id} value={option.id}>
+                                        {option.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
                         {frontendErrors.selectedCuisineType && submitted && (
                             <p className="modal-error">{frontendErrors.selectedCuisineType}</p>

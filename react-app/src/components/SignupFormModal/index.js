@@ -27,13 +27,18 @@ function SignupFormModal() {
 
 		const frontendErrors = {}
 
+		const check_email = email.split('')
+		const reversed_check_email = check_email.reverse()
+
 		if (address.length < 2) frontendErrors.address = "Address is required"
 		if (city.length < 2) frontendErrors.city = "City is required"
 		if (zipcode.length < 2) frontendErrors.zipcode = "Zipcode is required"
 		if (firstName.length < 2) frontendErrors.firstName = "First Name is required"
 		if (lastName.length < 2) frontendErrors.lastName = "Last Name is required"
 		if (username.length < 4) frontendErrors.username = "Username must be at least 4 characters"
-		if (email.length < 2) frontendErrors.email = "Email is required"
+		if (email.length < 2 || !(check_email.find((element) => element === '@') && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
+			frontendErrors.email = "Please input a valid email"
+		}
 		if (phoneNumber.length < 4) frontendErrors.phoneNumber = "Phone number is required"
 		if (password.length < 6) frontendErrors.password = "Password must be at least 6 characters"
 		if (confirmPassword.length < 2) frontendErrors.confirmPassword = "Confirm Password is required"
