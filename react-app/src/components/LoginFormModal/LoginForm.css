@@ -185,6 +185,24 @@ background-color: purple;
   margin-top: 5px
 }
 
+/* .drop-down-state {
+  width: 66%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 21px;
+  font-size: 0px;
+} */
+
+.sign-up-label select {
+  width: 240%;
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 21px;
+  font-size: 12px;
+  padding: 10px;
+  font-family: inherit;
+}
+
 
 .sign-up-form-container {
   /* padding-top: -10px; */

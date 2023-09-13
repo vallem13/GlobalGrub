@@ -24,59 +24,41 @@ function SignupFormModal() {
 	const [frontendErrors, setFrontendErrors] = useState({})
 
 	useEffect(() => {
+
 		const frontendErrors = {}
-		if (address.length < 2) {
-			frontendErrors.address = "Address is required"
-		}
-		if (city.length < 2) {
-			frontendErrors.city = "City is required"
-		}
-		if (state.length < 2) {
-			frontendErrors.state = "State is required"
-		}
-		if (zipcode.length < 2) {
-			frontendErrors.zipcode = "Zipcode is required"
-		}
-		if (firstName.length < 2) {
-			frontendErrors.firstName = "First Name is required"
-		}
-		if (lastName.length < 2) {
-			frontendErrors.lastName = "Last Name is required"
-		}
-		if (username.length < 4) {
-			frontendErrors.username = "Username must be at least 4 characters"
-		}
-		if (email.length < 2) {
-			frontendErrors.email = "Email is required"
-		}
-		if (phoneNumber.length < 4) {
-			frontendErrors.phoneNumber = "Phone number is required"
-		}
-		if (password.length < 6) {
-			frontendErrors.password = "Password must be at least 6 characters"
-		}
-		if (confirmPassword.length < 2) {
-			frontendErrors.confirmPassword = "Confirm Password is required"
-		}
+
+		if (address.length < 2) frontendErrors.address = "Address is required"
+		if (city.length < 2) frontendErrors.city = "City is required"
+		if (zipcode.length < 2) frontendErrors.zipcode = "Zipcode is required"
+		if (firstName.length < 2) frontendErrors.firstName = "First Name is required"
+		if (lastName.length < 2) frontendErrors.lastName = "Last Name is required"
+		if (username.length < 4) frontendErrors.username = "Username must be at least 4 characters"
+		if (email.length < 2) frontendErrors.email = "Email is required"
+		if (phoneNumber.length < 4) frontendErrors.phoneNumber = "Phone number is required"
+		if (password.length < 6) frontendErrors.password = "Password must be at least 6 characters"
+		if (confirmPassword.length < 2) frontendErrors.confirmPassword = "Confirm Password is required"
+
 		setFrontendErrors(frontendErrors)
+
 	}, [email, username, firstName, lastName, confirmPassword, password, address, city, state, zipcode, phoneNumber])
-	// const handleSubmit = async (e) => {
-	//  e.preventDefault();
-	//  if (password === confirmPassword) {
-	//    const data = await dispatch(signUp(username, email, password, firstName, lastName, address, city, state, zipcode, phoneNumber));
-	//    if (data) {
-	//      setErrors(data);
-	//    } else {
-	//      closeModal();
-	//    }
-	//  } else {
-	//    setErrors([
-	//      "Confirm Password field must be the same as the Password field",
-	//    ]);
-	//  }
-	// };
+
+
+	const statesList = [
+		'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID',
+		'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS',
+		'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK',
+		'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+	];
+
+	const handleStateChange = (e) => {
+		setState(e.target.value);
+	};
+
+
 	const handleSubmit = async (e) => {
+
 		e.preventDefault();
+
 		if (password === confirmPassword) {
 			const data = await dispatch(
 				signUp(
@@ -171,12 +153,16 @@ function SignupFormModal() {
 				{frontendErrors.city && city.length > 0 && <p className='on-submit-errors'>{frontendErrors.city}</p>}
 				<label className='sign-up-label'>
 					State:
-					<input
-						type="text"
+					<select
 						value={state}
-						onChange={(e) => setState(e.target.value)}
+						onChange={handleStateChange}
 						required
-					/>
+					>
+						<option value="">Select a state</option>
+						{statesList.map((state) => (
+							<option key={state} value={state}>{state}</option>
+						))}
+					</select>
 				</label>
 				{frontendErrors.state && state.length > 0 && <p className='on-submit-errors'>{frontendErrors.state}</p>}
 				<label className='sign-up-label'>
