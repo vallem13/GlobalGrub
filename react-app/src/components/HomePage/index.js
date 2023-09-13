@@ -9,8 +9,14 @@ import RestaurantCard from "../HomePage/RestaurantCard";
 
 
 const RestaurantCarousel = () => {
+
   const dispatch = useDispatch();
   const restaurants = Object.values(useSelector(state => state.restaurant.allRestaurants));
+  const sortRestaurants = Object.values(restaurants).sort((a, b) => b.average_rating - a.average_rating);
+  const highestRated = sortRestaurants.slice(0, 9);
+  const [topRatedIdx, setTopRatedIdx] = useState(0);
+  const itemsPerPage = 3;
+
   useEffect(() => {
     dispatch(getAllRestaurantsThunk())
   }, [dispatch])
@@ -20,36 +26,21 @@ const RestaurantCarousel = () => {
     history.push(`/restaurant/${restaurantId}`);
   }
 
-  const sortRestaurants = Object.values(restaurants).sort((a, b) => b.average_rating - a.average_rating);
-  const highestRated = sortRestaurants.slice(0, 9);
-
-  const [topRatedIdx, setTopRatedIdx] = useState(0);
-  // const [allRestaurantsIdx, setAllRestaurantsIdx] = useState(0);
-  const itemsPerPage = 3;
-
   const handleClickNext = (carouselType) => {
     if (carouselType === 'topRated') {
       setTopRatedIdx((topRatedIdx + 1) % (highestRated.length - itemsPerPage + 1));
     }
-    // else if (carouselType === 'allRestaurants') {
-    //   setAllRestaurantsIdx((allRestaurantsIdx + 1) % (restaurants.length - itemsPerPage + 1));
-    // }
   };
 
   const handleClickPrev = (carouselType) => {
     if (carouselType === 'topRated') {
       setTopRatedIdx((topRatedIdx - 1 + highestRated.length - itemsPerPage + 1) % (highestRated.length - itemsPerPage + 1));
     }
-    // else if (carouselType === 'allRestaurants') {
-    //   setAllRestaurantsIdx((allRestaurantsIdx - 1 + restaurants.length - itemsPerPage + 1) % (restaurants.length - itemsPerPage + 1));
-    // }
   };
 
 
 
   const displayHighestRatedRestaurants = highestRated.slice(topRatedIdx, topRatedIdx + itemsPerPage);
-  // const displayAllRestaurants = restaurants.slice(allRestaurantsIdx, allRestaurantsIdx + itemsPerPage);
-
 
   return (
 
@@ -70,8 +61,8 @@ const RestaurantCarousel = () => {
               <span class="material-symbols-outlined"  onClick={() => handleClickNext('topRated')}>
                 arrow_circle_right
               </span>
-    
-              
+
+
             </div>
           </div>
           <div className="carousel-top-wrapper" >
@@ -103,7 +94,7 @@ const RestaurantCarousel = () => {
                 key={restaurant.id}
 
                 onClick={() => handleOnClick(restaurant.id)}
-              > 
+              >
                 <img
                   src={restaurant.restaurant_image}
 

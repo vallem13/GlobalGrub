@@ -27,11 +27,18 @@ const ManageMenuItems = () => {
     history.push(`/restaurant/${restaurantId}`);
   };
 
+  const manageRestaurants = () => {
+    history.push('/my_restaurants')
+  }
+
   return (
     <div className="manage-restaurants-page">
       <div className="title-create-container">
+        <button className="create-restaurant-button" onClick={manageRestaurants}>Manage your Restaurants</button>
         <h1>Manage {restaurant.name}'s Menu</h1>
+        <div>
         <button className="create-restaurant-button" onClick={() => createNewMenuItemButton(restaurantId)}>Create a New Menu Item</button>
+        </div>
       </div>
       <h2>{items.length <= 0 ? 'Add your first Menu Item!' : ''}</h2>
       <div className="restaurant-cards-buttons-container">
