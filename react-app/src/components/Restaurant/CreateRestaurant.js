@@ -127,7 +127,7 @@ const CreateRestaurant = () => {
             if (!restaurantImage) return null
             const data = await dispatch(createRestaurantThunk(formData));
             dispatch(getAllRestaurantsThunk())
-            history.push(`/menu_item/${newRestaurant.id}`)
+            history.push(`/my_restaurants`)
         }
     };
     const handleImageChange = (e) => {
