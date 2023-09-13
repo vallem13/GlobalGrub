@@ -70,7 +70,7 @@ const OrderCartModal = ({ user }) => {
             <div className='total-buttons'>
             <div>Total: ${totalPrice}</div>
             <div className='order-place-cancel-buttons'>
-            <button className='place-order-button' onClick={placeOrder}>Place Order</button>
+            <button className='place-order-button' disabled={cart_items.length < 1} onClick={placeOrder}>Place Order</button>
             <button className='cancel-order-button' onClick={cancelOrder}>Cancel Order</button>
             </div>
             </div>
