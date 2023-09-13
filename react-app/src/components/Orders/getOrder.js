@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOrderThunk } from '../../store/cart';
 import './UsersOrders.css'
 
+
 export default function GetOrder() {
-  
+
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.cart.orders);
   const all_orders = (Object.entries(orders)).reverse()
+  const user = useSelector(state => state.session.user);
+
+  console.log(user.order_carts)
 
   useEffect(() => {
     dispatch(getOrderThunk());

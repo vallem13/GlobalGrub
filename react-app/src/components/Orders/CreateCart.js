@@ -3,18 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkCreateCart, updateNewOrders, updateOrderCart } from '../../store/cart';
 
 
-
-
 const StartShoppingButton = () => {
+
   const dispatch = useDispatch();
-  //make sure that the restaurant id only takes in an integer and not a string, also user should not input this
   const [restaurant_id, setRestaurantId] = useState('')
   const [menu_items, setmenu_items] = useState('');
   const [isInput, setIsInput] = useState(false);
   const user = useSelector(state => state.session.user);
-  const cart = useSelector(state => state.cart);
-
-
 
   const handleStartShopping = async () => {
 

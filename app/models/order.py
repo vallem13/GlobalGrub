@@ -22,5 +22,5 @@ class Order(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'menu_item_id': self.menu_item_id,
-            'order_cart_id ': self.order_cart_id,
+            'order_cart_id': self.order_cart_id,
         }
