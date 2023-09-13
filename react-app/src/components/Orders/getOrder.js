@@ -4,6 +4,7 @@ import { getOrderThunk } from '../../store/cart';
 import './UsersOrders.css'
 
 export default function GetOrder() {
+  
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.cart.orders);
   const all_orders = (Object.entries(orders)).reverse()
@@ -12,22 +13,12 @@ export default function GetOrder() {
     dispatch(getOrderThunk());
   }, [dispatch]);
 
-  // console.log("-------->", all_orders);
-
   if (Object.keys(orders).length === 0) {
-    return <div>Loading...</div>; // Handle the initial loading state
+    return <div>Loading...</div>;
   }
 
-  // Calculate the total price of all orders
-  // let total = 0;
-  // Object.values(orders).forEach((orderItems) => {
-  //   orderItems.forEach((order) => {
-  //     total += Number(order.menu_item_price);
-  //   });
-  // });
-
   if (Object.keys(orders).length === 0) {
-    return <div>Loading...</div>; // Handle the initial loading state
+    return <div>Loading...</div>;
   }
 
   return (
