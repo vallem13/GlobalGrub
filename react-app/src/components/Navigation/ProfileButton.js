@@ -9,7 +9,8 @@ import SignupFormModal from "../SignupFormModal";
 import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../store/session';
 import UserProfile from "../ManageProfile";
-import './Navigation.css'; // Import the CSS file
+import './Navigation.css'; // Import the CSS file;
+import { cleanupCart } from "../../store/cart";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function ProfileButton({ user }) {
   const handleLogout = async (e) => {
     e.preventDefault();
     await dispatch(sessionActions.logout());
+    await dispatch(cleanupCart())
     closeMenu();
     history.push('/');
   };
