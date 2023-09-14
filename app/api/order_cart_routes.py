@@ -27,6 +27,7 @@ def get_orders():
             'menu_item_id': order.menu_item_id,
             'order_cart_id': order.order_cart_id,
             'menu_item_name': menu_item.name,
+            'menu_item_image': menu_item.menu_item_image,
             'menu_item_price': menu_item.price,
             'restaurant_name': restaurant.name,
             'restaurant_image': restaurant.restaurant_image,
