@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderThunk } from '../../store/cart';
+import { getOrderThunk, getAllOrderCartsThunk } from '../../store/cart';
 import './UsersOrders.css'
 
 
@@ -10,12 +10,19 @@ export default function GetOrder() {
   const orders = useSelector((state) => state.cart.orders);
   const all_orders = (Object.entries(orders)).reverse()
   const user = useSelector(state => state.session.user);
+  console.log("these are the order--->", orders)
+  // const order_carts = useSelector((state) => state.cart.cart )
 
-  console.log(user.order_carts)
+    console.log('all orders ------>', all_orders)
 
-  useEffect(() => {
-    dispatch(getOrderThunk());
+
+
+
+ useEffect(() => {
+   dispatch(getOrderThunk());
+  //  dispatch(getAllOrderCartsThunk())
   }, [dispatch]);
+
 
   if (Object.keys(orders).length === 0) {
     return <div>Loading...</div>;

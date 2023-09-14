@@ -6,6 +6,8 @@ from flask_login import current_user, login_required
 order_cart_routes = Blueprint('cart', __name__)
 
 
+
+
 @order_cart_routes.route('/user_orders')
 @login_required
 def get_orders():
@@ -26,6 +28,9 @@ def get_orders():
             'order_cart_id': order.order_cart_id,
             'menu_item_name': menu_item.name,
             'menu_item_price': menu_item.price,
+            'restaurant_name': restaurant.name,
+            'restaurant_image': restaurant.restaurant_image,
+            'restaurant_id': restaurant.id
         }
 
         if order_cart_id in orders_dict:
@@ -34,6 +39,8 @@ def get_orders():
             orders_dict[order_cart_id] = [order_data]
 
     return jsonify(orders_dict), 200
+
+
 
 
 @order_cart_routes.route("/<int:user_id>", methods=["POST"])
@@ -48,8 +55,22 @@ def create_order(user_id):
 
     cart_id = create_order_cart.id
 
-    new_orders = [Order(user_id=user_id, menu_item_id=menu_item_id, order_cart_id=cart_id) for menu_item_id in data["menu_items"]]
-    print("THIS IS A NEW ORDER", type(new_orders))
+    new_orders = []
+
+    # Iterate through the menu items and create new orders for each
+    for menu_item_id in data["menu_items"]:
+        # Retrieve the restaurant_id associated with the menu_item_id
+        menu_item = MenuItem.query.get(menu_item_id)
+        restaurant_id = menu_item.restaurant_id
+
+        new_order = Order(
+            user_id=user_id,
+            menu_item_id=menu_item_id,
+            order_cart_id=cart_id,
+            restaurant_id=restaurant_id  # Use the retrieved restaurant_id
+        )
+        new_orders.append(new_order)
+
     db.session.add_all(new_orders)
     db.session.commit()
 
@@ -61,6 +82,7 @@ def create_order(user_id):
         'order_cart': order_cart_data,
         'new_orders': new_orders_data,
     }), 200
+
 
 
 
@@ -94,3 +116,17 @@ def delete_cart(order_cart_id):
     db.session.commit()
 
     return jsonify({"message": "Order cart succesfully deleted "}) , 200
+
+
+# Get Order Cart by ID
+@order_cart_routes.route('/<int:id>')
+def get_order_cart(id):
+    order_cart = OrderCart.query.get(id)
+    return order_cart.to_dict()
+
+
+# Get all Order Carts
+@order_cart_routes.route('/')
+def get_all_order_carts():
+    order_carts = OrderCart.query.all()
+    return [cart.to_dict() for cart in order_carts]
