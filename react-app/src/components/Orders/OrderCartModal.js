@@ -30,14 +30,12 @@ const OrderCartModal = ({ user }) => {
         setTotalPrice(total.toFixed(2));
     }, [cart_items]);
 
-
     const placeOrder = async (e)=> {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
         closeModal()
         history.push('/user_orders')
     }
-
 
     const cancelOrder = async (e) => {
         e.preventDefault()

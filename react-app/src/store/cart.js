@@ -6,6 +6,7 @@ const EMPTY_CART = "cart/EMPTY_CART";
 const UPDATE_ORDER_CART = "cart/UPDATE_ORDER_CART";
 const UPDATE_NEW_ORDERS = "cart/UPDATE_NEW_ORDERS";
 const YEET_ITEM = "cart/YEET_ITEM";
+const CLEAN_UP_CART = "cart/CLEAN_UP_CART"
 
 // Action Creators
 export const getOrder = (cart) => ({
@@ -41,6 +42,12 @@ export const yeetItem = (menu_item_id) => ({
   type: YEET_ITEM,
   menu_item_id,
 });
+
+export const cleanupCart = () => {
+  return {
+    type: CLEAN_UP_CART
+  }
+}
 
 
 // Thunks
@@ -153,6 +160,10 @@ const cartReducer = (state = initialState, action) => {
         orders: { ...state.orders },
         cart: updatedCart,
       };
+
+    case CLEAN_UP_CART:
+      return initialState
+
 
     default:
       return state;

@@ -22,6 +22,9 @@ export default function SingleRestaurant() {
   const reviews = restaurant.reviews || [];
   const orders = user.order_carts || [];
   const rating = restaurant.average_rating || ('')
+  const cart = useSelector(state => state.cart.cart);
+  const cart_items = Object.values(cart) || []
+  const cart_item = cart_items.length > 0 ? Object.values(cart_items[0]) : []
 
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
@@ -50,8 +53,11 @@ export default function SingleRestaurant() {
             <div className="image-container">
               <img className="menu-image" src={item.menu_item_image} alt={item.name} />
               <button className="add-to-cart-button" onClick={(e) => {
-                e.preventDefault();
-                dispatch(addItem(item));
+                if (cart_item.length > 0 && cart_item[0].restaurant_id !== item.restaurant_id) {
+                  alert("You can only place an order from a restaurant at a time.");
+                } else {
+                  dispatch(addItem(item));
+                }
               }}>
                 <i className="fa-solid fa-circle-plus" style={{ fontSize: "3rem", color: "#f00b51" }}></i>
               </button>
