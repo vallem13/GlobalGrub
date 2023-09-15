@@ -15,24 +15,8 @@
     color: #f00b51;
 }
 
-.single-order-list h2 {
-    margin-bottom: 0px
-}
 
-.order-list-items {
-    display: flex;
-    align-items: center;
-}
 
-.items-in-order {
-    display: flex;
-    flex-direction: column;
-}
-
-.order-list-items img {
-    margin-right: 10px;
-    object-fit: cover;
-    margin-bottom: 2px;
-    margin-left: 5px;
-    margin-top: 10px;
+.order-list-items h4 {
+    margin-top: 0px;
 }
