@@ -33,8 +33,8 @@ const OrderCartModal = ({ user }) => {
     const placeOrder = async (e)=> {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
-        closeModal()
-        history.push('/user_orders')
+        await history.push('/user_orders')
+        await closeModal()
     }
 
     const cancelOrder = async (e) => {

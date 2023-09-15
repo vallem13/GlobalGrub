@@ -21,6 +21,7 @@ export default function GetOrder() {
   }
 
   function calculateOrderTotal(orderItems) {
+    if (!Array.isArray(orderItems)) return 0;
     return orderItems.reduce((total, order) => total + Number(order.menu_item_price), 0);
   }
 
@@ -40,13 +41,13 @@ export default function GetOrder() {
               <div className='image-button-container'>
                 <img
                   className='restaurant-image'
-                  src={orderItems[0].restaurant_image}
+                  src={orderItems[0]?.restaurant_image}
                   alt="Restaurant" />
               </div>
               <div className='single-restaurant-info'>
                 <div>
                   <h4 className='title'>Restaurant: </h4>
-                  <h4>{orderItems[0].restaurant_name}</h4>
+                  <h4>{orderItems[0]?.restaurant_name}</h4>
                 </div>
                 <div>
                   <h4 className='title'>Order Number: </h4>
