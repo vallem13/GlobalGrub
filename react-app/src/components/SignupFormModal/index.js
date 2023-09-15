@@ -22,6 +22,7 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [frontendErrors, setFrontendErrors] = useState({})
+	const [submitted, setSubmitted] = useState(false);
 
 	useEffect(() => {
 
@@ -32,14 +33,19 @@ function SignupFormModal() {
 
 		if (address.length < 2) frontendErrors.address = "Address is required"
 		if (city.length < 2) frontendErrors.city = "City is required"
-		if (zipcode.length < 2) frontendErrors.zipcode = "Zipcode is required"
+		if (zipcode.length < 5) frontendErrors.zipcode = "Valid Zipcode is required";
+		if (!/^\d+$/.test(zipcode)) frontendErrors.zipcode = "Zipcode must contain only numbers";
 		if (firstName.length < 2) frontendErrors.firstName = "First Name is required"
 		if (lastName.length < 2) frontendErrors.lastName = "Last Name is required"
 		if (username.length < 4) frontendErrors.username = "Username must be at least 4 characters"
 		if (email.length < 2 || !(check_email.find((element) => element === '@') && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
 			frontendErrors.email = "Please input a valid email"
 		}
-		if (phoneNumber.length < 4) frontendErrors.phoneNumber = "Phone number is required"
+		if (phoneNumber.length < 5) {
+			frontendErrors.phoneNumber = "Valid Phone Number is required";
+		  } else if (!/^\d+$/.test(phoneNumber)) {
+			frontendErrors.phoneNumber = "Phone Number must contain only numbers";
+		  }
 		if (password.length < 6) frontendErrors.password = "Password must be at least 6 characters"
 		if (confirmPassword.length < 2) frontendErrors.confirmPassword = "Confirm Password is required"
 
@@ -63,6 +69,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 
 		e.preventDefault();
+		setSubmitted(true)
 
 		if (password === confirmPassword) {
 			const data = await dispatch(
@@ -105,7 +112,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.firstName && firstName.length > 0 && <p className='on-submit-errors'>{frontendErrors.firstName}</p>}
+				{frontendErrors.firstName && submitted && <p className='on-submit-errors'>{frontendErrors.firstName}</p>}
 				<label className='sign-up-label'>
 					Last Name:
 					<input
@@ -115,7 +122,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label >
-				{frontendErrors.lastName && lastName.length > 0 && <p className='on-submit-errors'>{frontendErrors.lastName}</p>}
+				{frontendErrors.lastName && submitted && <p className='on-submit-errors'>{frontendErrors.lastName}</p>}
 				<label className='sign-up-label'>
 					Username:
 					<input
@@ -125,7 +132,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.username && username.length > 0 && <p className='on-submit-errors'>{frontendErrors.username}</p>}
+				{frontendErrors.username && submitted && <p className='on-submit-errors'>{frontendErrors.username}</p>}
 				<label className='sign-up-label'>
 					Email:
 					<input
@@ -135,7 +142,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.email && email.length > 0 && <p className='on-submit-errors'>{frontendErrors.email}</p>}
+				{frontendErrors.email && submitted && <p className='on-submit-errors'>{frontendErrors.email}</p>}
 				<label className='sign-up-label'>
 					Address:
 					<input
@@ -145,7 +152,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.address && address.length > 0 && <p className='on-submit-errors'>{frontendErrors.address}</p>}
+				{frontendErrors.address && submitted && <p className='on-submit-errors'>{frontendErrors.address}</p>}
 				<label className='sign-up-label'>
 					City:
 					<input
@@ -155,7 +162,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.city && city.length > 0 && <p className='on-submit-errors'>{frontendErrors.city}</p>}
+				{frontendErrors.city && submitted && <p className='on-submit-errors'>{frontendErrors.city}</p>}
 				<label className='sign-up-label'>
 					State:
 					<select
@@ -169,7 +176,7 @@ function SignupFormModal() {
 						))}
 					</select>
 				</label>
-				{frontendErrors.state && state.length > 0 && <p className='on-submit-errors'>{frontendErrors.state}</p>}
+				{frontendErrors.state && submitted && <p className='on-submit-errors'>{frontendErrors.state}</p>}
 				<label className='sign-up-label'>
 					Zipcode:
 					<input
@@ -179,7 +186,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.zipcode && zipcode.length > 0 && <p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
+				{frontendErrors.zipcode && submitted && <p className='on-submit-errors'>{frontendErrors.zipcode}</p>}
 				<label className='sign-up-label'>
 					Phone Number:
 					<input
@@ -189,7 +196,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.phoneNumber && phoneNumber.length > 0 && <p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
+				{frontendErrors.phoneNumber && submitted && <p className='on-submit-errors'>{frontendErrors.phoneNumber}</p>}
 				<label className='sign-up-label'>
 					Password
 					<input
@@ -199,7 +206,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.password && password.length > 0 && <p className='on-submit-errors'>{frontendErrors.password}</p>}
+				{frontendErrors.password && submitted && <p className='on-submit-errors'>{frontendErrors.password}</p>}
 				<label className='sign-up-label'>
 					Confirm Password
 					<input
@@ -209,7 +216,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.confirmPassword && confirmPassword.length > 0 && <p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
+				{frontendErrors.confirmPassword && submitted && <p className='on-submit-errors'>{frontendErrors.confirmPassword}</p>}
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>

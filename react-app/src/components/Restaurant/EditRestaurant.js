@@ -89,11 +89,12 @@ const EditRestaurant = ({ restaurant }) => {
     if (!state) {
       frontendErrors.state = "Restaurant state is required to create a Restaurant"
     }
-    if (!zipcode || zipcode.length < 5) {
-      frontendErrors.zipcode = "A valid zipcode is required to create a Restaurant"
-    }
-    if (!contactNumber) {
-      frontendErrors.contactNumber = "Restaurant zipcode is required to create a Restaurant"
+    if (zipcode.length < 5) frontendErrors.zipcode = "Valid Zipcode is required";
+		if (!/^\d+$/.test(zipcode)) frontendErrors.zipcode = "Zipcode must contain only numbers";
+    if (contactNumber.length < 5) {
+      frontendErrors.contactNumber = "Valid Contact Number is required";
+    } else if (!/^\d+$/.test(contactNumber)) {
+      frontendErrors.contactNumber = "Contact Number must contain only numbers";
     }
     if (!selectedCuisineType) {
       frontendErrors.selectedCuisineType = "Restaurant cuisine type is required to edit a Restaurant"
