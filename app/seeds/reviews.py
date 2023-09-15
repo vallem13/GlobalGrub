@@ -11,7 +11,7 @@ def seed_reviews():
     review2 = Review(
         comment="Though the delivery took a bit longer than expected, the food was worth the wait. Flavorful and well-cooked dishes!",
         rating=4,
-        user_id=2,
+        user_id=3,
         restaurant_id=1
     )
     review3 = Review(

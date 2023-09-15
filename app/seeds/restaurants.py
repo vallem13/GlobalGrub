@@ -14,7 +14,7 @@ def seed_restaurants():
         contact_phone_number = "415-668-6007",
         restaurant_image = "https://tinyurl.com/2nm4xud3",
         cuisine_type_id= 1,
-        user_id = 1
+        user_id = 2
     )
     restaurant2 = Restaurant(
         name = "Daeho Kalbijim & Beef Soup",
@@ -27,7 +27,7 @@ def seed_restaurants():
         contact_phone_number = "415-563-1388",
         restaurant_image = "https://tinyurl.com/4ne3ttb8",
         cuisine_type_id= 1,
-        user_id = 1
+        user_id = 3
     )
     restaurant3 = Restaurant(
         name = "Cherry Blossom Bakery",
@@ -40,7 +40,7 @@ def seed_restaurants():
         contact_phone_number = "415-876-2727",
         restaurant_image = "https://tinyurl.com/4d8p4d4h",
         cuisine_type_id=1,
-        user_id = 1
+        user_id = 4
     )
     restaurant4 = Restaurant(
         name = "Ryoko's Japanese Restaurant & Bar",
@@ -53,7 +53,7 @@ def seed_restaurants():
         contact_phone_number = "415-775-1028",
         restaurant_image = "https://tinyurl.com/ypu342hc",
         cuisine_type_id=2,
-        user_id = 1
+        user_id = 5
     )
     restaurant5 = Restaurant(
         name = "Okoze Sushi",
@@ -66,7 +66,7 @@ def seed_restaurants():
         contact_phone_number = "415-567-3397",
         restaurant_image = "https://tinyurl.com/4xwbhava",
         cuisine_type_id=2,
-        user_id = 1
+        user_id = 2
     )
     restaurant6 = Restaurant(
         name = "Waraku",
@@ -79,7 +79,7 @@ def seed_restaurants():
         contact_phone_number = "415-292-3388",
         restaurant_image = "https://tinyurl.com/5n8kwzvc",
         cuisine_type_id=2,
-        user_id = 1
+        user_id = 3
     )
     restaurant7 = Restaurant(
         name = "Mi Lindo Peru",
@@ -92,7 +92,7 @@ def seed_restaurants():
         contact_phone_number = "415-642-4897",
         restaurant_image = "https://tinyurl.com/yct2yahr",
         cuisine_type_id=3,
-        user_id = 1
+        user_id = 4
     )
     restaurant8 = Restaurant(
         name = "El Aji Peruvian Restaurant",
@@ -442,7 +442,7 @@ def seed_restaurants():
         contact_phone_number = "415-555-4321",
         restaurant_image = "https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/66983283-3c06-47cc-8181-16693a11af2e.jpg",
         cuisine_type_id=12,
-        user_id = 1
+        user_id = 4
     )
     restaurant35 = Restaurant(
         name = "Copra",
@@ -455,7 +455,7 @@ def seed_restaurants():
         contact_phone_number = "515-555-4321",
         restaurant_image = "https://whatnowsf.com/wp-content/uploads/sites/6/2022/10/copra2.jpeg",
         cuisine_type_id=12,
-        user_id = 1
+        user_id = 3
     )
     restaurant36  = Restaurant(
         name = "Star India",
@@ -468,7 +468,7 @@ def seed_restaurants():
         contact_phone_number = "415-555-4322",
         restaurant_image = "https://www.thebollywoodbites.com/wp-content/uploads/2018/09/Buffet.jpg",
         cuisine_type_id=12,
-        user_id = 1
+        user_id = 5
     )
 
 

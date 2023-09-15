@@ -88,25 +88,13 @@ const RestaurantCarousel = () => {
         </div>
         <div className="all-restaurant-wrapper" >
           <h3 >View All Restaurants</h3>
-          <div className="restaurant-container">
-            {restaurants.map(restaurant => (
-              <div className="single-restaurant"
-                key={restaurant.id}
-
-                onClick={() => handleOnClick(restaurant.id)}
-              >
-                <img
-                  src={restaurant.restaurant_image}
-
-                />
-                <div >
-                  <div >{restaurant.name}</div>
-                  {/* <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button> */}
-
-                </div>
-              </div>
-            ))}
+          <div className='cuisine-restaurants'>
+        {restaurants.map((restaurant) => (
+          <div key={restaurant.id} onClick={() => handleOnClick(restaurant.id)}>
+            <RestaurantCard restaurant={restaurant} />
           </div>
+        ))}
+      </div>
 
         </div>
       </div>
