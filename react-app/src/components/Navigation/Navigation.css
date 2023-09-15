@@ -42,18 +42,22 @@
 }
 
 .created-by {
-  margin-top: 420px;
-  font-size: 10.92px;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 420px; */
+  font-weight:800;
+  row-gap: 10px;
+  border-top: 1px solid #ff851b ;
+  padding-top: 10px;
+  padding-top: 25px
 }
 
-.manage-account-button {
+
+.custom-paragraph:hover,
+.custom-paragraph button:hover {
   color: #f00b51;}
 
-.orders-button:hover {
-  color: #f00b51;}
 
-.logout-button:hover {
-  color: #f00b51;}
 
 .overlay {
   position: fixed;
@@ -193,3 +197,30 @@
 .cuisine-type {
   margin-left: 2px;
 }
+
+
+/* styling for socials */
+
+.socials {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 37px
+}
+
+.socials-icons {
+  display: flex;
+  column-gap: 10px;
+}
+
+.custom-paragraph button {
+  font-family: inherit
+}
+
+
+.user-options {
+  margin-top: 25px;
+  padding-bottom: 25px
+}
+
+
+
