@@ -6,8 +6,17 @@ const EMPTY_CART = "cart/EMPTY_CART";
 const UPDATE_ORDER_CART = "cart/UPDATE_ORDER_CART";
 const UPDATE_NEW_ORDERS = "cart/UPDATE_NEW_ORDERS";
 const YEET_ITEM = "cart/YEET_ITEM";
+const CLEAN_UP_CART = "cart/CLEAN_UP_CART"
+const GET_ORDER_CART = "cart/GET_ORDER_CART"
+const GET_ALL_ORDER_CARTS = "cart/GET_ALL_ORDER_CARTS"
 
 // Action Creators
+
+export const getAllOrderCarts = (carts) => ({
+  type: GET_ALL_ORDER_CARTS,
+  carts
+})
+
 export const getOrder = (cart) => ({
   type: GET_ORDERS,
   cart,
@@ -42,8 +51,24 @@ export const yeetItem = (menu_item_id) => ({
   menu_item_id,
 });
 
+export const cleanupCart = () => {
+  return {
+    type: CLEAN_UP_CART
+  }
+}
+
 
 // Thunks
+
+export const getAllOrderCartsThunk = () => async (dispatch) => {
+  const response = await fetch('/api/cart');
+  if (response.ok) {
+      const carts = await response.json();
+      await dispatch(getAllOrderCarts(carts));
+      return response;
+  }
+}
+
 export const getOrderThunk = () => async (dispatch) => {
   try {
     const response = await fetch('/api/cart/user_orders');
@@ -91,7 +116,12 @@ const initialState = {
   cart: {},
 };
 const cartReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
+    case GET_ALL_ORDER_CARTS:
+        newState = { ...state, orders: {}, cart: {} };
+        action.carts.forEach((cart) => {newState.cart[cart.id] = cart;});
+        return newState
 
     case GET_ORDERS:
       return { ...state, orders: action.cart }
@@ -153,6 +183,10 @@ const cartReducer = (state = initialState, action) => {
         orders: { ...state.orders },
         cart: updatedCart,
       };
+
+    case CLEAN_UP_CART:
+      return initialState
+
 
     default:
       return state;

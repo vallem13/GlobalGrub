@@ -4,10 +4,19 @@
 }
 
 .single-order-list {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
     border-bottom: 1px solid #ff851b;
 }
 
 .order-number-title {
     color: #f00b51;
+}
+
+
+
+.order-list-items h4 {
+    margin-top: 0px;
 }

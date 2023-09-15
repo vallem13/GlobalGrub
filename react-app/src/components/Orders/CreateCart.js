@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkCreateCart, updateNewOrders, updateOrderCart } from '../../store/cart';
 
 
-
-
 const StartShoppingButton = () => {
-  
+
   const dispatch = useDispatch();
   const [restaurant_id, setRestaurantId] = useState('')
   const [menu_items, setmenu_items] = useState('');
