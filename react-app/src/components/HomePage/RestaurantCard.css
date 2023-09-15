@@ -40,9 +40,8 @@
   justify-content: space-between;
 }
 
-.single-restaurant-rating-name h3 {
+#restaurant-title {
   font-size: medium;
   color: black;
   width: fit-content;
 }
-
