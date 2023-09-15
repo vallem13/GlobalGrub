@@ -36,9 +36,7 @@ export default function GetOrder() {
                       style={{
                         width: '80px',
                         height: '80px',
-                        marginBottom: '2px',
-                        marginLeft: '5px',
-                        marginTop: '10px',
+                        
                       }}
                     />{' '}
                     <h4>
