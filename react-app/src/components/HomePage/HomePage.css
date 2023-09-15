@@ -2,18 +2,26 @@
   display: flex;
   width: 1026px;
   margin-top: 8%;
+  flex-direction: column;
+}
+
+.filter-carousel {
+  display: flex;
 }
 
 .carousel-wrapper-filter {
+  border: 1px solid red;
   width: 200px;
+  height: 350px;
 
 }
 
 .both-carousel-wrapper {
   top: 151px;
-  right: 20px; 
+  right: 20px;
   transform: translateY(-50%);
   transform: translateX(2%);
+
   }
 
 
@@ -60,7 +68,7 @@
     text-align: center;
     background-color: transparent
   }
- 
+
 
   .carousel-item {
     width: 250px;
@@ -127,11 +135,11 @@
 .restaurant-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 }
 
 .restaurant-container > * {
-  flex: 1 0 calc(33.33% - 40px);  
+  flex: 1 0 calc(33.33% - 40px);
 margin-bottom: 50px;
 margin-left: 20px;
 margin-right: 20px;
@@ -148,8 +156,5 @@ margin-right: 20px;
   object-fit: cover;
   border-radius: 20px;
   cursor: pointer;
-  
+
 }
-
-
-

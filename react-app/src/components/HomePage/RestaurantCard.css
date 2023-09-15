@@ -2,7 +2,7 @@
   /* border: 2px solid red; */
   width: 1026px;
   display: block;
-  flex: 1 0 calc(33.33% - 40px);  
+  flex: 1 0 calc(33.33% - 40px);
   margin-bottom: 50px;
   margin-left: 20px;
   width: 250px;
@@ -33,11 +33,16 @@
   cursor: pointer;
 
 }
+
 .single-restaurant-rating-name{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .single-restaurant-rating-name h3 {
+  font-size: medium;
+  color: black;
   width: fit-content;
 }
+
