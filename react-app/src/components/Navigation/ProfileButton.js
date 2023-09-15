@@ -116,6 +116,11 @@ function ProfileButton({ user }) {
               Made with love, laughs & tears: Alex Valle, Natalia Ramirez, Kawthar Mohamud, Makayla Jameson
               <i class="fa-solid fa-heart"></i>
             </p>
+            <ul class="icons">
+              <div>Natalia Ramirez</div>
+					<li><a href="www.linkedin.com/in/natalia-ramirez-750817151" target="_blank" ><i class="fa-brands fa-linkedin"></i></a></li>
+					<li><a href="https://github.com/Natalia3ramirez" target="_blank"><i class="fab fa-github"></i></a></li>
+				</ul>
 
           </>
         ) : (
