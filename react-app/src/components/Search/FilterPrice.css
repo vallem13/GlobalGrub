@@ -15,6 +15,19 @@
   /* align-items: center; */
 }
 
+.pper p{
+font-size: 24px;
+color: #96163cda;
+font-weight: bolder;
+}
+
+.pper h2 {
+  color: #ff851b;
+  font-size: 30px;
+  font-weight: 800px;
+}
+
+
 .price-buttons {
   display: flex;
   gap: 15px;
@@ -44,9 +57,14 @@
 }
 
 .price-button:hover {
-  background-color: #ff851bad;
+  background-color: #f00b50b0;
   color: #ffffff;
-} */
+} 
+
+.price-button.active {
+  background-color: #f00b50b0;
+  color: #ffffff;
+} 
 
 
 

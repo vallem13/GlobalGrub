@@ -6,6 +6,7 @@ import reviewReducer from './review'
 import cartReducer from './cart';
 import cuisineReducer from './cuisine'
 import menuItemReducer from './menu';
+import filterReducer from './filter';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   review: reviewReducer,
   restaurant: restaurantReducer,
   cuisine: cuisineReducer,
-  menu: menuItemReducer
+  menu: menuItemReducer,
+  filter: filterReducer
 });
 
 let enhancer;
