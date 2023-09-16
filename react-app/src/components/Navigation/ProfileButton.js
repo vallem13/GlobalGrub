@@ -121,7 +121,7 @@ function ProfileButton({ user }) {
                 <div className="socials">
                   <span>Alexandra Valle</span>
                   <div className='socials-icons'>
-                    <a href="www.linkedin.com/in/alexandra-valle-m" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
+                    <a href="https://www.linkedin.com/in/alexandra-valle-m" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
                     <a href="https://github.com/vallem13" target="_blank"><i class="fab fa-github" style={{ color: "#f00b51", }}></i></a>
                     <a href="https://vallem13.github.io/" target="_blank"><i class="fa-solid fa-book" FontAwesomeIcon style={{ color: "#f00b51", }}></i></a>
                   </div>
@@ -137,7 +137,7 @@ function ProfileButton({ user }) {
                 <div className="socials">
                   <span>Natalia Ramirez</span>
                   <div className='socials-icons'>
-                    <a href="www.linkedin.com/in/natalia-ramirez-750817151" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
+                    <a href="https://www.linkedin.com/in/natalia-ramirez-750817151" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
                     <a href="https://github.com/Natalia3ramirez" target="_blank"><i class="fab fa-github" style={{ color: "#f00b51", }}></i></a>
                     <a href="https://Natalia3ramirez.github.io/" target="_blank"><i class="fa-solid fa-book" FontAwesomeIcon style={{ color: "#f00b51", }}></i></a>
                   </div>
@@ -145,9 +145,9 @@ function ProfileButton({ user }) {
                 <div className="socials">
                   <span>Kawthar Mohamud</span>
                   <div className='socials-icons'>
-                    <a href="" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
-                    <a href="" target="_blank"><i class="fab fa-github" style={{ color: "#f00b51", }}></i></a>
-                    <a href="" target="_blank"><i class="fa-solid fa-book" FontAwesomeIcon style={{ color: "#f00b51", }}></i></a>
+                    <a href="https://www.linkedin.com/in/kawthar-mohamud" target="_blank" ><i class="fa-brands fa-linkedin" style={{ color: "#f00b51", }}></i></a>
+                    <a href="https://github.com/7kthr7" target="_blank"><i class="fab fa-github" style={{ color: "#f00b51", }}></i></a>
+                    <a href="https://7kthr7.github.io/" target="_blank"><i class="fa-solid fa-book" FontAwesomeIcon style={{ color: "#f00b51", }}></i></a>
                   </div>
                 </div>
               </div>

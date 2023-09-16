@@ -146,7 +146,7 @@ export default function FilterPrice() {
         </div>
       </div>
 
-      <div className="restaurant-cards-container">
+      <div className="cuisine-restaurants">
         {filteredRestaurant.map((restaurant) => (
           <div className="one-restaurant-card" onClick={() => handleRestaurantClick(restaurant.id)}>
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
