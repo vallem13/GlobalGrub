@@ -87,7 +87,7 @@ const RestaurantCarousel = () => {
 
         </div>
         <div className="all-restaurant-wrapper" >
-          <h3 >View All Restaurants</h3>
+          <h3 >All Restaurants</h3>
           <div className="restaurant-container">
             {restaurants.map(restaurant => (
               <div className="single-restaurant"
@@ -99,11 +99,18 @@ const RestaurantCarousel = () => {
                   src={restaurant.restaurant_image}
 
                 />
-                <div >
-                  <div >{restaurant.name}</div>
-                  {/* <button className="restaurant-carousel-avg">{restaurant.average_rating.toFixed(1)}</button> */}
+                <div className="carousel-item-details">
+                <div className="restaurant-carousel-name">{restaurant.name}</div>
+                <div className="restaurant-carousel-avg">
+  {
+    restaurant.average_rating && restaurant.average_rating !== 0 ? 
+    restaurant.average_rating.toFixed(1) : 
+    <p className="no-reviews">No Reviews Yet</p>
+  }
+</div>
 
-                </div>
+            </div>
+                <p className="all-restaurant-price"> {restaurant.price_range}</p>
               </div>
             ))}
           </div>
