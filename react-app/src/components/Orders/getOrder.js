@@ -32,7 +32,7 @@ export default function GetOrder() {
   return (
     <div className="manage-restaurants-page">
       <div className="title-create-container">
-        <h1>Past Orders</h1>
+        <h1>Orders</h1>
       </div>
       <div className="restaurant-cards-buttons-container">
         {all_orders.map(([orderCartId, orderItems]) => (

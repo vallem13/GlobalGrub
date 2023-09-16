@@ -97,7 +97,7 @@ export default function FilterPrice() {
       </div>
 
       <div className="cuisine-restaurants">
-        {filteredRestaurant.map((restaurant) => (
+        {allRestaurants.map((restaurant) => (
           <div className="one-restaurant-card" onClick={() => handleRestaurantClick(restaurant.id)}>
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
           </div>

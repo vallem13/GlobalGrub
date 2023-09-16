@@ -43,9 +43,9 @@ function SignupFormModal() {
 		}
 		if (phoneNumber.length < 5) {
 			frontendErrors.phoneNumber = "Valid Phone Number is required";
-		  } else if (!/^\d+$/.test(phoneNumber)) {
+		} else if (!/^\d+$/.test(phoneNumber)) {
 			frontendErrors.phoneNumber = "Phone Number must contain only numbers";
-		  }
+		}
 		if (password.length < 6) frontendErrors.password = "Password must be at least 6 characters"
 		if (confirmPassword.length < 2) frontendErrors.confirmPassword = "Confirm Password is required"
 
@@ -72,24 +72,27 @@ function SignupFormModal() {
 		setSubmitted(true)
 
 		if (password === confirmPassword) {
-			const data = await dispatch(
-				signUp(
-					email,
-					phoneNumber,
-					firstName,
-					username,
-					lastName,
-					address,
-					city,
-					state,
-					zipcode,
-					password
-				)
-			);
-			if (data) {
-				setErrors(data);
-			} else {
-				closeModal();
+			if (Object.keys(frontendErrors).length === 0) {
+
+				const data = await dispatch(
+					signUp(
+						email,
+						phoneNumber,
+						firstName,
+						username,
+						lastName,
+						address,
+						city,
+						state,
+						zipcode,
+						password
+					)
+				);
+				if (data) {
+					setErrors(data);
+				} else {
+					closeModal();
+				}
 			}
 		} else {
 			setErrors([
