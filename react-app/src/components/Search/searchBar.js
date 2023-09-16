@@ -90,7 +90,12 @@ export default function SearchBar() {
             className="search-suggestion"
             >
               <div key={restaurant.id} restaurant={restaurant} />
-              {restaurant.name}
+              <img className="search-image" src={restaurant.restaurant_image} alt={restaurant.name}></img>
+             <div className="restaurant-search-info">
+              <p>{restaurant.name}, {restaurant.price_range}</p>
+              <p>{restaurant.city}, {restaurant.state}</p>
+              
+              </div> 
               </div>
               
            
