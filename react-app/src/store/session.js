@@ -15,41 +15,6 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
-// export const editUser = (email, phoneNumber, firstName, username, lastName, address, city, state, zipcode) => async (dispatch) => {
-// 	const response = await fetch(`/api/users/${userId}`, {
-// 		method: "PUT",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 		},
-// 		body: JSON.stringify({
-// 			"id":userId,
-// 			username,
-// 			email,
-// 			"phone_number":phoneNumber,
-// 			"first_name":firstName,
-// 			"last_name":lastName,
-// 			address,
-// 			city,
-// 			state,
-// 			zipcode
-// 		}),
-// 	});
-// 	// console.log('-------->', response)
-// 	if (response.ok) {
-// 		const data = await response.json();
-// 		dispatch(setUser(data));
-// 		return null;
-// 	} else if (response.status < 500) {
-// 		const data = await response.json();
-// 		if (data.errors) {
-// 			return data.errors;
-// 		}
-// 	} else {
-// 		return ["An error occurred. Please try again."];
-// 	}
-
-// };
-
 export const editUser = (userId, req_body ) => async (dispatch) => {
 
     const { email, phoneNumber, firstName, username, lastName, address, city, state, zipcode } = req_body
@@ -65,7 +30,6 @@ export const editUser = (userId, req_body ) => async (dispatch) => {
         state,
         zipcode
     }
-    //console.log(request)
     const response = await fetch(`/api/users/update/${userId}`, {
         method: "PUT",
         headers: {
@@ -73,7 +37,6 @@ export const editUser = (userId, req_body ) => async (dispatch) => {
         },
         body: JSON.stringify(request),
     });
-    // console.log('-------->', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(setUser(data));

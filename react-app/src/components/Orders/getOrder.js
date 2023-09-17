@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderThunk, getAllOrderCartsThunk } from '../../store/cart';
+import { getOrderThunk } from '../../store/cart';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './UsersOrders.css';
 
@@ -13,7 +13,6 @@ export default function GetOrder() {
 
   useEffect(() => {
     dispatch(getOrderThunk());
-    // dispatch(getAllOrderCartsThunk())
   }, [dispatch]);
 
   if (Object.keys(orders).length === 0) {
@@ -25,8 +24,9 @@ export default function GetOrder() {
     return orderItems.reduce((total, order) => total + Number(order.menu_item_price), 0);
   }
 
-  const onClick = (restaurantId) => {
-    history.push(`/restaurant/${restaurantId}`);
+  const onClick = async (restaurantId) => {
+    await dispatch
+    await history.push(`/restaurant/${restaurantId}`);
 };
 
   return (
@@ -82,5 +82,3 @@ export default function GetOrder() {
     </div>
   );
 }
-
-
