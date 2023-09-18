@@ -17,9 +17,9 @@ export default function GetOrder() {
     dispatch(getOrderThunk());
   }, [dispatch]);
 
-  if (Object.keys(orders).length === 0) {
-    return <div>Loading...</div>;
-  }
+  // if (Object.keys(orders).length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
   function calculateOrderTotal(orderItems) {
     if (!Array.isArray(orderItems)) return 0;
@@ -29,7 +29,7 @@ export default function GetOrder() {
   const onClick = async (restaurantId) => {
     dispatch(getSingleRestaurantThunk(restaurantId))
     await history.push(`/restaurant/${restaurantId}`);
-   
+
   };
 
   return (
