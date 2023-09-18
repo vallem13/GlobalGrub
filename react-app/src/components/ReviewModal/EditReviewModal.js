@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { editReviewThunk } from '../../store/review';
-import './ReviewModal.css';
+import { editReviewThunk, getAllReviewsThunk } from '../../store/review';
 import { getSingleRestaurantThunk } from '../../store/restaurant'
 import StarRatings from "../StarRatings/starRating"
+import './ReviewModal.css';
 
 export default function EditReviewModal({  review, restaurant }) {
   const [editedReview, setEditedReview] = useState(review.comment);
@@ -47,6 +47,7 @@ export default function EditReviewModal({  review, restaurant }) {
       }
 
       await dispatch(getSingleRestaurantThunk(restaurant.id))
+      await dispatch(getAllReviewsThunk())
       await closeModal()
     }
 

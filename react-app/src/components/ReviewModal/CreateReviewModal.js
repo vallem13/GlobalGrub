@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { createRestaurantReviewThunk } from '../../store/review';
+import { createRestaurantReviewThunk, getAllReviewsThunk } from '../../store/review';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
-import './ReviewModal.css';
 import StarRatings from "../StarRatings/starRating"
+import './ReviewModal.css';
 
 const CreateReviewModal = ({ user_id, restaurant}) => {
   const [review, setReview] = useState('');
@@ -41,6 +41,7 @@ const CreateReviewModal = ({ user_id, restaurant}) => {
         setServerError(error.message);
       }
       await dispatch(getSingleRestaurantThunk(restaurantId));
+      await dispatch(getAllReviewsThunk())
       closeModal();
     }
   };
