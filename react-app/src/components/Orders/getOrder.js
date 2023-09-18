@@ -29,7 +29,7 @@ export default function GetOrder() {
   const onClick = async (restaurantId) => {
     dispatch(getSingleRestaurantThunk(restaurantId))
     await history.push(`/restaurant/${restaurantId}`);
-    // window.location.reload();
+   
   };
 
   return (

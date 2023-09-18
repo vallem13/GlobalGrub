@@ -14,9 +14,9 @@ const OrderCartModal = ({ user }) => {
     const current_restaurant = Object.keys(cart)
     const [totalPrice, setTotalPrice] = useState(0);
     const items = Object.values(cart)
-
+    console.log("this is the restaurant---->", current_restaurant)
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
-
+    const restaurant = useSelector(state => state.restaurant.singleRestaurant)
     const restaurant_id = parseInt(current_restaurant[0])
 
     let menu_items = []
@@ -30,7 +30,7 @@ const OrderCartModal = ({ user }) => {
         setTotalPrice(total.toFixed(2));
     }, [cart_items]);
 
-    const placeOrder = async (e)=> {
+    const placeOrder = async (e) => {
         e.preventDefault()
         await dispatch(thunkCreateCart(user.id, restaurant_id, menu_items))
         await history.push('/user_orders')
@@ -46,6 +46,10 @@ const OrderCartModal = ({ user }) => {
     return (
         <div className="cart-modal">
             <h1> {user.firstName}'s Cart</h1>
+            {items.length ? (
+            <h2>{restaurant.name}</h2>
+            ):('')
+            }
             <div className="cart-items-list">
                 {cart_items.map(item => (
                     <div className="cart-item" key={item.id}>
@@ -55,22 +59,22 @@ const OrderCartModal = ({ user }) => {
                             <p>${item.price}</p>
                         </div>
                         <div>
-                        <button className='delete-item' onClick={(e) => {
-                            e.preventDefault();
-                            dispatch(yeetItem(item.id));
-                        }}>
-                            <i id='fas-fa-trash' className="fas fa-trash" style={{ color: "#f00b51", fontSize: "2rem" }}></i>
-                        </button>
+                            <button className='delete-item' onClick={(e) => {
+                                e.preventDefault();
+                                dispatch(yeetItem(item.id));
+                            }}>
+                                <i id='fas-fa-trash' className="fas fa-trash" style={{ color: "#f00b51", fontSize: "2rem" }}></i>
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
             <div className='total-buttons'>
-            <div>Total: ${totalPrice}</div>
-            <div className='order-place-cancel-buttons'>
-            <button className='place-order-button' disabled={cart_items.length < 1} onClick={placeOrder}>Place Order</button>
-            <button className='cancel-order-button' onClick={cancelOrder}>Cancel Order</button>
-            </div>
+                <div>Total: ${totalPrice}</div>
+                <div className='order-place-cancel-buttons'>
+                    <button className='place-order-button' disabled={cart_items.length < 1} onClick={placeOrder}>Place Order</button>
+                    <button className='cancel-order-button' onClick={cancelOrder}>Cancel Order</button>
+                </div>
             </div>
         </div>
     );
