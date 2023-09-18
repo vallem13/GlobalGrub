@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderThunk } from '../../store/cart';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { getSingleRestaurantThunk } from '../../store/restaurant';
+import { createRestaurantReviewThunk } from '../../store/review';
+
 import './UsersOrders.css';
 
 export default function GetOrder() {
@@ -25,8 +28,8 @@ export default function GetOrder() {
   }
 
   const onClick = async (restaurantId) => {
-    await dispatch
     await history.push(`/restaurant/${restaurantId}`);
+   dispatch(createRestaurantReviewThunk(restaurantId))
 };
 
   return (
