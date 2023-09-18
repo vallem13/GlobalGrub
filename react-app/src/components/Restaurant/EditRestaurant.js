@@ -90,10 +90,10 @@ const EditRestaurant = ({ restaurant }) => {
       frontendErrors.state = "Restaurant state is required to create a Restaurant"
     }
     if (zipcode.length < 5) frontendErrors.zipcode = "Valid Zipcode is required";
-		if (!/^\d+$/.test(zipcode)) frontendErrors.zipcode = "Zipcode must contain only numbers";
-    if (contactNumber.length < 5) {
-      frontendErrors.contactNumber = "Valid Contact Number is required";
-    } else if (!/^\d+$/.test(contactNumber)) {
+    if (!/^\d+$/.test(zipcode)) frontendErrors.zipcode = "Zipcode must contain only numbers";
+    if (contactNumber.length < 10) frontendErrors.contactNumber = "Valid Contact Number is required";
+
+    if (!/^[0-9]+$/.test(contactNumber)) {
       frontendErrors.contactNumber = "Contact Number must contain only numbers";
     }
     if (!selectedCuisineType) {
@@ -267,6 +267,9 @@ const EditRestaurant = ({ restaurant }) => {
               required
             />
           </label>
+          {frontendErrors.contactNumber && submitted && (
+            <p className="modal-error">{frontendErrors.contactNumber}</p>
+          )}
           <label className="modal-label">
             Cuisine Type
             <select
