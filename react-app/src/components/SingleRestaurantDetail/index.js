@@ -11,6 +11,7 @@ import StarRatings from "../StarRatings/starRating"
 import './SingleRestaurant.css'
 import { getAllReviewsThunk } from '../../store/review';
 import { getOrderThunk } from '../../store/cart';
+import { getUserByIdThunk } from '../../store/session';
 
 
 export default function SingleRestaurant() {
@@ -36,11 +37,14 @@ export default function SingleRestaurant() {
   // console.log('-------->', userOrders)
 
   useEffect(() => {
-    dispatch(getSingleRestaurantThunk(restaurantId));
-    dispatch(getAllReviewsThunk())
-    dispatch(getOrderThunk());
+     dispatch(getOrderThunk());
+     dispatch(getAllReviewsThunk());
+     dispatch(getUserByIdThunk(user.id))
+     dispatch(getSingleRestaurantThunk(restaurantId));
     setIsLoading(false);
+
   }, [dispatch, restaurantId]);
+
 
   let restaurant_ids = []
   orders.map(order => restaurant_ids.push(order.restaurant_id))

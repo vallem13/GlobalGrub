@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const GET_USER_BY_ID = "session/GET_USER_BY_ID";
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,44 +12,51 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
+const getUserById = (user) => ({
+	type: GET_USER_BY_ID,
+	payload: user,
+});
+
 
 
 const initialState = { user: null };
 
-export const editUser = (userId, req_body ) => async (dispatch) => {
 
-    const { email, phoneNumber, firstName, username, lastName, address, city, state, zipcode } = req_body
-    const request = {
-        "id":userId,
-        username,
-        email,
-        "phone_number":phoneNumber,
-        "first_name":firstName,
-        "last_name":lastName,
-        address,
-        city,
-        state,
-        zipcode
-    }
-    const response = await fetch(`/api/users/update/${userId}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(request),
-    });
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(setUser(data));
-        return null;
-    } else if (response.status < 500) {
-        const data = await response.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    } else {
-        return ["An error occurred. Please try again."];
-    }
+
+export const editUser = (userId, req_body) => async (dispatch) => {
+
+	const { email, phoneNumber, firstName, username, lastName, address, city, state, zipcode } = req_body
+	const request = {
+		"id": userId,
+		username,
+		email,
+		"phone_number": phoneNumber,
+		"first_name": firstName,
+		"last_name": lastName,
+		address,
+		city,
+		state,
+		zipcode
+	}
+	const response = await fetch(`/api/users/update/${userId}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(request),
+	});
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setUser(data));
+		return null;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
 }
 
 export const deleteUser = (userId) => async (dispatch) => {
@@ -127,9 +135,9 @@ export const signUp = (email, phoneNumber, firstName, username, lastName, addres
 			username,
 			email,
 			password,
-			"phone_number":phoneNumber,
-			"first_name":firstName,
-			"last_name":lastName,
+			"phone_number": phoneNumber,
+			"first_name": firstName,
+			"last_name": lastName,
 			address,
 			city,
 			state,
@@ -151,13 +159,31 @@ export const signUp = (email, phoneNumber, firstName, username, lastName, addres
 	}
 };
 
+export const getUserByIdThunk = (userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getUserById(data));
+		return null;
+	} else if (response.status === 404) {
+		return ["User not found"];
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case GET_USER_BY_ID:
+			return { ...state, user: action.payload };
 		default:
 			return state;
 	}
+
 }
+
+
