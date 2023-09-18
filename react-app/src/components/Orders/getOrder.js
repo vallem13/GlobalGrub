@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOrderThunk } from '../../store/cart';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
-import { createRestaurantReviewThunk } from '../../store/review';
-
 import './UsersOrders.css';
-import { getAllReviewsThunk } from '../../store/review';
-import { getSingleRestaurantThunk } from '../../store/restaurant';
+
 
 export default function GetOrder() {
   const dispatch = useDispatch();
