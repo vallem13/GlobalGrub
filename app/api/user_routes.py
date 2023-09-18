@@ -7,6 +7,16 @@ from app.forms import EditUserForm
 
 user_routes = Blueprint('users', __name__)
 
+
+@user_routes.route('/<int:id>', methods=['GET'])
+@login_required
+def get_user_by_id(id):
+    user = User.query.get(id)
+    if user:
+        return user.to_dict()
+    return {'error': 'User not found'}, 404
+
+
 def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
