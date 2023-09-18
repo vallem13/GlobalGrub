@@ -1,9 +1,21 @@
 // Action Types
+const GET_ALL_REVIEWS = "review/GET_ALL_REVIEWS";
+const GET_SINGLE_REVIEW ="review/GET_SINGLE_REVIEW";
 const CREATE_RESTAURANT_REVIEW = 'review/CREATE_RESTAURANT_REVIEW';
 const DELETE_REVIEW = 'review/DELETE_REVIEW';
 const RESET_REVIEWS = 'reviews/RESET_REVIEWS';
 
 // Action Creators
+const getAllReviews = (reviews) => ({
+  type: GET_ALL_REVIEWS,
+  reviews
+});
+
+const getSingleReview = (review) => ({
+  type: GET_SINGLE_REVIEW,
+  review
+})
+
 const createRestaurantReview = (review) => ({
   type: CREATE_RESTAURANT_REVIEW,
   review,
@@ -20,6 +32,27 @@ export const clearReviews = () => ({
 
 
 // Thunk for creating a review
+export const getAllReviewsThunk = () => async (dispatch) => {
+  const response = await fetch('/api/review/');
+  if (response.ok) {
+      const reviews = await response.json();
+      dispatch(getAllReviews(reviews));
+      return response;
+  }
+}
+
+export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/review/${reviewId}`)
+  if (response.ok) {
+      const review = await response.json()
+      dispatch(getSingleReview(review))
+      return response
+    } else {
+      const errors = await response.json();
+      return errors
+    }
+}
+
 export const createRestaurantReviewThunk = (rating, comment, userId, restaurantId, review) => async (dispatch) => {
     try {
       const response = await fetch(`/api/review/${restaurantId}`, {
@@ -93,12 +126,24 @@ export const editReviewThunk = (review, reviewId, rating, comment) => async (dis
 // Initial State
 const initialState = {
   restaurant: {},
+  allReviews: {},
+  singleReview: {},
 };
 
 // Reducer
 const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
+    case GET_ALL_REVIEWS:
+        newState = { ...state, allReviews: {}, singleReview: {} };
+        action.reviews.forEach((review) => {newState.allReviews[review.id] = review;});
+        return newState
+
+    case GET_SINGLE_REVIEW:
+        newState = { ...state, allReviews: {}, singleReview: {} };
+        newState.singleReview = action.review
+        return newState
+
     case RESET_REVIEWS:
       return initialState;
 

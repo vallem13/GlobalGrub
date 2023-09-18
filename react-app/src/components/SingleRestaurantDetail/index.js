@@ -9,6 +9,8 @@ import EditReviewModal from '../ReviewModal/EditReviewModal';
 import { addItem } from '../../store/cart';
 import StarRatings from "../StarRatings/starRating"
 import './SingleRestaurant.css'
+import { getAllReviewsThunk } from '../../store/review';
+import { getOrderThunk } from '../../store/cart';
 
 
 export default function SingleRestaurant() {
@@ -19,24 +21,33 @@ export default function SingleRestaurant() {
   const restaurant = useSelector((state) => state.restaurant.singleRestaurant);
   const items = restaurant.menu_items || [];
   const user = useSelector((state) => state.session.user);
-  const reviews = restaurant.reviews || [];
   const orders = user.order_carts || [];
   const rating = restaurant.average_rating || ('')
   const cart = useSelector(state => state.cart.cart);
   const cart_items = Object.values(cart) || []
   const cart_item = cart_items.length > 0 ? Object.values(cart_items[0]) : []
 
+  const reviewsObj = useSelector((state) => state.review.allReviews)
+  const reviewsArray = Object.values(reviewsObj) || []
+  const restaurantReviews = reviewsArray.filter((review) => review.restaurant_id === restaurant.id)
+
+  // const userOrders = useSelector((state) => state.cart.orders);
+
+  // console.log('-------->', userOrders)
+
   useEffect(() => {
     dispatch(getSingleRestaurantThunk(restaurantId));
+    dispatch(getAllReviewsThunk())
+    dispatch(getOrderThunk());
     setIsLoading(false);
   }, [dispatch, restaurantId]);
 
   let restaurant_ids = []
   orders.map(order => restaurant_ids.push(order.restaurant_id))
 
-  const reverse_reviews = [...reviews].reverse()
-  const check_order = restaurant_ids.find(order => restaurant.id === order)
-  const previousReview = user && reviews.find((review) => review.user_id === user.id)
+  const reverse_reviews = [...restaurantReviews].reverse()
+  const hasPlacedOrder = restaurant_ids.includes(restaurant.id);
+  const hasPostedReview = !!restaurantReviews.find((review) => review.user_id === user.id);
 
   if (!restaurant) return <div>Loading...</div>;
 
@@ -73,10 +84,10 @@ export default function SingleRestaurant() {
         ))}
       </div>
       <div className="reviews-wrapper">
-        <h3 className='menu-review-title'>{Number(rating).toFixed(2)} <i class="fa-solid fa-star" style={{ color: "#f00b52" }}></i> · {reviews.length} {reviews.length > 1 ? "Reviews" : "Review"}</h3>
+        <h3 className='menu-review-title'>{Number(rating).toFixed(2)} <i class="fa-solid fa-star" style={{ color: "#f00b52" }}></i> · {restaurantReviews.length} {restaurantReviews.length > 1 ? "Reviews" : "Review"}</h3>
         <div>
           <div className='post-review-container'>
-            {check_order && (restaurant.user_id !== user.id) && !previousReview ? (
+            {hasPlacedOrder && !hasPostedReview && (restaurant.user_id !== user.id) ? (
               <div className='review-buttons'>
                 <OpenModalButton className='review-buttons' buttonText="Post Your Review" modalComponent={<CreateReviewModal user_id={user.id} restaurant={restaurant} />} />
               </div>
@@ -93,7 +104,7 @@ export default function SingleRestaurant() {
                 <p className='review-fristName'>{review.user.firstName}</p>
                 <h3>{review.comment}</h3>
               </div>
-              {previousReview && (review.user_id === user.id) ? (
+              {hasPostedReview && (review.user_id === user.id) ? (
                 <div className="review-actions">
                   <div className='review-buttons'>
                     <OpenModalButton
