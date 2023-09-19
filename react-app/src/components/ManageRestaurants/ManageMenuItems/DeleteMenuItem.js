@@ -1,6 +1,6 @@
 import { useModal } from '../../../context/Modal'
 import { useDispatch, useSelector  } from "react-redux";
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory} from "react-router-dom"
 import { deleteMenuItemThunk } from '../../../store/menu';
 import { getSingleRestaurantThunk } from '../../../store/restaurant';
 

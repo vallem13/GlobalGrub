@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory} from "react-router-dom/cjs/react-router-dom.min"
 import OpenModalButton from '../OpenModalButton'
 import DeleteRestaurant from "../Restaurant/DeleteRestaurant"
 import EditRestaurant from "../Restaurant/EditRestaurant"
 import EditRestaurantImage from "../Restaurant/EditRestaurantImage"
 import { getAllRestaurantsThunk } from "../../store/restaurant"
-import ManageMenuItems from './ManageMenuItems';
 import "./ManageRestaurant.css"
 
 const ManageRestaurants = () => {

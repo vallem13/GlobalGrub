@@ -21,7 +21,6 @@ const CreateRestaurant = () => {
     const [contactNumber, setContactNumber] = useState('');
     const [restaurantImage, setRestaurantImage] = useState(null);
     const [frontendErrors, setFrontendErrors] = useState({});
-    const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
     const [selectedPriceRange, setSelectedPriceRange] = useState('');
     const [selectedCuisineType, setSelectedCuisineType] = useState('');
@@ -106,7 +105,7 @@ const CreateRestaurant = () => {
 
         setFrontendErrors(frontendErrors)
 
-    }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType])
+    }, [name, selectedPriceRange, description, address, city, state, zipcode, contactNumber, restaurantImage, selectedCuisineType, newRestaurant])
 
     const handleSubmit = async (e) => {
 
@@ -129,7 +128,7 @@ const CreateRestaurant = () => {
             formData.append('user_id', user.id)
             setImageLoading(true);
             if (!restaurantImage) return null
-            const data = await dispatch(createRestaurantThunk(formData));
+            await dispatch(createRestaurantThunk(formData));
             dispatch(getAllRestaurantsThunk())
             history.push(`/my_restaurants`)
         }

@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { deleteUser } from "../../../store/session";
-import { logout } from "../../../store/session";
 import * as sessionActions from '../../../store/session';
 import '../ManageProfile.css'
 

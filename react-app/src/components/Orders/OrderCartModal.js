@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-import { emptyCart, thunkCreateCart, updateNewOrders, updateOrderCart, yeetItem } from '../../store/cart';
+import { emptyCart, thunkCreateCart, yeetItem } from '../../store/cart';
 import { useModal } from '../../context/Modal'
 import './OrderCartModal.css'
 
@@ -14,7 +14,7 @@ const OrderCartModal = ({ user }) => {
     const current_restaurant = Object.keys(cart)
     const [totalPrice, setTotalPrice] = useState(0);
     const items = Object.values(cart)
-    console.log("this is the restaurant---->", current_restaurant)
+
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
     const restaurant = useSelector(state => state.restaurant.singleRestaurant)
     const restaurant_id = parseInt(current_restaurant[0])

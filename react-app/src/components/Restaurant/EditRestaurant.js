@@ -20,7 +20,7 @@ const EditRestaurant = ({ restaurant }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState(restaurant.price_range || "");
   const [selectedCuisineType, setSelectedCuisineType] = useState(restaurant.cuisine_type_id || "");
   const [frontendErrors, setFrontendErrors] = useState({});
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
   const priceRangeOptions = [
@@ -45,12 +45,12 @@ const EditRestaurant = ({ restaurant }) => {
     { id: 12, name: 'Indian' },
   ];
 
-  const [selectedCuisineTypeName, setSelectedCuisineTypeName] = useState(
-    restaurant.cuisine_type_id
-      ? cuisineTypeOptions.find((option) => option.id === restaurant.cuisine_type_id)
-        ?.name || ""
-      : ""
-  );
+  // const [selectedCuisineTypeName, setSelectedCuisineTypeName] = useState(
+  //   restaurant.cuisine_type_id
+  //     ? cuisineTypeOptions.find((option) => option.id === restaurant.cuisine_type_id)
+  //       ?.name || ""
+  //     : ""
+  // );
 
   const statesList = [
     'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID',

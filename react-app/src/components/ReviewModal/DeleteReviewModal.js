@@ -2,6 +2,7 @@ import { useModal } from '../../context/Modal'
 import { useDispatch } from "react-redux";
 import { deleteReviewThunk, getAllReviewsThunk } from '../../store/review';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
+import './ReviewModal.css'
 
 const DeleteReviewModal = ({ restaurantId, reviewId }) => {
 

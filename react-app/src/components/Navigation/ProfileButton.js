@@ -2,13 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {  useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../store/session';
-import UserProfile from "../ManageProfile";
 import './Navigation.css'; // Import the CSS file;
 import { cleanupCart } from "../../store/cart";
 
