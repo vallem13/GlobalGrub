@@ -7,7 +7,6 @@ import FilterPrice from "../Search/filterPrice";
 import RestaurantCard from "../HomePage/RestaurantCard";
 
 
-
 const RestaurantCarousel = () => {
 
   const dispatch = useDispatch();
