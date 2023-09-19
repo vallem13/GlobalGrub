@@ -36,12 +36,11 @@
 
 .single-restaurant-rating-name{
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 
 #restaurant-title {
-  font-size: medium;
+  font-size: small;
   color: black;
   width: fit-content;
 }
