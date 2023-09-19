@@ -1,7 +1,13 @@
 .home {
   display: flex;
+  flex-direction: column;
   width: 1026px;
   margin-top: 8%;
+  align-items: center;
+}
+
+.filter-carousel {
+  display: flex;
 }
 
 .carousel-wrapper-filter {
@@ -11,7 +17,7 @@
 
 .both-carousel-wrapper {
   top: 151px;
-  right: 20px; 
+  right: 20px;
   transform: translateY(-50%);
   transform: translateX(2%);
   }
@@ -60,7 +66,7 @@
     text-align: center;
     background-color: transparent
   }
- 
+
 
   .carousel-item {
     width: 250px;
@@ -84,7 +90,6 @@
 
   .restaurant-name {
     padding: 10px;
-
     border-top: 1px solid #ddd;
     text-align: center;
     font-weight: bold;
@@ -114,12 +119,7 @@
     padding: 10px;
   }
 
-  .all-restaurant-wrapper h3 {
-    color: hsla(342, 91%, 49%, 0.719);
-    font-size: 35px;
-    font-weight: 800px;
 
-  }
   .restaurant-carousel-avg  {
     border: #ff851b;
     width: 30px;
@@ -131,48 +131,24 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-}
+  }
+
+  .all-restaurant-wrapper h3 {
+    color: hsla(342, 91%, 49%, 0.719);
+    font-size: 35px;
+    font-weight: 800px;
+  }
 
 .restaurant-container {
+  border: 1px solid red;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px; /* This replaces margin-left and margin-right */
 }
 
-.restaurant-container > * {
-  margin-bottom: 120px;
-  cursor: pointer;
-}
 .single-restaurant{
   width: auto;
   height: 180px;
 }
-
-.single-restaurant img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  cursor: pointer;
-  
-}
-
-.name-rating-price {
-  padding-top: 2px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.restaurant-carousel-name {
-  font-size: 20px;
-  color: hsla(0, 0%, 0%, 0.877);
-  cursor: pointer;
-}
-.restaurant-carousel-avg button{
-  margin-top: 20px;
-} 
 
 .all-restaurant-price {
   font-size: 14px;
@@ -181,6 +157,3 @@
   margin-top: -2px;
   cursor: pointer;
 }
-
-
-

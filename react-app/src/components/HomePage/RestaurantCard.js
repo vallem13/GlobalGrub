@@ -15,15 +15,17 @@ const RestaurantCard = ({ restaurant }) => {
             <img className='single-restaurant-image' src={restaurant.restaurant_image} alt="Restaurant" />
             <div className='single-restaurant-rating-name'>
                 <div className='name-price'>
-                    <h4 id='restaurant-title'>{restaurant.name}</h4>
+                    <h3 id='restaurant-title'>{restaurant.name}</h3>
                     <h4>{restaurant.price_range}</h4>
                 </div>
+                <div className='single-restaurant-rating'>
                 {restaurant.average_rating !== null ? (
                     <p className='restaurant-average-rating'>{restaurant.average_rating.toFixed(1)}</p>
 
                 ) : (
                     <p>No Reviews Yet</p>
                 )}
+                </div>
             </div>
         </div>
 
