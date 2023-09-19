@@ -12,7 +12,7 @@ export default function GetOrder() {
   const history = useHistory()
   const orders = useSelector((state) => state.cart.orders);
   const all_orders = Object.entries(orders).reverse();
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getOrderThunk());

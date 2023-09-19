@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleRestaurantThunk } from "../../../store/restaurant";
 import { createMenuItemThunk, getSingleMenuItemThunk } from "../../../store/menu";
@@ -90,7 +90,7 @@ const CreateMenuItem = () => {
 
       <form onSubmit={handleSubmit} id="create-menu" encType="multipart/form-data" method='POST'  >
         <h1 id="restaurant-title">Create Your Menu Item</h1>
-        <label className="add-menu-item-field" style={{ 
+        <label className="add-menu-item-field" style={{
           alignItems: "self-start" }}>
           <p> Menu Item Name </p>
           <input
@@ -103,7 +103,7 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.name && submitted && <p className="modal-error">{frontendErrors.name}</p>}
 
-        <label className="add-menu-item-field" style={{ 
+        <label className="add-menu-item-field" style={{
           alignItems: "self-start" }}>
           Price
           <input
@@ -116,7 +116,7 @@ const CreateMenuItem = () => {
         </label>
         {frontendErrors.price && submitted && <p className="modal-error">{frontendErrors.price}</p>}
 
-        <label className="add-menu-item-field" style={{ 
+        <label className="add-menu-item-field" style={{
           alignItems: "self-start" }}>                    Description
           <input
             id="menu-item-input-update"
@@ -129,7 +129,7 @@ const CreateMenuItem = () => {
         {frontendErrors.description && submitted && <p className="modal-error">{frontendErrors.description}</p>}
 
         <div className="store-image-preview" style={{ alignSelf: "start" }}>
-  <label className="store-image-preview" style={{ 
+  <label className="store-image-preview" style={{
           alignItems: "self-start" }}>
     Store Preview Image
     <input
@@ -145,20 +145,20 @@ const CreateMenuItem = () => {
   style={{
     width: "280px",
     height: "230px",
-    display: "flex", 
-    justifyContent: "center", 
-    alignItems: "center", 
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     cursor: "pointer",
-    border: imagePreview ? "none" : "1px solid #ccc" 
+    border: imagePreview ? "none" : "1px solid #ccc"
   }}
   onClick={() => document.getElementById('menu-item-input-update').click()}
 >
   {!imagePreview && "image"}
-  
+
   {imagePreview && (
-    <img 
-      src={imagePreview} 
-      alt="Preview" 
+    <img
+      src={imagePreview}
+      alt="Preview"
       style={{
         width: "280px",
         height: "230px",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { NavLink, useHistory,useLocation } from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OrderCartModal from '../Orders/OrderCartModal'
@@ -56,7 +56,7 @@ function Navigation({ isLoaded }) {
 								<ProfileButton user={sessionUser} />
 
 								<NavLink exact to="/" activeClassName="active-link" onClick={handleLogoClick}>
-									<img src={logo} className="logo" />
+									<img src={logo} alt={logo} className="logo" />
 								</NavLink>
 								<div className='cart-icon-wrapper'>
 									{itemCount > 0 && <p className='cart-icon-count'>{String(itemCount)}</p>}

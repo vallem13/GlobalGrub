@@ -11,7 +11,6 @@ import StarRatings from "../StarRatings/starRating"
 import './SingleRestaurant.css'
 import { getAllReviewsThunk } from '../../store/review';
 import { getOrderThunk } from '../../store/cart';
-import { getUserByIdThunk } from '../../store/session';
 
 
 export default function SingleRestaurant() {
