@@ -238,7 +238,7 @@ def seed_menu_items():
         name = "Black Garlic Tonkotsu Ramen",
         description = "Waraku’s signature tonkotsu ramen topped with homemade blackened garlic sesame oil.",
         price= 16.95,
-        menu_item_image = "https://tinyurl.com/4xahykt3",
+        menu_item_image = "https://tinyurl.com/4fhp85nr",
         restaurant_id=6
     )
     menu_item35 = MenuItem(
@@ -490,7 +490,7 @@ def seed_menu_items():
         name = "Croqueta",
         description = "Jamón-&-green garlic croqueta, pickled ramp, green garlic salsa",
         price= 20.00,
-        menu_item_image = "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/7049501035bf4a1ca82de4bff9c50207?w=49&org_if_sml=1",
+        menu_item_image = "https://tinyurl.com/22m3jtxm",
         restaurant_id=16
     )
     menu_item71 = MenuItem(
@@ -553,7 +553,7 @@ def seed_menu_items():
         name = "Dividida",
         description = "Divided, choose two types of paella cooked in one pan ",
         price= 68.00,
-        menu_item_image = "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/fbe74d57723e42e68dda693f2684db98?w=49&org_if_sml=1",
+        menu_item_image = "https://tinyurl.com/yxj8vm6w",
         restaurant_id=16
     )
     menu_item80 = MenuItem(
@@ -616,7 +616,7 @@ def seed_menu_items():
         name = "Bellota",
         description = "Jamón Ibérico de bellota sliced to order, pan con tomate",
         price= 40.00,
-        menu_item_image = "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/78b95e2c29894636ad42e72378a76845?w=49&org_if_sml=1",
+        menu_item_image = "https://tinyurl.com/24net238",
         restaurant_id=16
     )
     menu_item89 = MenuItem(
@@ -1234,7 +1234,7 @@ def seed_menu_items():
         description = "Pan fried seasoned codfish batter with tomato chutney",
         price= 11.00,
         restaurant_id=32,
-        menu_item_image = "https://www.savorythoughts.com/wp-content/uploads/2019/02/Spicy-Jamaican-Jerk-Wings-Recipe-Savory-Thoughts.jpg"
+        menu_item_image = "https://tinyurl.com/4f74z3am"
     )
     menu_item177 = MenuItem(
         name = "Rice and Peas",
@@ -1290,7 +1290,7 @@ def seed_menu_items():
         description = "West Indian Blend Curry Sauce . Jasmine Rice . Braised Collard Greens",
         price= 25.00,
         restaurant_id=31,
-        menu_item_image = "https://www.butterbeready.com/wp-content/uploads/2020/06/DK6A7102.jpg"
+        menu_item_image = "https://tinyurl.com/552m4t4d"
     )
     menu_item185 = MenuItem(
         name = "Fried Corn Crusted Shrimp",

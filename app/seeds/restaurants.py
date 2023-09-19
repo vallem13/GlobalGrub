@@ -103,7 +103,7 @@ def seed_restaurants():
         state = "CA",
         zipcode = 94110,
         contact_phone_number = "415-658-7349",
-        restaurant_image = "https://tinyurl.com/mr2d2pme",
+        restaurant_image = "https://tinyurl.com/2fdk63ez",
         cuisine_type_id=3,
         user_id = 2
     )
