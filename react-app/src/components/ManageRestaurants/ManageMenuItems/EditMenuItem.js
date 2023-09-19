@@ -6,7 +6,6 @@ import { getSingleRestaurantThunk } from "../../../store/restaurant";
 import { editMenuItemThunk } from "../../../store/menu";
 
 const EditMenuItem = ({ item }) => {
-  console.log("------->", item)
   const { closeModal } = useModal()
   const dispatch = useDispatch();
   const history = useHistory();

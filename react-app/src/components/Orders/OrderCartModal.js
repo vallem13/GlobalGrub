@@ -14,7 +14,7 @@ const OrderCartModal = ({ user }) => {
     const current_restaurant = Object.keys(cart)
     const [totalPrice, setTotalPrice] = useState(0);
     const items = Object.values(cart)
-    console.log("this is the restaurant---->", current_restaurant)
+  
     const cart_items = items.length > 0 ? Object.values(items[0]) : [];
     const restaurant = useSelector(state => state.restaurant.singleRestaurant)
     const restaurant_id = parseInt(current_restaurant[0])

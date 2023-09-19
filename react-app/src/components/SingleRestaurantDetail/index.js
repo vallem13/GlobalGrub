@@ -32,14 +32,12 @@ export default function SingleRestaurant() {
   const reviewsArray = Object.values(reviewsObj) || []
   const restaurantReviews = reviewsArray.filter((review) => review.restaurant_id === restaurant.id)
 
-  // const userOrders = useSelector((state) => state.cart.orders);
 
-  // console.log('-------->', userOrders)
 
   useEffect(() => {
      dispatch(getOrderThunk());
      dispatch(getAllReviewsThunk());
-     dispatch(getUserByIdThunk(user.id))
+    //  dispatch(getUserByIdThunk(user.id))
      dispatch(getSingleRestaurantThunk(restaurantId));
     setIsLoading(false);
 

@@ -9,7 +9,6 @@ const SingleCuisine = () => {
   const dispatch = useDispatch();
   const history = useHistory()
   const cuisine = useSelector((state) => state.cuisine.singleCuisine);
-  // console.log("WHAT IS THIS ----->", cuisine)
   const restaurants = cuisine.restaurants || []
 
 

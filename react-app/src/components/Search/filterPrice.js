@@ -41,14 +41,12 @@ export default function FilterPrice() {
 
     dispatch(setSearchPrices(updatedSearchPrices));
 
-    console.log("------->", setSearchPrices(updatedSearchPrices));
     const priceRanges = updatedSearchPrices.join(',');
     if (updatedSearchPrices.length === 0) {
       dispatch(clearFilters());
       history.push('/');
     } else {
       dispatch(getFilteredRestaurants(updatedSearchPrices));
-      console.log("------->", getFilteredRestaurants(updatedSearchPrices));
       history.push(`/filter/${priceRanges}`);
     }
   };

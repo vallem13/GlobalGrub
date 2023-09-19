@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOrderThunk } from '../../store/cart';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { getSingleRestaurantThunk } from '../../store/restaurant';
+import { createRestaurantReviewThunk } from '../../store/review';
 import './UsersOrders.css';
 
 
@@ -27,7 +28,8 @@ export default function GetOrder() {
   }
 
   const onClick = async (restaurantId) => {
-    dispatch(getSingleRestaurantThunk(restaurantId))
+    await dispatch(getSingleRestaurantThunk(restaurantId))
+    await dispatch(createRestaurantReviewThunk(restaurantId))
     await history.push(`/restaurant/${restaurantId}`);
 
   };
